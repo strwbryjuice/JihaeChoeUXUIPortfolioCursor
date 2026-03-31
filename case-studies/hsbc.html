@@ -5,222 +5,99 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HSBC — Jihae Choe</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #F5F5F3; --ink: #111110; --ink-muted: #888884;
-    --border: #E2E2DE; --white: #FFFFFF;
-    --body-size: 16px;
-    --cat-size: 10px;
-    --catchy-size: 24px;
-    --evident-size: 15px;
-    --feature-desc-size: 16px;
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); font-size: var(--body-size); line-height: 1.75; overflow-x: hidden; }
-
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,245,243,0.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); height: 56px; display: flex; align-items: center; padding: 0 40px; justify-content: space-between; }
-  .nav-back { font-size: 13px; font-weight: 500; color: var(--ink-muted); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
-  .nav-back:hover { color: var(--ink); }
-  .nav-logo { font-size: 15px; font-weight: 500; color: var(--ink); text-decoration: none; }
-
-  .layout { display: grid; grid-template-columns: 200px 1fr 180px; max-width: 1280px; margin: 0 auto; padding-top: 56px; min-height: 100vh; align-items: start; }
-
-  .sidebar-left { position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; padding: 48px 24px 48px 40px; border-right: 1px solid var(--border); scrollbar-width: none; }
-  .sidebar-left::-webkit-scrollbar { display: none; }
-  .sidebar-label { font-size: var(--cat-size); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 20px; }
-  .project-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
-  .project-list a { display: block; font-size: 13px; font-weight: 400; color: var(--ink-muted); text-decoration: none; padding: 6px 0 6px 10px; border-left: 2px solid transparent; transition: color 0.2s; line-height: 1.4; }
-  .project-list a:hover { color: var(--ink); }
-  .project-list a.current { color: var(--ink); font-weight: 500; border-left-color: var(--ink); }
-
-  .content { padding: 64px 60px 120px; }
-
-  .hero-img { width: 100%; aspect-ratio: 16/9; background: #D9D6D0; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; margin-bottom: 48px; }
-  .ph-box { width: 36px; height: 36px; border: 1.5px solid rgba(17,17,16,0.18); }
-  .ph-label { font-size: var(--cat-size); letter-spacing: 0.12em; text-transform: uppercase; color: rgba(17,17,16,0.28); font-weight: 500; }
-
-  .page-heading { font-size: clamp(26px, 3vw, 42px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 40px; }
-
-  .meta-row { display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 64px; padding: 20px 0; }
-  .meta-item { padding: 0 20px 0 0; }
-  .meta-item + .meta-item { border-left: 1px solid var(--border); padding-left: 20px; }
-  .meta-key { font-size: var(--cat-size); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 4px; }
-  .meta-val { font-size: 13px; font-weight: 300; line-height: 1.5; }
-
-  .section { margin-bottom: 64px; scroll-margin-top: 80px; }
-  .mid-title { font-size: 20px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
-
-  .category { font-size: var(--cat-size); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 10px; margin-top: 32px; }
-  .category:first-child { margin-top: 0; }
-
-  .catchy { font-size: var(--catchy-size); font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; margin-bottom: 16px; }
-  .catchy em { font-style: italic; font-weight: 300; color: var(--ink-muted); }
-  .catchy.placeholder { color: #C4C4C0; font-weight: 300; font-style: italic; }
-
-  p { font-size: var(--body-size); font-weight: 300; line-height: 1.8; margin-bottom: 14px; }
-  p.placeholder { color: #C4C4C0; font-style: italic; }
-
-  .body-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-  .body-list li { font-size: var(--body-size); font-weight: 300; line-height: 1.75; padding-left: 18px; position: relative; }
-  .body-list li::before { content: '—'; position: absolute; left: 0; color: var(--ink-muted); }
-
-  .so-callout { font-size: var(--body-size); font-weight: 400; line-height: 1.75; border-left: 2px solid var(--ink); padding-left: 14px; margin-top: 10px; color: var(--ink); }
-
-  .sub-list { list-style: none; margin-top: 8px; display: flex; flex-direction: column; gap: 5px; padding-left: 16px; }
-  .sub-list li { font-size: 13px; font-weight: 300; color: var(--ink-muted); line-height: 1.65; position: relative; padding-left: 14px; }
-  .sub-list li::before { content: '·'; position: absolute; left: 0; }
-
-  /* KEYWORD BLOCKS */
-  .keyword-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 4px; }
-  .keyword-block { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 24px 22px; display: flex; flex-direction: column; gap: 8px; }
-  .keyword-title { font-size: var(--catchy-size); font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; color: var(--ink); }
-  .keyword-desc { font-size: var(--body-size); font-weight: 300; line-height: 1.65; color: var(--ink-muted); }
-
-  /* SURVEY META */
-  .survey-meta-list { display: flex; flex-direction: column; gap: 8px; margin: 16px 0 28px; }
-  .survey-meta-row { display: flex; gap: 12px; font-size: var(--body-size); font-weight: 300; line-height: 1.7; }
-  .s-key { font-weight: 500; color: var(--ink); flex-shrink: 0; min-width: 72px; }
-  .s-val { color: var(--ink-muted); }
-
-  /* INSIGHT BLOCKS */
-  .insight-blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; align-items: start; }
-  .insight-block { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 24px 24px 20px; }
-  .insight-block-num { font-size: var(--cat-size); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 10px; }
-  .insight-block-title { font-size: var(--catchy-size); font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; color: var(--ink); margin-bottom: 20px; }
-  .evident-list { display: flex; flex-direction: column; gap: 20px; }
-  .evident-item { border-left: 2px solid var(--border); padding-left: 16px; display: flex; flex-direction: column; gap: 12px; }
-  .evident-text { font-size: var(--evident-size); font-weight: 300; color: var(--ink-muted); line-height: 1.7; }
-  .evident-text strong { font-weight: 500; color: var(--ink); }
-  .evident-graph { width: 100%; aspect-ratio: 16/9; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; }
-  .evident-graph .ph-label { font-size: 9px; }
-
-  /* FEATURE ROW */
-  .feature-row { display: grid; grid-template-columns: 1fr 320px; gap: 32px; align-items: center; padding: 32px 0; border-bottom: 1px solid var(--border); }
-  .feature-row:first-of-type { border-top: 1px solid var(--border); }
-  .feature-text { display: flex; flex-direction: column; gap: 8px; }
-  .feature-title { font-size: var(--catchy-size); font-weight: 600; letter-spacing: -0.01em; line-height: 1.25; }
-  .feature-num { font-size: var(--cat-size); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); }
-  .feature-desc { font-size: var(--feature-desc-size); font-weight: 300; color: var(--ink-muted); line-height: 1.7; }
-
-  .gif-ph { width: 100%; aspect-ratio: 9/16; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; }
-  .gif-ph .ph-label { font-size: 9px; }
-
-  .img-ph { width: 100%; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; margin: 20px 0; }
-
-  .tbc { display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); background: var(--border); padding: 3px 10px; border-radius: 20px; }
-
-  .sidebar-right { position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; padding: 48px 40px 48px 24px; border-left: 1px solid var(--border); scrollbar-width: none; }
-  .sidebar-right::-webkit-scrollbar { display: none; }
-  .toc-label { font-size: var(--cat-size); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 16px; }
-  .toc-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
-  .toc-list a { display: block; font-size: 12px; font-weight: 400; color: var(--ink-muted); text-decoration: none; padding: 5px 0 5px 10px; border-left: 2px solid transparent; transition: color 0.2s, border-color 0.2s; line-height: 1.4; }
-  .toc-list a:hover { color: var(--ink); }
-  .toc-list a.active { color: var(--ink); font-weight: 500; border-left-color: var(--ink); }
-
-  @media (max-width: 1024px) {
-    .layout { grid-template-columns: 160px 1fr 0; }
-    .sidebar-right { display: none; }
-    .content { padding: 48px 40px 80px; }
-    .feature-row { grid-template-columns: 1fr 240px; }
-    .keyword-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 768px) {
-    .layout { grid-template-columns: 1fr; }
-    .sidebar-left { display: none; }
-    .content { padding: 32px 20px 80px; }
-    nav { padding: 0 20px; }
-    .meta-row { grid-template-columns: 1fr; gap: 16px; }
-    .meta-item + .meta-item { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 16px; }
-    .keyword-grid { grid-template-columns: 1fr; }
-    .feature-row { grid-template-columns: 1fr; gap: 20px; padding: 24px 0; }
-    .gif-ph { width: 160px; aspect-ratio: 9/16; margin: 0 auto; }
-    .insight-blocks { grid-template-columns: 1fr; }
-  }
-</style>
+<link rel="stylesheet" href="casestudy.css">
 </head>
 <body>
 
 <nav>
-  <a href="../index.html" class="nav-back">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M12 7H2M6 3L2 7l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Back
-  </a>
-  <a href="../index.html" class="nav-logo">Jihae Choe</a>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M12 7H2M6 3L2 7l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back
+    </a>
+    <a href="../index.html" class="nav-logo">Jihae Choe</a>
+  </div>
 </nav>
 
 <div class="layout">
-  <aside class="sidebar-left">
-    <div class="sidebar-label">All Projects</div>
-    <ul class="project-list">
-      <li><a href="./habitta.html">Habitta App</a></li>
-      <li><a href="./hsbc.html" class="current">HSBC Redesign</a></li>
-      <li><a href="../index.html#work">Back to home</a></li>
+  <aside class="sl">
+    <div class="toc-label">On this page</div>
+    <ul class="toc-list">
+      <li><a href="#overview" class="active">Project Overview</a></li>
+      <li><a href="#keywords">Keywords</a></li>
+      <li><a href="#features">Main Features</a></li>
+      <li><a href="#empathy">Empathy</a></li>
+      <li><a href="#define">Define</a></li>
+      <li><a href="#deliver">Deliver</a></li>
+      <li><a href="#testing">Usability Testing</a></li>
+      <li><a href="#prototype">Final Prototype</a></li>
+      <li><a href="#business-objective">Business Objective</a></li>
+      <li><a href="#conclusion">Conclusion</a></li>
     </ul>
   </aside>
 
   <main class="content">
 
     <div class="hero-img"><div class="ph-box"></div><span class="ph-label">Hero Image</span></div>
-    <h1 class="page-heading">HSBC Redesign for Cognitive Fraud Prevention</h1>
+    <h1 class="page-heading">HSBC Redesign for Scam Prevention</h1>
 
     <div class="meta-row">
-      <div class="meta-item"><div class="meta-key">Role</div><div class="meta-val">Lead Product Designer</div></div>
-      <div class="meta-item"><div class="meta-key">Timeline</div><div class="meta-val">Sep – Dec 2025 · 3 months</div></div>
-      <div class="meta-item"><div class="meta-key">Team</div><div class="meta-val">Group Project · 2 Designers</div></div>
+      <div class="mi"><div class="mk">Role</div><div class="mv">Lead Product Designer</div></div>
+      <div class="mi"><div class="mk">Timeline</div><div class="mv">Sep – Dec 2025 · 3 months</div></div>
+      <div class="mi"><div class="mk">Team</div><div class="mv">Group Project · 2 Designers</div></div>
     </div>
 
     <!-- OVERVIEW -->
     <section class="section" id="overview">
       <div class="mid-title">Project Overview</div>
-      <div class="category">Background</div>
+      <div class="cat">Background</div>
       <div class="catchy">Bridging the gap between a user's perceived knowledge and their actual ability to detect a scam.</div>
       <p>When users experience fraud, they often stop using HSBC entirely — meaning fraud must be prevented before it occurs, not just reimbursed after the fact.</p>
-      <div class="img-ph" style="aspect-ratio:16/9; background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">Background Image</span></div>
+      <div class="img-ph" style="aspect-ratio:16/9;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">Background Image</span></div>
     </section>
 
     <!-- KEYWORDS -->
-    <section class="section" id="keywords">
+    <section class="section" id="keywords" style="max-width:1200px;">
       <div class="mid-title">Keywords</div>
-      <div class="keyword-grid">
-        <div class="keyword-block"><div class="keyword-title">Evidence-Based Intervention</div><div class="keyword-desc">Applying the right brakes at the right time.</div></div>
-        <div class="keyword-block"><div class="keyword-title">User Overconfidence</div><div class="keyword-desc">The biggest vulnerability in fraud prevention.</div></div>
-        <div class="keyword-block"><div class="keyword-title">High Cognition Load</div><div class="keyword-desc">When user is busy on doing something the scam happens.</div></div>
+      <div class="kw-grid" style="grid-template-columns:1fr 1fr 1fr;">
+        <div class="kw-block"><div class="kw-title">High Cognition Load</div><div class="kw-desc">When user is busy on doing something the scam happens.</div></div>
+        <div class="kw-block"><div class="kw-title">User Overconfidence</div><div class="kw-desc">The biggest vulnerability in fraud prevention.</div></div>
+        <div class="kw-block"><div class="kw-title">Evidence-Based Intervention</div><div class="kw-desc">Applying the right brakes at the right time.</div></div>
       </div>
     </section>
 
     <!-- MAIN FEATURES -->
     <section class="section" id="features">
       <div class="mid-title">Main Features</div>
-      <div class="feature-row">
-        <div class="feature-text">
-          <div class="feature-num">Feature 01</div>
-          <div class="feature-title">Smart Intervention</div>
-          <div class="feature-desc">Automated warnings that trigger during the transfer flow if the recipient's account is high-risk (e.g., newly created, flagged, or from a high-scam region).</div>
+      <div class="fr">
+        <div class="ft">
+          <div class="ft-num">Feature 01</div>
+          <div class="ft-title">Smart Intervention</div>
+          <div class="ft-desc">Automated warnings that trigger during the transfer flow if the recipient's account is high-risk (e.g., newly created, flagged, or from a high-scam region).</div>
         </div>
         <div class="gif-ph" style="background:#D9D6D0;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.15);"></div><span class="ph-label">GIF</span></div>
       </div>
-      <div class="feature-row">
-        <div class="feature-text">
-          <div class="feature-num">Feature 02</div>
-          <div class="feature-title">Behavioral Micro-tips</div>
-          <div class="feature-desc">Visual cues that debunk specific scam tactics (like "Safe Account" scams) on the loading screen before a transaction is finalized.</div>
+      <div class="fr">
+        <div class="ft">
+          <div class="ft-num">Feature 02</div>
+          <div class="ft-title">Behavioral Micro-tips</div>
+          <div class="ft-desc">Visual cues that debunk specific scam tactics (like "Safe Account" scams) on the loading screen before a transaction is finalized.</div>
         </div>
         <div class="gif-ph" style="background:#D4D2CE;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.15);"></div><span class="ph-label">GIF</span></div>
       </div>
-      <div class="feature-row">
-        <div class="feature-text">
-          <div class="feature-num">Feature 03</div>
-          <div class="feature-title">Quick Cancel from App Notification</div>
-          <div class="feature-desc">Allows users to cancel unauthorized transactions directly from the push notification without opening the app, minimizing the "Window of Opportunity" for scammers.</div>
+      <div class="fr">
+        <div class="ft">
+          <div class="ft-num">Feature 03</div>
+          <div class="ft-title">Quick Cancel from App Notification</div>
+          <div class="ft-desc">Allows users to cancel unauthorized transactions directly from the push notification without opening the app, minimizing the "Window of Opportunity" for scammers.</div>
         </div>
         <div class="gif-ph" style="background:#CECCC8;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.15);"></div><span class="ph-label">GIF</span></div>
       </div>
-      <div class="feature-row">
-        <div class="feature-text">
-          <div class="feature-num">Feature 04</div>
-          <div class="feature-title">Encouraging Lowering Transaction Limit</div>
-          <div class="feature-desc">Before the scam happens, we suggest the bank's scam prevention method in advance, instead of expecting the user to already know.</div>
+      <div class="fr">
+        <div class="ft">
+          <div class="ft-num">Feature 04</div>
+          <div class="ft-title">Encouraging Lowering Transaction Limit</div>
+          <div class="ft-desc">Before the scam happens, we suggest the bank's scam prevention method in advance, instead of expecting the user to already know.</div>
         </div>
         <div class="gif-ph" style="background:#D6D4CF;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.15);"></div><span class="ph-label">GIF</span></div>
       </div>
@@ -229,11 +106,11 @@
     <!-- EMPATHY -->
     <section class="section" id="empathy">
       <div class="mid-title">Empathy</div>
-      <div class="category">Secondary Research · Articles and Literature</div>
+      <div class="cat">Secondary Research · Articles and Literature</div>
       <span class="tbc">Content coming soon</span>
-      <div class="img-ph" style="aspect-ratio:16/9; background:#E0DDD8;"><div class="ph-box"></div><span class="ph-label">Research Articles Image</span></div>
+      <div class="img-ph" style="aspect-ratio:16/9;background:#E0DDD8;"><div class="ph-box"></div><span class="ph-label">Research Articles Image</span></div>
 
-      <div class="category">Primary Research · Survey</div>
+      <div class="cat">Primary Research · Survey</div>
       <div class="catchy">Users are overconfident — but only until scam actually happens.</div>
       <div class="survey-meta-list">
         <div class="survey-meta-row"><span class="s-key">Who</span><span class="s-val">UK bank users from Reddit and LinkedIn Community, age range 20 to 50s</span></div>
@@ -242,7 +119,7 @@
         <div class="survey-meta-row"><span class="s-key">Purpose</span><span class="s-val">To check user awareness and behaviour around scam detection</span></div>
       </div>
 
-      <div class="insight-blocks">
+      <div class="insight-blocks" style="max-width:1200px;">
         <div class="insight-block">
           <div class="insight-block-num">Insight 01</div>
           <div class="insight-block-title">Parallel to desk research, user overestimates their ability to recognize what banks will never ask for.</div>
@@ -277,38 +154,267 @@
         </div>
       </div>
 
-      <div class="category">Primary Research · Interview</div>
-      <div class="catchy placeholder">Where summary of Interview</div>
-      <p class="placeholder">Interview content placeholder — add findings, quotes, and insights here.</p>
-      <div class="img-ph" style="aspect-ratio:16/9; background:#DDD9D3;"><div class="ph-box"></div><span class="ph-label">Interview Image / Diagram</span></div>
+      <div class="cat">Primary Research · First Interview</div>
+      <div class="catchy">Confidence to not be scammed is stronger than scam detection</div>
+
+      <!-- Interview meta -->
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:8px 24px;max-width:900px;margin-bottom:32px;">
+        <span style="font-size:var(--body);font-weight:500;color:var(--ink);padding-top:2px;">Who</span>
+        <span style="font-size:var(--body);font-weight:300;line-height:1.7;">5 HSBC UK users who showed high confidence from the survey</span>
+        <span style="font-size:var(--body);font-weight:500;color:var(--ink);padding-top:2px;">How</span>
+        <span style="font-size:var(--body);font-weight:300;line-height:1.7;">1:1 conversation through Zoom call, 30–45 minutes</span>
+        <span style="font-size:var(--body);font-weight:500;color:var(--ink);padding-top:2px;">Num</span>
+        <span style="font-size:var(--body);font-weight:300;line-height:1.7;">Total of 5</span>
+        <span style="font-size:var(--body);font-weight:500;color:var(--ink);padding-top:2px;">Purpose</span>
+        <span style="font-size:var(--body);font-weight:300;line-height:1.7;">To check how they protect themselves from scam</span>
+      </div>
+
+      <!-- From affinity group -->
+      <div style="font-size:var(--body);font-weight:500;color:var(--ink);margin-bottom:10px;">From Affinity Group:</div>
+      <p>When users feel rushed, they are more likely to follow a scam attacker's instructions — but current banking experiences do not give an instant answer to help them escape from the panic moment.</p>
+      <div class="img-ph" style="aspect-ratio:16/9;background:#DDD9D3;"><div class="ph-box"></div><span class="ph-label">Affinity Group Diagram</span></div>
+
+      <!-- From OX testing -->
+      <div style="font-size:var(--body);font-weight:500;color:var(--ink);margin-bottom:10px;margin-top:32px;">From Testing:</div>
+      <p>Even confident users couldn't tell real HSBC texts from fake, so their scam-spotting ability may be overestimated. <em style="color:var(--muted);font-style:normal;">(from desk research and survey)</em></p>
+
+      <!-- OX result table -->
+      <div style="max-width:900px;margin:16px 0 0;border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+
+        <!-- Header row: message images + labels -->
+        <div style="display:grid;grid-template-columns:48px repeat(5,1fr);border-bottom:1px solid var(--border);">
+          <div style="padding:12px 14px;"></div>
+          <div style="border-left:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 10px;">
+            <div style="width:100%;aspect-ratio:9/16;background:#E8E6E2;border-radius:4px;display:flex;align-items:center;justify-content:center;"><span style="font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(17,17,16,0.28);font-weight:500;">IMG</span></div>
+            <span style="font-size:var(--cat);font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);">Fake</span>
+          </div>
+          <div style="border-left:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 10px;">
+            <div style="width:100%;aspect-ratio:9/16;background:#E8E6E2;border-radius:4px;display:flex;align-items:center;justify-content:center;"><span style="font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(17,17,16,0.28);font-weight:500;">IMG</span></div>
+            <span style="font-size:var(--cat);font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);">Fake</span>
+          </div>
+          <div style="border-left:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 10px;">
+            <div style="width:100%;aspect-ratio:9/16;background:#E8E6E2;border-radius:4px;display:flex;align-items:center;justify-content:center;"><span style="font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(17,17,16,0.28);font-weight:500;">IMG</span></div>
+            <span style="font-size:var(--cat);font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);">Real</span>
+          </div>
+          <div style="border-left:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 10px;">
+            <div style="width:100%;aspect-ratio:9/16;background:#E8E6E2;border-radius:4px;display:flex;align-items:center;justify-content:center;"><span style="font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(17,17,16,0.28);font-weight:500;">IMG</span></div>
+            <span style="font-size:var(--cat);font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);">Real</span>
+          </div>
+          <div style="border-left:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 10px;">
+            <div style="width:100%;aspect-ratio:9/16;background:#E8E6E2;border-radius:4px;display:flex;align-items:center;justify-content:center;"><span style="font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(17,17,16,0.28);font-weight:500;">IMG</span></div>
+            <span style="font-size:var(--cat);font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);">Real</span>
+          </div>
+        </div>
+
+        <!-- Row A -->
+        <div style="display:grid;grid-template-columns:48px repeat(5,1fr);border-bottom:1px solid var(--border);">
+          <div style="padding:14px;font-size:var(--body);font-weight:500;display:flex;align-items:center;justify-content:center;">A</div>
+          <div style="padding:14px;text-align:center;font-size:18px;color:#111110;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;">○</div>
+          <div style="padding:14px;text-align:center;font-size:18px;color:#111110;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;">○</div>
+          <div style="padding:14px;text-align:center;font-size:18px;color:#D0392B;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;">✕</div>
+          <div style="padding:14px;text-align:center;font-size:18px;color:#D0392B;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;">✕</div>
+          <div style="padding:14px;text-align:center;font-size:18px;color:#D0392B;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;">✕</div>
+        </div>
+
+        <!-- Row B -->
+        <div style="display:grid;grid-template-columns:48px repeat(5,1fr);border-bottom:1px solid var(--border);">
+          <div style="padding:14px;font-size:var(--body);font-weight:500;display:flex;align-items:center;justify-content:center;">B</div>
+          <div style="padding:14px;text-align:center;font-size:18px;color:#111110;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;">○</div>
+          <div style="padding:14px;text-align:center;font-size:18px;color:#D0392B;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;">✕</div>
+          <div style="padding:14px;text-align:center;font-size:18px;color:#D0392B;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;">✕</div>
+          <div style="padding:14px;text-align:center;font-size:18px;color:#D0392B;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;">✕</div>
+          <div style="padding:14px;text-align:center;font-size:18px;color:#D0392B;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;">✕</div>
+        </div>
+
+        <!-- Row C (text span) -->
+        <div style="display:grid;grid-template-columns:48px 1fr;border-bottom:1px solid var(--border);">
+          <div style="padding:14px;font-size:var(--body);font-weight:500;display:flex;align-items:center;justify-content:center;">C</div>
+          <div style="padding:14px;font-size:13px;font-weight:300;line-height:1.6;color:var(--muted);border-left:1px solid var(--border);">Could not even attempt to distinguish by saying "Actually cannot tell the difference at all, they all look fake"</div>
+        </div>
+
+        <!-- Row D (text span) -->
+        <div style="display:grid;grid-template-columns:48px 1fr;border-bottom:1px solid var(--border);">
+          <div style="padding:14px;font-size:var(--body);font-weight:500;display:flex;align-items:center;justify-content:center;">D</div>
+          <div style="padding:14px;font-size:13px;font-weight:300;line-height:1.6;color:var(--muted);border-left:1px solid var(--border);">Could not participate due to low eye sight</div>
+        </div>
+
+        <!-- Row E -->
+        <div style="display:grid;grid-template-columns:48px repeat(5,1fr);border-bottom:1px solid var(--border);">
+          <div style="padding:14px;font-size:var(--body);font-weight:500;display:flex;align-items:center;justify-content:center;">E</div>
+          <div style="padding:14px;text-align:center;font-size:18px;color:#111110;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;">○</div>
+          <div style="padding:14px;text-align:center;font-size:18px;color:#D0392B;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;">✕</div>
+          <div style="padding:14px;text-align:center;font-size:18px;color:#111110;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;">○</div>
+          <div style="padding:14px;text-align:center;font-size:18px;color:#D0392B;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;">✕</div>
+          <div style="padding:14px;text-align:center;font-size:18px;color:#D0392B;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;">✕</div>
+        </div>
+
+        <!-- Row F -->
+        <div style="display:grid;grid-template-columns:48px repeat(5,1fr);">
+          <div style="padding:14px;font-size:var(--body);font-weight:500;display:flex;align-items:center;justify-content:center;">F</div>
+          <div style="padding:14px;text-align:center;font-size:18px;color:#D0392B;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;">✕</div>
+          <div style="padding:14px;text-align:center;font-size:18px;color:#111110;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;">○</div>
+          <div style="padding:14px;text-align:center;font-size:18px;color:#D0392B;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;">✕</div>
+          <div style="padding:14px;text-align:center;font-size:18px;color:#D0392B;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;">✕</div>
+          <div style="padding:14px;text-align:center;font-size:18px;color:#D0392B;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;">✕</div>
+        </div>
+
+      </div>
     </section>
 
     <!-- DEFINE -->
     <section class="section" id="define">
       <div class="mid-title">Define</div>
-      <div class="category">User Journey</div>
-      <div class="catchy">Moment of Panic</div>
-      <ul class="body-list">
-        <li><strong>What:</strong> <span class="tbc">TBC</span></li>
-        <li><strong>How:</strong> Mapping the user journey during a scam.</li>
-        <li><strong>Why:</strong> To find the optimal touchpoint for intervention. Security education is useless after the user has already entered a panicked state.</li>
-      </ul>
-      <div class="img-ph" style="aspect-ratio:16/9; background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">User Journey Map</span></div>
-      <div class="category">User Story</div>
+
+      <!-- PERSONA -->
+      <div class="cat">User Persona</div>
+      <div class="catchy" style="max-width:900px;">Digitally confident user whose risk emerges not from lack of skill, but from urgency, ambiguity, and time pressure.</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0 48px;">
+
+        <!-- Persona 1 -->
+        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--white);">
+          <!-- Top: photo + metadata side by side -->
+          <div style="display:grid;grid-template-columns:120px 1fr;border-bottom:1px solid var(--border);">
+            <div class="img-ph" style="aspect-ratio:unset;min-height:160px;border-radius:0;margin:0;background:#D9D6D0;border-right:1px solid var(--border);"><div class="ph-box"></div><span class="ph-label">Photo</span></div>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:5px 12px;align-items:baseline;padding:16px 20px;align-content:start;">
+              <span style="font-size:var(--cat);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);">Age</span>
+              <span style="font-size:13px;font-weight:300;">44</span>
+              <span style="font-size:var(--cat);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);">Occupation</span>
+              <span style="font-size:13px;font-weight:300;">career woman (non finance or tech)</span>
+              <span style="font-size:var(--cat);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);">Location</span>
+              <span style="font-size:13px;font-weight:300;">United Kingdom</span>
+              <span style="font-size:var(--cat);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);line-height:1.5;">Tech Literate</span>
+              <span style="font-size:13px;font-weight:300;color:#C0430A;">Enough to download app and use it but not expert enough to customize greatly</span>
+            </div>
+          </div>
+          <!-- Bottom: Bio / Pain points / Needs -->
+          <div style="padding:20px 22px;display:flex;flex-direction:column;gap:18px;">
+            <div>
+              <div style="font-size:var(--body);font-weight:600;margin-bottom:8px;">Bio</div>
+              <ul style="list-style:disc;padding-left:18px;display:flex;flex-direction:column;gap:4px;">
+                <li style="font-size:13px;font-weight:300;line-height:1.6;">Use HSBC mainly</li>
+                <li style="font-size:13px;font-weight:300;line-height:1.6;">Busy career professional</li>
+                <li style="font-size:13px;font-weight:300;line-height:1.6;">Handles finances on the go</li>
+                <li style="font-size:13px;font-weight:300;line-height:1.6;">Proficient on using apps</li>
+                <li style="font-size:13px;font-weight:300;line-height:1.6;">Uses mobile banking for basics</li>
+              </ul>
+            </div>
+            <div>
+              <div style="font-size:var(--body);font-weight:600;margin-bottom:8px;">Pain points</div>
+              <ul style="list-style:disc;padding-left:18px;display:flex;flex-direction:column;gap:4px;">
+                <li style="font-size:13px;font-weight:300;line-height:1.6;">Inconvenient to manually cross-check numbers on the HSBC website or Googling</li>
+              </ul>
+            </div>
+            <div>
+              <div style="font-size:var(--body);font-weight:600;margin-bottom:8px;">Needs</div>
+              <ul style="list-style:disc;padding-left:18px;display:flex;flex-direction:column;gap:4px;">
+                <li style="font-size:13px;font-weight:300;line-height:1.6;">No clear moment to distinguish real from fake</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Persona 2 -->
+        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--white);">
+          <!-- Top: photo + metadata side by side -->
+          <div style="display:grid;grid-template-columns:120px 1fr;border-bottom:1px solid var(--border);">
+            <div class="img-ph" style="aspect-ratio:unset;min-height:160px;border-radius:0;margin:0;background:#D4D2CE;border-right:1px solid var(--border);"><div class="ph-box"></div><span class="ph-label">Photo</span></div>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:5px 12px;align-items:baseline;padding:16px 20px;align-content:start;">
+              <span style="font-size:var(--cat);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);">Age</span>
+              <span style="font-size:13px;font-weight:300;">30</span>
+              <span style="font-size:var(--cat);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);">Occupation</span>
+              <span style="font-size:13px;font-weight:300;">Busy working professional</span>
+              <span style="font-size:var(--cat);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);">Location</span>
+              <span style="font-size:13px;font-weight:300;">United Kingdom</span>
+              <span style="font-size:var(--cat);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);line-height:1.5;">Tech Literate</span>
+              <span style="font-size:13px;font-weight:300;color:#C0430A;">High — confident with digital banking</span>
+            </div>
+          </div>
+          <!-- Bottom: Bio / Pain points / Needs -->
+          <div style="padding:20px 22px;display:flex;flex-direction:column;gap:18px;">
+            <div>
+              <div style="font-size:var(--body);font-weight:600;margin-bottom:8px;">Bio</div>
+              <ul style="list-style:disc;padding-left:18px;display:flex;flex-direction:column;gap:4px;">
+                <li style="font-size:13px;font-weight:300;line-height:1.6;">Experienced £10,000 loss from scam</li>
+                <li style="font-size:13px;font-weight:300;line-height:1.6;">After scam moved main bank from HSBC → Santander</li>
+                <li style="font-size:13px;font-weight:300;line-height:1.6;">Digitally comfortable with app</li>
+                <li style="font-size:13px;font-weight:300;line-height:1.6;">Manages finances independently and frequently multitasks</li>
+                <li style="font-size:13px;font-weight:300;line-height:1.6;">Little clumsy</li>
+              </ul>
+            </div>
+            <div>
+              <div style="font-size:var(--body);font-weight:600;margin-bottom:8px;">Pain points</div>
+              <ul style="list-style:disc;padding-left:18px;display:flex;flex-direction:column;gap:4px;">
+                <li style="font-size:13px;font-weight:300;line-height:1.6;">OTP is misunderstood as protection rather than a vulnerability</li>
+              </ul>
+            </div>
+            <div>
+              <div style="font-size:var(--body);font-weight:600;margin-bottom:8px;">Needs</div>
+              <ul style="list-style:disc;padding-left:18px;display:flex;flex-direction:column;gap:4px;">
+                <li style="font-size:13px;font-weight:300;line-height:1.6;">Protection before irreversible actions (like inputting personal info on a real-like scam website)</li>
+                <li style="font-size:13px;font-weight:300;line-height:1.6;">Slow me down when I'm rushed by urgency</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="cat">User Journey 1</div>
+      <div class="catchy">Verifying suspicion came with too much friction</div>
+      <p>Scenario : User receives an SMS claiming suspicious activity or policy-related action try to check if this it is scam or not</p>
+      <div class="img-ph" style="aspect-ratio:16/9;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">User Journey Map</span></div>
+      <div class="block-arrow" style="max-width:900px;">
+        <svg width="24" height="16" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg"><polygon points="0,0 24,0 12,16" fill="#888884"/></svg>
+      </div>
+      <div class="prob-block" style="max-width:900px;">
+        <div style="font-size:var(--cat);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:10px;">Initial Hypothesis 1</div>
+        <div style="font-size:var(--catchy);font-weight:600;letter-spacing:-0.01em;line-height:1.3;color:var(--white);margin-bottom:16px;">Verification becomes harder across fragmented touchpoints</div>
+        <p>When users try to verify a suspicious message, the information they need is spread across multiple touchpoints, including Google, the HSBC app, and the HSBC website. This fragmented experience increases cognitive load and makes users more vulnerable to mistakes under time pressure.</p>
+      </div>
+
+      <div class="cat" style="max-width:900px;">User Journey 2</div>
+      <div class="catchy" style="max-width:900px;">When users are busy or distracted, the current system intervenes too late.</div>
+      <p style="max-width:900px;">Scenario : User receives an SMS claiming to be from HSBC and lost money from putting personal info to scammer while User was busy to hang out with his friend</p>
+      <div class="img-ph" style="aspect-ratio:16/9;background:#D4D2CE;max-width:900px;"><div class="ph-box"></div><span class="ph-label">User Journey Map 2</span></div>
+      <div class="block-arrow" style="max-width:900px;">
+        <svg width="24" height="16" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg"><polygon points="0,0 24,0 12,16" fill="#888884"/></svg>
+      </div>
+      <div class="prob-block" style="max-width:900px;">
+        <div style="font-size:var(--cat);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:10px;">Initial Hypothesis 2</div>
+        <div style="font-size:var(--catchy);font-weight:600;letter-spacing:-0.01em;line-height:1.3;color:var(--white);margin-bottom:16px;">Risk awareness may break down under pressure</div>
+        <p>Scam prevention currently depends too much on users recognizing risks on their own. But in urgent situations, people are less able to think clearly, making it difficult to rely on awareness alone. Users need more direct and timely support.</p>
+      </div>
+
+      <!-- HYPOTHESIS WRAP-UP -->
+      <div class="cat" style="max-width:900px;margin-top:48px;">Hypothesis Wrap-up</div>
+      <p style="max-width:900px;">Based on two user stories above again two hypothesis were declared, which get evaluate later in UTs.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:900px;margin-bottom:32px;">
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 22px;">
+          <div style="font-size:var(--cat);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Initial Hypothesis 1</div>
+          <div style="font-size:var(--catchy);font-weight:600;letter-spacing:-0.01em;line-height:1.3;color:var(--ink);">Verification becomes harder across fragmented touchpoints</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 22px;">
+          <div style="font-size:var(--cat);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Initial Hypothesis 2</div>
+          <div style="font-size:var(--catchy);font-weight:600;letter-spacing:-0.01em;line-height:1.3;color:var(--ink);">Risk awareness may break down under pressure</div>
+        </div>
+      </div>
+
+      <div class="cat">User Story</div>
       <div class="catchy">Develop &amp; Pivot: From <em>Manual</em> to Automated</div>
-      <ul class="body-list">
+      <ul class="bl">
         <li><strong>What:</strong> Iterating on the "Instant Verification" concept.</li>
         <li><strong>How:</strong> Initially designed a manual "Message Verifier." However, UT1 revealed "Verification Inertia" — users felt checking a suspicious message was too much effort or unnecessary if they were already in a rush.</li>
         <li><strong>Why:</strong> Pivoted to Contextual Smart Overlays. Instead of asking the user to verify, the system automatically analyzes the recipient's data and provides "evidence-based friction."</li>
       </ul>
-      <div class="img-ph" style="aspect-ratio:4/3; background:#D6D2CC;"><div class="ph-box"></div><span class="ph-label">Iteration / Pivot Diagram</span></div>
+      <div class="img-ph" style="aspect-ratio:4/3;background:#D6D2CC;"><div class="ph-box"></div><span class="ph-label">Iteration / Pivot Diagram</span></div>
     </section>
 
     <!-- DELIVER -->
     <section class="section" id="deliver">
       <div class="mid-title">Deliver</div>
-      <div class="category">High-Fidelity Design</div>
-      <ul class="body-list">
+      <div class="cat">High-Fidelity Design</div>
+      <ul class="bl">
         <li><strong>What:</strong> Final UI screens for the payment journey.</li>
         <li><strong>How:</strong> Designed a 3-layer risk detection UI:
           <ul class="sub-list">
@@ -318,60 +424,162 @@
           </ul>
         </li>
       </ul>
-      <div class="img-ph" style="aspect-ratio:16/9; background:#CECCC8;"><div class="ph-box"></div><span class="ph-label">High-Fidelity Screens</span></div>
-    </section>
-
-    <!-- PROTOTYPE -->
-    <section class="section" id="prototype">
-      <div class="mid-title">Final Prototype</div>
-      <div class="img-ph" style="aspect-ratio:16/9; background:#D4D2CE;"><div class="ph-box"></div><span class="ph-label">Prototype Video / Embed</span></div>
+      <div class="img-ph" style="aspect-ratio:16/9;background:#CECCC8;"><div class="ph-box"></div><span class="ph-label">High-Fidelity Screens</span></div>
     </section>
 
     <!-- USABILITY TESTING -->
     <section class="section" id="testing">
-      <div class="mid-title">Develop · Usability Testing</div>
-      <div class="category">First Round · Concept Testing</div>
-      <div class="catchy">From Manual to Automated</div>
-      <ul class="body-list">
-        <li><strong>What:</strong> Iterating on the "Instant Verification" concept.</li>
-        <li><strong>Aim:</strong> Task base UT1 explores if any error or miscommunication happens in initial 5 ideas.</li>
-        <li>
-          <strong>Insight 1:</strong> User does not find the "Instant Verification" function necessary. They believe it is unnecessary action because they feel they already know what is a scam or not.
-          <div class="so-callout"><strong>So —</strong> Removed "Instant Verification" function completely. Instead, focus on the money sending process to have extra cautious warnings at the right time.</div>
-        </li>
-        <li><strong>Insight 2:</strong> User questions why the sender has to verify identity — they believe the receiver should be checked more instead.</li>
-      </ul>
-      <div class="img-ph" style="aspect-ratio:16/9; background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">UT1 Image</span></div>
-      <div class="category">Second Round · Redesign Testing</div>
-      <p>Tested the Smart Overlays. Users reported a much higher "Sense of Security" because the app gave them specific reasons (the 3 layers of risk) rather than a generic "Be careful" message.</p>
-      <div class="img-ph" style="aspect-ratio:16/9; background:#D2D0CB;"><div class="ph-box"></div><span class="ph-label">UT2 Image</span></div>
+      <div class="mid-title">Usability Testings</div>
+      <div class="cat">First Round · Concept Testing</div>
+      <div class="catchy">Scam protection only works when it feels relevant</div>
+      <div class="ut-method">
+        <div class="ut-method-row"><span class="ut-mk">Aim</span><span class="ut-mv">To explore if all the functions are conceptually working in mid-fidelity stage</span></div>
+        <div class="ut-method-row"><span class="ut-mk">Method</span><span class="ut-mv">Think aloud method and SUS · 45 minutes per person</span></div>
+        <div class="ut-method-row"><span class="ut-mk">Who</span><span class="ut-mv">5 HSBC account holders (4 did not get scammed, 1 got scammed)</span></div>
+      </div>
+      <div class="ut-findings-block" id="ut1-grid">
+        <div class="ut-finding-block">
+          <div class="ut-fnum">Finding 01</div>
+          <div class="ut-rows">
+            <div class="ut-row">
+              <span class="ut-rl">Result</span>
+              <span class="ut-rb">User does not find the "Instant Verification" function necessary. They believe it is unnecessary action because they feel they already know what is a scam or not.</span>
+            </div>
+            <div class="ut-row">
+              <span class="ut-rl">Insight</span>
+              <span class="ut-rb">We wonder if users know all the scenarios are fake because they haven't encountered a convincing one yet. Also start to think the first hypothesis could be wrong or not applicable.</span>
+            </div>
+            <div class="ut-row ut-change">
+              <span class="ut-rl">Change</span>
+              <span class="ut-rb">Redesign the UT2 to be more urging — prompting users to verify suspicious activity instead of leaving it optional.</span>
+            </div>
+          </div>
+        </div>
+        <div class="ut-finding-block">
+          <div class="ut-fnum">Finding 02</div>
+          <div class="ut-rows">
+            <div class="ut-row">
+              <span class="ut-rl">Result</span>
+              <span class="ut-rb">3 out of 5 users questioned why they had to go through extra verification when they did not see themselves as suspicious.</span>
+            </div>
+            <div class="ut-row">
+              <span class="ut-rl">Insight</span>
+              <span class="ut-rb">User expects scam prevention to focus more on the recipient than on the sender. So sender-focused verification feels unfair and unnecessary.</span>
+            </div>
+            <div class="ut-row ut-change">
+              <span class="ut-rl">Change</span>
+              <span class="ut-rb">Added contextual warning popups about the recipient account when a transfer shows unusual or high-risk patterns.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="img-ph" style="aspect-ratio:16/9;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">UT1 Image</span></div>
+      <div class="cat">Second Round · Redesign Testing</div>
+      <div class="catchy">More urgency, same rejection to verification function</div>
+      <div class="ut-method">
+        <div class="ut-method-row"><span class="ut-mk">Aim</span><span class="ut-mv">To evaluate whether a more urgent flow would encourage users to use the scam verification feature. Also to check if hypothesis 1 is right.</span></div>
+        <div class="ut-method-row"><span class="ut-mk">Method</span><span class="ut-mv">Think aloud method and SUS · 45 minutes per person</span></div>
+        <div class="ut-method-row"><span class="ut-mk">Who</span><span class="ut-mv">5 HSBC account holders (all did not get scammed)</span></div>
+      </div>
+      <div class="ut-findings-block" id="ut2-grid">
+        <div class="ut-finding-block">
+          <div class="ut-fnum">Finding 01</div>
+          <div class="ut-rows">
+            <div class="ut-row">
+              <span class="ut-rl">Result</span>
+              <span class="ut-rb">Even after redesigning UT2 to feel more urgent and time-sensitive, 2 out of 3 users still refused to use the Instant Verification feature. Users continued to see it as an unnecessary step because they believed they could judge scams on their own.</span>
+            </div>
+            <div class="ut-row">
+              <span class="ut-rl">Insight</span>
+              <span class="ut-rb">The issue was not a lack of urgency, but a lack of perceived value. Users were overconfident in their ability to detect scams, so making the feature more urgent did not change their behavior.</span>
+            </div>
+            <div class="ut-row ut-change">
+              <span class="ut-rl">Change</span>
+              <span class="ut-rb">Removed Instant Verification as a separate optional feature and instead integrated scam prevention cues directly into the money transfer flow.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="img-ph" style="aspect-ratio:16/9;background:#D2D0CB;"><div class="ph-box"></div><span class="ph-label">UT2 Image</span></div>
+
+      <!-- UT REFLECTION -->
+      <div class="cat" style="margin-top:48px;">UT Reflection</div>
+      <p>Usability testing showed that the main issue was not simply the fragmented journey of verifying suspicious messages across multiple channels. More importantly, users were often unwilling to take extra steps to verify scams at all, even when urgency was increased. This revealed that the experience relied too heavily on users recognizing risk and acting on their own in moments of pressure.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 40px 1fr;gap:16px;align-items:center;margin-top:24px;">
+
+        <!-- Left: 2 stacked hypothesis blocks -->
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 22px;">
+            <div style="font-size:var(--cat);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Hypothesis 1 was invalidated</div>
+            <div style="font-size:var(--body);font-weight:300;line-height:1.7;color:var(--ink);">The fragmented journey itself was not the core issue.</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 22px;">
+            <div style="font-size:var(--cat);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Hypothesis 2 was validated</div>
+            <div style="font-size:var(--body);font-weight:300;line-height:1.7;color:var(--ink);">Under pressure, users' risk awareness broke down.</div>
+          </div>
+        </div>
+
+        <!-- Center: right-pointing triangle -->
+        <div style="display:flex;justify-content:center;align-items:center;">
+          <svg width="16" height="24" viewBox="0 0 16 24" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="0,0 0,24 16,12" fill="#888884"/>
+          </svg>
+        </div>
+
+        <!-- Right: Final design direction block -->
+        <div style="background:var(--ink);border-radius:10px;padding:24px 22px;align-self:stretch;display:flex;flex-direction:column;justify-content:center;">
+          <div style="font-size:var(--cat);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:10px;">Final Design Direction</div>
+          <div style="font-size:var(--body);font-weight:300;line-height:1.8;color:rgba(255,255,255,0.85);">Instead of manual verification users could go through, give proactive warnings so users do not have to take extra steps but still remain safe.</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PROTOTYPE -->
+    <section class="section" id="prototype" style="max-width:1200px;">
+      <div class="mid-title">Final Prototype</div>
+
+      <div class="cat">User Flow</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0 40px;">
+        <div>
+          <div style="font-size:var(--cat);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">As Is</div>
+          <div class="img-ph" style="aspect-ratio:9/16;background:#D9D6D0;margin:0;"><div class="ph-box"></div><span class="ph-label">As-Is User Flow</span></div>
+        </div>
+        <div>
+          <div style="font-size:var(--cat);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">To Be</div>
+          <div class="img-ph" style="aspect-ratio:9/16;background:#D2D0CB;margin:0;"><div class="ph-box"></div><span class="ph-label">To-Be User Flow</span></div>
+        </div>
+      </div>
+
+      <div class="cat">Prototype</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin:16px 0;">
+        <div class="gif-ph" style="background:#D9D6D0;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.15);"></div><span class="ph-label">Prototype GIF 01</span></div>
+        <div class="gif-ph" style="background:#D4D2CE;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.15);"></div><span class="ph-label">Prototype GIF 02</span></div>
+        <div class="gif-ph" style="background:#CECCC8;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.15);"></div><span class="ph-label">Prototype GIF 03</span></div>
+      </div>
+    </section>
+
+    <!-- BUSINESS OBJECTIVE -->
+    <section class="section" id="business-objective">
+      <div class="mid-title">Business Objective</div>
+      <div class="cat">Business Objective</div>
+      <div class="catchy">Reduce reimbursement and potential customer loss</div>
+      <p>Bridging the gap between a user's perceived knowledge and their actual ability to detect a scam. The users experienced fraud decides to stop using HSBC, which means that in order to keep the user, fraud needs to be prevented in advance.</p>
+      <div class="img-ph" style="aspect-ratio:16/9;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">Business Objective Image</span></div>
     </section>
 
     <!-- CONCLUSION -->
     <section class="section" id="conclusion">
-      <div class="mid-title">Conclusion &amp; Limitations</div>
-      <div class="category">Key Learning</div>
-      <p>Great security design isn't about teaching the user; it's about the system doing the heavy lifting when the user is under cognitive load.</p>
-      <div class="category">Limitation</div>
+      <div class="mid-title">Conclusion</div>
+      <div class="cat">Take away</div>
+      <p>This process showed that test delivery matters: tone, urgency, gesture, and pacing should all be considered as part of the protocol. However, it also revealed that changing the delivery of a task does not necessarily change user behavior. Even interview-based hypotheses can be clearly rejected in usability testing, reinforcing the need for behavioral validation.</p>
+      <div class="cat">Limitation</div>
       <p>While 30+ participants joined the survey, the study lacks diverse perspectives from multiple scam victims (only 1 interviewed). Users who experienced scams showed higher skepticism towards the researcher's approach. With more time and outreach, having 4 more scam victims' voices would make this study more mature.</p>
     </section>
 
   </main>
 
-  <aside class="sidebar-right">
-    <div class="toc-label">On this page</div>
-    <ul class="toc-list">
-      <li><a href="#overview" class="active">Project Overview</a></li>
-      <li><a href="#keywords">Keywords</a></li>
-      <li><a href="#features">Main Features</a></li>
-      <li><a href="#empathy">Empathy</a></li>
-      <li><a href="#define">Define</a></li>
-      <li><a href="#deliver">Deliver</a></li>
-      <li><a href="#prototype">Final Prototype</a></li>
-      <li><a href="#testing">Usability Testing</a></li>
-      <li><a href="#conclusion">Conclusion</a></li>
-    </ul>
-  </aside>
 </div>
 
 <script>
