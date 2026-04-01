@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jihae Choe — Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.73/build/spline-viewer.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root { --bg: #F5F5F3; --ink: #111110; --ink-muted: #888884; --border: #E2E2DE; --tag-border: #D8D7D3; --white: #FFFFFF; }
@@ -19,8 +19,8 @@
   .nav-item.active { background: var(--ink); color: var(--white); }
 
   /* ── HERO: v13 style — warm grey bg, Three.js, center text + CTA ── */
-  .hero { width: 100%; height: 75vh; position: relative; overflow: hidden; background: #E4E2DD; }
-  #three-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hero { width: 100%; height: 85vh; position: relative; overflow: hidden; background: #E4E2DD; }
+  spline-viewer { position: absolute; inset: 0; width: 100%; height: 100%; }
 
   /* Center headline + CTA */
   .hero-center {
@@ -58,7 +58,7 @@
   /* Bottom: name left, hint right */
   .hero-bottom {
     position: absolute; bottom: 36px; left: 48px; right: 48px;
-    display: flex; align-items: flex-end; justify-content: space-between;
+    display: flex; align-items: flex-end; justify-content: flex-start;
     pointer-events: none; z-index: 2;
   }
   .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(18px, 2vw, 26px); font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; color: var(--ink); }
@@ -158,9 +158,10 @@
   <a href="#" class="nav-item">CV</a>
 </nav>
 
-<!-- HERO: v13 Three.js style -->
+<!-- HERO: Spline -->
 <section class="hero" id="home">
-  <canvas id="three-canvas"></canvas>
+  <spline-viewer url="https://prod.spline.design/OqYDZukGTUVJxN6r/scene.splinecode"></spline-viewer>
+
 
   <div class="hero-center">
     <h1 class="hero-headline">
@@ -176,7 +177,6 @@
   </div>
 
   <div class="hero-bottom">
-    <div class="hero-name">Jihae Choe<br><em>UX / UI Designer</em></div>
     <div class="hero-hint"><div class="hint-dot"></div>Drag to interact</div>
   </div>
 </section>
@@ -332,76 +332,6 @@
 </div>
 
 <script>
-// ── THREE.JS HERO (v13 style) ──
-const canvas = document.getElementById('three-canvas');
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
-const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xE4E2DD);
-const camera = new THREE.PerspectiveCamera(50, canvas.offsetWidth / canvas.offsetHeight, 0.1, 100);
-camera.position.set(0, 0, 9);
-scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-const dL = new THREE.DirectionalLight(0xffffff, 1.0); dL.position.set(5,8,5); scene.add(dL);
-const rL = new THREE.DirectionalLight(0xD4C9BC, 0.5); rL.position.set(-5,-2,-3); scene.add(rL);
-const pL = new THREE.PointLight(0xBFB5A8, 1.2, 14); pL.position.set(2,3,4); scene.add(pL);
-
-const shapes = [];
-function makeShape(geoFn, color, x, y, z) {
-  const mesh = new THREE.Mesh(geoFn(), new THREE.MeshStandardMaterial({ color, roughness: 0.22, metalness: 0.06 }));
-  mesh.position.set(x, y, z);
-  mesh.rotation.set(Math.random()*Math.PI, Math.random()*Math.PI, Math.random()*Math.PI);
-  scene.add(mesh);
-  shapes.push({ mesh, oy: y, speed: 0.3+Math.random()*0.4, phase: Math.random()*Math.PI*2, rotSpeed: (Math.random()-0.5)*0.008 });
-}
-
-const geoMain = new THREE.SphereGeometry(1.3, 96, 96);
-const mainSphere = new THREE.Mesh(geoMain, new THREE.MeshStandardMaterial({ color: 0xC4BDB5, roughness: 0.22, metalness: 0.08 }));
-scene.add(mainSphere);
-const origPos = new Float32Array(geoMain.attributes.position.array);
-
-makeShape(() => new THREE.SphereGeometry(0.55, 32, 32), 0xC8C3BC, -4.2,  1.2, -1.0);
-makeShape(() => new THREE.SphereGeometry(0.35, 32, 32), 0xB8B3AC,  4.5,  1.8, -1.5);
-makeShape(() => new THREE.SphereGeometry(0.25, 32, 32), 0xD0CBC4, -3.8, -1.4, -0.5);
-makeShape(() => new THREE.SphereGeometry(0.42, 32, 32), 0xC0BAB2,  3.8, -1.0, -1.0);
-makeShape(() => new THREE.SphereGeometry(0.18, 32, 32), 0xB4AFA8, -2.0,  2.2, -0.8);
-makeShape(() => new THREE.SphereGeometry(0.28, 32, 32), 0xC8C3BB,  2.5,  2.5, -1.2);
-makeShape(() => new THREE.OctahedronGeometry(0.45), 0xBAB5AE, -5.0, -0.5, -2.0);
-makeShape(() => new THREE.OctahedronGeometry(0.3),  0xC4BEB7,  5.2,  0.2, -2.0);
-
-const ring = new THREE.Mesh(new THREE.TorusGeometry(1.8,0.012,12,120), new THREE.MeshStandardMaterial({color:0xA8A29C,roughness:0.4}));
-ring.rotation.x=Math.PI*0.3; ring.rotation.z=Math.PI*0.1; scene.add(ring);
-const ring2 = new THREE.Mesh(new THREE.TorusGeometry(2.4,0.007,12,160), new THREE.MeshStandardMaterial({color:0xB4AFA8,roughness:0.5,transparent:true,opacity:0.55}));
-ring2.rotation.x=Math.PI*0.6; ring2.rotation.y=Math.PI*0.15; scene.add(ring2);
-
-let drag=false, prev={x:0,y:0}, tRX=0, tRY=0, cRX=0, cRY=0, autoR=true, mx=0, my=0, aa=0;
-canvas.addEventListener('mousedown',e=>{drag=true;autoR=false;prev={x:e.clientX,y:e.clientY};});
-window.addEventListener('mousemove',e=>{const r=canvas.getBoundingClientRect();mx=((e.clientX-r.left)/r.width-0.5)*2;my=-((e.clientY-r.top)/r.height-0.5)*2;if(drag){tRY+=(e.clientX-prev.x)*0.006;tRX+=(e.clientY-prev.y)*0.006;prev={x:e.clientX,y:e.clientY};}});
-window.addEventListener('mouseup',()=>{drag=false;setTimeout(()=>autoR=true,2000);});
-canvas.addEventListener('touchstart',e=>{drag=true;autoR=false;prev={x:e.touches[0].clientX,y:e.touches[0].clientY};});
-canvas.addEventListener('touchmove',e=>{if(!drag)return;e.preventDefault();tRY+=(e.touches[0].clientX-prev.x)*0.006;tRX+=(e.touches[0].clientY-prev.y)*0.006;prev={x:e.touches[0].clientX,y:e.touches[0].clientY};},{passive:false});
-canvas.addEventListener('touchend',()=>{drag=false;setTimeout(()=>autoR=true,2000);});
-
-function morphSphere(t){const p=geoMain.attributes.position;for(let i=0;i<p.count;i++){const ox=origPos[i*3],oy=origPos[i*3+1],oz=origPos[i*3+2],l=Math.sqrt(ox*ox+oy*oy+oz*oz),nx=ox/l,ny=oy/l,nz=oz/l,w=Math.sin(nx*3+t*.6)*.07+Math.sin(ny*3.5+t*.45)*.06+Math.sin(nz*3+t*.8)*.05;p.setXYZ(i,ox+nx*w,oy+ny*w,oz+nz*w);}p.needsUpdate=true;geoMain.computeVertexNormals();}
-
-const clock=new THREE.Clock();
-function animate(){
-  requestAnimationFrame(animate);const t=clock.getElapsedTime();
-  morphSphere(t);
-  if(autoR){aa+=0.002;tRY=aa;tRX=Math.sin(t*0.18)*0.1;}
-  cRX+=(tRX-cRX)*0.05;cRY+=(tRY-cRY)*0.05;
-  mainSphere.rotation.x=cRX;mainSphere.rotation.y=cRY;
-  shapes.forEach(s=>{s.mesh.position.y=s.oy+Math.sin(t*s.speed+s.phase)*0.18;s.mesh.rotation.x+=s.rotSpeed;s.mesh.rotation.y+=s.rotSpeed*0.7;});
-  ring.rotation.z=t*0.06;ring.rotation.x=Math.PI*0.3+Math.sin(t*0.25)*0.04;
-  ring2.rotation.y=t*0.04;ring2.rotation.z=t*0.03;
-  if(!drag){camera.position.x+=(mx*0.5-camera.position.x)*0.025;camera.position.y+=(my*0.3-camera.position.y)*0.025;camera.lookAt(scene.position);}
-  pL.position.x+=(mx*4-pL.position.x)*0.05;pL.position.y+=(my*3-pL.position.y)*0.05;
-  renderer.render(scene,camera);
-}
-animate();
-
-window.addEventListener('resize',()=>{const w=canvas.offsetWidth,h=canvas.offsetHeight;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h);});
-
 const navItems=document.querySelectorAll('.nav-item');
 const sMap=[{id:'home',idx:0},{id:'work',idx:1},{id:'about',idx:3}];
 sMap.forEach(s=>{const el=document.getElementById(s.id);if(el)new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){navItems.forEach(n=>n.classList.remove('active'));navItems[s.idx].classList.add('active');}});},{threshold:0.25}).observe(el);});

@@ -6,6 +6,19 @@
 <title>HSBC — Jihae Choe</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="casestudy.css">
+<style>
+/* TEST: center content column */
+.content { display:flex; flex-direction:column; align-items:center; }
+.content > * { width:100%; }
+
+/* Also center inner content of wide (1200px) sections */
+#empathy, #define, #testing, #prototype {
+  display:flex; flex-direction:column; align-items:center;
+}
+#empathy > *, #define > *, #testing > *, #prototype > * {
+  width:100%;
+}
+</style>
 </head>
 <body>
 
@@ -57,7 +70,7 @@
     </section>
 
     <!-- KEYWORDS -->
-    <section class="section" id="keywords" style="max-width:1200px;">
+    <section class="section" id="keywords">
       <div class="mid-title">Keywords</div>
       <div class="kw-grid" style="grid-template-columns:1fr 1fr 1fr;">
         <div class="kw-block"><div class="kw-title">High Cognition Load</div><div class="kw-desc">When user is busy on doing something the scam happens.</div></div>
