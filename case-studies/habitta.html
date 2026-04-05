@@ -6,6 +6,39 @@
 <title>Habitta App — Jihae Choe</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="casestudy.css">
+<style>
+/* center content column */
+.content { display:flex; flex-direction:column; align-items:center; }
+.content > * { width:100%; }
+
+/* also center inner content of wide (1200px) sections */
+#testing, #define {
+  display:flex; flex-direction:column; align-items:center;
+}
+#testing > *, #define > * { width:100%; }
+
+/* PROBLEM STATEMENT full-bleed */
+.ps-wrap { margin: 32px -60px 0; }
+.ps-block { background:var(--ink); padding:56px 60px; text-align:center; }
+.ps-block .ps-lbl { font-size:var(--cat); font-weight:500; letter-spacing:0.12em; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-bottom:28px; }
+.ps-block .ps-q { font-size:clamp(22px,2.8vw,36px); font-weight:400; line-height:1.45; color:#FFFFFF; margin:0; text-align:center; max-width:none !important; }
+.hmw-block2 { background:#F0EEEA; padding:56px 60px; text-align:center; }
+.hmw-block2 .ps-lbl { font-size:var(--cat); font-weight:500; letter-spacing:0.12em; color:rgba(17,17,16,0.4); text-transform:uppercase; margin-bottom:28px; }
+.hmw-block2 .ps-q { font-size:clamp(22px,2.8vw,36px); font-weight:400; line-height:1.45; color:var(--ink); margin:0; text-align:center; max-width:none !important; }
+@media(max-width:1024px){ .ps-wrap{ margin:32px -40px 0; } .ps-block,.hmw-block2{ padding:48px 40px; } }
+@media(max-width:768px){ .ps-wrap{ margin:32px -20px 0; } .ps-block,.hmw-block2{ padding:40px 20px; } }
+
+/* MAGNIFIER */
+.magnifier-wrap { position:relative; display:inline-block; max-width:900px; width:100%; }
+.magnifier-wrap img { display:block; width:100%; }
+.magnifier-lens {
+  display:none; position:absolute; width:300px; height:300px;
+  border-radius:50%; border:2px solid rgba(255,255,255,0.85);
+  box-shadow:0 4px 20px rgba(0,0,0,0.35); pointer-events:none;
+  background-repeat:no-repeat; z-index:10; overflow:hidden;
+  cursor:none;
+}
+</style>
 </head>
 <body>
 <nav>
@@ -125,7 +158,7 @@
     <div class="img-ph" style="aspect-ratio:16/9;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">Define Image</span></div>
 
     <div class="cat">Persona</div>
-    <div class="persona">
+    <div class="persona" style="max-width:900px;">
       <div class="persona-top">
         <div class="persona-photo">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#C4C4C0" stroke-width="1.4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#C4C4C0" stroke-width="1.4" stroke-linecap="round"/></svg>
@@ -143,7 +176,7 @@
           <div class="p-header">Pain points</div>
           <div class="p-item">Irregular / Fragmented Income</div>
           <div class="p-item">Motivation dies after one purchase</div>
-          <div class="p-item">Awkward nagging from parents</div>
+          <div class="p-item">Limited or excessive parental guidance</div>
           <div class="p-item">Fear of complex investing</div>
         </div>
         <div class="p-arrow-col">
@@ -156,30 +189,58 @@
           <div class="p-header">Needs</div>
           <div class="p-item">Saving with flexibility</div>
           <div class="p-item">Long-term saving consistency</div>
-          <div class="p-item dim"><span class="tbc">TBC</span></div>
+          <div class="p-item">Autonomy with frictionless parental guidance</div>
           <div class="p-item">Safe exploration on investing</div>
         </div>
       </div>
     </div>
 
-    <!-- PROBLEM STATEMENT -->
-    <div class="cat">Problem Statement</div>
-    <div class="prob-block">
-      <p class="serif-quote">"14–16 UK teenagers lack a proactive system to manage irregular income and build financial habits, while parents struggle to provide practical financial advice, resulting in a cycle of financial anxiety and 'shallow' education."</p>
+    <!-- PARENT PERSONA placeholder -->
+    <div class="persona" style="max-width:900px;">
+      <div class="persona-top">
+        <div class="persona-photo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#C4C4C0" stroke-width="1.4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#C4C4C0" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <span class="persona-photo-lbl">Parent's Photo</span>
+        </div>
+        <div class="persona-info">
+          <div class="persona-info-row ph" style="color:#C4C4C0;"><strong>Name</strong> — TBC</div>
+          <div class="persona-info-row ph" style="color:#C4C4C0;"><strong>Age</strong> — TBC</div>
+          <div class="persona-info-row ph" style="color:#C4C4C0;"><strong>Location</strong> — TBC</div>
+          <div class="persona-info-row ph" style="color:#C4C4C0;"><strong>Occupation</strong> — TBC</div>
+        </div>
+      </div>
+      <div class="persona-bottom">
+        <div class="p-col">
+          <div class="p-header">Pain points</div>
+          <div class="p-item dim" style="color:#C4C4C0;">TBC</div>
+          <div class="p-item dim" style="color:#C4C4C0;">TBC</div>
+          <div class="p-item dim" style="color:#C4C4C0;">TBC</div>
+        </div>
+        <div class="p-arrow-col">
+          <div class="p-arrow">›</div>
+          <div class="p-arrow">›</div>
+          <div class="p-arrow">›</div>
+        </div>
+        <div class="p-col">
+          <div class="p-header">Needs</div>
+          <div class="p-item dim" style="color:#C4C4C0;">TBC</div>
+          <div class="p-item dim" style="color:#C4C4C0;">TBC</div>
+          <div class="p-item dim" style="color:#C4C4C0;">TBC</div>
+        </div>
+      </div>
     </div>
 
-    <!-- ── SOLID DOWNWARD TRIANGLE ── -->
-    <div class="block-arrow">
-      <svg width="24" height="16" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="0,0 24,0 12,16" fill="#888884"/>
-      </svg>
+    <!-- PROBLEM STATEMENT full-bleed -->
+    <div class="ps-wrap">
+      <div class="ps-block">
+        <div class="ps-lbl">Problem Statement</div>
+        <p class="ps-q">"14–16 UK teenagers lack a proactive system to manage irregular income and build financial habits, while parents struggle to provide practical financial advice, resulting in a cycle of financial anxiety and 'shallow' education."</p>
+      </div>
     </div>
 
-    <!-- HOW MIGHT WE -->
-    <div class="cat" style="margin-top:0;">How Might We</div>
-    <div class="hmw-block">
-      <p class="serif-quote">"How might we design a proactive financial system for 14–16 UK teens that transforms 'shallow' education into 'confident' habits by balancing teen autonomy with frictionless parental guidance?"</p>
-    </div>
+    <!-- HOW MIGHT WE — regular alignment -->
+    <div class="cat">How Might We</div>
+    <p>"How might we design a proactive financial system for 14–16 UK teens that transforms 'shallow' education into 'confident' habits by balancing teen autonomy with frictionless parental guidance?"</p>
   </section>
 
   <!-- DEVELOP -->
@@ -192,7 +253,7 @@
       <div class="pillar-card"><div class="pillar-num">Pillar 01</div><div class="pillar-title">Proactive Budgeting</div><div class="pillar-sub">Setting the foundation</div></div>
       <div class="pillar-card"><div class="pillar-num">Pillar 02</div><div class="pillar-title">Tangible Goal Setting</div><div class="pillar-sub">Maintaining motivation with encouragement</div></div>
       <div class="pillar-card"><div class="pillar-num">Pillar 03</div><div class="pillar-title">Collaborative Transparency</div><div class="pillar-sub">Sharing with guardians</div></div>
-      <div class="pillar-card"><div class="pillar-num">Pillar 04</div><div class="pillar-title">Safe AI Invest</div><div class="pillar-sub">AI conversational investing with safety guardrail</div></div>
+      <div class="pillar-card"><div class="pillar-num">Pillar 04</div><div class="pillar-title">Dialogue before Purchase</div><div class="pillar-sub">Talk about why interested in that commodity</div></div>
     </div>
     <div class="adrop">
       <button class="adrop-btn" onclick="toggleDrop(this,'userstory-drop')">
@@ -223,134 +284,349 @@
 
     <!-- FIRST ROUND -->
     <div class="cat">First Round · Wireframe Stage</div>
-    <div class="catchy">Wireframe stage testing with teens to evaluate core functions.</div>
+    <div class="catchy">2 major changes to the core functions after wireframes stage testing with teens.</div>
     <div class="ut-method">
       <div class="ut-method-row"><span class="ut-mk">Aim</span><span class="ut-mv">To explore ideas for additional features and test whether the current functions were understandable and usable for teens.</span></div>
-      <div class="ut-method-row"><span class="ut-mk">Method</span><span class="ut-mv">Think aloud method for 30–45 minutes per session</span></div>
-      <div class="ut-method-row"><span class="ut-mk">Who</span><span class="ut-mv">3 teenagers directly from the interview pool</span></div>
+      <div class="ut-method-row"><span class="ut-mk">Method</span><span class="ut-mv">Think aloud method via live zoom call.</span></div>
+      <div class="ut-method-row"><span class="ut-mk">Duration</span><span class="ut-mv">Each session lasted around 30–45 minutes.</span></div>
+      <div class="ut-method-row"><span class="ut-mk">Who</span><span class="ut-mv">3 teenagers from the interview pool.</span></div>
     </div>
 
-    <div class="ut-findings-block" id="ut1-grid">
-
-      <!-- Finding 01 -->
-      <div class="ut-finding-block">
-        <div class="ut-fnum">Finding 01</div>
-        <div class="ut-rows">
-          <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb">3/3 participants did not realize that onboarding had finished and that they had arrived at the homepage.</span></div>
-          <div class="ut-row"><span class="ut-rl">Insight</span><span class="ut-rb">Teens needed a clearer visual signal to understand when one stage ended and another began. The transition from onboarding to the homepage was not explicit enough.</span></div>
-          <div class="ut-row ut-change"><span class="ut-rl">Change</span><span class="ut-rb">Added a congratulatory pictogram at the end of onboarding to clearly signal completion and visually show the transition to the homepage.</span></div>
-        </div>
-        <div class="ut-img-full" style="background:#D9D6D0;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.12);"></div><span class="ph-label">Image</span></div>
+    <!-- Finding 01 — stacked layout -->
+    <div class="ut-finding-block" style="border-radius:10px 10px 0 0;border-right:none;border-bottom:none;margin-top:16px;max-width:900px;">
+      <div class="ut-fnum">Finding 01</div>
+      <p style="font-size:var(--catchy);font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:16px;">Early tasks needed to feel more relevant for teens</p>
+      <div class="ut-rows">
+        <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb">1/3 participants questioned why they needed to set a goal, and 3/3 were confused by the "study habit" option during the goal-setting flow.</span></div>
+        <div class="ut-row"><span class="ut-rl">Insight</span><span class="ut-rb">Some tasks in the early experience did not feel immediately meaningful to teens. These findings suggested that early tasks should feel clearly tied to teens' real financial journey, rather than appearing as extra steps or unrelated options.</span></div>
+        <div class="ut-row ut-change"><span class="ut-rl">Design response</span><span class="ut-rb">Reframed goal-setting to connect it more clearly to everyday teen spending and saving habits, and removed the "study habit" option from the goal-setting flow.</span></div>
       </div>
-
-      <!-- Finding 02 -->
-      <div class="ut-finding-block">
-        <div class="ut-fnum">Finding 02</div>
-        <div class="ut-rows">
-          <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb ph">Content coming soon</span></div>
-          <div class="ut-row"><span class="ut-rl">Insight</span><span class="ut-rb ph">Content coming soon</span></div>
-          <div class="ut-row ut-change"><span class="ut-rl">Change</span><span class="ut-rb ph">Content coming soon</span></div>
+      <div class="adrop" style="margin:16px 0 0;">
+        <button class="adrop-btn" onclick="toggleDrop(this,'ut1-who-drop')">
+          <div class="adrop-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="#888884" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          See UT participant data
+        </button>
+        <div class="adrop-body" id="ut1-who-drop">
+          <div class="img-ph" style="aspect-ratio:16/9;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">UT Excel / Participant Data</span></div>
         </div>
-        <div class="ut-img-full" style="background:#D9D6D0;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.12);"></div><span class="ph-label">Image</span></div>
       </div>
-
-      <!-- Finding 03 -->
-      <div class="ut-finding-block ut-finding-hidden">
-        <div class="ut-fnum">Finding 03</div>
-        <div class="ut-rows">
-          <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb ph">Content coming soon</span></div>
-          <div class="ut-row"><span class="ut-rl">Insight</span><span class="ut-rb ph">Content coming soon</span></div>
-          <div class="ut-row ut-change"><span class="ut-rl">Change</span><span class="ut-rb ph">Content coming soon</span></div>
-        </div>
-        <div class="ut-img-full" style="background:#D9D6D0;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.12);"></div><span class="ph-label">Image</span></div>
-      </div>
-
-      <!-- Finding 04 -->
-      <div class="ut-finding-block ut-finding-hidden">
-        <div class="ut-fnum">Finding 04</div>
-        <div class="ut-rows">
-          <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb ph">Content coming soon</span></div>
-          <div class="ut-row"><span class="ut-rl">Insight</span><span class="ut-rb ph">Content coming soon</span></div>
-          <div class="ut-row ut-change"><span class="ut-rl">Change</span><span class="ut-rb ph">Content coming soon</span></div>
-        </div>
-        <div class="ut-img-full" style="background:#D9D6D0;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.12);"></div><span class="ph-label">Image</span></div>
-      </div>
-
-      <!-- Finding 05 -->
-      <div class="ut-finding-block ut-finding-hidden">
-        <div class="ut-fnum">Finding 05</div>
-        <div class="ut-rows">
-          <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb ph">Content coming soon</span></div>
-          <div class="ut-row"><span class="ut-rl">Insight</span><span class="ut-rb ph">Content coming soon</span></div>
-          <div class="ut-row ut-change"><span class="ut-rl">Change</span><span class="ut-rb ph">Content coming soon</span></div>
-        </div>
-        <div class="ut-img-full" style="background:#D9D6D0;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.12);"></div><span class="ph-label">Image</span></div>
-      </div>
-
-      <!-- Finding 06 -->
-      <div class="ut-finding-block ut-finding-hidden">
-        <div class="ut-fnum">Finding 06</div>
-        <div class="ut-rows">
-          <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb ph">Content coming soon</span></div>
-          <div class="ut-row"><span class="ut-rl">Insight</span><span class="ut-rb ph">Content coming soon</span></div>
-          <div class="ut-row ut-change"><span class="ut-rl">Change</span><span class="ut-rb ph">Content coming soon</span></div>
-        </div>
-        <div class="ut-img-full" style="background:#D9D6D0;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.12);"></div><span class="ph-label">Image</span></div>
-      </div>
-
     </div>
-    <button class="ut-more-btn" id="ut1-btn" onclick="toggleUTFindings('ut1-grid','ut1-btn')">
-      <span>See 4 more findings</span>
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
+    <div class="magnifier-wrap" style="border-radius:0 0 10px 10px;border:1px solid var(--border);border-top:none;margin-bottom:16px;overflow:hidden;">
+      <img id="ut1-card1-img" src="../images/Habitta/Habitta-Ut1 -card1.jpg" alt="Finding 01 Image" style="width:100%;display:block;">
+      <div class="magnifier-lens" id="ut1-card1-lens"></div>
+      <div style="position:absolute;bottom:12px;right:16px;font-size:12px;font-weight:400;color:rgba(255,255,255,0.75);letter-spacing:0.04em;pointer-events:none;">Hover to zoom in</div>
+    </div>
+
+    <!-- Finding 02 — stacked layout -->
+    <div class="ut-finding-block" style="border-radius:10px 10px 0 0;border-right:none;border-bottom:none;margin-bottom:0;max-width:900px;">
+      <div class="ut-fnum">Finding 02</div>
+      <p style="font-size:var(--catchy);font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:16px;">The investment flow did not make its learning-first intention clear before action</p>
+      <div class="ut-rows">
+        <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb">3/3 participants tried to purchase stocks directly without going through the intended discussion flow with their parents.</span></div>
+        <div class="ut-row"><span class="ut-rl">Insight</span><span class="ut-rb">The stock feature was designed to help teens build a habit of thinking and talking through what to buy before taking action. However, that intention was not clear enough in the flow, so participants moved straight toward purchase instead of recognizing discussion as a core part of the experience. This suggested that investment features should communicate reflection, learning, and support more explicitly before any action.</span></div>
+        <div class="ut-row ut-change"><span class="ut-rl">Design response</span><span class="ut-rb">Redesigned the stock journey to make its learning-first structure more visible, with discussion, reflection, and guided next steps clearly introduced before any investment-related action.</span></div>
+      </div>
+      <div class="adrop" style="margin:16px 0 0;">
+        <button class="adrop-btn" onclick="toggleDrop(this,'ut1-card2-drop')">
+          <div class="adrop-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="#888884" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          See UT participant data
+        </button>
+        <div class="adrop-body" id="ut1-card2-drop">
+          <div class="img-ph" style="aspect-ratio:16/9;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">UT Excel / Participant Data</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="img-ph" style="aspect-ratio:16/9;background:#D4D2CE;border-radius:0 0 10px 10px;border:1px solid var(--border);border-top:none;margin-bottom:16px;max-width:900px;"><div class="ph-box"></div><span class="ph-label">Finding 02 Image</span></div>
 
     <!-- SECOND ROUND -->
     <div class="cat">Second Round · Wireframe Stage</div>
-    <div class="catchy">Parents are not ready to talk about stocks in depth.</div>
+    <div class="catchy">3 major changes to the core functions after wireframes stage testing with parents.</div>
     <div class="ut-method">
       <div class="ut-method-row"><span class="ut-mk">Aim</span><span class="ut-mv">To explore ideas for additional features and test whether the current functions were understandable and usable for parents with 14–16 year old children.</span></div>
-      <div class="ut-method-row"><span class="ut-mk">Method</span><span class="ut-mv">Parents from first UT.</span></div>
+      <div class="ut-method-row"><span class="ut-mk">Method</span><span class="ut-mv">Think out loud via zoom call.</span></div>
+      <div class="ut-method-row"><span class="ut-mk">Duration</span><span class="ut-mv">Each session lasted around 15–20 minutes.</span></div>
+      <div class="ut-method-row"><span class="ut-mk">Who</span><span class="ut-mv">Parents from first UT.</span></div>
     </div>
 
-    <div class="ut-findings-block" id="ut2-grid">
-      <!-- Finding 01 -->
-      <div class="ut-finding-block">
-        <div class="ut-fnum">Finding 01</div>
-        <div class="ut-rows">
-          <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb ph">Content coming soon</span></div>
-          <div class="ut-row"><span class="ut-rl">Insight</span><span class="ut-rb ph">Content coming soon</span></div>
-          <div class="ut-row ut-change"><span class="ut-rl">Change</span><span class="ut-rb ph">Content coming soon</span></div>
-        </div>
-        <div class="ut-img-full" style="background:#D9D6D0;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.12);"></div><span class="ph-label">Image</span></div>
+    <!-- Finding 01 -->
+    <div class="ut-finding-block" style="border-radius:10px 10px 0 0;border-right:none;border-bottom:none;margin-top:16px;max-width:900px;">
+      <div class="ut-fnum">Finding 01</div>
+      <p style="font-size:var(--catchy);font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:16px;">Parents are not ready to talk about stocks or other commodity in depth</p>
+      <div class="ut-rows">
+        <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb">1/3 worried about the chatting system before confirming investment.</span></div>
+        <div class="ut-row"><span class="ut-rl">Insight</span><span class="ut-rb">Parents lacked confidence in guiding in-depth stock discussions, especially when they were unsure whether the information was accurate or age-appropriate.</span></div>
+        <div class="ut-row ut-change"><span class="ut-rl">Design response</span><span class="ut-rb">Instead of relying on parents to lead stock-related conversations, we introduced AI as a first-line guide that can provide accessible, age-appropriate explanations before parent involvement.</span></div>
       </div>
-      <!-- Finding 02 -->
-      <div class="ut-finding-block">
-        <div class="ut-fnum">Finding 02</div>
-        <div class="ut-rows">
-          <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb ph">Content coming soon</span></div>
-          <div class="ut-row"><span class="ut-rl">Insight</span><span class="ut-rb ph">Content coming soon</span></div>
-          <div class="ut-row ut-change"><span class="ut-rl">Change</span><span class="ut-rb ph">Content coming soon</span></div>
+      <div class="adrop" style="margin:16px 0 0;">
+        <button class="adrop-btn" onclick="toggleDrop(this,'ut2-who-drop')">
+          <div class="adrop-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="#888884" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          See UT participant data
+        </button>
+        <div class="adrop-body" id="ut2-who-drop">
+          <div class="img-ph" style="aspect-ratio:16/9;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">UT Excel / Participant Data</span></div>
         </div>
-        <div class="ut-img-full" style="background:#D9D6D0;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.12);"></div><span class="ph-label">Image</span></div>
+      </div>
+    </div>
+    <img src="../images/Habitta/Habitta-UT2- card1.jpg" alt="Finding 01 Image" style="width:100%;max-width:900px;display:block;border-radius:0 0 10px 10px;border:1px solid var(--border);border-top:none;margin-bottom:16px;">
+
+    <!-- Finding 02 -->
+    <div class="ut-finding-block" style="border-radius:10px;border-right:none;margin-bottom:16px;max-width:900px;">
+      <div class="ut-fnum">Finding 02</div>
+      <p style="font-size:var(--catchy);font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:16px;">Parents feel encouragement should be more promoted instead of discouragement</p>
+      <div class="ut-rows">
+        <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb">2/3 questioned the "sad" icon for child's transaction history.</span></div>
+        <div class="ut-row"><span class="ut-rl">Insight</span><span class="ut-rb">For teens aged 14–16, the experience should support confidence and gradual habit formation, not guilt around everyday spending.</span></div>
+        <div class="ut-row ut-change"><span class="ut-rl">Design response</span><span class="ut-rb">Shifted the tone of the transaction history from discouraging overspending to reinforcing small positive money habits.</span></div>
+      </div>
+    </div>
+
+    <!-- Finding 03 -->
+    <div class="ut-finding-block" style="border-radius:10px;border-right:none;max-width:900px;">
+      <div class="ut-fnum">Finding 03</div>
+      <p style="font-size:var(--catchy);font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:16px;">Parents felt that direct spending comparison was not a meaningful way to support teens</p>
+      <div class="ut-rows">
+        <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb">2/3 parents felt uncomfortable sharing their spending because the scale and context are very different from teens.</span></div>
+        <div class="ut-row"><span class="ut-rl">Insight</span><span class="ut-rb">This suggests that users need contextual guidance, not raw comparison.</span></div>
+        <div class="ut-row ut-change"><span class="ut-rl">Design response</span><span class="ut-rb">Only teens are sharing selected budgeting to parents or guardians.</span></div>
       </div>
     </div>
 
     <!-- PILLAR 04 DETAIL -->
     <div class="cat">Pillar 04 Detail</div>
-    <div class="catchy">Human in the Loop AI</div>
-    <p>Before any investment action, teens engage in a structured AI conversation explaining their reasoning. The AI validates intent, flags risk, and escalates to a parent if necessary.</p>
-    <div class="img-ph" style="aspect-ratio:16/9;background:#D6D2CC;"><div class="ph-box"></div><span class="ph-label">Human in the Loop Diagram</span></div>
+    <div class="catchy">Safe AI for Young Users</div>
+    <p>Habitta's AI is designed to keep teens safe. It follows clear rules, and if it notices signs that someone may be at risk, it shows a helpline and alerts the <a href="https://assets.publishing.service.gov.uk/media/68add931969253904d155860/Keeping_children_safe_in_education_from_1_September_2025.pdf?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px;">Designated Safeguarding Lead (DSL)</a> — the trained person responsible for child safety.</p>
+
+    <!-- HUMAN IN THE LOOP INTERACTIVE -->
+    <style>
+    .hitl-wrap { padding: 0; font-family: inherit; }
+    .hitl-toggle { display:flex; gap:0; margin-bottom:24px; border:1px solid var(--border); border-radius:10px; overflow:hidden; width:fit-content; }
+    .hitl-toggle button { padding:9px 22px; font-size:var(--cat); font-weight:500; cursor:pointer; border:none; background:transparent; color:var(--muted); transition:all .15s; font-family:inherit; letter-spacing:0.08em; text-transform:uppercase; }
+    .hitl-toggle button.active { background:var(--ink); color:var(--bg); }
+    .hitl-panel { display:none; }
+    .hitl-panel.active { display:block; }
+
+    .hitl-layer-wrap { display:flex; flex-direction:column; gap:0; }
+    .hitl-user-box { align-self:center; width:280px; background:#E1F5EE; border:1px solid #5DCAA5; border-radius:12px; padding:12px 20px; text-align:center; }
+    .hitl-user-box .hu-ttl { font-size:var(--body); font-weight:500; color:#085041; }
+    .hitl-user-box .hu-sub { font-size:13px; font-weight:300; color:#0F6E56; margin-top:2px; }
+
+    .hitl-arrow { width:1.5px; height:28px; background:#B4B2A9; align-self:center; margin:0 auto; position:relative; }
+    .hitl-arrow::after { content:''; position:absolute; bottom:-5px; left:50%; transform:translateX(-50%); border-left:5px solid transparent; border-right:5px solid transparent; border-top:6px solid #B4B2A9; }
+    .hitl-arrow-green { width:1.5px; height:28px; background:#1D9E75; align-self:center; margin:0 auto; position:relative; }
+    .hitl-arrow-green::after { content:''; position:absolute; bottom:-5px; left:50%; transform:translateX(-50%); border-left:5px solid transparent; border-right:5px solid transparent; border-top:6px solid #1D9E75; }
+
+    .hitl-layer { border:1px dashed; border-radius:12px; padding:14px; }
+    .hitl-layer .hl-label { font-size:var(--cat); font-weight:500; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px; }
+    .hitl-layer-inner { display:grid; gap:8px; }
+    .hitl-layer-inner.cols3 { grid-template-columns:1fr 1fr 1fr; }
+    .hitl-layer-inner.cols2 { grid-template-columns:1fr 1fr; }
+    .hitl-layer.hl0 { border-color:#85B7EB; } .hitl-layer.hl0 .hl-label { color:#0C447C; }
+    .hitl-layer.hl1 { border-color:#AFA9EC; } .hitl-layer.hl1 .hl-label { color:#3C3489; }
+    .hitl-layer.hl2 { border-color:#5DCAA5; } .hitl-layer.hl2 .hl-label { color:#085041; }
+
+    .hlcard { border-radius:8px; padding:10px 12px; border:1px solid; text-align:center; }
+    .hlcard .hc-t { font-size:var(--body); font-weight:500; }
+    .hlcard .hc-s { font-size:13px; font-weight:300; margin-top:3px; }
+    .hlcard.hblue   { background:#E6F1FB; border-color:#85B7EB; } .hlcard.hblue .hc-t { color:#042C53; } .hlcard.hblue .hc-s { color:#185FA5; }
+    .hlcard.hpurple { background:#EEEDFE; border-color:#AFA9EC; } .hlcard.hpurple .hc-t { color:#26215C; } .hlcard.hpurple .hc-s { color:#534AB7; }
+    .hlcard.hteal   { background:#E1F5EE; border-color:#5DCAA5; } .hlcard.hteal .hc-t { color:#085041; } .hlcard.hteal .hc-s { color:#0F6E56; }
+    .hlcard.hred    { background:#FCEBEB; border-color:#F09595; } .hlcard.hred .hc-t { color:#501313; } .hlcard.hred .hc-s { color:#791F1F; }
+
+    .hitl-purchase { align-self:center; width:340px; background:var(--white); border:1px solid var(--border); border-radius:24px; padding:11px 20px; text-align:center; margin:0 auto; }
+    .hitl-purchase .hp-t { font-size:var(--body); font-weight:500; color:var(--ink); }
+    .hitl-purchase .hp-s { font-size:13px; font-weight:300; color:var(--muted); margin-top:2px; }
+    .hitl-foot { font-size:13px; font-weight:300; color:var(--muted); text-align:center; margin-top:12px; }
+
+    .sg-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:10px; }
+    .sg-grid2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .sgcard { border-radius:12px; padding:16px; border:1px solid; }
+    .sgcard .sg-emoji { font-size:32px; display:block; margin-bottom:10px; line-height:1; }
+    .sgcard .sg-cat   { font-size:var(--cat); font-weight:500; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px; }
+    .sgcard .sg-title { font-size:var(--body); font-weight:500; margin-bottom:6px; }
+    .sgcard .sg-tags  { font-size:13px; font-weight:300; margin-bottom:10px; line-height:1.6; }
+    .sgcard .sg-quote { font-size:13px; font-weight:300; font-style:italic; padding:8px 10px; border-radius:7px; margin-bottom:10px; line-height:1.5; }
+    .sgcard .sg-tier  { font-size:12px; font-weight:500; display:inline-block; padding:3px 10px; border-radius:10px; }
+    .sgcard.sg-amber { border-color:#EF9F27; background:#FAEEDA; } .sgcard.sg-amber .sg-cat,.sgcard.sg-amber .sg-title { color:#412402; } .sgcard.sg-amber .sg-tags { color:#633806; } .sgcard.sg-amber .sg-quote { background:#FAC775; color:#412402; } .sgcard.sg-amber .sg-tier { background:#FAC775; color:#412402; }
+    .sgcard.sg-coral { border-color:#F0997B; background:#FAECE7; } .sgcard.sg-coral .sg-cat,.sgcard.sg-coral .sg-title { color:#4A1B0C; } .sgcard.sg-coral .sg-tags { color:#712B13; } .sgcard.sg-coral .sg-quote { background:#F5C4B3; color:#4A1B0C; } .sgcard.sg-coral .sg-tier { background:#F5C4B3; color:#4A1B0C; }
+    .sgcard.sg-red   { border-color:#F09595; background:#FCEBEB; } .sgcard.sg-red .sg-cat,.sgcard.sg-red .sg-title   { color:#501313; } .sgcard.sg-red .sg-tags   { color:#791F1F; } .sgcard.sg-red .sg-quote   { background:#F7C1C1; color:#501313; } .sgcard.sg-red .sg-tier   { background:#F7C1C1; color:#501313; }
+    .sg-never  { border-radius:12px; padding:14px 16px; background:#FCEBEB; border:1px solid #F09595; }
+    .sg-always { border-radius:12px; padding:14px 16px; background:#E1F5EE; border:1px solid #5DCAA5; }
+    .sg-never .sg-hd  { font-size:var(--cat); font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#791F1F; margin-bottom:8px; }
+    .sg-always .sg-hd { font-size:var(--cat); font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#085041; margin-bottom:8px; }
+    .sg-never li,.sg-always li { font-size:var(--body); font-weight:300; margin-left:16px; line-height:1.9; }
+    .sg-never li { color:#A32D2D; } .sg-always li { color:#0F6E56; }
+    .sg-foot { margin-top:10px; font-size:13px; font-weight:300; color:var(--muted); text-align:center; line-height:1.6; }
+    </style>
+
+    <div class="hitl-wrap" style="max-width:900px;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:28px;">
+      <div class="hitl-toggle">
+        <button class="active" onclick="hitlShow('safety', this)">AI safety overview</button>
+        <button onclick="hitlShow('safeguarding', this)">Safeguarding</button>
+      </div>
+
+      <!-- AI SAFETY -->
+      <div class="hitl-panel active" id="hp-safety">
+        <div class="hitl-layer-wrap">
+          <div class="hitl-user-box">
+            <div class="hu-ttl">Teen user, age 14–16</div>
+            <div class="hu-sub">Asks about a financial product</div>
+          </div>
+          <div class="hitl-arrow"></div>
+          <div class="hitl-layer hl0">
+            <div class="hl-label">Layer 0 — What the AI is allowed to talk about</div>
+            <div class="hitl-layer-inner cols3">
+              <div class="hlcard hblue"><div class="hc-t">Finance topics only</div><div class="hc-s">Off-topic = blocked</div></div>
+              <div class="hlcard hblue"><div class="hc-t">Harmful content filter</div><div class="hc-s">Explicit, political = blocked</div></div>
+              <div class="hlcard hblue"><div class="hc-t">Social influence detector</div><div class="hc-s">TikTok / friend hype flagged</div></div>
+            </div>
+          </div>
+          <div class="hitl-arrow"></div>
+          <div class="hitl-layer hl1">
+            <div class="hl-label">Layer 1 — What can actually be purchased · set in code, AI cannot change this</div>
+            <div class="hitl-layer-inner cols2">
+              <div class="hlcard hteal"><div class="hc-t">Grade A only — available to buy</div><div class="hc-s">Index funds · UK gilts · broad ETFs</div></div>
+              <div class="hlcard hred"><div class="hc-t">Everything else — not available</div><div class="hc-s">AI explains why, then redirects</div></div>
+            </div>
+          </div>
+          <div class="hitl-arrow"></div>
+          <div class="hitl-layer hl2">
+            <div class="hl-label">Layer 2 — How the AI talks · never recommends, always asks</div>
+            <div class="hitl-layer-inner cols3">
+              <div class="hlcard hpurple"><div class="hc-t">No "buy this"</div><div class="hc-s">Socratic questions only</div></div>
+              <div class="hlcard hpurple"><div class="hc-t">5 guided questions</div><div class="hc-s">Random pick, every session</div></div>
+              <div class="hlcard hpurple"><div class="hc-t">Official links only</div><div class="hc-s">FCA · MoneyHelper only</div></div>
+            </div>
+          </div>
+          <div class="hitl-arrow-green"></div>
+          <div class="hitl-purchase">
+            <div class="hp-t">Purchase unlocked</div>
+            <div class="hp-s">Only after teen completes all 5 questions</div>
+          </div>
+        </div>
+        <div class="hitl-foot">The AI handles the conversation — humans review patterns, not every message</div>
+      </div>
+
+      <!-- SAFEGUARDING -->
+      <div class="hitl-panel" id="hp-safeguarding">
+        <div class="sg-grid">
+          <div class="sgcard sg-amber">
+            <span class="sg-emoji">🚫</span>
+            <div class="sg-cat">Category A — Deflect</div>
+            <div class="sg-title">Language violation</div>
+            <div class="sg-tags">Profanity · bullying · hate speech · sexual language</div>
+            <div class="sg-quote">"That's not something I can help with here — let's get back on track."</div>
+            <span class="sg-tier">Logged · DSL reviews if repeated</span>
+          </div>
+          <div class="sgcard sg-coral">
+            <span class="sg-emoji">🫂</span>
+            <div class="sg-cat">Category B — Support</div>
+            <div class="sg-title">Distress signal</div>
+            <div class="sg-tags">Anxiety · pressure · "I'm scared" · "I have to do this"</div>
+            <div class="sg-quote">"It's okay to slow down — no pressure to decide now."</div>
+            <span class="sg-tier">Wellbeing team notified within 24h</span>
+          </div>
+          <div class="sgcard sg-red">
+            <span class="sg-emoji">🆘</span>
+            <div class="sg-cat">Category C — Escalate</div>
+            <div class="sg-title">Crisis signal</div>
+            <div class="sg-tags">Self-harm · suicidal ideation · abuse hints</div>
+            <div class="sg-quote">"You matter. Childline: 0800 1111 (free, 24/7)."</div>
+            <span class="sg-tier">DSL alerted immediately</span>
+          </div>
+        </div>
+        <div class="sg-grid2">
+          <div class="sg-never">
+            <div class="sg-hd">What the AI never does in a crisis</div>
+            <ul>
+              <li>End the conversation suddenly</li>
+              <li>Lecture or ask clinical questions</li>
+              <li>Generate its own crisis response</li>
+              <li>Assume the home is safe</li>
+            </ul>
+          </div>
+          <div class="sg-always">
+            <div class="sg-hd">What the AI always does instead</div>
+            <ul>
+              <li>Stay warm and present</li>
+              <li>Show one fixed helpline number</li>
+              <li>Alert the DSL immediately</li>
+              <li>DSL decides on parent contact</li>
+            </ul>
+          </div>
+        </div>
+        <div class="sg-foot">Crisis response is hardcoded — never AI-generated · UK Working Together to Safeguard Children 2023</div>
+      </div>
+    </div>
+
+    <script>
+    function hitlShow(id, btn) {
+      document.querySelectorAll('.hitl-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.hitl-toggle button').forEach(b => b.classList.remove('active'));
+      document.getElementById('hp-' + id).classList.add('active');
+      btn.classList.add('active');
+    }
+    </script>
   </section>
 
   <!-- BUSINESS OBJECTIVE -->
   <section class="section" id="business-objective">
     <div class="mid-title">Business Objective</div>
-    <div class="obj-list">
-      <div class="obj-item"><span class="obj-num">01</span><span class="obj-text"><strong>Market Expansion</strong> — Capturing the niche market (Ages 14–16).</span></div>
-      <div class="obj-item"><span class="obj-num">02</span><span class="obj-text"><strong>User Retention</strong> — Building early brand loyalty by transitioning users from monitored saving to independent banking.</span></div>
-      <div class="obj-item"><span class="obj-num">03</span><span class="obj-text"><strong>Social Impact</strong> — Enhancing the financial resilience of the next generation to reduce future debt dependency.</span></div>
+
+    <!-- Diagram wrapper -->
+    <div style="margin-top:8px;">
+
+      <!-- 3-col 2-row grid: same row height = dividers align -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;column-gap:12px;row-gap:0;">
+        <!-- Row 1 top cells -->
+        <div style="background:var(--white);border-radius:12px 12px 0 0;padding:24px 22px 20px;">
+          <div style="font-size:var(--cat);font-weight:500;letter-spacing:0.12em;color:rgba(0,0,0,0.5);margin-bottom:12px;">01</div>
+          <div style="font-size:var(--catchy);font-weight:700;color:#111110;line-height:1.25;margin-bottom:8px;">Market Expansion</div>
+          <div style="font-size:14px;font-weight:400;color:rgba(0,0,0,0.6);line-height:1.5;">Capturing the niche market</div>
+        </div>
+        <div style="background:var(--white);border-radius:12px 12px 0 0;padding:24px 22px 20px;">
+          <div style="font-size:var(--cat);font-weight:500;letter-spacing:0.12em;color:rgba(0,0,0,0.5);margin-bottom:12px;">02</div>
+          <div style="font-size:var(--catchy);font-weight:700;color:#111110;line-height:1.25;margin-bottom:8px;">User Retention</div>
+          <div style="font-size:14px;font-weight:400;color:rgba(0,0,0,0.6);line-height:1.5;">Early brand loyalty</div>
+        </div>
+        <div style="background:var(--white);border-radius:12px 12px 0 0;padding:24px 22px 20px;">
+          <div style="font-size:var(--cat);font-weight:500;letter-spacing:0.12em;color:rgba(0,0,0,0.5);margin-bottom:12px;">03</div>
+          <div style="font-size:var(--catchy);font-weight:700;color:#111110;line-height:1.25;margin-bottom:8px;">Social Impact</div>
+          <div style="font-size:14px;font-weight:400;color:rgba(0,0,0,0.6);line-height:1.5;">Financial resilience</div>
+        </div>
+        <!-- Row 2 bottom cells -->
+        <div style="background:var(--white);border-radius:0 0 12px 12px;padding:0 22px 24px;">
+          <div style="height:1px;background:rgba(0,0,0,0.12);margin-bottom:20px;"></div>
+          <div style="font-size:var(--body);font-weight:400;color:#111110;line-height:1.5;margin-bottom:4px;">Target segment</div>
+          <div style="font-size:var(--body);font-weight:400;color:#111110;line-height:1.5;margin-bottom:4px;">Ages 14–16</div>
+          <div style="font-size:var(--body);font-weight:400;color:#111110;line-height:1.5;">Underserved youth market</div>
+        </div>
+        <div style="background:var(--white);border-radius:0 0 12px 12px;padding:0 22px 24px;">
+          <div style="height:1px;background:rgba(0,0,0,0.12);margin-bottom:20px;"></div>
+          <div style="font-size:var(--body);font-weight:400;color:#111110;line-height:1.5;margin-bottom:4px;">Transition journey</div>
+          <div style="font-size:var(--body);font-weight:400;color:#111110;line-height:1.5;margin-bottom:4px;">Monitored → Independent</div>
+          <div style="font-size:var(--body);font-weight:400;color:#111110;line-height:1.5;">Saving to banking</div>
+        </div>
+        <div style="background:var(--white);border-radius:0 0 12px 12px;padding:0 22px 24px;">
+          <div style="height:1px;background:rgba(0,0,0,0.12);margin-bottom:20px;"></div>
+          <div style="font-size:var(--body);font-weight:400;color:#111110;line-height:1.5;margin-bottom:4px;">Long-term outcome</div>
+          <div style="font-size:var(--body);font-weight:400;color:#111110;line-height:1.5;margin-bottom:4px;">Reduce debt dependency</div>
+          <div style="font-size:var(--body);font-weight:400;color:#111110;line-height:1.5;">Next generation resilience</div>
+        </div>
+      </div>
+
+      <!-- Arrow 2 -->
+      <div style="display:flex;justify-content:center;padding:20px 0 16px;">
+        <svg width="20" height="13" viewBox="0 0 24 16"><polygon points="0,0 24,0 12,16" fill="#888884"/></svg>
+      </div>
+
+      <!-- Conclusion -->
+      <div style="background:#191919;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:32px 36px;text-align:center;">
+        <div style="font-size:13px;font-weight:400;color:rgba(255,255,255,0.4);letter-spacing:0.06em;margin-bottom:12px;">Growth · Loyalty · Impact</div>
+        <div style="font-size:var(--catchy);font-weight:600;color:#FFFFFF;line-height:1.4;">Building the financial foundation for the next generation</div>
+      </div>
+
     </div>
-    <div class="img-ph" style="aspect-ratio:16/9;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">Business Objective Image</span></div>
+
   </section>
 
   <!-- TAKEAWAY -->
@@ -369,6 +645,29 @@ const secs=document.querySelectorAll('.section[id]');
 const tocs=document.querySelectorAll('.toc-list a');
 secs.forEach(s=>new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){tocs.forEach(l=>l.classList.remove('active'));const a=document.querySelector(`.toc-list a[href="#${e.target.id}"]`);if(a)a.classList.add('active');}});},{rootMargin:'-20% 0px -60% 0px'}).observe(s));
 function toggleDrop(btn,id){btn.classList.toggle('open');document.getElementById(id).classList.toggle('open');}
+function initMagnifier(imgId, lensId, zoom) {
+  const img = document.getElementById(imgId);
+  const lens = document.getElementById(lensId);
+  if (!img || !lens) return;
+  img.addEventListener('mousemove', function(e) {
+    const rect = img.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const lensSize = 300;
+    lens.style.left = (x - lensSize / 2) + 'px';
+    lens.style.top  = (y - lensSize / 2) + 'px';
+    const bgW = img.offsetWidth  * zoom;
+    const bgH = img.offsetHeight * zoom;
+    const bgX = x * zoom - lensSize / 2;
+    const bgY = y * zoom - lensSize / 2;
+    lens.style.backgroundImage    = `url('${img.src}')`;
+    lens.style.backgroundSize     = `${bgW}px ${bgH}px`;
+    lens.style.backgroundPosition = `-${bgX}px -${bgY}px`;
+    lens.style.display = 'block';
+  });
+  img.addEventListener('mouseleave', function() { lens.style.display = 'none'; });
+}
+initMagnifier('ut1-card1-img', 'ut1-card1-lens', 3);
 function toggleUTFindings(gridId,btnId){const grid=document.getElementById(gridId);const btn=document.getElementById(btnId);const isOpen=grid.classList.toggle('expanded');btn.classList.toggle('open',isOpen);btn.querySelector('span').textContent=isOpen?'Show less':'See 4 more findings';}
 </script>
 </body>
