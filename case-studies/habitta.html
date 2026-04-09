@@ -17,16 +17,11 @@
 }
 #testing > *, #define > * { width:100%; }
 
-/* PROBLEM STATEMENT full-bleed */
-.ps-wrap { margin: 32px -60px 0; }
-.ps-block { background:var(--ink); padding:56px 60px; text-align:center; }
+/* PROBLEM STATEMENT */
+.ps-wrap { margin:0; }
+.ps-block { background:var(--ink); padding:48px; border-radius:12px; max-width:900px; width:100%; text-align:center; margin:0 auto; }
 .ps-block .ps-lbl { font-size:var(--cat); font-weight:500; letter-spacing:0.12em; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-bottom:28px; }
-.ps-block .ps-q { font-size:clamp(22px,2.8vw,36px); font-weight:400; line-height:1.45; color:#FFFFFF; margin:0; text-align:center; max-width:none !important; }
-.hmw-block2 { background:#F0EEEA; padding:56px 60px; text-align:center; }
-.hmw-block2 .ps-lbl { font-size:var(--cat); font-weight:500; letter-spacing:0.12em; color:rgba(17,17,16,0.4); text-transform:uppercase; margin-bottom:28px; }
-.hmw-block2 .ps-q { font-size:clamp(22px,2.8vw,36px); font-weight:400; line-height:1.45; color:var(--ink); margin:0; text-align:center; max-width:none !important; }
-@media(max-width:1024px){ .ps-wrap{ margin:32px -40px 0; } .ps-block,.hmw-block2{ padding:48px 40px; } }
-@media(max-width:768px){ .ps-wrap{ margin:32px -20px 0; } .ps-block,.hmw-block2{ padding:40px 20px; } }
+.ps-block .ps-q { font-size:clamp(20px,2.2vw,32px); font-weight:400; line-height:1.5; color:#FFFFFF; margin:0; text-align:center; max-width:none !important; }
 
 /* MAGNIFIER */
 .magnifier-wrap { position:relative; display:inline-block; max-width:900px; width:100%; }
@@ -340,7 +335,7 @@
 
     <!-- SECOND ROUND -->
     <div class="cat">Second Round · Wireframe Stage</div>
-    <div class="catchy">3 major changes to the core functions after wireframes stage testing with parents.</div>
+    <div class="catchy">Parents side UT showed that they wanted to support teen financial habits, but not as experts, judges, or comparison targets.</div>
     <div class="ut-method">
       <div class="ut-method-row"><span class="ut-mk">Aim</span><span class="ut-mv">To explore ideas for additional features and test whether the current functions were understandable and usable for parents with 14–16 year old children.</span></div>
       <div class="ut-method-row"><span class="ut-mk">Method</span><span class="ut-mv">Think out loud via zoom call.</span></div>
@@ -351,11 +346,11 @@
     <!-- Finding 01 -->
     <div class="ut-finding-block" style="border-radius:10px 10px 0 0;border-right:none;border-bottom:none;margin-top:16px;max-width:900px;">
       <div class="ut-fnum">Finding 01</div>
-      <p style="font-size:var(--catchy);font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:16px;">Parents are not ready to talk about stocks or other commodity in depth</p>
+      <p style="font-size:var(--catchy);font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:16px;">Parents may not be ready for having instructional responsibility in investment-related moments.</p>
       <div class="ut-rows">
-        <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb">1/3 worried about the chatting system before confirming investment.</span></div>
-        <div class="ut-row"><span class="ut-rl">Insight</span><span class="ut-rb">Parents lacked confidence in guiding in-depth stock discussions, especially when they were unsure whether the information was accurate or age-appropriate.</span></div>
-        <div class="ut-row ut-change"><span class="ut-rl">Design response</span><span class="ut-rb">Instead of relying on parents to lead stock-related conversations, we introduced AI as a first-line guide that can provide accessible, age-appropriate explanations before parent involvement.</span></div>
+        <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb">1/3 parents explicitly expressed concern about the chat system before confirming an investment, while the others mainly described talking to their children about basic topics like saving rather than investment decisions.</span></div>
+        <div class="ut-row"><span class="ut-rl">Insight</span><span class="ut-rb">Parents seemed more comfortable supporting everyday money habits than leading in-depth conversations about investing. This suggested that the product should not rely on parents as the primary source of stock-related guidance, especially when accuracy and age-appropriateness felt uncertain.</span></div>
+        <div class="ut-row ut-change"><span class="ut-rl">Design response</span><span class="ut-rb">Instead of relying on parents to lead stock-related conversations, I introduced AI as a first-line guide that provides accessible, age-appropriate explanations before parent involvement.</span></div>
       </div>
       <div class="adrop" style="margin:16px 0 0;">
         <button class="adrop-btn" onclick="toggleDrop(this,'ut2-who-drop')">
@@ -632,8 +627,7 @@
   <!-- TAKEAWAY -->
   <section class="section" id="takeaway">
     <div class="mid-title">Takeaway</div>
-    <div class="catchy">Meaningful financial education is not about memorizing vocabulary. It is a habit.</div>
-    <p>By turning awkward economic lectures from school and household into more natural conversations, financial stability slowly gets formed among teens before becoming an adult.</p>
+    <p>Going forward, I would want to test the product not only with teens and parents, but also with stakeholders responsible for child safety, safeguarding, and legal compliance, to ensure the experience supports healthy habits while meeting the UK's expectations for age-appropriate design.</p>
   </section>
 
 </main>
@@ -669,6 +663,17 @@ function initMagnifier(imgId, lensId, zoom) {
 }
 initMagnifier('ut1-card1-img', 'ut1-card1-lens', 3);
 function toggleUTFindings(gridId,btnId){const grid=document.getElementById(gridId);const btn=document.getElementById(btnId);const isOpen=grid.classList.toggle('expanded');btn.classList.toggle('open',isOpen);btn.querySelector('span').textContent=isOpen?'Show less':'See 4 more findings';}
+(function(){
+  if(!window.matchMedia('(pointer: fine)').matches) return;
+  const cur=document.createElement('div');cur.className='cursor';document.body.appendChild(cur);
+  document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';});
+  document.addEventListener('mouseleave',()=>cur.classList.add('hidden'));
+  document.addEventListener('mouseenter',()=>cur.classList.remove('hidden'));
+  document.querySelectorAll('a,button,[role="button"]').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cur.classList.add('hover'));
+    el.addEventListener('mouseleave',()=>cur.classList.remove('hover'));
+  });
+})();
 </script>
 </body>
 </html>

@@ -12,6 +12,7 @@
   html { scroll-behavior: smooth; }
   body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); font-size: 15px; line-height: 1.6; overflow-x: hidden; }
 
+
   /* NAV — light pill */
   nav { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); z-index: 100; background: rgba(240,239,236,0.92); backdrop-filter: blur(16px); border: 1px solid var(--border); border-radius: 100px; padding: 6px 8px; display: flex; align-items: center; gap: 2px; box-shadow: 0 2px 20px rgba(0,0,0,0.07); white-space: nowrap; }
   .nav-item { text-decoration: none; font-size: 13px; font-weight: 500; color: var(--ink-muted); padding: 8px 16px; border-radius: 100px; transition: color 0.2s, background 0.2s; }
@@ -227,20 +228,22 @@
 
   <!-- 3. Artistry -->
   <div class="project-card">
-    <div class="project-image"><div class="img-placeholder"><div class="img-placeholder-box"></div><span>Project Image</span></div></div>
-    <div class="project-meta">
-      <div class="project-year">2026</div>
-      <div class="project-title">Artistry Community Online Exhibition Platform</div>
-      <div class="project-tags">
-        <span class="tag">Client Work</span><span class="tag">Web</span><span class="tag">Nonprofit</span>
+    <a class="project-link" href="./case-studies/artistry.html" aria-label="Open Artistry Community case study">
+      <div class="project-image"><div class="img-placeholder"><div class="img-placeholder-box"></div><span>Project Image</span></div></div>
+      <div class="project-meta">
+        <div class="project-year">2026</div>
+        <div class="project-title">Artistry Community Online Exhibition Platform</div>
+        <div class="project-tags">
+          <span class="tag">Client Work</span><span class="tag">Web</span><span class="tag">Nonprofit</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-row"><div class="info-label">Project Type</div><div class="info-value">Group Project · Client Work</div></div>
+          <div class="info-row"><div class="info-label">Role</div><div class="info-value">UX Designer</div></div>
+          <div class="info-row"><div class="info-label">Timeline</div><div class="info-value">Nov 2025 – Feb 2026 · 3 months</div></div>
+          <div class="info-row"><div class="info-label">Contributions</div><div class="info-value">UX design, User research</div></div>
+        </div>
       </div>
-      <div class="info-grid">
-        <div class="info-row"><div class="info-label">Project Type</div><div class="info-value">Group Project · Client Work</div></div>
-        <div class="info-row"><div class="info-label">Role</div><div class="info-value">UX Designer</div></div>
-        <div class="info-row"><div class="info-label">Timeline</div><div class="info-value">Nov 2025 – Feb 2026 · 3 months</div></div>
-        <div class="info-row"><div class="info-label">Contributions</div><div class="info-value">UX design, User research</div></div>
-      </div>
-    </div>
+    </a>
   </div>
 
   <!-- 4. LinkLand -->
@@ -332,6 +335,7 @@
 </div>
 
 <script>
+
 const navItems=document.querySelectorAll('.nav-item');
 const sMap=[{id:'home',idx:0},{id:'work',idx:1},{id:'about',idx:3}];
 sMap.forEach(s=>{const el=document.getElementById(s.id);if(el)new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){navItems.forEach(n=>n.classList.remove('active'));navItems[s.idx].classList.add('active');}});},{threshold:0.25}).observe(el);});

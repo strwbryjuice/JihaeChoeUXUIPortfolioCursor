@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artistry Community — Jihae Choe</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="casestudy.css">
+<style>
+/* Stats row */
+.stat-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:20px 0; max-width:900px; }
+.stat-card { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:24px 20px; text-align:center; }
+.stat-num  { font-size:clamp(28px,3vw,44px); font-weight:600; color:var(--ink); line-height:1; margin-bottom:8px; }
+.stat-lbl  { font-size:var(--cat); font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); }
+
+/* Hypothesis cards */
+.hyp-block { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:28px; max-width:900px; margin-bottom:16px; }
+.hyp-tag   { font-size:var(--cat); font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+.hyp-title { font-size:var(--body); font-weight:600; color:var(--ink); line-height:1.5; margin-bottom:12px; }
+.hyp-why   { font-size:var(--cat); font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; margin-top:14px; }
+.hyp-why-body { font-size:var(--body); font-weight:300; color:var(--ink); line-height:1.8; margin:0; }
+
+/* Validation list */
+.val-list { list-style:none; padding:0; margin:10px 0 0; }
+.val-list li { font-size:var(--body); font-weight:300; color:var(--ink); line-height:1.8; padding-left:18px; position:relative; }
+.val-list li::before { content:'—'; position:absolute; left:0; color:var(--muted); }
+
+/* MVP pillar cards */
+.mvp-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0; max-width:900px; }
+.mvp-card { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:24px; display:flex; flex-direction:column; }
+.mvp-num   { font-size:var(--cat); font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+.mvp-title { font-size:var(--body); font-weight:600; color:var(--ink); margin-bottom:8px; line-height:1.4; }
+.mvp-desc  { font-size:var(--body); font-weight:300; color:var(--muted); line-height:1.7; margin:0; }
+
+/* MVP hypothesis link */
+.mvp-link { font-size:var(--body); font-weight:400; font-style:italic; color:var(--muted); margin-top:auto; padding-top:14px; }
+
+/* Impact stats */
+.impact-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0; max-width:900px; }
+.impact-card { background:var(--ink); border-radius:10px; padding:28px 24px; }
+.impact-num  { font-size:clamp(32px,3.5vw,52px); font-weight:600; color:#FFFFFF; line-height:1; margin-bottom:8px; }
+.impact-lbl  { font-size:var(--body); font-weight:300; color:rgba(255,255,255,0.6); line-height:1.5; margin:0; }
+
+/* Centre all sections + hero image within the content column */
+.section, .hero-img { margin-left: auto; margin-right: auto; }
+
+/* Override habitta-specific width expansions — keep artistry at 900px */
+#testing { max-width: 900px; }
+#define  { max-width: 900px; }
+#testing .mid-title, #testing .cat, #testing .catchy, #testing p, #testing .img-ph { max-width: none; }
+#define  .mid-title, #define  .cat, #define  .catchy, #define  p, #define  .img-ph { max-width: none; }
+
+/* Key Feature items — minjukim single-column style */
+.kf-item { padding: 40px 0; border-top: 1px solid var(--border); }
+.kf-item:last-child { border-bottom: 1px solid var(--border); }
+.kf-num { font-size: var(--cat); font-weight: 500; color: var(--muted); line-height: 1; margin-bottom: 6px; letter-spacing: 0.14em; text-transform: uppercase; }
+.kf-title { font-size: var(--catchy); font-weight: 600; letter-spacing: -0.01em; line-height: 1.25; color: var(--ink); margin-bottom: 20px; }
+.kf-desc { font-size: var(--body); font-weight: 300; color: var(--muted); line-height: 1.75; }
+.kf-bottom { display: grid; grid-template-columns: 1fr 38%; gap: 24px; align-items: start; margin-top: 20px; }
+.kf-before { border-radius: 10px; overflow: hidden; position: relative; aspect-ratio: 16/9; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+.kf-before .ph-box { width: 20px; height: 20px; border: 1.5px solid rgba(17,17,16,0.15); }
+.kf-before .ph-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(17,17,16,0.35); }
+.kf-before-caption { font-size: 14px; font-weight: 300; color: var(--muted); margin-top: 8px; line-height: 1.5; text-align: center; }
+
+/* GIF placeholder override — landscape for desktop */
+.gif-ph { width: 100%; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; }
+
+/* Pie arc animation */
+.pie-arc { transition: stroke-dasharray 1s cubic-bezier(0.4, 0, 0.2, 1); }
+
+/* Pie stat cards */
+.pie-stat-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:24px 0; max-width:900px; }
+.pie-stat-card { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:32px 20px 28px; display:flex; flex-direction:column; align-items:center; gap:16px; }
+.pie-wrap { flex-shrink:0; }
+.pie-stat-label { font-size:13px; font-weight:300; color:var(--ink); line-height:1.65; text-align:center; margin:0; }
+
+/* Problem Statement block */
+.ps-wrap { margin: 0; }
+.ps-block { background: var(--ink); padding: 48px; border-radius: 12px; max-width: 900px; width: 100%; text-align: center; margin: 0 auto; }
+.ps-block .ps-lbl { font-size: var(--cat); font-weight: 500; letter-spacing: 0.12em; color: rgba(255,255,255,0.4); text-transform: uppercase; margin-bottom: 28px; }
+.ps-block .ps-q { font-size: clamp(20px,2.2vw,32px); font-weight: 400; line-height: 1.5; color: #FFFFFF; margin: 0; text-align: center; max-width: none !important; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-back"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M12 7H2M6 3L2 7l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Back</a>
+    <a href="../index.html" class="nav-logo">Jihae Choe</a>
+  </div>
+</nav>
+
+<div class="layout">
+<aside class="sl">
+  <div class="toc-label">On this page</div>
+  <ul class="toc-list">
+    <li><a href="#overview" class="active">Project Overview</a></li>
+    <li><a href="#observe">Observe</a></li>
+    <li><a href="#define">Define</a></li>
+    <li><a href="#hypothesis">Hypothesis</a></li>
+    <li><a href="#mvp">MVP Decisions</a></li>
+    <li><a href="#validation">Validation</a></li>
+    <li><a href="#ai">AI in UI Process</a></li>
+    <li><a href="#features">Key Features</a></li>
+    <li><a href="#devfeedback">Developer Feedback</a></li>
+    <li><a href="#testing">User Testing</a></li>
+    <li><a href="#impact">Impact</a></li>
+  </ul>
+</aside>
+
+<main class="content">
+  <div class="hero-img"><div class="ph-box"></div><span class="ph-label">Hero Image</span></div>
+
+  <!-- OVERVIEW -->
+  <section class="section" id="overview">
+    <h1 class="page-heading">Artistry Community</h1>
+    <div class="meta-row" style="grid-template-columns:repeat(4,1fr);">
+      <div class="mi"><div class="mk">Role</div><div class="mv">UX Designer</div></div>
+      <div class="mi"><div class="mk">Timeline</div><div class="mv">Dec 2025 – Apr 2026 · 4 months</div></div>
+      <div class="mi"><div class="mk">Project Type</div><div class="mv">Client Project</div></div>
+      <div class="mi"><div class="mk">Team</div><div class="mv">Group Project · 4 people (2 designers / 1 CEO / 1 Developer)</div></div>
+    </div>
+
+    <div class="cat">Project Overview</div>
+    <div class="catchy">From boring slideshow to immersive exhibition platform</div>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-num">+20%</div>
+        <div class="stat-lbl">Artist satisfaction</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">−20%</div>
+        <div class="stat-lbl">Drop-off rate</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">+10%</div>
+        <div class="stat-lbl">Avg. duration</div>
+      </div>
+    </div>
+
+    <p>Artistry Community is an online exhibition platform for emerging artists. While the platform made artworks accessible online, the existing experience felt closer to a slideshow than an exhibition: viewers mainly clicked through pages linearly, and artists gained visibility but little tangible follow-up value.</p>
+    <p>This project aimed to redesign the exhibition flow so that it could feel more immersive for viewers and more meaningful for artists through stronger structure, richer interaction, and feedback pathways.</p>
+    <p>After the redesign, artist satisfaction increased by 20%, drop-off decreased by 20%, and average duration increased by 10% despite the page count being reduced from 30 to 20.</p>
+
+  </section>
+
+  <!-- OBSERVE -->
+  <section class="section" id="observe">
+    <div class="mid-title">Observe</div>
+
+    <div class="cat">Artist Interviews</div>
+    <div class="catchy">Exposure meant little unless it led to credibility or opportunity</div>
+    <p>Artist interviews revealed that visibility was the platform's clearest value, but also its biggest limitation. All 4 artists said exposure mattered, yet none described the exhibition as leading to strong tangible follow-up opportunities. What they wanted was not just to be seen, but to gain credibility, feedback, stronger context around their work, and clearer pathways to future connection.</p>
+    <div class="img-ph" style="aspect-ratio:4/3;background:#E0DDD8;"><div class="ph-box"></div><span class="ph-label">Affinity Mapping</span></div>
+    <div class="img-ph" style="aspect-ratio:16/9;background:#DEDAD4;"><div class="ph-box"></div><span class="ph-label">Interview Photos</span></div>
+
+    <div class="cat">Maze Survey · Viewers</div>
+    <div class="catchy">The platform turned the exhibition into a passive, linear sequence of images rather than a curated exploration.</div>
+    <p>Maze testing showed that the viewer problem was not simply about visual preference. It was behavioral. 62% of participants wanted to revisit a specific work or section, and 33% of unfinished participants said the experience was not engaging enough. Heatmaps reinforced the same pattern across layouts: users kept clicking "next" instead of engaging deeply with the artwork. I also observed that drop-off peaked around page 20, when the exhibition was already about two-thirds complete and the content became more text-heavy. 3 out of 6 exits happened at that point, suggesting that repeated next-clicking followed by dense reading created fatigue and encouraged viewers to leave.</p>
+
+    <div class="pie-stat-row" style="grid-template-columns:1fr 1fr;">
+
+      <!-- 62% -->
+      <div class="pie-stat-card">
+        <div class="pie-wrap">
+          <svg viewBox="0 0 120 120" width="120" height="120">
+            <circle cx="60" cy="60" r="48" fill="none" stroke="var(--border)" stroke-width="10"/>
+            <circle class="pie-arc" data-dash="187.4 114.2" cx="60" cy="60" r="48" fill="none" stroke="var(--ink)" stroke-width="10"
+              stroke-dasharray="0 301.6" stroke-dashoffset="75.4" stroke-linecap="butt"/>
+            <text x="60" y="60" dominant-baseline="middle" text-anchor="middle"
+              font-family="'DM Sans',sans-serif" font-size="20" font-weight="500" fill="var(--ink)">62%</text>
+          </svg>
+        </div>
+        <p class="pie-stat-label">wanted to revisit a specific work or section</p>
+      </div>
+
+      <!-- 33% -->
+      <div class="pie-stat-card">
+        <div class="pie-wrap">
+          <svg viewBox="0 0 120 120" width="120" height="120">
+            <circle cx="60" cy="60" r="48" fill="none" stroke="var(--border)" stroke-width="10"/>
+            <circle class="pie-arc" data-dash="99.5 201.9" cx="60" cy="60" r="48" fill="none" stroke="var(--ink)" stroke-width="10"
+              stroke-dasharray="0 301.6" stroke-dashoffset="75.4" stroke-linecap="butt" style="transition-delay:0.2s;"/>
+            <text x="60" y="60" dominant-baseline="middle" text-anchor="middle"
+              font-family="'DM Sans',sans-serif" font-size="20" font-weight="500" fill="var(--ink)">33%</text>
+          </svg>
+        </div>
+        <p class="pie-stat-label">of unfinished participants said the experience was not engaging enough</p>
+      </div>
+
+    </div>
+
+    <!-- Exit Rate Chart — Sankey diagonal ribbons (CodePen style) -->
+    <div style="margin:20px 0;border-radius:10px;overflow:hidden;">
+    <svg viewBox="0 0 1080 295" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+      <defs>
+        <!--
+          Left→right fade: solid at source (left), transparent at destination (right).
+          Gradient follows band direction — fades as users "flow away" from the main stream.
+        -->
+        <linearGradient id="sg" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
+          <stop offset="0%"   stop-color="#C3C5E5" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#C3C5E5" stop-opacity="0.05"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Background -->
+      <rect width="1080" height="295" fill="#ECEDF8"/>
+
+      <!--
+        ═══════════════════════════════════════════════════════════════
+        SANKEY EXIT RATE CHART — CodePen-style diagonal ribbons
+        ═══════════════════════════════════════════════════════════════
+
+        Reference: codepen.io/jonasbjork/pen/XbWMOr
+        Each exit band departs at the SAME angle as the main stream
+        (same direction, ~−40° = mostly rightward, gentle downward tilt).
+        NOT pointing straight down — flows like a river tributary.
+
+        Geometry
+        ─────────────────────────────────────────────────────────────
+        ViewBox  : 1080 × 295
+        Steps    : 9 steps, 110 px spacing, centres x = 50,160,270,380,490,600,710,820,930
+        Exit steps: 21→x50  25→x490  27→x710  29→x930
+
+        Scale: 10 px / person
+          12 ppl → 120 px  (before step 21, band bottom y=170)
+           9 ppl →  90 px  (steps 21-24,            bottom y=140)
+           7 ppl →  70 px  (steps 25-26,             bottom y=120)
+           6 ppl →  60 px  (steps 27-28,             bottom y=110)
+           5 ppl →  50 px  (after  step 29,          bottom y=100)
+        Main band top: y=50 (flat)
+
+        Exit-band anatomy (CodePen ribbon pattern)
+        ─────────────────────────────────────────────────────────────
+        Each band is a parallelogram with smooth S-curve edges:
+          • Source : step bar x, spanning the exit height
+          • Dest   : source_x + 100 px  (right),  source_y + 84 px  (down)
+                     → overall angle atan(84/100) ≈ 40° below horizontal ✓
+          • CP1 at departure : source_x + 60, same y as edge  → HORIZONTAL tangent
+          • CP2 at arrival   : dest_x − 60,   same y as edge  → HORIZONTAL tangent
+          Result: gentle S-curve parallelogram ribbon, same visual language
+                  as the CodePen connectors.
+        ═══════════════════════════════════════════════════════════════
+      -->
+
+      <!-- ── EXIT BANDS  (drawn first; main band paints on top to cover the join) ── -->
+
+      <!--
+        Band shape per step:
+          M  source_x , top_y
+          C  source_x+60, top_y          ← depart horizontally (= main stream direction)
+             dest_x-60,   dest_top_y     ← arrive horizontally at destination
+             dest_x,      dest_top_y
+          L  dest_x,      dest_bot_y     ← destination right side (= band width at dest)
+          C  dest_x-60,   dest_bot_y     ← depart horizontally from dest-bottom
+             source_x+60, bot_y          ← arrive horizontally at source-bottom
+             source_x,    bot_y
+          Z
+      -->
+
+      <!-- Step 21 · 3 exits · y=140→170 (30 px) · dest x=150, y=224→254 -->
+      <path d="M  50,140 C 110,140  90,224 150,224
+               L 150,254 C  90,254 110,170  50,170 Z" fill="url(#sg)"/>
+
+      <!-- Step 25 · 2 exits · y=120→140 (20 px) · dest x=590, y=204→224 -->
+      <path d="M 490,120 C 550,120 530,204 590,204
+               L 590,224 C 530,224 550,140 490,140 Z" fill="url(#sg)"/>
+
+      <!-- Step 27 · 1 exit  · y=110→120 (10 px) · dest x=810, y=194→204 -->
+      <path d="M 710,110 C 770,110 750,194 810,194
+               L 810,204 C 750,204 770,120 710,120 Z" fill="url(#sg)"/>
+
+      <!-- Step 29 · 1 exit  · y=100→110 (10 px) · dest x=1030, y=184→194 -->
+      <path d="M 930,100 C 990,100 970,184 1030,184
+               L 1030,194 C 970,194 990,110  930,110 Z" fill="url(#sg)"/>
+
+      <!-- ── MAIN FLOW BAND ──────────────────────────────────────────────
+           Top  : flat y=50
+           Bottom: staircase with smooth S-curves at each exit transition
+                   (C commands have horizontal tangents on both sides)
+           Drawn ON TOP of exit bands → clean visual join at step bars.
+      ──────────────────────────────────────────────────────────────────── -->
+      <path d="
+        M    0, 50
+        L 1080, 50
+        L 1080,100
+        L  950,100  C 930,100 930,110 910,110
+        L  730,110  C 710,110 710,120 690,120
+        L  510,120  C 490,120 490,140 470,140
+        L   70,140  C  50,140  50,170  30,170
+        L    0,170
+        Z" fill="#C3C5E5"/>
+
+      <!-- ── STEP BARS ───────────────────────────────────────────────── -->
+      <rect x="48"  y="38" width="4" height="137" fill="#8B8DB5" rx="2"/> <!-- 21 -->
+      <rect x="158" y="38" width="4" height="107" fill="#8B8DB5" rx="2"/> <!-- 22 -->
+      <rect x="268" y="38" width="4" height="107" fill="#8B8DB5" rx="2"/> <!-- 23 -->
+      <rect x="378" y="38" width="4" height="107" fill="#8B8DB5" rx="2"/> <!-- 24 -->
+      <rect x="488" y="38" width="4" height="107" fill="#8B8DB5" rx="2"/> <!-- 25 -->
+      <rect x="598" y="38" width="4" height=" 87" fill="#8B8DB5" rx="2"/> <!-- 26 -->
+      <rect x="708" y="38" width="4" height=" 87" fill="#8B8DB5" rx="2"/> <!-- 27 -->
+      <rect x="818" y="38" width="4" height=" 77" fill="#8B8DB5" rx="2"/> <!-- 28 -->
+      <rect x="928" y="38" width="4" height=" 77" fill="#8B8DB5" rx="2"/> <!-- 29 -->
+
+      <!-- ── STEP TAG PILLS ──────────────────────────────────────────── -->
+      <rect x=" 30" y="25" width="40" height="16" rx="8" fill="#D8D9ED"/><text x=" 50" y="37" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#5B5D86">Other</text>
+      <rect x="140" y="25" width="40" height="16" rx="8" fill="#D8D9ED"/><text x="160" y="37" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#5B5D86">Other</text>
+      <rect x="250" y="25" width="40" height="16" rx="8" fill="#D8D9ED"/><text x="270" y="37" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#5B5D86">Other</text>
+      <rect x="360" y="25" width="40" height="16" rx="8" fill="#D8D9ED"/><text x="380" y="37" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#5B5D86">Other</text>
+      <rect x="470" y="25" width="40" height="16" rx="8" fill="#D8D9ED"/><text x="490" y="37" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#5B5D86">Other</text>
+      <rect x="580" y="25" width="40" height="16" rx="8" fill="#D8D9ED"/><text x="600" y="37" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#5B5D86">Other</text>
+      <rect x="690" y="25" width="40" height="16" rx="8" fill="#D8D9ED"/><text x="710" y="37" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#5B5D86">Other</text>
+      <rect x="800" y="25" width="40" height="16" rx="8" fill="#D8D9ED"/><text x="820" y="37" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#5B5D86">Other</text>
+      <rect x="910" y="25" width="40" height="16" rx="8" fill="#D8D9ED"/><text x="930" y="37" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#5B5D86">Other</text>
+
+      <!-- ── STEP LABELS ──────────────────────────────────────────────── -->
+      <text x=" 50" y="16" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5B5D86">Step 21</text>
+      <text x="160" y="16" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5B5D86">Step 22</text>
+      <text x="270" y="16" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5B5D86">Step 23</text>
+      <text x="380" y="16" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5B5D86">Step 24</text>
+      <text x="490" y="16" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="600" fill="#3E3F6A">Step 25</text>
+      <text x="600" y="16" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5B5D86">Step 26</text>
+      <text x="710" y="16" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5B5D86">Step 27</text>
+      <text x="820" y="16" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5B5D86">Step 28</text>
+      <text x="930" y="16" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5B5D86">Step 29</text>
+
+      <!-- ── EXITED LABELS at destination end of each ribbon ──────────── -->
+      <!-- Step 21 · dest centre x=150, band bottom y=254 -->
+      <rect x="124" y="257" width="52" height="18" rx="9" fill="#5352C8"/>
+      <text x="150" y="269" text-anchor="middle" dominant-baseline="middle" font-family="DM Sans,sans-serif" font-size="9" fill="white">↗ Exited</text>
+      <text x="150" y="282" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#3E3F6A">3</text>
+
+      <!-- Step 25 · dest centre x=590, band bottom y=224 -->
+      <rect x="564" y="227" width="52" height="18" rx="9" fill="#5352C8"/>
+      <text x="590" y="239" text-anchor="middle" dominant-baseline="middle" font-family="DM Sans,sans-serif" font-size="9" fill="white">↗ Exited</text>
+      <text x="590" y="252" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#3E3F6A">2</text>
+
+      <!-- Step 27 · dest centre x=810, band bottom y=204 -->
+      <rect x="784" y="207" width="52" height="18" rx="9" fill="#5352C8"/>
+      <text x="810" y="219" text-anchor="middle" dominant-baseline="middle" font-family="DM Sans,sans-serif" font-size="9" fill="white">↗ Exited</text>
+      <text x="810" y="232" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#3E3F6A">1</text>
+
+      <!-- Step 29 · dest centre x=1030, band bottom y=194 -->
+      <rect x="1004" y="197" width="52" height="18" rx="9" fill="#5352C8"/>
+      <text x="1030" y="209" text-anchor="middle" dominant-baseline="middle" font-family="DM Sans,sans-serif" font-size="9" fill="white">↗ Exited</text>
+      <text x="1030" y="222" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#3E3F6A">1</text>
+
+      <!-- Caption -->
+      <text x="540" y="291" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#8B8DAA">Steps 21–29 · 12 participants · exits at Step 21 (3), Step 25 (2), Step 27 (1), Step 29 (1)</text>
+    </svg>
+    </div>
+    <div class="img-ph" style="aspect-ratio:16/9;background:#D4D2CE;"><div class="ph-box"></div><span class="ph-label">Heatmaps</span></div>
+  </section>
+
+  <!-- DEFINE -->
+  <section class="section" id="define">
+    <div class="mid-title">Define</div>
+    <div class="ps-wrap">
+      <div class="ps-block">
+        <div class="ps-lbl">The Problem</div>
+        <p class="ps-q">"The platform made artworks accessible, but functioned more as a content container rather than an immersive exhibition experience, limiting both viewer immersion and artist opportunity."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HYPOTHESIS -->
+  <section class="section" id="hypothesis">
+    <div class="mid-title">Hypothesis</div>
+
+    <div class="hyp-block">
+      <div class="hyp-tag">H1 · Exhibition Structure</div>
+      <div class="hyp-title">If the exhibition is reduced to fewer than 20 pages and the structure becomes less linear and more revisitable, viewers will feel less fatigue and be more likely to complete the exhibition.</div>
+      <div class="adrop" style="margin:16px 0 0;">
+        <button class="adrop-btn" onclick="toggleDrop(this,'hyp1-why')">
+          <div class="adrop-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="#888884" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Why this hypothesis
+        </button>
+        <div class="adrop-body" id="hyp1-why">
+          <p class="hyp-why-body">Maze showed that 62% of viewers wanted to return to a specific artwork or section. I also observed that drop-off peaked around page 20, when the exhibition was already about two-thirds complete and became more text-heavy. This suggested that the long, forward-only flow was creating fatigue and did not support revisiting well.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hyp-block">
+      <div class="hyp-tag">H2 · Richer Interaction Through Artist Voice</div>
+      <div class="hyp-title">If the exhibition moved beyond repeated next-clicking and gave viewers more contextual ways to engage with each artwork and the artist behind it, the experience would feel more engaging.</div>
+      <div class="adrop" style="margin:16px 0 0;">
+        <button class="adrop-btn" onclick="toggleDrop(this,'hyp2-why')">
+          <div class="adrop-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="#888884" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Why this hypothesis
+        </button>
+        <div class="adrop-body" id="hyp2-why">
+          <p class="hyp-why-body">Maze showed weak engagement: 33% of participants who stopped said it was "not engaging enough," and 25% wanted bigger images, suggesting a need for closer looking and deeper engagement. Viewer comments described the experience as too static and portfolio-like, while all 4 artists emphasized the importance of artist voice and context.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hyp-block">
+      <div class="hyp-tag">H3 · Feedback Pathways</div>
+      <div class="hyp-title">If artists could collect feedback and visible engagement signals, the platform would feel more valuable beyond exposure alone.</div>
+      <div class="adrop" style="margin:16px 0 0;">
+        <button class="adrop-btn" onclick="toggleDrop(this,'hyp3-why')">
+          <div class="adrop-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="#888884" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Why this hypothesis
+        </button>
+        <div class="adrop-body" id="hyp3-why">
+          <p class="hyp-why-body">Maze showed weak post-viewing action signals: the average likelihood of leaving a reaction/comment was only 3.2/5, and the average likelihood of sharing the exhibition was also 3.2/5. In artist interviews, artists repeatedly said that exposure without feedback, contact, or follow-up opportunity did not feel especially valuable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MVP DECISIONS -->
+  <section class="section" id="mvp">
+    <div class="mid-title">MVP Decisions</div>
+    <div class="cat">Hypothesis into MVP Decisions</div>
+    <div class="catchy">The smallest set of changes that could test all three hypotheses</div>
+    <p>Together, these features tested whether a more structured, interactive, and feedback-rich exhibition experience could improve both viewer engagement and artist value. We initially had 20 possible ideas and later prioritised them through cross-background voting with design, engineering, and CEO stakeholders.</p>
+
+    <div class="mvp-grid">
+      <div class="mvp-card">
+        <div class="mvp-num">MVP 01</div>
+        <div class="mvp-title">Segmented Themes</div>
+        <p class="mvp-desc">Make the exhibition structure visible before entering each section, so viewers understand the overall flow from the start.</p>
+        <div class="mvp-link">from H1 · Exhibition Structure</div>
+      </div>
+      <div class="mvp-card">
+        <div class="mvp-num">MVP 02-1</div>
+        <div class="mvp-title">Flip-Card Interaction</div>
+        <p class="mvp-desc">Reveal sketches or process images behind artworks to add a more layered viewing experience.</p>
+        <div class="mvp-link">from H2 · Richer Interaction</div>
+      </div>
+      <div class="mvp-card">
+        <div class="mvp-num">MVP 02-2</div>
+        <div class="mvp-title">Clickable Detail Points</div>
+        <p class="mvp-desc">Surface context such as inspiration or materials through interactive points on selected artworks.</p>
+        <div class="mvp-link">from H2 · Richer Interaction</div>
+      </div>
+      <div class="mvp-card">
+        <div class="mvp-num">MVP 03</div>
+        <div class="mvp-title">Visitor Book</div>
+        <p class="mvp-desc">Collect viewer feedback after the exhibition and give artists stronger evidence of engagement beyond exposure.</p>
+        <div class="mvp-link">from H3 · Feedback Pathways</div>
+      </div>
+    </div>
+
+    <div class="cat" style="margin-top:32px;">Developer Feedback</div>
+    <div class="catchy">Designing for Content Safety and Easier Data Handling</div>
+    <p>For MVP 03 (Visitor Book), the developer raised a safety concern: placing an open text field directly on the exhibition page could attract bot spam, ads, or inappropriate content. To reduce this risk, we introduced an extra step before users could access the input area. We implemented this step through a Google Form rather than a custom-designed page, which also made data collection and handling easier for the development team.</p>
+
+    <div class="img-ph" style="aspect-ratio:16/9;background:#D6D2CC;"><div class="ph-box"></div><span class="ph-label">Sketch Stage + Voting Screenshot</span></div>
+  </section>
+
+  <!-- VALIDATION -->
+  <section class="section" id="validation">
+    <div class="mid-title">Validation</div>
+
+
+    <div class="hyp-block">
+      <div class="hyp-tag">H1 · Exhibition Structure</div>
+      <div class="hyp-title">If the exhibition is reduced to fewer than 20 pages and the structure becomes less linear and more revisitable, viewers will feel less fatigue and be more likely to complete the exhibition.</div>
+      <p style="font-size:var(--body);font-weight:500;color:var(--ink);margin:14px 0 6px;">This hypothesis would be supported if:</p>
+      <ul class="val-list">
+        <li>exits decreased on longer or text-heavy sections</li>
+        <li>users were less likely to leave because of confusion or unclear progress</li>
+        <li>completion-related behaviour improved in the revised flow</li>
+      </ul>
+    </div>
+
+    <div class="hyp-block">
+      <div class="hyp-tag">H2 · Richer Interaction Through Artist Voice</div>
+      <div class="hyp-title">If the exhibition moved beyond repeated next-clicking and gave viewers more contextual ways to engage with each artwork and the artist behind it, the experience would feel more engaging.</div>
+      <p style="font-size:var(--body);font-weight:500;color:var(--ink);margin:14px 0 6px;">This hypothesis would be supported if:</p>
+      <ul class="val-list">
+        <li>average duration increased even with fewer pages</li>
+        <li>users interacted with new features beyond simple next-clicking</li>
+        <li>drop-off decreased despite a shorter exhibition flow</li>
+      </ul>
+    </div>
+
+    <div class="hyp-block">
+      <div class="hyp-tag">H3 · Feedback Pathways</div>
+      <div class="hyp-title">If artists could collect feedback and visible engagement signals, the platform would feel more valuable beyond exposure alone.</div>
+      <p style="font-size:var(--body);font-weight:500;color:var(--ink);margin:14px 0 6px;">This hypothesis would be supported if:</p>
+      <ul class="val-list">
+        <li>artist satisfaction increased after the redesign</li>
+        <li>post-viewing action signals (reactions, shares) improved compared to baseline</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- AI IN UI PROCESS -->
+  <section class="section" id="ai">
+    <div class="mid-title">AI in the UI Process</div>
+    <div class="cat">Using Claude for UI Exploration</div>
+    <div class="catchy ph">Before and after skill application — copy to be added</div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="img-ph" style="aspect-ratio:4/3;background:#D9D6D0;margin:0;"><div class="ph-box"></div><span class="ph-label">No Skill</span></div>
+        <div class="img-ph" style="aspect-ratio:4/3;background:#D4D2CE;margin:0;"><div class="ph-box"></div><span class="ph-label">Applied Skill</span></div>
+      </div>
+      <div class="img-ph" style="aspect-ratio:16/9;background:#D9D6D0;margin:0;"><div class="ph-box"></div><span class="ph-label">Manual Changed in Figma</span></div>
+    </div>
+  </section>
+
+  <!-- KEY FEATURES -->
+  <section class="section" id="features">
+    <div class="mid-title">Key Features</div>
+
+    <div class="kf-item">
+      <div class="kf-num">Feature 01</div>
+      <div class="kf-title">Segmented Themes</div>
+      <div class="gif-ph" style="background:#D9D6D0;aspect-ratio:16/9;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.15);"></div><span class="ph-label">GIF</span></div>
+      <div class="kf-bottom">
+        <div class="kf-desc">The exhibition was divided into theme-based sections before viewing began, helping users understand the overall structure instead of entering one long, undefined sequence. This made the flow feel more intentional and reduced uncertainty about what was coming next.</div>
+        <div>
+          <div class="kf-before" style="background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">Before</span></div>
+          <p class="kf-before-caption">Before : Immediate start to the exhibition</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="kf-item">
+      <div class="kf-num">Feature 02</div>
+      <div class="kf-title">Flip-Card Interaction</div>
+      <div class="gif-ph" style="background:#D4D2CE;aspect-ratio:16/9;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.15);"></div><span class="ph-label">GIF</span></div>
+      <div class="kf-bottom">
+        <div class="kf-desc">Clicking on an artwork revealed sketches, process images, or behind-the-scenes material on the reverse side. This added a more layered viewing experience and helped the exhibition feel less static than a simple image-by-image slideshow.</div>
+        <div class="kf-before" style="background:#D4D2CE;"><div class="ph-box"></div><span class="ph-label">Before</span></div>
+      </div>
+    </div>
+
+    <div class="kf-item">
+      <div class="kf-num">Feature 03</div>
+      <div class="kf-title">Clickable Detail Points</div>
+      <div class="gif-ph" style="background:#CECCC8;aspect-ratio:16/9;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.15);"></div><span class="ph-label">GIF</span></div>
+      <div class="kf-bottom">
+        <div class="kf-desc">Selected artworks included interactive points that revealed context such as inspiration, material, or visual details. This created a more guided way to explore each piece and gave viewers access to the artist's thinking without overloading the main layout.</div>
+        <div class="kf-before" style="background:#CECCC8;"><div class="ph-box"></div><span class="ph-label">Before</span></div>
+      </div>
+    </div>
+
+    <div class="kf-item">
+      <div class="kf-num">Feature 04</div>
+      <div class="kf-title">Visitor Book</div>
+      <div class="gif-ph" style="background:#D6D4CF;aspect-ratio:16/9;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.15);"></div><span class="ph-label">GIF</span></div>
+      <div class="kf-bottom">
+        <div class="kf-desc">A visitor book allowed viewers to leave feedback after the exhibition, giving artists a clearer sense of audience response. Beyond interaction, it also created a lightweight record of engagement that could support artists beyond the exhibition itself.</div>
+        <div class="kf-before" style="background:#D6D4CF;"><div class="ph-box"></div><span class="ph-label">Before</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEVELOPER FEEDBACK -->
+  <section class="section" id="devfeedback">
+    <div class="mid-title">Developer Feedback</div>
+    <div class="catchy">Designing for Content Safety and Easier Data Handling</div>
+    <p>For MVP 3 (Visitor Book), the developer raised a safety concern: placing an open text field directly on the exhibition page could attract bot spam, ads, or inappropriate content. To reduce this risk, we introduced an extra step before users could access the input area. We implemented this step through a Google Form rather than a custom-designed page, which also made data collection and handling easier for the development team.</p>
+    <div class="img-ph" style="aspect-ratio:16/9;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">As Is</span></div>
+    <div class="img-ph" style="aspect-ratio:16/9;background:#D4D2CE;"><div class="ph-box"></div><span class="ph-label">To Be</span></div>
+  </section>
+
+  <!-- USER TESTING -->
+  <section class="section" id="testing">
+    <div class="mid-title">User Testing</div>
+    <div class="cat">A/B Testing</div>
+    <div class="catchy ph">Testing results — to be added</div>
+    <div class="img-ph" style="aspect-ratio:16/9;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">A/B Testing Results</span></div>
+  </section>
+
+  <!-- IMPACT -->
+  <section class="section" id="impact">
+    <div class="mid-title">Impact</div>
+    <p>After a revised Maze test, artist satisfaction rate increased by 20%, and drop-off rate decreased by 20%. While this fell short of the 25% drop-off reduction target, it still showed that the redesigned experience improved both artist value and viewer engagement.</p>
+
+    <div class="impact-grid">
+      <div class="impact-card">
+        <div class="impact-num">+20%</div>
+        <p class="impact-lbl">Artist satisfaction rate after revised Maze test</p>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num">−20%</div>
+        <p class="impact-lbl">Drop-off rate, despite page count reduced from 30 to 20</p>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num">+10%</div>
+        <p class="impact-lbl">Average viewing duration</p>
+      </div>
+      <div class="impact-card" style="background:var(--white);border:1px solid var(--border);">
+        <div class="impact-num" style="color:var(--ink);">30→20</div>
+        <p class="impact-lbl" style="color:var(--muted);">Pages reduced while improving engagement across all metrics</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+</div>
+
+<script>
+function toggleDrop(btn,id){btn.classList.toggle('open');document.getElementById(id).classList.toggle('open');}
+
+// Pie chart draw-in animation
+(function(){
+  const row = document.querySelector('.pie-stat-row');
+  if (!row) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        row.querySelectorAll('.pie-arc').forEach(arc => {
+          arc.style.strokeDasharray = arc.dataset.dash;
+        });
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  obs.observe(row);
+})();
+
+const secs=document.querySelectorAll('.section[id]');
+const tocs=document.querySelectorAll('.toc-list a');
+secs.forEach(s=>new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){tocs.forEach(l=>l.classList.remove('active'));const a=document.querySelector(`.toc-list a[href="#${e.target.id}"]`);if(a)a.classList.add('active');}});},{rootMargin:'-20% 0px -60% 0px'}).observe(s));
+(function(){
+  if(!window.matchMedia('(pointer: fine)').matches) return;
+  const cur=document.createElement('div');cur.className='cursor';document.body.appendChild(cur);
+  document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';});
+  document.addEventListener('mouseleave',()=>cur.classList.add('hidden'));
+  document.addEventListener('mouseenter',()=>cur.classList.remove('hidden'));
+  document.querySelectorAll('a,button,[role="button"]').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cur.classList.add('hover'));
+    el.addEventListener('mouseleave',()=>cur.classList.remove('hover'));
+  });
+})();
+</script>
+</body>
+</html>

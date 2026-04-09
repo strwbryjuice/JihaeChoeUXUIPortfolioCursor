@@ -608,6 +608,17 @@
     });
   }, { rootMargin: '-20% 0px -60% 0px' });
   sections.forEach(s => observer.observe(s));
+(function(){
+  if(!window.matchMedia('(pointer: fine)').matches) return;
+  const cur=document.createElement('div');cur.className='cursor';document.body.appendChild(cur);
+  document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';});
+  document.addEventListener('mouseleave',()=>cur.classList.add('hidden'));
+  document.addEventListener('mouseenter',()=>cur.classList.remove('hidden'));
+  document.querySelectorAll('a,button,[role="button"]').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cur.classList.add('hover'));
+    el.addEventListener('mouseleave',()=>cur.classList.remove('hover'));
+  });
+})();
 </script>
 </body>
 </html>
