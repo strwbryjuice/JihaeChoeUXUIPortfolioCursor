@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Habitta App — Jihae Choe</title>
+<title>Earnify App — Jihae Choe</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="casestudy.css">
+<link rel="stylesheet" href="casestudy.css?v=3">
 <style>
 /* center content column */
 .content { display:flex; flex-direction:column; align-items:center; }
@@ -31,7 +31,15 @@
   border-radius:50%; border:2px solid rgba(255,255,255,0.85);
   box-shadow:0 4px 20px rgba(0,0,0,0.35); pointer-events:none;
   background-repeat:no-repeat; z-index:10; overflow:hidden;
-  cursor:none;
+}
+
+/* PROTOTYPE EMBED */
+.proto-block { display:flex; flex-direction:column; align-items:center; margin-top:32px; scroll-margin-top:80px; }
+.proto-block > * { width:100%; }
+.proto-embed { max-width:900px; height:clamp(600px, calc(100vh - 96px), 860px); background:#444444; border-radius:12px; overflow:hidden; margin:20px 0 16px; }
+.proto-embed iframe { display:block; width:100%; height:100%; border:0; }
+@media (max-width:768px) {
+  .proto-embed { max-width:375px; height:auto; aspect-ratio:375/812; }
 }
 </style>
 </head>
@@ -55,6 +63,7 @@
     <li><a href="#develop">Develop</a></li>
     <li><a href="#deliver">Deliver</a></li>
     <li><a href="#testing">Usability Testing</a></li>
+    <li><a href="#prototype">Prototype</a></li>
     <li><a href="#business-objective">Business Objective</a></li>
     <li><a href="#takeaway">Takeaway</a></li>
   </ul>
@@ -62,7 +71,7 @@
 
 <main class="content">
   <div class="hero-img"><div class="ph-box"></div><span class="ph-label">Hero Image</span></div>
-  <h1 class="page-heading">Habitta App</h1>
+  <h1 class="page-heading">Earnify App</h1>
   <div class="meta-row">
     <div class="mi"><div class="mk">Role</div><div class="mv">Product Designer · End to end</div></div>
     <div class="mi"><div class="mk">Timeline</div><div class="mv">Dec 2025 – Apr 2026 · 4 months</div></div>
@@ -76,7 +85,7 @@
     <div class="sum-grid">
       <div class="sum-k">Background</div><div class="sum-v">36% of UK young adults face financial fragility due to a "Financial Habit Gap" formed during their teenage years, where classroom/parental instruction fails to translate into practical financial actions.</div>
       <div class="sum-k">Goal</div><div class="sum-v">To close this gap by transforming passive financial knowledge into proactive, daily routines during the critical 14–16 young age.</div>
-      <div class="sum-k">Solution</div><div class="sum-v">A Financial Navigator that systemizes autonomy through flexible budgeting and frictionless parental guidance, secured by a human-in-the-loop AI mentorship model.</div>
+      <div class="sum-k">Solution</div><div class="sum-v">A Financial Navigator that systemizes autonomy through flexible budgeting and frictionless guardian involvement, secured by a human-in-the-loop AI mentorship model.</div>
     </div>
     <div class="img-ph" style="aspect-ratio:16/9;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">Overview Image</span></div>
   </section>
@@ -386,10 +395,20 @@
       </div>
     </div>
 
+    <!-- PROTOTYPE -->
+    <div class="proto-block" id="prototype">
+      <div class="cat">Prototype</div>
+      <div class="catchy">Try the five core flows yourself</div>
+      <p>Click through it as you would on a phone. On desktop, the panel beside the phone jumps between Onboarding, Goal setting, Budgeting, Invest after conversation and Spending with guardian.</p>
+      <div class="proto-embed">
+        <iframe src="../prototypes/earnify/index.html?v=3" title="Earnify interactive prototype" loading="lazy"></iframe>
+      </div>
+    </div>
+
     <!-- PILLAR 04 DETAIL -->
     <div class="cat">Pillar 04 Detail</div>
     <div class="catchy">Safe AI for Young Users</div>
-    <p>Habitta's AI is designed to keep teens safe. It follows clear rules, and if it notices signs that someone may be at risk, it shows a helpline and alerts the <a href="https://assets.publishing.service.gov.uk/media/68add931969253904d155860/Keeping_children_safe_in_education_from_1_September_2025.pdf?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px;">Designated Safeguarding Lead (DSL)</a> — the trained person responsible for child safety.</p>
+    <p>Earnify's AI is designed to keep teens safe. It follows clear rules, and if it notices signs that someone may be at risk, it shows a helpline and alerts the <a href="https://assets.publishing.service.gov.uk/media/68add931969253904d155860/Keeping_children_safe_in_education_from_1_September_2025.pdf?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px;">Designated Safeguarding Lead (DSL)</a> — the trained person responsible for child safety.</p>
 
     <!-- HUMAN IN THE LOOP INTERACTIVE -->
     <style>
@@ -635,9 +654,12 @@
 </div>
 
 <script>
-const secs=document.querySelectorAll('.section[id]');
+const secs=[...document.querySelectorAll('.section[id], #prototype')];
 const tocs=document.querySelectorAll('.toc-list a');
-secs.forEach(s=>new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){tocs.forEach(l=>l.classList.remove('active'));const a=document.querySelector(`.toc-list a[href="#${e.target.id}"]`);if(a)a.classList.add('active');}});},{rootMargin:'-20% 0px -60% 0px'}).observe(s));
+const inBand=new Set();
+// last match in page order wins, so #prototype takes over from its parent #testing only while it's in view
+const tocIO=new IntersectionObserver(es=>{es.forEach(e=>e.isIntersecting?inBand.add(e.target):inBand.delete(e.target));const cur=secs.filter(s=>inBand.has(s)).pop();if(!cur)return;tocs.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+cur.id));},{rootMargin:'-20% 0px -60% 0px'});
+secs.forEach(s=>tocIO.observe(s));
 function toggleDrop(btn,id){btn.classList.toggle('open');document.getElementById(id).classList.toggle('open');}
 function initMagnifier(imgId, lensId, zoom) {
   const img = document.getElementById(imgId);
@@ -663,17 +685,6 @@ function initMagnifier(imgId, lensId, zoom) {
 }
 initMagnifier('ut1-card1-img', 'ut1-card1-lens', 3);
 function toggleUTFindings(gridId,btnId){const grid=document.getElementById(gridId);const btn=document.getElementById(btnId);const isOpen=grid.classList.toggle('expanded');btn.classList.toggle('open',isOpen);btn.querySelector('span').textContent=isOpen?'Show less':'See 4 more findings';}
-(function(){
-  if(!window.matchMedia('(pointer: fine)').matches) return;
-  const cur=document.createElement('div');cur.className='cursor';document.body.appendChild(cur);
-  document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';});
-  document.addEventListener('mouseleave',()=>cur.classList.add('hidden'));
-  document.addEventListener('mouseenter',()=>cur.classList.remove('hidden'));
-  document.querySelectorAll('a,button,[role="button"]').forEach(el=>{
-    el.addEventListener('mouseenter',()=>cur.classList.add('hover'));
-    el.addEventListener('mouseleave',()=>cur.classList.remove('hover'));
-  });
-})();
 </script>
 </body>
 </html>

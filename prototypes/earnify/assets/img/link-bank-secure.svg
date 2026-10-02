@@ -1,0 +1,22 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="169.117" height="231.802" viewBox="0 0 169.117 231.802" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 1000012852">
+<rect id="Rectangle 6669087" x="17.4941" y="121" width="29.157" height="110.797" fill="#D9D9D9"/>
+<rect id="Rectangle 6669088" x="116.627" y="121" width="29.157" height="110.797" fill="#D9D9D9"/>
+<rect id="Rectangle 6669089" x="67.0566" y="121" width="29.157" height="110.797" fill="#D9D9D9"/>
+<rect id="Rectangle 6669090" x="0.00195312" y="208.477" width="163.279" height="23.3256" fill="#0350FD"/>
+<path id="Rectangle 6669091" d="M0.00195312 97.6695L81.6415 67.0547L163.281 97.6695V120.995H0.00195312V97.6695Z" fill="#0350FD"/>
+<rect id="Rectangle 6669092" x="116.627" y="208.477" width="29.157" height="23.3256" fill="#979CA8"/>
+<rect id="Rectangle 6669093" x="67.0566" y="208.477" width="29.157" height="23.3256" fill="#979CA8"/>
+<rect id="Rectangle 6669094" x="17.4941" y="208.477" width="29.157" height="23.3256" fill="#979CA8"/>
+<circle id="Ellipse 4123" cx="122.466" cy="46.6512" r="46.6512" fill="#04D180"/>
+<g id="Mask group">
+<mask id="mask0_0_29" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="67" width="164" height="54">
+<path id="Rectangle 6669079" d="M2.73502e-05 97.6709L81.6396 67.0561L163.279 97.6709V120.996H2.73502e-05V97.6709Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_0_29)">
+<circle id="Ellipse 4122" cx="122.465" cy="46.6512" r="46.6512" fill="white"/>
+</g>
+</g>
+<path id="Vector 27760" d="M97.0566 50.0297L111.635 64.4462L146.624 28" stroke="black" stroke-width="5.8314"/>
+</g>
+</svg>

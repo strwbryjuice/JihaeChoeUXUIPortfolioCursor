@@ -1,0 +1,427 @@
+/* "Invest after long conversation" flow — Figma section 30:7101.
+   Shares tokens and components with css/styles.css, css/goal.css and css/budget.css. */
+
+/* ---------- Invest tab screens (30:8527 Pocket empty, 30:8381 Buy, 30:8644 / 30:8749 Pocket) ---------- */
+.device[data-screen="invest"] .status-bar,
+.device[data-screen="invest-buy"] .status-bar,
+.device[data-screen="invest-pocket"] .status-bar { background: var(--tint-bg); }
+.device[data-screen="invest"] .home-ind--long,
+.device[data-screen="invest-buy"] .home-ind--long,
+.device[data-screen="invest-pocket"] .home-ind--long { display: none; }
+.device[data-screen="invest"] .home-ind--ink,
+.device[data-screen="invest-buy"] .home-ind--ink,
+.device[data-screen="invest-pocket"] .home-ind--ink { display: block; }
+
+/* These frames draw the status bar 1 px to the left (30:7249, 30:8105, 30:8188, 30:8285, 30:7150, 30:8610) */
+.device[data-screen="invest-stock"] > .status-bar,
+.device[data-screen="invest-talk"] > .status-bar,
+.device[data-screen="invest-choose"] > .status-bar,
+.device[data-screen="invest-amount"] > .status-bar { left: -1px; }
+
+/* Pocekt | Buy */
+.i-seg {
+  position: absolute;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: 400 20px/normal var(--font-ibm);
+  letter-spacing: 0;
+  color: var(--black);
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.i-seg--bold { font-weight: 600; }
+.i-seg-line { position: absolute; left: 17px; top: 141px; width: 331px; height: 1px; }
+.i-seg-bar { position: absolute; top: 140px; width: 167.422px; height: 3px; background: var(--black); }
+
+.i-empty { position: absolute; left: 20px; top: 160.95px; width: 336.68px; padding: 12px 16px; border-radius: 8px; background: #fff; }
+.i-empty p { margin: 0; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+
+/* ---------- Buy (30:8381) ---------- */
+.i-buy-icons { position: absolute; left: 299px; top: 65px; width: 56px; display: flex; gap: 5px; align-items: center; }
+.i-buy-icons img { display: block; width: 24px; height: 24px; }
+.i-buy-icons button, .i-top-icons button { padding: 0; border: 0; background: none; cursor: pointer; }
+
+.i-kinds { position: absolute; left: 20px; top: 174.35px; display: flex; gap: 8px; }
+.i-kind {
+  height: 76px;
+  border-radius: var(--corner);
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+}
+.i-kind.is-on { background: var(--selected-bg); }
+.i-kind-ico { position: relative; flex: none; width: 28px; height: 28px; overflow: hidden; }
+.i-kind-ico img { position: absolute; }
+.i-kind-label { min-width: 100%; height: 18.293px; display: flex; align-items: center; justify-content: center; font: 400 12px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); }
+.i-kind.is-on .i-kind-label { color: var(--blue); }
+
+.i-stocks { position: absolute; left: 20px; top: 275px; width: 381px; display: flex; flex-direction: column; gap: 8px; }
+.i-stocks-title { margin: 0; height: 36px; font: 500 20px/normal var(--font-ibm); letter-spacing: 0; color: var(--black); }
+.i-stocks-body { display: flex; flex-direction: column; gap: 16px; }
+.search.i-search { position: static; width: 343px; height: auto; }
+.i-search span { width: 150.896px; height: 18px; display: flex; align-items: center; font: 400 14px/normal var(--font-ibm); letter-spacing: 0; color: var(--black); white-space: nowrap; }
+.i-filters { display: flex; flex-direction: column; gap: 10px; }
+.i-chips, .i-sd-tabs { display: flex; gap: 5px; align-items: center; }
+.i-chip {
+  flex: none;
+  height: 35px;
+  padding: 9px 12px;
+  border-radius: 17.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 400 14px/normal var(--font-ibm);
+  letter-spacing: 0;
+  color: var(--grey-unselected);
+  white-space: nowrap;
+}
+.i-chip--line { box-shadow: inset 0 0 0 1px #dedede; }
+.i-chip--on { background: var(--blue); color: #fff; font-weight: 600; }
+.i-chip--plain { background: #fff; }
+.i-inter { font-family: var(--font-inter); }
+.i-subs { height: 26px; display: flex; gap: 12px; align-items: center; }
+.i-subs span { flex: none; font: 400 14px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--grey-unselected); white-space: nowrap; }
+.i-subs .i-sub-on {
+  width: 63px;
+  height: 26px;
+  padding: 4px 8px;
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-weight: 700;
+  color: var(--blue);
+}
+.i-subs .i-sub-plain { height: 18px; display: flex; align-items: center; justify-content: center; line-height: normal; letter-spacing: 0; color: var(--black); }
+
+.i-stock-list { position: absolute; left: 0; top: 455px; width: 375px; display: flex; flex-direction: column; gap: 16px; }
+.i-stock-wrap { padding: 0 20px; }
+.i-stock {
+  width: 335px;
+  padding: 16px;
+  border: 0;
+  border-radius: 8px;
+  background: #fff;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+button.i-stock { cursor: pointer; }
+.i-stock--center { padding-left: 20.81px; }   /* 30:8524 centres its 300 px row in a 310 px box */
+.i-logo { flex: none; border-radius: 50%; background: url(../assets/img/stock-logos.png) no-repeat; }
+.i-logo--44 { width: 44px; height: 44px; background-size: 305.376px 693.815px; }
+.i-logo--40 { width: 40px; height: 40px; background-size: 277.615px 630.741px; }
+.i-stock-name { flex: none; width: 171.375px; display: flex; flex-direction: column; gap: 4px; letter-spacing: -0.5px; }
+.i-stock-name span { height: 18px; font: 400 14px/1.6 var(--font-ibm); color: var(--black); white-space: nowrap; }
+.i-stock-name span + span { font-size: 10px; color: rgba(25, 25, 25, 0.5); }
+.i-stock-price { flex: none; width: 53px; padding-top: 6px; display: flex; flex-direction: column; align-items: flex-end; letter-spacing: -0.5px; }
+.i-stock-price > span:first-child { flex: none; width: 66.69px; height: 18px; display: flex; align-items: center; justify-content: flex-end; font: 500 16px/1.6 var(--font-ibm); color: var(--black); white-space: nowrap; }
+.i-down, .i-up { width: 46px; display: flex; gap: 4px; align-items: center; justify-content: flex-end; }
+.i-down img, .i-up img { flex: none; width: 5.791px; height: 4px; }
+.i-down img { transform: rotate(180deg); }
+.i-down span, .i-up span { width: 32px; height: 18px; display: flex; align-items: center; justify-content: flex-end; font: 400 10px/1.6 var(--font-ibm); color: var(--blue); }
+.i-up span { color: #ff360d; }
+
+/* ---------- Shared page top: thin back chevron + icons (30:7248, 30:7318) ---------- */
+.i-top { position: absolute; left: 0; top: 63px; width: 375px; height: 24px; padding: 0 21px 0 20px; display: flex; align-items: center; justify-content: space-between; }
+.i-back { position: relative; flex: none; width: 7px; height: 15px; padding: 0; border: 0; background: none; cursor: pointer; }
+.i-back::before { content: ""; position: absolute; left: -20px; top: -15px; width: 48px; height: 44px; }   /* comfortable tap area */
+.i-back img { position: absolute; left: -0.684px; top: -0.338px; width: 8.053px; height: 15.682px; }
+.i-top-icons { display: flex; gap: 8px; align-items: center; }
+.i-top-icons img { display: block; width: 24px; height: 24px; }
+.i-ext { position: relative; width: 24px; height: 24px; }
+.i-ext img { position: absolute; }
+
+/* ---------- Step Agentic (30:7248) ---------- */
+.i-sd-head { position: absolute; left: 20px; top: 106.35px; width: 335px; padding: 0 8px; display: flex; gap: 16px; align-items: center; }
+.i-sd-name { width: 143.125px; display: flex; flex-direction: column; gap: 8px; letter-spacing: -0.5px; color: var(--black); }
+.i-sd-name span { height: 25px; font: 400 24px/1.4 var(--font-ibm); white-space: nowrap; }
+.i-sd-name span + span { height: 18px; font-size: 12px; line-height: 1.6; }
+.scroll.i-reads { left: 0; top: 176.7px; width: 375px; height: 78px; padding: 0 20px; overflow-x: auto; overflow-y: hidden; display: flex; gap: 8px; }
+.i-reads::after { content: ""; flex: none; width: 12px; }   /* keeps 20 px after the last card */
+.i-read { flex: none; padding: 12px; border-radius: var(--corner); background: var(--input-bg); display: flex; gap: 40px; align-items: center; justify-content: flex-end; }
+.i-read > span { width: 142.125px; display: flex; flex-direction: column; gap: 8px; font: 400 12px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); }
+.i-read > span > span { height: 18px; white-space: nowrap; }
+.i-read > span > span + span { height: 28px; font-size: 10px; }
+.i-read img { flex: none; width: 24px; height: 24px; }
+.i-sd-tabs { position: absolute; left: 20px; top: 278.35px; }
+.i-sd-price { position: absolute; left: 21px; top: 340.35px; margin: 0; font: 400 28px/1.4 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+.i-sd-change { position: absolute; left: 28px; top: 379.35px; height: 20px; display: flex; gap: 9px; align-items: center; }
+.i-sd-change > span { height: 18px; display: block; font: 500 14px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: #908484; white-space: nowrap; }
+.i-sd-change .i-sd-pct { width: 63px; height: 20px; display: flex; align-items: flex-start; color: #260dff; }
+.i-sd-pct img { width: 13px; height: 20px; }
+.i-sd-pct span { width: 46.5px; height: 18px; }   /* text sits at the top of its 18 px box, as in Figma */
+.i-sd-chart { position: absolute; left: 0; top: 435.35px; width: 375px; height: 157.44px; }
+.i-sd-ranges { position: absolute; left: 20px; top: 615.35px; width: 335px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+.i-sd-ranges span { flex: none; width: 40px; height: 40px; padding: 10px; display: flex; align-items: center; font: 500 14px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: #908484; white-space: nowrap; }
+.i-sd-ranges span:nth-child(2) { justify-content: center; }   /* "1W" is a centred 27 px box; the others start at the padding */
+.i-sd-ranges .is-on { color: var(--black); }
+/* 335 px buttons with a 20 px label (30:7305, 30:7386) */
+.btn.i-btn-335 { left: 20px; width: 335px; font: 500 20px/normal var(--font-ibm); letter-spacing: 0; }
+
+/* ---------- My Cart (30:7318) ---------- */
+.i-cart-head { position: absolute; left: 20px; top: 107.35px; display: flex; flex-direction: column; gap: 1px; }
+.i-cart-head p { margin: 0; font: 400 20px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+.i-cart-head > span { width: 70px; display: flex; justify-content: center; }
+.i-cart-head > span span { font: 400 10px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+.i-cart-list { position: absolute; left: 20px; top: 188.7px; width: 335px; display: flex; flex-direction: column; gap: 8px; }
+.i-cart-item, .i-pick {
+  width: 335px;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: var(--corner);
+  background: var(--input-bg);
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.i-cart-item .cb, .i-pick .cb { flex: none; width: 19px; height: 19px; }
+.i-cart-item .cb-on, .i-pick .cb-on { display: none; }
+.i-cart-item[aria-checked="true"] .cb-on, .i-pick[aria-checked="true"] .cb-on { display: block; }
+.i-cart-item[aria-checked="true"] .cb-off, .i-pick[aria-checked="true"] .cb-off { display: none; }
+.i-cart-row { flex: none; width: 263px; display: flex; align-items: center; justify-content: space-between; }
+.i-cart-name { flex: none; display: flex; flex-direction: column; gap: 4px; letter-spacing: -0.5px; }
+.i-cart-name span { font: 400 16px/1.5 var(--font-ibm); color: var(--black); white-space: nowrap; }
+.i-cart-name span + span { height: 13.578px; display: flex; align-items: center; font-size: 12px; line-height: 1.6; color: rgba(0, 0, 0, 0.57); }
+
+/* ---------- Page titles (30:7392, 30:7149, 30:8609) ---------- */
+.i-v-title { margin: 8px 0 0; padding: 0 20px; font: 400 24px/1.4 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: pre; }
+.i-v-title.i-wrap { width: 375.305px; white-space: normal; }
+.i-v-sub { margin: 0; padding: 0 20px; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+.i-white { color: #fff; }
+
+/* Next: off = 343 px at x 16 with an 18 px label (30:7430), on = 335 px at x 20 with a 20 px label (30:7964) */
+.btn.i-next { top: 710.35px; }
+.btn.i-next:not(:disabled) { left: 20px; width: 335px; font: 500 20px/normal var(--font-ibm); letter-spacing: 0; }
+
+/* ---------- Verify your identify: country / document dropdowns ---------- */
+.i-v-form { position: absolute; left: 0; top: 206.35px; width: 375px; display: flex; flex-direction: column; gap: 28px; }
+.i-v-group { display: flex; flex-direction: column; gap: 4px; }
+.i-v-label { margin: 0; padding: 0 20px; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+.i-dd { position: relative; margin-left: 20px; width: 335px; }
+.i-dd-box {
+  height: 46px;
+  padding: 10px 12px;
+  border-radius: var(--corner);
+  background: var(--input-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  outline: none;
+}
+.i-dd-box:focus-visible, .i-dd.is-open .i-dd-box { box-shadow: inset 0 0 0 1.5px var(--blue); }
+.i-dd-text { font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: pre; }
+.i-dd-text.is-placeholder { color: var(--grey-unselected); }
+.i-dd--country .i-dd-text { margin-left: -0.5px; }    /* 161 px text box centred in 160 px */
+.i-dd--doc .i-dd-text { margin-left: 0.625px; }       /* 125.75 px text box centred in 127 px */
+.i-dd-chev { flex: none; width: 24px; height: 24px; }
+.i-dd.is-set .i-dd-chev { display: none; }            /* a chosen value has no chevron (30:7857, 30:8575) */
+.i-dd--country.is-set .i-dd-box { height: 44px; }
+.i-dd-panel { position: absolute; left: 0; top: 46px; z-index: 5; width: 335px; display: flex; flex-direction: column; }
+.i-dd-panel[hidden] { display: none; }
+.i-dd--doc .i-dd-panel { top: 45px; }
+.i-dd-search {
+  position: relative;
+  flex: none;
+  height: 47px;
+  border-radius: 8px 8px 0 0;
+  background: var(--input-bg);
+  box-shadow: inset 0 -1px 0 rgba(151, 156, 168, 0.23);
+  cursor: text;
+}
+.i-dd-search img { position: absolute; left: 11px; top: 18px; width: 18px; height: 18px; }
+.i-dd-search input {
+  position: absolute;
+  left: 33px;
+  top: 18px;
+  width: 278px;
+  height: 18px;
+  padding: 0;
+  border: 0;
+  background: none;
+  outline: none;
+  font: 400 14px/normal var(--font-ibm);
+  letter-spacing: 0;
+  color: var(--black);
+  caret-color: var(--blue);
+}
+.i-dd-search input::placeholder { color: #86888d; opacity: 1; }
+.scroll.i-dd-list { position: relative; height: 322px; border-radius: 0 0 9px 9px; background: var(--input-bg); }
+.i-dd--doc .i-dd-list { height: auto; border-radius: 8px 8px 9px 9px; overflow: hidden; }
+.i-dd-opt {
+  width: 100%;
+  height: 46px;
+  padding: 0 12px 0 12.625px;
+  border: 0;
+  background: var(--input-bg);
+  display: flex;
+  align-items: center;
+  text-align: left;
+  font: 400 16px/1.5 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: var(--black);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.i-dd--country .i-dd-opt.is-selected { background: var(--selected-bg); }    /* 30:7684 */
+.i-dd--doc .i-dd-opt.is-selected { background: var(--option-selected); }     /* 30:7944 */
+.i-dd-empty { height: 46px; padding: 0 12.625px; display: flex; align-items: center; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--grey-unselected); }
+
+/* ---------- Scan front of your driver license (30:7997 → 30:8031 → 30:8065) ---------- */
+.device[data-screen="invest-scan"] > .status-bar,
+.device[data-screen="invest-scan"] > .home-ind { visibility: hidden; }
+.i-scan-photo {
+  position: absolute;
+  left: -29px;
+  top: -94px;
+  width: 434.114px;
+  height: 918px;
+  max-width: none;
+  transition: left 0.7s ease, top 0.7s ease, width 0.7s ease, height 0.7s ease;
+}
+.i-scan[data-state="framing"] .i-scan-photo { left: -103.265px; top: -189px; width: 654.58px; height: 1383.92px; }
+.status-bar.status-bar--local { z-index: auto; background: transparent; }
+.i-scan-deem { position: absolute; left: 20px; top: 236px; width: 337px; height: 214px; background: rgba(66, 57, 57, 0.72); display: none; }
+.i-scan-hole { position: absolute; left: 0; top: 0; width: 375px; height: 812px; }
+.i-scan-msg { position: absolute; left: 0; top: 459px; width: 375.305px; margin: 0; padding: 0 20px; text-align: center; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: #fff; white-space: pre; }
+.i-scan-spin { position: absolute; left: 160px; top: 315px; width: 56.508px; height: 56.508px; display: none; animation: i-spin 1s linear infinite; }
+.i-scan-spin img { position: absolute; }
+.i-scan[data-state="checking"] .i-scan-deem,
+.i-scan[data-state="checking"] .i-scan-spin { display: block; }
+.i-scan-tools { position: absolute; left: 20px; top: 759px; width: 335px; display: flex; justify-content: space-between; }
+.i-scan-tools img { width: 24px; height: 24px; }
+.i-scan-ind { position: absolute; left: 121px; top: 800px; width: 134.391px; height: 5px; }
+@keyframes i-spin { to { transform: rotate(360deg); } }
+
+/* ---------- Boom! You are ready for a money talk! (30:7219) ---------- */
+.i-ready-body { position: absolute; left: -0.46px; top: 182.95px; width: 375.305px; margin: 0; padding: 0 20px; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); }
+
+/* ---------- Let's check (1/5) — money talk with Penny (30:8104 / 30:8187 / 30:8284) ---------- */
+.i-talk-back { position: absolute; left: 0; top: 55px; width: 56px; height: 44px; padding: 0; border: 0; background: none; cursor: pointer; }
+.i-talk-back img { position: absolute; left: 19.25px; top: 14.45px; width: 7.5px; height: 13.5px; }
+.i-talk-title { position: absolute; left: 138px; top: 65px; margin: 0; font: 400 14px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+/* Fixed in place (absolute), so the keyboard and the chat card never move it */
+.scroll.i-carousel { position: absolute; left: 0; top: 122.95px; width: 375px; height: 86.4px; padding: 0 20px; overflow-x: auto; overflow-y: hidden; display: flex; gap: 24px; align-items: center; }
+.i-carousel::after { content: ""; flex: none; width: 1px; }
+.i-co { flex: none; width: 44px; display: flex; flex-direction: column; gap: 2px; align-items: center; }
+.i-co--apple { gap: 4px; }
+.i-co-text { width: 35px; display: flex; flex-direction: column; align-items: center; letter-spacing: -0.5px; }
+.i-co-text span { font: 400 14px/1.6 var(--font-ibm); color: var(--black); white-space: nowrap; }
+.i-co-text span + span { min-width: 100%; height: 18px; font-size: 12px; color: rgba(0, 0, 0, 0.57); text-align: center; }
+.i-co--apple .i-co-text span:first-child { width: 35px; height: 18px; }
+
+.i-chat {
+  position: absolute;
+  left: 20px;
+  top: 253px;
+  width: 335px;
+  height: 521px;
+  padding: 24px 16px 16px;
+  border-radius: var(--corner);
+  background: var(--input-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 126px;
+  transition: top 0.3s ease, height 0.3s ease, gap 0.3s ease;
+}
+/* While the on-screen keyboard (293 px) is up, the card keeps its top and gets shorter, ending 12 px above the
+   keyboard, so the reply box stays visible and the commodity logos stay uncovered */
+.i-chat.is-typing { height: 254px; gap: 12px; }
+.scroll.i-chat-log { position: relative; flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; gap: 12px; }
+.i-msg { flex: none; display: flex; flex-direction: column; gap: 4px; }
+.i-who { margin: 0; display: flex; gap: 7px; align-items: center; font: 400 14px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--grey-unselected); }
+.i-who img { width: 20px; height: 20px; }
+.i-text { margin: 0 0 0 0.86px; width: 301.281px; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); }
+.i-text em { font-style: normal; color: var(--blue); }
+.i-text.i-text--wide { margin-left: 0; width: 303px; }
+.i-note { margin: 0; font: 400 12px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--grey-unselected); }
+.i-me { flex: none; align-self: flex-end; width: 240px; padding: 10px 12px; border-radius: var(--corner); background: var(--selected-bg); }
+.i-me p { margin: 0; width: 216px; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); overflow-wrap: anywhere; }
+.i-opts { flex: none; margin-top: 4px; display: flex; gap: 8px; }
+.i-opts button { flex: none; padding: 6px 0; border: 0; border-radius: var(--corner); background: #fff; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; cursor: pointer; }
+.i-reply { flex: none; margin: 0; padding: 16px 9px 8px 16px; border-radius: var(--corner); background: #fff; display: flex; flex-direction: column; gap: 12px; filter: drop-shadow(0 4px 2px rgba(25, 25, 25, 0.04)); }
+.i-reply-input { width: 100%; height: 24px; padding: 0; border: 0; background: none; outline: none; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); caret-color: var(--blue); }
+.i-reply-input::placeholder { color: var(--grey-unselected); opacity: 1; }
+.i-reply-tools { height: 24px; display: flex; align-items: center; justify-content: space-between; }
+.i-reply-tools img { display: block; width: 24px; height: 24px; }
+.i-reply-tools > span { width: 70px; display: flex; gap: 16px; align-items: center; justify-content: center; }
+.i-send { position: relative; flex: none; width: 24px; height: 24px; padding: 0; border: 0; background: none; cursor: pointer; }
+/* With something typed, send turns into the black circle drawn in 30:8104 */
+.i-send-on { position: absolute; left: -4px; top: -4px; width: 32px; height: 32px; padding: 4px; border-radius: 37px; background: var(--black); display: none; }
+.i-reply.has-text .i-send-on { display: block; }
+
+/* ---------- After your study … / How much … (30:7149, 30:8609) ---------- */
+.btn.i-next--choose { top: 710px; left: 15.67px; }
+.i-amt-picks { position: absolute; left: 0; top: 194px; width: 375px; display: flex; gap: 44px; justify-content: center; }
+.i-amt-picks .i-co { opacity: 0.3; }
+.i-amt-picks .i-co.is-current { opacity: 1; }
+.i-amt-form { position: absolute; left: 0; top: 335px; width: 375px; display: flex; flex-direction: column; gap: 16px; }
+.i-amt-bal { margin: 0 0 -8px; padding: 0 20px; font: 400 14px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+.i-amt-box .b-amt-input { width: 295px; }
+.btn.i-amt-next { position: relative; left: auto; top: auto; flex: none; margin-left: 20px; }
+
+/* ---------- Pocket (30:8644 / 30:8749) ---------- */
+.i-pocket-page { position: relative; width: 375px; min-height: 729px; padding: 602px 20px 20px; }
+.i-pocket-sum { position: absolute; left: 104px; top: 302px; width: 162px; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.i-pocket-sum p { margin: 0; min-width: 100%; height: 22px; display: flex; align-items: center; font: 400 32px/1.4 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+.i-pocket-sum > span { width: 134px; height: 20px; padding: 10px; display: flex; gap: 4px; align-items: center; justify-content: center; }
+.i-pocket-sum > span span { flex: none; width: 103px; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--grey-btn); white-space: nowrap; }
+.i-pocket-sum img { flex: none; width: 17px; height: 17px; }
+.i-pocket-edit { position: absolute; left: 20px; top: 483px; width: 335.688px; padding: 12px 0; border-radius: 8px; background: var(--selected-bg); display: flex; justify-content: center; }
+.i-pocket-edit span { font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: pre; }
+.i-pocket-reorder { position: absolute; left: 264px; top: 552px; width: 89px; display: flex; gap: 6px; align-items: flex-end; }
+.i-pocket-reorder img { width: 27.182px; height: 26px; }
+.i-pocket-reorder span { width: 45px; height: 26px; display: flex; align-items: center; justify-content: center; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: #000; white-space: nowrap; }
+.i-cats { width: 335px; display: flex; flex-direction: column; }
+.i-cat {
+  width: 335px;
+  height: 60px;
+  padding: 18px 12px 18px 20px;
+  border: 0;
+  background: #fff;
+  display: flex;
+  gap: 26px;
+  align-items: center;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+button.i-cat { cursor: pointer; }
+.i-cat--first { border-radius: 9px 9px 0 0; }
+.i-cat--last { border-radius: 0 0 9px 9px; }
+.i-cat[aria-expanded="true"] { box-shadow: inset 0 0 0 3px var(--selected-bg); }   /* 30:8751 */
+.i-cat-dot { flex: none; width: 10px; height: 10px; }
+.i-cat-row { width: 271px; display: flex; align-items: center; justify-content: space-between; }
+.i-cat-row > span:first-child { width: 57px; height: 24px; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+.i-cat-end { width: 90px; display: flex; align-items: center; justify-content: space-between; }
+.i-cat-end span { width: 57px; height: 24px; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--grey-unselected); text-align: right; }
+.i-cat-end img { width: 24px; height: 24px; transform: rotate(-90deg); }
+.i-cat-items[hidden] { display: none; }
+.i-hold { width: 335px; height: 50px; padding: 10px 24px 10px 27px; background: #fff; display: flex; align-items: center; justify-content: space-between; }
+.i-hold-left { display: flex; gap: 17px; align-items: center; }
+.i-hold-name { display: flex; gap: 8px; align-items: center; }
+.i-hold-name > span:last-child { width: 57px; height: 24px; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+.i-logo--24 { width: 24px; height: 24px; background-size: 166.569px 378.444px; }
+.i-hold-pct { width: 35px; height: 18px; font: 400 14px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--grey-unselected); text-align: right; }
+.i-stock-price.i-hold-price > span:first-child { width: 42px; color: var(--grey-unselected); }
+
+@media (prefers-reduced-motion: reduce) {
+  .i-scan-photo, .i-chat { transition: none; }
+  .i-scan-spin { animation-duration: 3s; }
+}

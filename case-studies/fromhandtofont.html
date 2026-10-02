@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Hand to Font — Jihae Choe</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="casestudy.css?v=3">
+<style>
+/* center content column */
+.content { display:flex; flex-direction:column; align-items:center; }
+.content > * { width:100%; }
+
+/* placeholder text, same grey as .catchy.ph */
+.kw-title.ph, .link-card.ph { color:#C4C4C0; font-weight:300; }
+
+/* HERO PHOTO — keeps the 16:9 hero frame from casestudy.css, photo cropped to fill it */
+img.hero-img { display:block; height:auto; object-fit:cover; }
+
+/* OVERVIEW — summary text left, vertical video right */
+.overview-split { display:grid; grid-template-columns:minmax(0,1fr) 40%; gap:40px; align-items:start; }
+.overview-video { display:block; width:100%; aspect-ratio:9/16; object-fit:cover; border-radius:10px; background:#D9D6D0; }
+
+/* VENUE LOGOS — under the summary text, left-aligned */
+.logo-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+.logo-slot { width:85px; aspect-ratio:3/2; background:var(--white); border:1px solid var(--border); border-radius:4px; display:flex; align-items:center; justify-content:center; padding:6px; text-align:center; }
+.logo-slot .ph-label { font-size:8px; letter-spacing:0.06em; line-height:1.3; }
+.logo-slot img { max-width:100%; max-height:100%; object-fit:contain; }
+
+/* ONSITE PHOTOS */
+.photo-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:20px 0; }
+.photo-grid .img-ph { margin:0; aspect-ratio:4/3; }
+
+/* PRODUCT LINK */
+.link-card { display:flex; align-items:center; justify-content:space-between; gap:16px; background:var(--white); border:1px solid var(--border); border-radius:10px; padding:20px 24px; font-size:var(--body); text-decoration:none; color:var(--ink); margin:16px 0 20px; }
+
+@media(max-width:768px){
+  .overview-split { grid-template-columns:1fr; gap:24px; }
+  .overview-video { max-width:320px; justify-self:center; }
+  .photo-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-back"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M12 7H2M6 3L2 7l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Back</a>
+    <a href="../index.html" class="nav-logo">Jihae Choe</a>
+  </div>
+</nav>
+
+<div class="layout">
+<aside class="sl">
+  <div class="toc-label">On this page</div>
+  <ul class="toc-list">
+    <li><a href="#overview" class="active">Project Overview</a></li>
+    <li><a href="#keywords">Keywords</a></li>
+    <li><a href="#onsite-photos">Onsite Photos</a></li>
+    <li><a href="#user-testing">User Testing</a></li>
+    <li><a href="#product-link">Product Link</a></li>
+    <li><a href="#takeaway">Takeaway</a></li>
+  </ul>
+</aside>
+
+<main class="content">
+  <img class="hero-img" src="../images/FromHandToFont/hero.jpg" alt="Workshop participants holding up their printed From Walk to Font zines around a table of art supplies">
+  <h1 class="page-heading">From Hand to Font</h1>
+  <div class="meta-row">
+    <div class="mi"><div class="mk">Role</div><div class="mv">Workshop Facilitator · Front End Developer</div></div>
+    <div class="mi"><div class="mk">Timeline</div><div class="mv">Jul – Oct 2026 · 3 months</div></div>
+    <div class="mi"><div class="mk">Project Type</div><div class="mv">Solo Project</div></div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <section class="section" id="overview">
+    <div class="mid-title">Project Overview</div>
+    <div class="overview-split">
+      <div class="overview-text">
+        <div class="cat">Summary</div>
+        <p>This is a passion project I started to practice my AI and front-end coding skills while contributing to the community. It is a community-based project that invites non-designers to create their own fonts.</p>
+        <p>Participants draw the alphabet by hand, and their drawings are converted on the spot into a typeable digital font. As a token of gratitude for participating, each participant receives a zine that is also printed on site.</p>
+        <p>Thank you to Market Root in Canada Water, Rhizomatic in Hackney Wick, Create Space London in Kensington, Kindred Studio in Ladbroke Grove, and the Bremen Zine Festival in Germany for accepting my proposal and providing venues and relevant materials.</p>
+        <!-- Venue logos: replace each slot's label with <img src="../images/FromHandToFont/…" alt="…"> -->
+        <div class="logo-row">
+          <div class="logo-slot"><span class="ph-label">Market Root</span></div>
+          <div class="logo-slot"><span class="ph-label">Rhizomatic</span></div>
+          <div class="logo-slot"><span class="ph-label">Create Space London</span></div>
+          <div class="logo-slot"><span class="ph-label">Kindred Studio</span></div>
+          <div class="logo-slot"><span class="ph-label">Bremen Zine Festival</span></div>
+        </div>
+      </div>
+      <video class="overview-video" src="../images/FromHandToFont/overview.mp4" autoplay muted loop playsinline preload="metadata" aria-label="A participant holds up their hand-drawn letter, then types with it as a font in the web app"></video>
+    </div>
+  </section>
+
+  <!-- KEYWORDS -->
+  <section class="section" id="keywords">
+    <div class="mid-title">Keywords</div>
+    <div class="kw-grid">
+      <div class="kw-block"><div class="kw-title ph">Keyword 01</div><div class="kw-desc">Short description — add content here.</div></div>
+      <div class="kw-block"><div class="kw-title ph">Keyword 02</div><div class="kw-desc">Short description — add content here.</div></div>
+    </div>
+  </section>
+
+  <!-- ONSITE PHOTOS -->
+  <section class="section" id="onsite-photos">
+    <div class="mid-title">Onsite Photos</div>
+    <div class="photo-grid">
+      <div class="img-ph" style="background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">Photo 1</span></div>
+      <div class="img-ph" style="background:#D4D2CE;"><div class="ph-box"></div><span class="ph-label">Photo 2</span></div>
+    </div>
+  </section>
+
+  <!-- USER TESTING -->
+  <section class="section" id="user-testing">
+    <div class="mid-title">User Testing</div>
+    <div class="catchy ph">User Testing Title</div>
+    <div class="ut-method">
+      <div class="ut-method-row"><span class="ut-mk">Aim</span><span class="ut-mv"><span class="tbc">TBC</span></span></div>
+      <div class="ut-method-row"><span class="ut-mk">Method</span><span class="ut-mv"><span class="tbc">TBC</span></span></div>
+      <div class="ut-method-row"><span class="ut-mk">Duration</span><span class="ut-mv"><span class="tbc">TBC</span></span></div>
+      <div class="ut-method-row"><span class="ut-mk">Who</span><span class="ut-mv"><span class="tbc">TBC</span></span></div>
+    </div>
+    <div class="img-ph" style="aspect-ratio:16/9;background:#D4D2CE;"><div class="ph-box"></div><span class="ph-label">User Testing Image</span></div>
+  </section>
+
+  <!-- PRODUCT LINK -->
+  <section class="section" id="product-link">
+    <div class="mid-title">Product Link</div>
+    <p class="ph">What visitors will find on the site — add content here.</p>
+    <div class="link-card ph">Product URL — add link here</div>
+    <div class="img-ph" style="aspect-ratio:16/9;background:#CECCC8;"><div class="ph-box"></div><span class="ph-label">Website Screenshot</span></div>
+  </section>
+
+  <!-- TAKEAWAY -->
+  <section class="section" id="takeaway">
+    <div class="mid-title">Takeaway</div>
+    <p>When I refresh the page, all the hand-drawn alphabet images disappear, since I did not code the backend. I'm wondering whether there are backend developers I could collaborate with to improve this workshop experience so it can run remotely as well.</p>
+  </section>
+
+</main>
+
+</div>
+
+<script>
+const secs=document.querySelectorAll('.section[id]');
+const tocs=document.querySelectorAll('.toc-list a');
+secs.forEach(s=>new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){tocs.forEach(l=>l.classList.remove('active'));const a=document.querySelector(`.toc-list a[href="#${e.target.id}"]`);if(a)a.classList.add('active');}});},{rootMargin:'-20% 0px -60% 0px'}).observe(s));
+</script>
+</body>
+</html>

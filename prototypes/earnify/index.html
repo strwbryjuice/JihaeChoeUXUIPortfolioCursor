@@ -1,0 +1,1779 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <title>Earnify Prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@400;500;600;700&family=Inter:wght@400;700&family=Poppins:wght@500&display=swap">
+  <link rel="stylesheet" href="css/styles.css?v=2">
+  <link rel="stylesheet" href="css/goal.css">
+  <link rel="stylesheet" href="css/budget.css">
+  <link rel="stylesheet" href="css/invest.css">
+  <link rel="stylesheet" href="css/guardian.css">
+</head>
+<body>
+<main class="stage">
+  <div class="device-wrap" id="deviceWrap">
+    <div class="device" id="device" data-screen="splash">
+
+      <!-- 1 · Welcome — Figma 1:754 -->
+      <section class="screen" data-screen="splash" aria-label="Welcome">
+        <p class="abs b-l-500" style="left:92px;top:461px;width:192px;text-align:center;white-space:nowrap">Learn, Grow, Together</p>
+        <div class="abs" style="left:182px;top:279px;width:11px;height:52px;background:var(--green)"></div>
+        <p class="abs" style="left:109px;top:372px;width:159px;height:47px;margin:0;font:500 32px/1.5 var(--font-poppins);letter-spacing:-0.5px;text-align:center">EARNIFY</p>
+        <img class="abs" src="assets/img/logo-mark-blue.svg" alt="" style="left:127.22px;top:243.06px;width:86.644px;height:108.307px">
+        <img class="abs" src="assets/img/logo-mark-green.svg" alt="" style="left:161.35px;top:255.29px;width:86.643px;height:108.306px">
+        <button class="btn" type="button" data-go="email" style="left:16.39px;top:709.5px">Start budgeting and investing</button>
+      </section>
+
+      <!-- 2 · Email — Figma 1:782 -->
+      <section class="screen" data-screen="email" aria-label="Enter your email">
+        <div class="hdr" style="top:72.5px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">Enter your email that you want to join in Earnify with</h1></div>
+        </div>
+        <div class="form" style="top:252px">
+          <div class="field">
+            <label for="email">Your email</label>
+            <input id="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="Write your email here">
+          </div>
+        </div>
+        <button class="btn" type="button" id="emailNext" data-go="check-email" disabled style="left:15.67px;top:710px">Next</button>
+      </section>
+
+      <!-- 3 · Check your email — Figma 1:802 -->
+      <section class="screen" data-screen="check-email" aria-label="Check your email">
+        <div class="hdr" style="top:73px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">Check your email</h1></div>
+          <div class="body-row"><p class="b-m">Please confirm your email</p></div>
+        </div>
+        <img class="abs" src="assets/img/email-envelope-back.svg" alt="" style="left:88.76px;top:329px;width:197.25px;height:141px">
+        <img class="abs" src="assets/img/email-envelope-front.svg" alt="" style="left:88.01px;top:398px;width:198px;height:105.75px">
+        <div class="abs" style="left:121.76px;top:308px;width:130.5px;height:162px;background:var(--green)"></div>
+        <img class="abs" src="assets/img/email-envelope-mask-group.svg" alt="" style="left:88.01px;top:398px;width:198px;height:105.75px">
+        <div class="abs" style="left:145.74px;top:340.25px;width:81.75px;height:9.75px;background:#fff"></div>
+        <div class="abs" style="left:145.74px;top:365px;width:81.75px;height:9.75px;background:#fff"></div>
+        <div class="abs" style="left:145.74px;top:389.75px;width:81.75px;height:9.75px;background:#fff"></div>
+        <div class="abs" style="left:145.74px;top:413px;width:81.75px;height:9.75px;background:#fff"></div>
+        <button class="btn" type="button" data-go="journey-1" style="top:643px">Next</button>
+        <button class="btn" type="button" disabled style="top:710px">Resend the email</button>
+      </section>
+
+      <!-- 4 · Journey, step 1 current — Figma 1:855 -->
+      <section class="screen" data-screen="journey-1" aria-label="Start your Earnify journey">
+        <div class="hdr" style="top:72.5px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">Start your Earnify journey</h1></div>
+        </div>
+        <img class="j-line" src="assets/img/journey-line.svg" alt="" style="left:-33.5px;top:325.5px;width:157px">
+        <div class="j-dot on" style="left:23px;top:211px">1</div>
+        <div class="j-dot" style="left:23px;top:284px">2</div>
+        <div class="j-dot" style="left:23px;top:360px">3</div>
+        <p class="j-label b-m" style="left:98.01px;top:224px">Who we are</p>
+        <p class="j-label b-m" style="left:98.01px;top:297px">Set up your account</p>
+        <p class="j-label b-m" style="left:98.01px;top:370px">Link your Bank account</p>
+        <button class="btn" type="button" data-go="intro-1" style="top:710px">Next</button>
+      </section>
+
+      <!-- 5 · Intro 1/4 — Figma 1:877 -->
+      <section class="screen" data-screen="intro-1" aria-label="Learning about money">
+        <div class="progress"><i class="on" style="width:80px"></i><i style="width:80px"></i><i style="width:80px"></i><i style="width:80px"></i></div>
+        <div class="hdr" style="top:121px;left:1px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">Learning about money doesn’t have to be hard</h1></div>
+          <div class="body-row"><p class="b-m">Earnify helps teens to grow healthy money habits</p></div>
+        </div>
+        <img class="abs" src="assets/img/intro1-bulb.svg" alt="" style="left:132.97px;top:352.7px;width:142.864px;height:214.297px">
+        <img class="abs" src="assets/img/intro1-bulb-neck.svg" alt="" style="left:153.38px;top:475.15px;width:100.325px;height:62.928px">
+        <img class="abs" src="assets/img/intro1-base-bottom.svg" alt="" style="left:176.08px;top:541.5px;width:52px;height:25.5px">
+        <img class="abs" src="assets/img/intro1-base-top.svg" alt="" style="left:176.08px;top:516px;width:52px;height:25.5px;transform:rotate(180deg)">
+        <div class="abs" style="left:82.1px;top:383px;width:108px;height:20px;background:var(--pictogram-grey)"></div>
+        <div class="abs" style="left:82.1px;top:420px;width:108px;height:21px;background:var(--pictogram-grey)"></div>
+        <div class="abs" style="left:82.1px;top:455px;width:108px;height:21px;background:var(--pictogram-grey)"></div>
+        <img class="abs" src="assets/img/intro1-mask-group.svg" alt="" style="left:134.03px;top:352.7px;width:142.865px;height:142.865px">
+        <button class="btn" type="button" data-go="intro-2" style="top:710px">Next</button>
+      </section>
+
+      <!-- 6 · Intro 2/4 — Figma 1:1409 -->
+      <section class="screen" data-screen="intro-2" aria-label="Discuss investment plan">
+        <div class="progress"><i class="on" style="width:80px"></i><i class="on" style="width:80px"></i><i style="width:80px"></i><i style="width:80px"></i></div>
+        <div class="hdr" style="top:121px;left:1px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">Discuss investment plan with parents or guardians</h1></div>
+          <div class="body-row"><p class="b-m">Do you know there is a study that 000 teens are more likely to have a wise spending habit when they openly discuss their financial plans to others?</p></div>
+        </div>
+        <img class="abs" src="assets/img/intro2-bubble-blue.svg" alt="" style="left:68.21px;top:421.77px;width:155.032px;height:163.228px">
+        <img class="abs" src="assets/img/intro2-bubble-green.svg" alt="" style="left:148.2px;top:391.27px;width:154.255px;height:139.468px">
+        <img class="abs" src="assets/img/intro2-intersect.svg" alt="" style="left:148.19px;top:421.71px;width:75.042px;height:80.632px">
+        <img class="abs" src="assets/img/intro2-badge.svg" alt="" style="left:158.55px;top:433.85px;width:54.374px;height:54.374px">
+        <button class="btn" type="button" data-go="intro-3" style="top:710px">Next</button>
+      </section>
+
+      <!-- 7 · Intro 3/4 — Figma 1:1339 -->
+      <section class="screen" data-screen="intro-3" aria-label="Set multiple saving goals">
+        <div class="progress"><i class="on" style="width:80px"></i><i class="on" style="width:80px"></i><i class="on" style="width:80px"></i><i style="width:80px"></i></div>
+        <button class="skip" type="button" data-go="journey-2">skip</button>
+        <div class="hdr" style="top:117px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">Set multiple saving goals you actually care about</h1></div>
+          <div class="body-row"><p class="b-m">Hard to save money? Lets start from a short term goal and slowly extend to long term goal</p></div>
+        </div>
+        <img class="abs" src="assets/img/intro3-coin.svg" alt="" style="left:131.99px;top:357px;width:111.5px;height:223px">
+        <button class="btn" type="button" data-go="intro-4" style="top:710px">Next</button>
+      </section>
+
+      <!-- 8 · Intro 4/4 — Figma 1:1371 -->
+      <section class="screen" data-screen="intro-4" aria-label="Build healthy spending habit">
+        <div class="progress"><i class="on" style="width:80px"></i><i class="on" style="width:80px"></i><i class="on" style="width:80px"></i><i class="on" style="width:80px"></i></div>
+        <button class="skip" type="button" data-go="journey-2">skip</button>
+        <div class="hdr" style="top:117px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">Build healthy spending habit</h1></div>
+          <div class="body-row"><p class="b-m">You can track your own personal spending by linking your pre-existing bank accounts</p></div>
+        </div>
+        <img class="abs" src="assets/img/intro4-cart.svg" alt="" style="left:74.01px;top:367.72px;width:210.001px;height:202.739px">
+        <button class="btn" type="button" data-go="journey-2" style="top:710px">Next</button>
+      </section>
+
+      <!-- 9 · Journey, step 2 — Figma 1:915 -->
+      <section class="screen" data-screen="journey-2" aria-label="Start your Earnify journey, step 2">
+        <div class="hdr" style="top:72.5px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">Start your Earnify journey</h1></div>
+        </div>
+        <img class="j-line" src="assets/img/journey-line.svg" alt="" style="left:-32.5px;top:287.5px;width:157px">
+        <img class="j-line" src="assets/img/journey-line-active.svg" alt="" style="left:28.5px;top:226.5px;width:35px">
+        <div class="j-dot on" style="left:24px;top:173px">1</div>
+        <div class="j-dot on" style="left:24px;top:246px">2</div>
+        <div class="j-dot" style="left:24px;top:322px">3</div>
+        <p class="j-label b-m" style="left:99.01px;top:186px">Who we are</p>
+        <p class="j-label b-m" style="left:99.01px;top:259px">Set up your account</p>
+        <p class="j-label b-m" style="left:99.01px;top:332px">Link your Bank account</p>
+        <button class="btn" type="button" data-go="name" style="top:710px">Next</button>
+      </section>
+
+      <!-- 10 · Name — Figma 1:962 (empty) / 1:1099 (filled) -->
+      <section class="screen" data-screen="name" aria-label="What is your name?">
+        <div class="progress"><i class="on" style="width:164px"></i><i style="width:163px"></i></div>
+        <div class="hdr" style="top:97.5px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">What is your name?</h1></div>
+        </div>
+        <div class="form" style="top:186px">
+          <div class="field">
+            <label for="firstName">First name</label>
+            <input id="firstName" type="text" autocomplete="given-name" spellcheck="false" placeholder="Your first name goes here">
+          </div>
+          <div class="field">
+            <label for="middleName">Middle name</label>
+            <input id="middleName" type="text" autocomplete="additional-name" spellcheck="false" placeholder="If you do not have one, please skip">
+          </div>
+          <div class="field">
+            <label for="lastName">Last name</label>
+            <input id="lastName" type="text" autocomplete="family-name" spellcheck="false" placeholder="Your last name goes here">
+          </div>
+        </div>
+        <div class="lock-note" style="top:469px">
+          <img src="assets/img/icon-lock.svg" alt="">
+          <p class="b-m">We need your legal name and it will be encrypted and protected.</p>
+        </div>
+        <button class="btn" type="button" id="nameNext" data-go="birthday" disabled style="left:15.67px;top:710px">Next</button>
+      </section>
+
+      <!-- 11 · Birthday — Figma 1:1009 (untouched) / 1:1054 (selected) -->
+      <section class="screen" data-screen="birthday" aria-label="When is your birthday?">
+        <div class="progress"><i class="on" style="width:164px"></i><i class="on" style="width:163px"></i></div>
+        <div class="hdr" style="top:102px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">When is your birthday?</h1></div>
+        </div>
+        <div class="dob-picker" id="dobPicker"><div class="dob-band"></div></div>
+        <button class="btn" type="button" id="dobNext" data-go="journey-3" disabled style="left:15.67px;top:710px">Next</button>
+      </section>
+
+      <!-- 12 · Journey, step 3 — Figma 1:939 (drawn identical to 1:915 in the file) -->
+      <section class="screen" data-screen="journey-3" aria-label="Start your Earnify journey, step 3">
+        <div class="hdr" style="top:72.5px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">Start your Earnify journey</h1></div>
+        </div>
+        <img class="j-line" src="assets/img/journey-line.svg" alt="" style="left:-32.5px;top:287.5px;width:157px">
+        <img class="j-line" src="assets/img/journey-line-active.svg" alt="" style="left:28.5px;top:226.5px;width:35px">
+        <div class="j-dot on" style="left:24px;top:173px">1</div>
+        <div class="j-dot on" style="left:24px;top:246px">2</div>
+        <div class="j-dot" style="left:24px;top:322px">3</div>
+        <p class="j-label b-m" style="left:99.01px;top:186px">Who we are</p>
+        <p class="j-label b-m" style="left:99.01px;top:259px">Set up your account</p>
+        <p class="j-label b-m" style="left:99.01px;top:332px">Link your Bank account</p>
+        <button class="btn" type="button" data-go="link-intro" style="top:710px">Next</button>
+      </section>
+
+      <!-- 13 · Securely link your bank — Figma 1:1154 -->
+      <section class="screen" data-screen="link-intro" aria-label="Securely link your bank account">
+        <div class="progress"><i class="on" style="width:66px"></i><i style="width:65px"></i><i style="width:65px"></i><i style="width:65px"></i><i style="width:65px"></i></div>
+        <div class="hdr" style="top:96px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">Securely link your bank account.</h1></div>
+          <div class="body-row"><p class="b-m">Your finance data will only used within the app to support your healthy spending / budgeting habit</p></div>
+        </div>
+        <img class="abs" src="assets/img/link-bank-secure.svg" alt="" style="left:102.95px;top:338px;width:169.117px;height:231.802px">
+        <button class="btn" type="button" data-go="banks" style="top:710px">Agree and Continue</button>
+      </section>
+
+      <!-- 14 · Bank list — Figma 1:614 (+ overlay 1:679 and sheet 1:745 below) -->
+      <section class="screen" data-screen="banks" aria-label="Link your bank account">
+        <div class="progress"><i class="on" style="width:66px"></i><i class="on" style="width:65px"></i><i style="width:65px"></i><i style="width:65px"></i><i style="width:65px"></i></div>
+        <div class="hdr" style="top:102px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">Link your bank account.</h1></div>
+        </div>
+        <label class="search">
+          <img src="assets/img/icon-search.svg" alt="">
+          <input id="bankSearch" type="search" autocomplete="off" spellcheck="false" placeholder="Search bank by name" aria-label="Search bank by name">
+        </label>
+        <div class="bank-list" id="bankList">
+          <button class="bank" type="button" data-bank="Bank of America" data-action="open-sheet" style="gap:11px">
+            <span class="bank-logo" style="background-image:url(assets/img/bank-logos-a.png);background-size:434px 984px;background-position:-27px -300px"></span>
+            <span class="bank-name">Bank of America</span>
+          </button>
+          <div class="bank" data-bank="Bank of Scotland" style="gap:9px">
+            <span class="bank-logo" style="background-image:url(assets/img/bank-logos-b.png);background-size:484.288px 1094.717px;background-position:-18.526px -457.368px"></span>
+            <span class="bank-name">Bank of Scotland</span>
+          </div>
+          <div class="bank" data-bank="Barclay" style="gap:11px">
+            <span class="bank-logo" style="background-image:url(assets/img/bank-logos-b.png);background-size:460.074px 1039.981px;background-position:-15.4px -509.3px"></span>
+            <span class="bank-name">Barclay</span>
+          </div>
+          <div class="bank" data-bank="Chase" style="gap:8px">
+            <span class="bank-logo" style="background-image:url(assets/img/bank-logos-c.png);background-size:459.185px 1037.981px;background-position:-15.556px -661px"></span>
+            <span class="bank-name">Chase</span>
+          </div>
+          <div class="bank" data-bank="City Bank" style="gap:7px">
+            <span class="bank-logo" style="background-image:url(assets/img/bank-logos-a.png);background-size:434.059px 983.867px;background-position:-27px -482px"></span>
+            <span class="bank-name">City Bank</span>
+          </div>
+          <div class="bank" data-bank="Clydesdale Bank" style="gap:7px">
+            <span class="bank-logo" style="background-image:url(assets/img/bank-logos-b.png);background-size:460.074px 1039.981px;background-position:-16.5px -739.2px"></span>
+            <span class="bank-name">Clydesdale Bank</span>
+          </div>
+          <div class="bank" data-bank="Danske Bank" style="gap:8px">
+            <span class="bank-logo" style="background-image:url(assets/img/bank-logos-b.png);background-size:460.074px 1039.981px;background-position:-16.5px -891px"></span>
+            <span class="bank-name">Danske Bank</span>
+          </div>
+          <div class="bank" data-bank="Discover" style="gap:8px">
+            <span class="bank-logo" style="background-image:url(assets/img/bank-logos-a.png);background-size:434px 984px;background-position:-27px -563px"></span>
+            <span class="bank-name">Discover</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 15 · Bank consent (Bank of America page, 375 x 1176, scrolls) — Figma 1:1146 -->
+      <section class="screen" data-screen="consent" aria-label="Bank of America consent">
+        <div class="scroll consent-scroll" id="consentScroll">
+          <div class="consent-page">
+            <div class="clip" style="left:0;top:47px;width:375px;height:811.141px">
+              <img class="abs" src="assets/img/consent-top.png" alt="" style="left:1px;top:-40px;width:374.97px;height:849.932px">
+            </div>
+            <div class="clip" style="left:0;top:563px;width:375px;height:681px">
+              <img class="abs" src="assets/img/consent-bottom.png" alt="" style="left:0;top:-133px;width:375px;height:851px;object-fit:cover">
+            </div>
+            <button class="hotspot" type="button" data-go="accounts" aria-label="Share my data" style="left:24px;top:926px;width:328px;height:44px"></button>
+            <button class="hotspot" type="button" data-back aria-label="Cancel" style="left:24px;top:984px;width:328px;height:47px"></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 16 · Which account — Figma 1:1189 (none checked) / 1:1233 (Checking checked) -->
+      <section class="screen" data-screen="accounts" aria-label="Which account?">
+        <div class="progress"><i class="on" style="width:66px"></i><i class="on" style="width:65px"></i><i class="on" style="width:65px"></i><i style="width:65px"></i><i style="width:65px"></i></div>
+        <div class="hdr" style="top:96px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">Which Account?</h1></div>
+          <div class="body-row"><p class="b-m">We found following accounts in Bank of America, which would you like to link?</p></div>
+        </div>
+        <div class="acct-list">
+          <div class="acct">
+            <button class="acct-box b-m" type="button" role="checkbox" aria-checked="false" data-account="checking">
+              <img class="cb cb-off" src="assets/img/checkbox-off.svg" alt="">
+              <img class="cb cb-on" src="assets/img/checkbox-on.svg" alt="">
+              <span class="acct-text"><span>Checking</span><span style="margin-left:24px">2311 8472 1222</span></span>
+            </button>
+          </div>
+          <div class="acct">
+            <button class="acct-box b-m" type="button" role="checkbox" aria-checked="false" data-account="saving">
+              <img class="cb cb-off" src="assets/img/checkbox-off.svg" alt="">
+              <img class="cb cb-on" src="assets/img/checkbox-on.svg" alt="">
+              <span class="acct-text"><span>Saving</span><span style="margin-left:41px">2311 8472 1222</span></span>
+            </button>
+          </div>
+        </div>
+        <div class="abs" style="left:0;top:634px;width:375px;padding:10px;display:flex;justify-content:center">
+          <p class="b-s" style="width:304px;text-align:center">All the checked accounts will be make data visualized dashboard for your main page.</p>
+        </div>
+        <button class="btn" type="button" data-action="accounts-next" style="top:710px">Agree and Continue</button>
+      </section>
+
+      <!-- 17 · Bank linked — Figma 1:1277 -->
+      <section class="screen" data-screen="linked" aria-label="Bank linked">
+        <div class="progress"><i class="on" style="width:66px"></i><i class="on" style="width:65px"></i><i class="on" style="width:65px"></i><i class="on" style="width:65px"></i><i style="width:65px"></i></div>
+        <div class="hdr" style="top:96px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">Booom! Bank linked.</h1></div>
+          <div class="body-row"><p class="b-m">Your bank account is linked for 90 days</p></div>
+        </div>
+        <div class="abs" style="left:107.01px;top:335px;width:142px;height:142px;border-radius:50%;background:url(assets/img/bank-logos-a.png) -87.137px -968.182px / 1400.826px 3175.206px no-repeat"></div>
+        <button class="btn" type="button" data-go="after-90" style="top:710px">Why 90 days?</button>
+      </section>
+
+      <!-- 18 · What happens after 90 days — Figma 1:1301 -->
+      <section class="screen" data-screen="after-90" aria-label="What happens after 90 days?">
+        <div class="progress"><i class="on" style="width:66px"></i><i class="on" style="width:65px"></i><i class="on" style="width:65px"></i><i class="on" style="width:65px"></i><i class="on" style="width:65px"></i></div>
+        <div class="hdr" style="top:96px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">What happens after 90 days?</h1></div>
+          <div class="body-row"><p class="b-m">According to the UK law, we can only keep your bank data for 90 days.</p></div>
+        </div>
+        <div class="info-list">
+          <div class="info">
+            <img src="assets/img/icon-bell.svg" alt="">
+            <div class="info-text">
+              <p class="b-m-500">We will let you know in advance</p>
+              <p class="b-m">3 days before your bank data expires we will remind you</p>
+            </div>
+          </div>
+          <div class="info">
+            <img src="assets/img/icon-bell.svg" alt="">
+            <div class="info-text">
+              <p class="b-m-500">Relink whenever you want</p>
+              <p class="b-m">You don’t need to relink on 90th exact day, relink whenever you wish to</p>
+            </div>
+          </div>
+        </div>
+        <button class="btn" type="button" data-go="congrats" style="top:710px">I understand</button>
+      </section>
+
+      <!-- 19 · Congratulation — Figma 1:830 -->
+      <section class="screen" data-screen="congrats" aria-label="Congratulation">
+        <div class="hdr" style="top:73px;left:-0.39px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">Congratulation!</h1></div>
+          <div class="body-row"><p class="b-m">It is time to earn and learn together</p></div>
+        </div>
+        <img class="abs" src="assets/img/congrats-party.svg" alt="" style="left:-106px;top:310px;width:418.979px;height:381.014px">
+        <button class="btn" type="button" data-go="home" style="top:710px">Start Earnify</button>
+      </section>
+
+      <!-- 20 · Home before a goal — Figma 1:512. Ends onboarding; first page of "Setting own goal with own time frame" -->
+      <!--      (the version with a goal card is the separate screen "home-goal", Figma 9:2373) -->
+      <section class="screen screen--home" data-screen="home" aria-label="Home">
+        <div class="scroll home-scroll" id="homeScroll">
+          <div class="home-content">
+            <div class="home-sec" style="top:77px;left:0.84px">
+              <div class="home-h"><p class="b-l-500 home-greeting">Good morning , Mark</p></div>
+              <div class="home-cards">
+                <button class="home-card" id="homeCreateGoal" type="button" data-action="new-goal">
+                  <span class="hc-left"><img class="hc-ico" src="assets/img/icon-plus.svg" alt=""><span class="hc-text b-m">Create goal</span></span>
+                  <img class="hc-chev" src="assets/img/icon-chevron.svg" alt="">
+                </button>
+                <div class="home-card" data-go="guardian">
+                  <div class="hc-left"><div class="hc-box"><img src="assets/img/icon-guardian.svg" alt=""></div><p class="hc-text b-m">Invest with Gaurdian</p></div>
+                  <img class="hc-chev" src="assets/img/icon-chevron.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="home-sec" style="top:307px;left:0">
+              <div class="home-h"><p class="b-l-500">Weekly report</p></div>
+              <div class="home-cards">
+                <div class="home-card">
+                  <div class="hc-left"><div class="hc-box"><span class="hc-emoji hc-emoji--sparkles">✨</span></div><p class="hc-text b-m">You start a journey with Litta Steps!</p></div>
+                  <img class="hc-chev" src="assets/img/icon-chevron-empty.svg" alt="">
+                </div>
+                <div class="home-card">
+                  <div class="hc-left"><div class="hc-box"><span class="hc-emoji">📈</span></div><p class="hc-text b-m">+£1.25 interest earned</p></div>
+                  <img class="hc-chev" src="assets/img/icon-chevron.svg" alt="">
+                </div>
+                <div class="home-card">
+                  <div class="hc-left"><div class="hc-box"><span class="hc-emoji">🏅</span></div><p class="hc-text b-m">You saved 3 days in a row!</p></div>
+                  <img class="hc-chev" src="assets/img/icon-chevron.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="home-sec" style="top:594.06px;left:0">
+              <div class="home-h"><p class="b-l-500">Approval &amp; Alerts</p></div>
+              <div class="home-cards">
+                <div class="home-card">
+                  <div class="hc-left hc-left--plain"><p class="hc-text b-m">There is no approval or alerts</p></div>
+                  <img class="hc-chev" src="assets/img/icon-chevron-empty.svg" alt="">
+                </div>
+                <div class="home-card">
+                  <div class="hc-left"><div class="hc-box"><span class="hc-emoji">📈</span></div><p class="hc-text b-m">+£1.25 interest earned</p></div>
+                  <img class="hc-chev" src="assets/img/icon-chevron.svg" alt="">
+                </div>
+                <div class="home-card">
+                  <div class="hc-left"><div class="hc-box"><span class="hc-emoji">🏅</span></div><p class="hc-text b-m">You saved 3 days in a row!</p></div>
+                  <img class="hc-chev" src="assets/img/icon-chevron.svg" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <nav class="tabbar" aria-label="Tabs">
+          <div class="tab-row">
+            <button class="tab" type="button" data-action="tab-budget" style="width:35.727px"><img src="assets/img/tab-budget.svg" alt=""><span>Budget</span></button>
+            <button class="tab" type="button" data-action="tab-invest" style="width:29.078px"><img src="assets/img/tab-invest.svg" alt=""><span style="min-width:0;width:41.703px">Invest</span></button>
+            <div class="tab is-current" style="width:29.078px"><img src="assets/img/tab-home.svg" alt=""><span>Home</span></div>
+            <div class="tab" style="width:38.664px"><img src="assets/img/tab-activity.svg" alt=""><span>Activity</span></div>
+            <div class="tab" style="width:34.273px"><img src="assets/img/tab-setting.svg" alt=""><span>Setting</span></div>
+          </div>
+        </nav>
+        <button class="fab" type="button" data-action="new-goal"><img src="assets/img/icon-plus-white.svg" alt=""><span>Create Goal</span></button>
+      </section>
+
+      <!-- ===================== Set own goal with own time frame — Figma section 9:521 ===================== -->
+
+      <!-- G1 · Let's set your first goal — Figma 9:1872 -->
+      <section class="screen" data-screen="goal-intro" aria-label="Let's set your first goal">
+        <div class="hdr" style="top:72.83px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back-black.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl g-black g-nowrap">Let’s set your first goal</h1></div>
+        </div>
+        <div class="abs body-row" style="left:0;top:151.83px;width:375px"><p class="b-m g-black">Having a clear goal makes saving easier.</p></div>
+        <img class="abs" src="assets/img/goal-intro-mountain.svg" alt="" style="left:16px;top:256.83px;width:343px;height:412.352px">
+        <button class="btn" type="button" data-go="goal-about" style="top:709.77px">Next</button>
+      </section>
+
+      <!-- G2 · What is your goal about? — Figma 9:1840 (unselected) / 9:1856 (selected) -->
+      <section class="screen" data-screen="goal-about" aria-label="What is your goal about?">
+        <div class="hdr" style="top:72.83px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back-black.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-l g-black">What is your goal about?</h1></div>
+        </div>
+        <div class="g-cat-list" style="top:186.83px">
+          <button class="g-cat" type="button" data-cat="purchase"><span class="g-cat-emoji g-emoji-shadow">🤑</span><span class="g-cat-text">For some big purchase</span></button>
+          <button class="g-cat" type="button" data-cat="trip"><span class="g-cat-emoji">🏖</span><span class="g-cat-text">For going on a trip or vacation</span></button>
+          <button class="g-cat" type="button" data-cat="future"><span class="g-cat-emoji">🚀</span><span class="g-cat-text">For preparing the future</span></button>
+          <button class="g-cat" type="button" data-cat="emergency"><span class="g-cat-emoji">🆘</span><span class="g-cat-text">For preparing emergency fund</span></button>
+          <button class="g-cat" type="button" data-cat="education"><span class="g-cat-emoji">🎓</span><span class="g-cat-text">For educational fee</span></button>
+          <button class="g-cat" type="button" data-cat="other"><span class="g-cat-emoji">😗</span><span class="g-cat-text">For nothing above</span></button>
+        </div>
+      </section>
+
+      <!-- G3 · Name the goal — Figma 9:1905 (empty) / 9:1959 (suggestion selected) + Next 9:2113 / 9:2214 -->
+      <section class="screen" data-screen="goal-name" aria-label="Name your goal">
+        <div class="hdr" style="top:72.83px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back-black.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-l g-black">What is your goal about?</h1></div>
+        </div>
+        <div class="g-form" style="top:176.83px">
+          <div class="g-group">
+            <label class="g-label" for="goalName">Budget name</label>
+            <input class="g-input" id="goalName" type="text" autocomplete="off" spellcheck="false" enterkeyhint="next" placeholder="Enter what you are saving it for">
+          </div>
+          <div class="g-group">
+            <p class="g-label">Quick name suggestions</p>
+            <div class="g-chips">
+              <div class="g-chip-row">
+                <button class="g-chip" type="button" data-name="Laptop"><span class="g-chip-emoji" style="font-size:12px">💻</span><span class="g-chip-text">Laptop</span></button>
+                <button class="g-chip" type="button" data-name="Cellphone"><span class="g-chip-emoji">📱</span><span class="g-chip-text">Cellphone</span></button>
+                <button class="g-chip" type="button" data-name="Monitor"><span class="g-chip-emoji">🖥️</span><span class="g-chip-text">Monitor</span></button>
+              </div>
+              <div class="g-chip-row">
+                <button class="g-chip" type="button" data-name="Game"><span class="g-chip-emoji">🎮</span><span class="g-chip-text">Game</span></button>
+                <button class="g-chip" type="button" data-name="Nintendo Switch 2"><span class="g-chip-emoji">🎮</span><span class="g-chip-text">Nintendo Switch 2</span></button>
+              </div>
+              <div class="g-chip-row">
+                <button class="g-chip" type="button" data-name="Roblocks Giftcard"><span class="g-chip-emoji">🎮</span><span class="g-chip-text">Roblocks Giftcard</span></button>
+                <button class="g-chip" type="button" data-name="Air Jordon"><span class="g-chip-emoji">👟</span><span class="g-chip-text">Air Jordon</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Next: off until there's a name (9:2113), on after (9:2214) -->
+        <button class="btn" type="button" id="goalNameNext" data-go="goal-method" disabled style="top:710px">Next</button>
+      </section>
+
+      <!-- G4 · How do you want to save? — Figma 9:1790 (unselected) / 9:1815 (selected) -->
+      <section class="screen" data-screen="goal-method" aria-label="How do you want to save?">
+        <div class="hdr" style="top:72.83px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back-black.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-l g-black">How do you want to save?</h1></div>
+        </div>
+        <div class="g-methods" style="top:186.43px">
+          <button class="g-method" type="button" data-method="target">
+            <span class="g-method-emoji">🎯</span>
+            <span class="g-method-text"><span class="g-method-title">Save for a target</span><span class="g-method-desc">e.g. : I want to have £350 by 14th Jun</span></span>
+          </button>
+          <button class="g-method" type="button" data-method="regular">
+            <span class="g-method-emoji g-emoji-drop">🗓️</span>
+            <span class="g-method-text"><span class="g-method-title">Save regularly</span><span class="g-method-desc">e.g. : I want to put £10 every week</span></span>
+          </button>
+        </div>
+      </section>
+
+      <!-- G5a · Save for a target — Figma 9:2087 → 9:2013/9:2050 (duration open) → 9:2117 → 9:2159 → 9:2207 (grows and scrolls) -->
+      <section class="screen" data-screen="target-form" aria-label="Save for a target">
+        <div class="scroll g-scroll">
+          <div class="g-page">
+            <div class="g-hdr">
+              <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back-black.svg" alt=""></button></div>
+              <div class="title-row"><h1 class="h-l g-black">Save for a target</h1></div>
+            </div>
+            <div class="g-group" style="margin-top:30.73px">
+              <label class="g-label" for="targetAmount">Amount</label>
+              <input class="g-input" id="targetAmount" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" placeholder="Enter how much you want to save in total">
+            </div>
+            <div class="g-group g-dd g-dd--target" id="targetDuration" style="margin-top:32px">
+              <p class="g-label">Duration</p>
+              <div class="g-dd-box" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false">
+                <span class="g-dd-text is-placeholder">Select the duration</span>
+                <img class="g-dd-chev" src="assets/img/icon-dropdown-down.svg" alt="">
+              </div>
+              <div class="g-dd-panel" role="listbox" hidden>
+                <button class="g-dd-opt" type="button" role="option" data-months="1">1 month</button>
+                <button class="g-dd-opt" type="button" role="option" data-months="3">3 month</button>
+                <button class="g-dd-opt" type="button" role="option" data-months="6">6 month</button>
+                <button class="g-dd-opt" type="button" role="option" data-months="12">1 year</button>
+                <button class="g-dd-opt" type="button" role="option" data-custom="date">Set by date</button>
+              </div>
+            </div>
+            <div class="g-plan" id="targetPlan" hidden>
+              <p class="g-label" id="targetPlanTitle">To save £5000 in 1 year</p>
+              <div class="g-info"><img src="assets/img/icon-info.svg" alt=""><p>Amounts are rounded. You can change this later.</p></div>
+              <div class="g-opts">
+                <button class="g-opt" type="button" data-freq="daily">Daily £9</button>
+                <button class="g-opt" type="button" data-freq="weekly">Weekly £64</button>
+                <button class="g-opt" type="button" data-freq="monthly">Monthly £217</button>
+              </div>
+            </div>
+            <div class="g-start" id="targetStart" hidden>
+              <p class="g-label">When should you start the saving?</p>
+              <div class="g-cal" id="targetCal"></div>
+            </div>
+            <div class="g-summary" id="targetSummary" hidden><p id="targetSummaryLine">One year daily £9 saving will be end on</p><p id="targetSummaryDate">18 Aug ,2027</p></div>
+            <div class="g-spacer g-spacer--target"></div>
+            <button class="btn g-cta" id="targetNext" type="button" data-go="goal-confirm" disabled>Next</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- G5b · Save regularly — Figma 9:2695 (empty) / 9:2734 (Monthly + duration open) -->
+      <section class="screen" data-screen="regular-form" aria-label="Save regularly">
+        <div class="scroll g-scroll">
+          <div class="g-page">
+            <div class="g-hdr">
+              <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back-black.svg" alt=""></button></div>
+              <div class="title-row"><h1 class="h-l g-black">Save regularly</h1></div>
+            </div>
+            <div class="g-group" style="margin-top:30.4px">
+              <label class="g-label" for="regularAmount">Amount</label>
+              <input class="g-input" id="regularAmount" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" placeholder="Enter how much you want to save in total">
+            </div>
+            <div class="g-group" style="margin-top:28px">
+              <p class="g-label g-ink">Frequency</p>
+              <div class="g-opts" id="regularFreq">
+                <button class="g-opt" type="button" data-freq="daily">Daily</button>
+                <button class="g-opt" type="button" data-freq="weekly">Weekly</button>
+                <button class="g-opt" type="button" data-freq="monthly">Monthly</button>
+              </div>
+            </div>
+            <div class="g-group g-dd g-dd--regular" id="regularDuration" style="margin-top:28px">
+              <p class="g-label">Duration</p>
+              <div class="g-dd-box" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false">
+                <span class="g-dd-text is-placeholder">Select the duration</span>
+                <input class="g-dd-input" type="text" inputmode="numeric" autocomplete="off" placeholder="Type how many months" hidden>
+                <img class="g-dd-chev" src="assets/img/icon-dropdown-down.svg" alt="">
+              </div>
+              <div class="g-dd-panel" role="listbox" hidden>
+                <button class="g-dd-opt" type="button" role="option" data-months="3">3 month</button>
+                <button class="g-dd-opt" type="button" role="option" data-months="6">6 month</button>
+                <button class="g-dd-opt" type="button" role="option" data-months="12">12 month</button>
+                <button class="g-dd-opt" type="button" role="option" data-custom="type">Type how many months</button>
+              </div>
+            </div>
+            <div class="g-spacer g-spacer--regular"></div>
+            <button class="btn g-cta" id="regularNext" type="button" data-go="regular-start" disabled>Next</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- G5c · When do you want to start saving? — Figma 9:2590 → 9:2621 (pick a date) → 9:2656 (date picked) -->
+      <section class="screen" data-screen="regular-start" aria-label="When do you want to start saving?">
+        <div class="scroll g-scroll">
+          <div class="g-page g-page--start" id="startPage">
+            <div class="g-hdr">
+              <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+              <div class="title-row"><h1 class="h-l g-wrap">When do you want to start saving?</h1></div>
+            </div>
+            <div class="g-starts">
+              <button class="g-start-opt g-start-opt--today" type="button" data-start="today">
+                <span class="g-start-main"><img src="assets/img/icon-calendar-today.svg" alt=""><span class="g-start-label">Today</span></span>
+                <span class="g-start-note">Recommend</span>
+              </button>
+              <button class="g-start-opt" type="button" data-start="pick">
+                <img src="assets/img/icon-calendar-pick.svg" alt=""><span class="g-start-label">Pick a date</span>
+              </button>
+            </div>
+            <div class="g-cal g-cal--regular" id="regularCal" hidden></div>
+            <div class="g-summary g-summary--regular" id="regularSummary" hidden><p id="regularSummaryLine">You will save £ 520 on</p><p id="regularSummaryDate">18 Aug , 2027</p></div>
+            <div class="g-spacer"></div>
+            <button class="btn g-cta" id="regularStartNext" type="button" data-go="goal-confirm" disabled hidden>Next</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- G6 · Confirm your saving plan — Figma 9:2259 -->
+      <section class="screen" data-screen="goal-confirm" aria-label="Confirm your saving plan">
+        <div class="hdr" style="top:72.91px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back-black.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-l g-black">Confirm your saving plan</h1></div>
+        </div>
+        <div class="g-confirm" style="top:163px">
+          <div class="g-c-group"><p class="g-c-label">Amount</p><p class="g-c-value" id="confirmAmount">£ 5000.00</p></div>
+          <div class="g-c-group g-c-group--tight">
+            <p class="g-c-label">Duration</p>
+            <div class="g-c-sub">
+              <div class="g-c-info" id="confirmInfo"><img src="assets/img/icon-info.svg" alt=""><p id="confirmInfoText">Since it does not split perfectly, your last daily saving will be slightly different. Which will be £ 9.65</p></div>
+              <p class="g-c-value" id="confirmDuration">1 year, daily £9</p>
+            </div>
+          </div>
+          <div class="g-c-group"><p class="g-c-label">Start date</p><p class="g-c-value" id="confirmStart">18th August, 2026</p></div>
+          <div class="g-c-group"><p class="g-c-label">End date</p><p class="g-c-value" id="confirmEnd">18th August, 2027</p></div>
+        </div>
+        <button class="btn" type="button" data-action="goal-confirm" style="top:709.77px">Confirm</button>
+      </section>
+
+      <!-- G7 · Saving plan all set — Figma 9:2299 (its back arrow layer is empty, so there is no back button) -->
+      <section class="screen" data-screen="goal-done" aria-label="Saving plan all set">
+        <div class="hdr" style="top:73px;left:0.15px">
+          <div class="back-row"></div>
+          <div class="title-row"><h1 class="h-l g-black">Yesssss, saving plan all set!</h1></div>
+        </div>
+        <div class="abs" style="left:0.15px;top:145px;width:375px;padding:0 20px"><p class="b-m g-black">Save litta by litta more!</p></div>
+        <img class="abs" src="assets/img/goal-done-piggy.svg" alt="" style="left:20.15px;top:245px;width:339.404px;height:312.368px">
+        <button class="btn g-btn-335" type="button" data-action="goal-start" style="left:20.76px;top:709.77px">Start my saving journey</button>
+      </section>
+
+      <!-- G8 · Home with the new goal — Figma 9:2373 (tap the goal card for Penny's weekly question) -->
+      <section class="screen screen--home screen--home-goal" data-screen="home-goal" aria-label="Home with the new goal">
+        <div class="scroll home-scroll" id="homeGoalScroll">
+          <div class="home-content">
+            <div class="home-sec" style="top:77px;left:0.84px">
+              <div class="home-h"><p class="b-l-500 home-greeting">Good morning , Mark</p></div>
+              <div class="home-cards">
+                <button class="home-card home-goal" id="homeGoal" type="button" data-action="checkin">
+                  <span class="hg-row">
+                    <span class="hg-left"><span class="hg-name" id="homeGoalName">Nintendo</span><span class="hg-sub" id="homeGoalMonths">1 / 12 month</span></span>
+                    <span class="hg-right"><img src="assets/img/icon-more.svg" alt=""><span class="hg-sub hg-amount" id="homeGoalAmount">0/ 5000 £</span></span>
+                  </span>
+                  <span class="hg-bar"><i id="homeGoalFill"></i></span>
+                </button>
+                <div class="home-card" data-go="guardian">
+                  <div class="hc-left"><div class="hc-box"><img src="assets/img/icon-guardian.svg" alt=""></div><p class="hc-text b-m">Invest with Gaurdian</p></div>
+                  <img class="hc-chev" src="assets/img/icon-chevron.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="home-sec" style="top:307px;left:0">
+              <div class="home-h"><p class="b-l-500">Weekly report</p></div>
+              <div class="home-cards">
+                <div class="home-card">
+                  <div class="hc-left"><div class="hc-box"><span class="hc-emoji hc-emoji--sparkles">✨</span></div><p class="hc-text b-m">You start a journey with Litta Steps!</p></div>
+                  <img class="hc-chev" src="assets/img/icon-chevron-empty.svg" alt="">
+                </div>
+                <div class="home-card">
+                  <div class="hc-left"><div class="hc-box"><span class="hc-emoji">📈</span></div><p class="hc-text b-m">+£1.25 interest earned</p></div>
+                  <img class="hc-chev" src="assets/img/icon-chevron.svg" alt="">
+                </div>
+                <div class="home-card">
+                  <div class="hc-left"><div class="hc-box"><span class="hc-emoji">🏅</span></div><p class="hc-text b-m">You saved 3 days in a row!</p></div>
+                  <img class="hc-chev" src="assets/img/icon-chevron.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="home-sec" style="top:594.06px;left:0">
+              <div class="home-h"><p class="b-l-500">Approval &amp; Alerts</p></div>
+              <div class="home-cards">
+                <div class="home-card">
+                  <div class="hc-left hc-left--plain"><p class="hc-text b-m">There is no approval or alerts</p></div>
+                  <img class="hc-chev" src="assets/img/icon-chevron-empty.svg" alt="">
+                </div>
+                <div class="home-card">
+                  <div class="hc-left"><div class="hc-box"><span class="hc-emoji">📈</span></div><p class="hc-text b-m">+£1.25 interest earned</p></div>
+                  <img class="hc-chev" src="assets/img/icon-chevron.svg" alt="">
+                </div>
+                <div class="home-card">
+                  <div class="hc-left"><div class="hc-box"><span class="hc-emoji">🏅</span></div><p class="hc-text b-m">You saved 3 days in a row!</p></div>
+                  <img class="hc-chev" src="assets/img/icon-chevron.svg" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <nav class="tabbar" aria-label="Tabs">
+          <div class="tab-row">
+            <button class="tab" type="button" data-action="tab-budget" style="width:35.727px"><img src="assets/img/tab-budget.svg" alt=""><span>Budget</span></button>
+            <button class="tab" type="button" data-action="tab-invest" style="width:29.078px"><img src="assets/img/tab-invest.svg" alt=""><span style="min-width:0;width:41.703px">Invest</span></button>
+            <div class="tab is-current" style="width:29.078px"><img src="assets/img/tab-home.svg" alt=""><span>Home</span></div>
+            <div class="tab" style="width:38.664px"><img src="assets/img/tab-activity.svg" alt=""><span>Activity</span></div>
+            <div class="tab" style="width:34.273px"><img src="assets/img/tab-setting.svg" alt=""><span>Setting</span></div>
+          </div>
+        </nav>
+        <button class="fab" type="button" data-action="new-goal"><img src="assets/img/icon-plus-white.svg" alt=""><span>Create Goal</span></button>
+      </section>
+
+      <!-- ===================== Budgeting — Figma section 24:4493 ===================== -->
+
+      <!-- B0 · Budget tab, no budgeting yet — Figma 24:5838. Home's "Budget" tab opens it. -->
+      <section class="screen screen--home screen--budget" data-screen="budget" aria-label="Budgeting">
+        <div class="b-tabs">
+          <p class="b-tab b-tab--on" style="left:46.54px">Budgeting</p>
+          <p class="b-tab" style="left:228.54px">Spending</p>
+          <img class="b-tabs-line" src="assets/img/budget-tabs-underline.svg" alt="">
+        </div>
+        <div class="b-total b-total--empty">
+          <span class="b-chip">Total Budgetings</span>
+          <p class="b-total-none">No Budgeting Yet</p>
+        </div>
+        <div class="abs" style="left:363px;top:266px;width:14px;height:1px;background:#d9d9d9"></div><!-- stray 14 x 1 rectangle drawn in 24:5838 -->
+        <button class="b-create" type="button" data-action="budget-new">
+          <span class="b-create-left"><img src="assets/img/icon-budget-pie.svg" alt=""><span class="b-create-text">Create new budgeting</span></span>
+          <img class="b-create-chev" src="assets/img/icon-chevron.svg" alt="">
+        </button>
+        <nav class="tabbar tabbar--ink" aria-label="Tabs">
+          <div class="tab-row">
+            <div class="tab is-current" style="width:35.727px"><img src="assets/img/tab-budget-on.svg" alt=""><span>Budget</span></div>
+            <button class="tab" type="button" data-action="tab-invest" style="width:29.078px"><img src="assets/img/tab-invest-ink.svg" alt=""><span style="min-width:0;width:41.703px">Invest</span></button>
+            <button class="tab" type="button" data-action="tab-home" style="width:29.078px"><img src="assets/img/tab-home-off.svg" alt=""><span>Home</span></button>
+            <div class="tab" style="width:38.664px"><img src="assets/img/tab-activity-ink.svg" alt=""><span>Activity</span></div>
+            <div class="tab" style="width:34.273px"><img src="assets/img/tab-setting-ink.svg" alt=""><span>Setting</span></div>
+          </div>
+        </nav>
+      </section>
+
+      <!-- B1 · What is your budgeting about? — Figma 24:5776 (= 24:5199) empty / 24:5714 typing / 24:5651 "Travel"
+           + Next 9:2113 / 9:2214 -->
+      <section class="screen" data-screen="budget-name" aria-label="What is your budgeting about?">
+        <div class="hdr" style="top:72.83px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back-black.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-l g-black">What is your budgeting about?</h1></div>
+        </div>
+        <div class="g-form" style="top:176.83px">
+          <div class="g-group">
+            <label class="g-label" for="budgetName">Budget name</label>
+            <input class="g-input" id="budgetName" type="text" autocomplete="off" spellcheck="false" enterkeyhint="next" placeholder="Enter what you are saving it for">
+          </div>
+          <div class="g-group">
+            <p class="g-label">Quick name suggestions</p>
+            <div class="g-chips b-chips">
+              <div class="g-chip-row">
+                <button class="g-chip" type="button" data-bname="Eat out"><span class="g-chip-emoji">🥘</span><span class="g-chip-text">Eat out</span></button>
+                <button class="g-chip" type="button" data-bname="Hang out"><span class="g-chip-emoji">🤼‍♀️</span><span class="g-chip-text">Hang out</span></button>
+                <button class="g-chip" type="button" data-bname="Grocery"><span class="g-chip-emoji">🥕</span><span class="g-chip-text">Grocery</span></button>
+              </div>
+              <div class="g-chip-row">
+                <button class="g-chip" type="button" data-bname="Game"><span class="g-chip-emoji">🎮</span><span class="g-chip-text">Game</span></button>
+                <button class="g-chip" type="button" data-bname="Leisure"><span class="g-chip-emoji">🏛️</span><span class="g-chip-text">Leisure</span></button>
+                <button class="g-chip" type="button" data-bname="shopping"><span class="g-chip-emoji">🛒️</span><span class="g-chip-text">shopping</span></button>
+              </div>
+              <div class="g-chip-row">
+                <button class="g-chip" type="button" data-bname="Transportation"><span class="g-chip-emoji">🚌</span><span class="g-chip-text">Transportation</span></button>
+                <button class="g-chip" type="button" data-bname="Education"><span class="g-chip-emoji">📖</span><span class="g-chip-text">Education</span></button>
+              </div>
+              <div class="g-chip-row">
+                <button class="g-chip" type="button" data-bname="Beauty"><span class="g-chip-emoji">💄</span><span class="g-chip-text">Beauty</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Next: off until there's a name (9:2113), on after (9:2214) -->
+        <button class="btn" type="button" id="budgetNameNext" data-go="budget-setup" disabled style="top:710px">Next</button>
+      </section>
+
+      <!-- B2 · Budget cycle and monthly limit — Figma 24:5262 empty → 24:5471 list open → 24:5292 "1st day" →
+           24:5322/24:5353 typing (number pad) → 24:5383 guide + repeat off → 24:5427 repeat on.
+           "Set by date": 24:5504 calendar → 24:5530/24:5555 month picker → 24:5580 January → 24:5605 day picked (grows and scrolls) -->
+      <section class="screen" data-screen="budget-setup" aria-label="My monthly budgeting">
+        <div class="scroll g-scroll" id="budgetSetupScroll">
+          <div class="g-page b-page" id="budgetPage">
+            <div class="g-hdr">
+              <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back-black.svg" alt=""></button></div>
+            </div>
+            <div class="b-cycle" id="budgetCycle">
+              <p class="b-label">My monthly budgeting starts and ends on</p>
+              <div class="b-dd-box" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false">
+                <span class="b-dd-text is-placeholder"><span>Select the duration</span></span>
+                <img class="b-dd-chev" src="assets/img/icon-dropdown-down.svg" alt="">
+              </div>
+              <div class="b-dd-panel" role="listbox" hidden>
+                <button class="b-dd-opt" type="button" role="option" data-cycle="1st">1st day of the month</button>
+                <button class="b-dd-opt" type="button" role="option" data-cycle="15th">15th day of the month</button>
+                <button class="b-dd-opt" type="button" role="option" data-cycle="last">Last day of the month</button>
+                <button class="b-dd-opt" type="button" role="option" data-cycle="date">Set by date</button>
+              </div>
+              <div class="b-when" id="budgetWhen" hidden>
+                <div class="g-cal b-cal" id="budgetCal"></div>
+                <div class="b-mp" id="budgetMonths" hidden></div>
+              </div>
+            </div>
+            <div class="g-group b-amount" id="budgetAmountGroup">
+              <label class="b-label" for="budgetAmount">I can only use up to</label>
+              <div class="b-amt">
+                <input class="b-amt-input" id="budgetAmount" type="text" inputmode="numeric" autocomplete="off" enterkeyhint="done" placeholder="£">
+                <span class="b-amt-unit"><span>per month</span></span>
+              </div>
+            </div>
+            <div class="b-box b-box--amount" id="budgetAmountCard" hidden>
+              <label class="b-box-label" for="budgetAmountAlt">I can use up to </label>
+              <div class="b-box-row">
+                <input class="b-box-input" id="budgetAmountAlt" type="text" inputmode="numeric" autocomplete="off" enterkeyhint="done" placeholder="£">
+                <span class="b-box-unit"><span>monthly</span></span>
+              </div>
+            </div>
+            <div class="b-box b-box--guide" id="budgetGuide" hidden>
+              <p class="b-box-label">Recommend weekly spending guide</p>
+              <div class="b-box-row"><p class="b-box-value" id="budgetGuideValue">£ 50</p><span class="b-box-unit"><span>per week</span></span></div>
+            </div>
+            <div class="b-repeat" id="budgetRepeat" hidden>
+              <p>Repeated budget?</p>
+              <button class="b-switch" id="budgetRepeatSwitch" type="button" role="switch" aria-checked="false" aria-label="Repeated budget"><img src="assets/img/switch-knob.svg" alt=""></button>
+            </div>
+            <div class="g-spacer"></div>
+            <button class="btn g-cta b-next" id="budgetNext" type="button" data-go="budget-confirm" disabled>Next</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- B3 · Please confirm your budgeting — Figma 24:6029 -->
+      <section class="screen" data-screen="budget-confirm" aria-label="Please confirm your budgeting">
+        <div class="scroll g-scroll">
+          <div class="g-page">
+            <div class="b-c-hdr">
+              <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+              <div class="title-row"><h1 class="h-xl b-c-title" id="budgetConfirmTitle">Please confirm your  Travel budgeting</h1></div>
+            </div>
+            <div class="b-c-list">
+              <div class="b-c-group"><p class="b-c-label">Monthly budget amount</p><p class="b-c-value" id="budgetConfirmAmount">£ 200</p></div>
+              <div class="b-c-group"><p class="b-c-label">Suggested weekly budget</p><p class="b-c-value" id="budgetConfirmWeekly">£ 50</p></div>
+              <div class="b-c-group"><p class="b-c-label">Repeated feature</p><p class="b-c-value" id="budgetConfirmRepeat">Repeated</p></div>
+              <div class="b-c-group"><p class="b-c-label">Starts on </p><p class="b-c-value" id="budgetConfirmStart">1 January, 2026</p></div>
+              <div class="b-c-group"><p class="b-c-label">Ends on</p><p class="b-c-value" id="budgetConfirmEnd">1st day of the month</p></div>
+            </div>
+            <div class="g-spacer"></div>
+            <div class="b-c-btns">
+              <button class="btn" type="button" data-action="budget-confirm">Confirm my budgeting</button>
+              <button class="btn btn--muted" type="button" data-back>Edit my budgeting</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- B4 · Budget tab with budgets — Figma 24:5902. The third card shows the budget you confirmed. -->
+      <section class="screen screen--home screen--budget" data-screen="budget-list" aria-label="Budgeting with your budgets">
+        <div class="scroll home-scroll" id="budgetListScroll">
+          <div class="b-list-page">
+            <div class="b-tabs">
+              <p class="b-tab b-tab--on" style="left:47px">Budgeting</p>
+              <p class="b-tab" style="left:229px">Spending</p>
+              <img class="b-tabs-line" src="assets/img/budget-tabs-underline.svg" alt="">
+            </div>
+            <div class="b-total">
+              <div class="b-total-top">
+                <span class="b-chip">Total Budgetings</span>
+                <div class="b-total-row">
+                  <p class="b-total-sum"><span class="b-total-left">£ 900</span><span class="b-total-of">/ £1990</span></p>
+                  <p class="b-total-till">left till 30th March</p>
+                </div>
+              </div>
+              <div class="b-total-bar"><i></i><img src="assets/img/budget-total-cap.svg" alt=""></div>
+            </div>
+            <div class="b-actions">
+              <button class="b-new" type="button" data-action="budget-new"><img src="assets/img/icon-plus-circle.svg" alt=""><span>Create New Budget</span></button>
+              <div class="b-reorder"><img src="assets/img/icon-reorder.svg" alt=""><span>Reorder</span></div>
+            </div>
+            <div class="b-list" id="budgetList"></div>
+          </div>
+        </div>
+        <nav class="tabbar tabbar--ink" aria-label="Tabs">
+          <div class="tab-row">
+            <div class="tab is-current" style="width:35.727px"><img src="assets/img/tab-budget-on.svg" alt=""><span>Budget</span></div>
+            <button class="tab" type="button" data-action="tab-invest" style="width:29.078px"><img src="assets/img/tab-invest-ink.svg" alt=""><span style="min-width:0;width:41.703px">Invest</span></button>
+            <button class="tab" type="button" data-action="tab-home" style="width:29.078px"><img src="assets/img/tab-home-off.svg" alt=""><span>Home</span></button>
+            <div class="tab" style="width:38.664px"><img src="assets/img/tab-activity-ink.svg" alt=""><span>Activity</span></div>
+            <div class="tab" style="width:34.273px"><img src="assets/img/tab-setting-ink.svg" alt=""><span>Setting</span></div>
+          </div>
+        </nav>
+      </section>
+
+      <!-- ===================== Invest after long conversation — Figma section 30:7101 ===================== -->
+
+      <!-- I0 · Invest tab, Pocket with nothing yet — Figma 30:8527. The "Invest" tab opens it. -->
+      <section class="screen screen--home screen--invest" data-screen="invest" aria-label="Invest">
+        <button class="i-seg" type="button" data-action="invest-pocket" style="left:70.01px;top:97px;width:72px">Pocekt</button>
+        <button class="i-seg i-seg--bold" type="button" data-action="invest-buy" style="left:247.01px;top:96px;width:41px">Buy</button>
+        <img class="i-seg-line" src="assets/img/tabs-line.svg" alt="">
+        <i class="i-seg-bar" style="left:15.08px"></i>
+        <div class="i-empty"><p>There is nothing in your pocket</p></div>
+        <div class="abs" style="left:363px;top:266px;width:14px;height:1px;background:#d9d9d9"></div><!-- stray 14 x 1 rectangle drawn in 30:8527 -->
+        <nav class="tabbar tabbar--ink" aria-label="Tabs">
+          <div class="tab-row">
+            <button class="tab" type="button" data-action="tab-budget" style="width:35.727px"><img src="assets/img/tab-budget-ink.svg" alt=""><span>Budget</span></button>
+            <div class="tab is-current" style="width:29.078px"><img src="assets/img/tab-invest-on.svg" alt=""><span style="min-width:0;width:41.703px">Invest</span></div>
+            <button class="tab" type="button" data-action="tab-home" style="width:29.078px"><img src="assets/img/tab-home-off.svg" alt=""><span>Home</span></button>
+            <div class="tab" style="width:38.664px"><img src="assets/img/tab-activity-ink.svg" alt=""><span>Activity</span></div>
+            <div class="tab" style="width:34.273px"><img src="assets/img/tab-setting-ink.svg" alt=""><span>Setting</span></div>
+          </div>
+        </nav>
+      </section>
+
+      <!-- I1 · Buy — Figma 30:8381. Step Agentic opens its page; the cart icon opens My Cart. -->
+      <section class="screen screen--home screen--invest" data-screen="invest-buy" aria-label="Buy">
+        <div class="i-buy-icons">
+          <img src="assets/img/icon-heart.svg" alt="">
+          <button type="button" data-go="invest-cart" aria-label="My Cart"><img src="assets/img/icon-cart.svg" alt=""></button>
+        </div>
+        <button class="i-seg" type="button" data-action="invest-pocket" style="left:70.01px;top:97px;width:72px">Pocekt</button>
+        <button class="i-seg i-seg--bold" type="button" data-action="invest-buy" style="left:247.01px;top:96px;width:41px">Buy</button>
+        <img class="i-seg-line" src="assets/img/tabs-line.svg" alt="">
+        <i class="i-seg-bar" style="left:191.38px"></i>
+        <div class="i-kinds">
+          <div class="i-kind is-on" style="width:106px">
+            <span class="i-kind-ico"><img src="assets/img/invest-stocks.svg" alt="" style="left:2.89px;top:4.34px;width:22.728px;height:19.324px"></span>
+            <span class="i-kind-label">Stocks</span>
+          </div>
+          <div class="i-kind" style="width:107px">
+            <span class="i-kind-ico"><img src="assets/img/invest-bonds.svg" alt="" style="left:2.44px;top:5.23px;width:23.119px;height:17.539px"></span>
+            <span class="i-kind-label">Bonds</span>
+          </div>
+          <div class="i-kind" style="width:106px">
+            <span class="i-kind-ico"><img src="assets/img/invest-etf.svg" alt="" style="left:4px;top:4px;width:20px;height:20px"></span>
+            <span class="i-kind-label">Stocks</span>
+          </div>
+        </div>
+        <div class="abs" style="left:363px;top:266px;width:14px;height:1px;background:#d9d9d9"></div><!-- stray 14 x 1 rectangle drawn in 30:8381 -->
+        <div class="i-stocks">
+          <p class="i-stocks-title">Stocks</p>
+          <div class="i-stocks-body">
+            <div class="search i-search"><img src="assets/img/icon-search.svg" alt=""><span>Search by name or code</span></div>
+            <div class="i-filters">
+              <div class="i-chips">
+                <span class="i-chip i-chip--line i-inter" style="width:55px;color:var(--black)">All</span>
+                <span class="i-chip i-chip--on" style="width:118px">Automobile</span>
+                <span class="i-chip i-chip--line i-inter">Health</span>
+                <span class="i-chip i-chip--line">Defence</span>
+                <span class="i-chip i-chip--plain">Travel</span>
+              </div>
+              <div class="i-subs">
+                <span style="width:30.766px;text-align:right">Hot</span>
+                <span>Top Gainers</span>
+                <span>Top Losers</span>
+                <span class="i-sub-on">Health</span>
+                <span>Litta’s Suggestion</span>
+                <span class="i-sub-plain" style="width:49px">Defence</span>
+                <span class="i-sub-plain" style="width:33.5px;font-size:12px">Medic</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="i-stock-list">
+          <div class="i-stock-wrap"><div class="i-stock">
+            <span class="i-logo i-logo--44" style="background-position:-233.033px -435.117px"></span>
+            <span class="i-stock-name"><span>Eogera</span><span>EGA</span></span>
+            <span class="i-stock-price"><span>£ 122</span><span class="i-down"><img src="assets/img/tri-blue.svg" alt=""><span>0.65%</span></span></span>
+          </div></div>
+          <div class="i-stock-wrap"><button class="i-stock i-stock--center" type="button" data-go="invest-stock">
+            <span class="i-logo i-logo--44" style="background-position:-233.033px -536.07px"></span>
+            <span class="i-stock-name"><span>Step Agentic</span><span>SATC</span></span>
+            <span class="i-stock-price"><span>£ 302</span><span class="i-up"><img src="assets/img/tri-red.svg" alt=""><span>0.65%</span></span></span>
+          </button></div>
+          <div class="i-stock-wrap"><div class="i-stock">
+            <span class="i-logo i-logo--44" style="background-position:-96.59px -435.117px"></span>
+            <span class="i-stock-name"><span>Sanofi Corporation</span><span>SANFO</span></span>
+            <span class="i-stock-price"><span>£ 122</span><span class="i-down"><img src="assets/img/tri-blue.svg" alt=""><span>0.65%</span></span></span>
+          </div></div>
+        </div>
+        <nav class="tabbar tabbar--ink" aria-label="Tabs">
+          <div class="tab-row">
+            <button class="tab" type="button" data-action="tab-budget" style="width:35.727px"><img src="assets/img/tab-budget-ink.svg" alt=""><span>Budget</span></button>
+            <div class="tab is-current" style="width:29.078px"><img src="assets/img/tab-invest-on.svg" alt=""><span style="min-width:0;width:41.703px">Invest</span></div>
+            <button class="tab" type="button" data-action="tab-home" style="width:29.078px"><img src="assets/img/tab-home-off.svg" alt=""><span>Home</span></button>
+            <div class="tab" style="width:38.664px"><img src="assets/img/tab-activity-ink.svg" alt=""><span>Activity</span></div>
+            <div class="tab" style="width:34.273px"><img src="assets/img/tab-setting-ink.svg" alt=""><span>Setting</span></div>
+          </div>
+        </nav>
+      </section>
+
+      <!-- I2 · Step Agentic — Figma 30:7248 -->
+      <section class="screen" data-screen="invest-stock" aria-label="Step Agentic">
+        <div class="i-top">
+          <button class="i-back" type="button" data-back aria-label="Back"><img src="assets/img/icon-back-thin-ink.svg" alt=""></button>
+          <div class="i-top-icons">
+            <img src="assets/img/icon-heart-fill.svg" alt="">
+            <button type="button" data-go="invest-cart" aria-label="My Cart"><img src="assets/img/icon-basket.svg" alt=""></button>
+            <span class="i-ext"><img src="assets/img/icon-external-arrow.svg" alt="" style="left:11.293px;top:3px;width:9.707px;height:9.707px"><img src="assets/img/icon-external-box.svg" alt="" style="left:4px;top:4px;width:16px;height:16px"></span>
+          </div>
+        </div>
+        <div class="i-sd-head">
+          <span class="i-logo i-logo--40" style="background-position:-211.851px -488.147px"></span>
+          <span class="i-sd-name"><span>Step Agentic</span><span>SATC</span></span>
+        </div>
+        <div class="scroll i-reads">
+          <div class="i-read"><span><span>Reading : Updates</span><span>Wedbush maintained their rating<br>8 Jun, 2026</span></span><img src="assets/img/icon-chevron-small.svg" alt=""></div>
+          <div class="i-read"><span><span>Reading : Earnings</span><span>New bond got release for next<br>3 Mar, 2026</span></span><img src="assets/img/icon-chevron-small.svg" alt=""></div>
+        </div>
+        <div class="i-sd-tabs">
+          <span class="i-chip i-chip--on" style="width:103px">Overview</span>
+          <span class="i-chip i-chip--line i-inter">Revenue</span>
+          <span class="i-chip i-chip--line">Debt</span>
+          <span class="i-chip i-chip--line" style="background:#fff">Finance Report</span>
+        </div>
+        <p class="i-sd-price">£ 168.02</p>
+        <div class="i-sd-change">
+          <span style="width:90px">Past 6 months</span>
+          <span class="i-sd-pct"><img src="assets/img/stock-change-down.svg" alt=""><span>0.65%</span></span>
+          <span style="width:42px">-$0.33</span>
+        </div>
+        <img class="i-sd-chart" src="assets/img/stock-chart.svg" alt="">
+        <div class="i-sd-ranges"><span>1D</span><span>1W</span><span>1M</span><span>3M</span><span class="is-on">6M</span><span>1Y</span></div>
+        <button class="btn i-btn-335" type="button" data-go="invest-cart" style="top:710.12px">Add to cart</button>
+      </section>
+
+      <!-- I3 · My Cart — Figma 30:7318 (nothing ticked). Ticking a commodity turns "Lets talk what to buy" on. -->
+      <section class="screen" data-screen="invest-cart" aria-label="My Cart">
+        <div class="i-top">
+          <button class="i-back" type="button" data-back aria-label="Back"><img src="assets/img/icon-back-thin.svg" alt=""></button>
+        </div>
+        <div class="i-cart-head"><p>My Cart</p><span><span id="investCartCount">0 Items / 5 items</span></span></div>
+        <div class="i-cart-list">
+          <button class="i-cart-item" type="button" role="checkbox" aria-checked="false" data-pick="step">
+            <img class="cb cb-off" src="assets/img/checkbox-off.svg" alt=""><img class="cb cb-on" src="assets/img/checkbox-on.svg" alt="">
+            <span class="i-cart-row"><span class="i-cart-name" style="width:178px"><span>Step Agentic</span><span>APPL</span></span><span class="i-logo i-logo--40" style="background-position:-211.851px -488.147px"></span></span>
+          </button>
+          <button class="i-cart-item" type="button" role="checkbox" aria-checked="false" data-pick="allhub">
+            <img class="cb cb-off" src="assets/img/checkbox-off.svg" alt=""><img class="cb cb-on" src="assets/img/checkbox-on.svg" alt="">
+            <span class="i-cart-row"><span class="i-cart-name" style="width:178px"><span>All Hub</span><span>AH</span></span><span class="i-logo i-logo--40" style="background-position:-201.43px -536.078px"></span></span>
+          </button>
+          <button class="i-cart-item" type="button" role="checkbox" aria-checked="false" data-pick="ford">
+            <img class="cb cb-off" src="assets/img/checkbox-off.svg" alt=""><img class="cb cb-on" src="assets/img/checkbox-on.svg" alt="">
+            <span class="i-cart-row"><span class="i-cart-name" style="width:169px"><span>Ford</span><span>FR11</span></span><span class="i-logo i-logo--40" style="background-size:284.558px 646.516px;background-position:-90.134px -501.469px"></span></span>
+          </button>
+          <button class="i-cart-item" type="button" role="checkbox" aria-checked="false" data-pick="tempo">
+            <img class="cb cb-off" src="assets/img/checkbox-off.svg" alt=""><img class="cb cb-on" src="assets/img/checkbox-on.svg" alt="">
+            <span class="i-cart-row"><span class="i-cart-name" style="width:169px"><span>Tempo</span><span>TMP</span></span><span class="i-logo i-logo--40" style="background-position:-149.044px -396.61px"></span></span>
+          </button>
+          <button class="i-cart-item" type="button" role="checkbox" aria-checked="false" data-pick="eager">
+            <img class="cb cb-off" src="assets/img/checkbox-off.svg" alt=""><img class="cb cb-on" src="assets/img/checkbox-on.svg" alt="">
+            <span class="i-cart-row"><span class="i-cart-name" style="width:170px"><span>Eagerious</span><span>EGR</span></span><span class="i-logo i-logo--40" style="background-position:-212.52px -395.938px"></span></span>
+          </button>
+        </div>
+        <button class="btn i-btn-335" id="investTalk" type="button" data-action="invest-talk" disabled style="left:23px;top:649.35px">Lets talk what to buy</button>
+        <button class="btn i-btn-335" type="button" disabled style="left:23px;top:720.35px">Add commodity</button>
+      </section>
+
+      <!-- I4 · Verify your identify — Figma 30:7392 (empty) → 30:7427 country list → 30:7516/30:7762 search + keyboard →
+           30:7606/30:7684 "Un" → 30:7857 United Kingdom → 30:7891/30:7944 document list → 30:8575 Driver license -->
+      <section class="screen" data-screen="invest-verify" aria-label="Verify your identify">
+        <div class="hdr" style="top:72.35px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <p class="i-v-title">Verify your identify </p>
+          <p class="i-v-sub">You only need to do this once.</p>
+        </div>
+        <div class="i-v-form">
+          <div class="i-v-group" id="investCountry">
+            <p class="i-v-label">ID issuing country</p>
+            <div class="i-dd i-dd--country">
+              <div class="i-dd-box" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false">
+                <span class="i-dd-text is-placeholder">Select  your country</span>
+                <img class="i-dd-chev" src="assets/img/icon-dropdown-down.svg" alt="">
+              </div>
+              <div class="i-dd-panel" hidden>
+                <label class="i-dd-search"><img src="assets/img/icon-search-grey.svg" alt=""><input id="investCountrySearch" type="text" autocomplete="off" spellcheck="false" enterkeyhint="search" placeholder="Search by name" aria-label="Search by name"></label>
+                <div class="scroll i-dd-list" id="investCountryList" role="listbox"></div>
+              </div>
+            </div>
+          </div>
+          <div class="i-v-group" id="investDoc">
+            <p class="i-v-label">Document type</p>
+            <div class="i-dd i-dd--doc">
+              <div class="i-dd-box" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false">
+                <span class="i-dd-text is-placeholder">Select  an option</span>
+                <img class="i-dd-chev" src="assets/img/icon-dropdown-down.svg" alt="">
+              </div>
+              <div class="i-dd-panel" hidden>
+                <div class="i-dd-list" role="listbox">
+                  <button class="i-dd-opt" type="button" role="option" data-value="Driver license">Driver license</button>
+                  <button class="i-dd-opt" type="button" role="option" data-value="Passport">Passport</button>
+                  <button class="i-dd-opt" type="button" role="option" data-value="BRP">BRP</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn i-next" id="investVerifyNext" type="button" data-go="invest-scan" disabled>Next</button>
+      </section>
+
+      <!-- I5 · Scan front of your driver license — Figma 30:7997 (not framed) → 30:8031 "Perfect" → 30:8065 checking.
+           It plays by itself; the camera view darkens the status bar, so the screen draws its own. -->
+      <section class="screen i-scan" data-screen="invest-scan" data-state="framing" aria-label="Scan front of your driver license">
+        <img class="i-scan-photo" src="assets/img/scan-photo.png" alt="">
+        <div class="status-bar status-bar--local" aria-hidden="true">
+          <div class="sb-left"><div class="sb-time"><span>9:41</span></div></div>
+          <div class="sb-island"><i></i></div>
+          <div class="sb-right"><img src="assets/img/status-signal-wifi-battery.svg" alt="" width="78.401" height="13"></div>
+        </div>
+        <i class="i-scan-deem"></i>
+        <img class="i-scan-hole" src="assets/img/scan-hole.svg" alt="">
+        <div class="hdr" style="top:72.35px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back-white.svg" alt=""></button></div>
+          <p class="i-v-title i-white">Scan front of your driver license</p>
+          <p class="i-v-sub i-white">Move slowly to register your driver license.</p>
+        </div>
+        <p class="i-scan-msg" id="investScanMsg">Please go back to get full picture of your ID</p>
+        <span class="i-scan-spin"><img src="assets/img/scan-spinner.png" alt="" style="left:0;top:0;width:56.508px;height:56.508px"><img src="assets/img/scan-dot.svg" alt="" style="left:24.3px;top:48.03px;width:8.476px;height:8.476px"></span>
+        <div class="i-scan-tools"><img src="assets/img/scan-help.svg" alt=""><img src="assets/img/scan-camera.svg" alt=""></div>
+        <img class="i-scan-ind" src="assets/img/home-indicator-white.svg" alt="">
+      </section>
+
+      <!-- I6 · Boom! You are ready for a money talk! — Figma 30:7219 -->
+      <section class="screen" data-screen="invest-ready" aria-label="Ready for a money talk">
+        <div class="hdr" style="top:72.95px;left:-0.3px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-l g-wrap" style="height:68px">Boom! You are ready for a money talk!</h1></div>
+        </div>
+        <p class="i-ready-body">It is good to self research and think about commodity before you purchase. Even if you don’t know it’s ok, Penny will guide you with some provoking questions.</p>
+        <img class="abs" src="assets/img/talk-bubble-blue.svg" alt="" style="left:47.24px;top:407.97px;width:184.32px;height:194.064px">
+        <img class="abs" src="assets/img/talk-bubble-green.svg" alt="" style="left:142.34px;top:371.7px;width:183.397px;height:165.811px">
+        <img class="abs" src="assets/img/talk-intersect.svg" alt="" style="left:142.34px;top:407.9px;width:89.211px;height:95.872px">
+        <img class="abs" src="assets/img/talk-star.svg" alt="" style="left:154.65px;top:422.32px;width:64.61px;height:64.64px">
+        <button class="btn i-btn-335" type="button" data-go="invest-talk" style="top:709.72px">Let’s start a money talk!</button>
+      </section>
+
+      <!-- I7 · Let's check (1/5), the money talk with Penny — Figma 30:8104 → 30:8187 (your answer, Penny searching) →
+           30:8284 (Penny's reply with "No, not ready" / "Let's go next") -->
+      <section class="screen" data-screen="invest-talk" aria-label="Let’s check">
+        <button class="i-talk-back" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button>
+        <p class="i-talk-title">Let’s check (1/5)</p>
+        <div class="scroll i-carousel">
+          <div class="i-co i-co--apple"><span class="i-logo i-logo--44" style="background-image:url(assets/img/stock-logos-apple.png);background-size:453.427px 1030.185px;background-position:-57.199px -74.805px"></span><span class="i-co-text"><span>Apple</span><span>APPL</span></span></div>
+          <div class="i-co"><span class="i-logo i-logo--44" style="background-position:-233.035px -435.116px"></span><span class="i-co-text"><span>Eagerse</span><span>EGR</span></span></div>
+          <div class="i-co"><span class="i-logo i-logo--44" style="background-position:-233.035px -536.961px"></span><span class="i-co-text"><span>Step Agent</span><span>STAT</span></span></div>
+          <div class="i-co"><span class="i-logo i-logo--44" style="background-position:-165.06px -537.812px"></span><span class="i-co-text"><span>TPI C...</span><span>TPL</span></span></div>
+          <div class="i-co"><span class="i-logo i-logo--44" style="background-position:-97.717px -537.813px"></span><span class="i-co-text"><span>TPI C...</span><span>TPL</span></span></div>
+          <div class="i-co"><span class="i-logo i-logo--44" style="background-position:-96.2px -435.27px"></span><span class="i-co-text"><span>TPI C...</span><span>TPL</span></span></div>
+        </div>
+        <div class="i-chat" id="investChat">
+          <div class="scroll i-chat-log" id="investChatLog"></div>
+          <form class="i-reply" id="investReplyForm" autocomplete="off">
+            <input class="i-reply-input" id="investReply" type="text" spellcheck="false" enterkeyhint="send" placeholder="Reply Penny here" aria-label="Reply Penny here">
+            <span class="i-reply-tools">
+              <img src="assets/img/chat-plus.svg" alt="">
+              <span><img src="assets/img/chat-mic.svg" alt=""><button class="i-send" type="submit" aria-label="Send"><img class="i-send-off" src="assets/img/chat-send.svg" alt=""><span class="i-send-on"><img src="assets/img/chat-send-on.svg" alt=""></span></button></span>
+            </span>
+          </form>
+        </div>
+      </section>
+
+      <!-- I8 · After your study, now what commodity will you buy? — Figma 30:7149 -->
+      <section class="screen" data-screen="invest-choose" aria-label="What commodity will you buy?">
+        <div class="hdr" style="top:72px;left:-0.63px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <p class="i-v-title i-wrap">After your study, now what commodity will you buy?</p>
+          <p class="i-v-sub">Choose all the commodity you wish to buy</p>
+        </div>
+        <div class="i-cart-list" id="investPickList" style="top:236.05px"></div>
+        <button class="btn i-next i-next--choose" id="investChooseNext" type="button" data-action="invest-choose-next" disabled>Next</button>
+      </section>
+
+      <!-- I9 · How much do you want to invest on …? — Figma 30:8609 (one commodity at a time, number pad open) -->
+      <section class="screen" data-screen="invest-amount" aria-label="How much do you want to invest?">
+        <div class="hdr" style="top:72px;left:-0.63px">
+          <div class="back-row"><button class="back-btn" type="button" data-action="invest-amount-back" aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <p class="i-v-title" id="investAmountTitle">How much do you want to invest<br>on Eagerse?</p>
+        </div>
+        <div class="i-amt-picks" id="investAmountPicks"></div>
+        <div class="i-amt-form">
+          <p class="i-amt-bal" id="investBalance">Account 9809 Balance : £600</p>
+          <div class="b-amt i-amt-box"><input class="b-amt-input" id="investAmount" type="text" inputmode="numeric" autocomplete="off" enterkeyhint="done" placeholder="£" aria-label="Amount"></div>
+          <button class="btn i-amt-next" id="investAmountNext" type="button" data-action="invest-amount-next" disabled>Next</button>
+        </div>
+      </section>
+
+      <!-- I10 · Pocket after investing — Figma 30:8644 (categories) / 30:8749 (Tech open) -->
+      <section class="screen screen--home screen--invest" data-screen="invest-pocket" aria-label="Pocket">
+        <div class="scroll home-scroll" id="investPocketScroll">
+          <div class="i-pocket-page" id="investPocketPage">
+            <button class="i-seg i-seg--bold" type="button" data-action="invest-pocket" style="left:70px;top:96px;width:72px">Pocekt</button>
+            <button class="i-seg" type="button" data-action="invest-buy" style="left:247px;top:95px;width:41px">Buy</button>
+            <img class="i-seg-line" src="assets/img/tabs-line.svg" alt="" style="top:140px">
+            <i class="i-seg-bar" style="left:15.08px;top:139px"></i>
+            <div class="abs" style="left:363px;top:266px;width:14px;height:1px;background:#d9d9d9"></div><!-- stray 14 x 1 rectangle drawn in 30:8644 -->
+            <img class="abs" src="assets/img/pocket-ring.svg" alt="" style="left:39px;top:174px;width:288px;height:288px">
+            <img class="abs" src="assets/img/pocket-seg-yellow.svg" alt="" style="left:183px;top:188.31px;width:135.955px;height:129.692px">
+            <img class="abs" src="assets/img/pocket-seg-lilac.svg" alt="" style="left:183px;top:269.44px;width:140.904px;height:48.551px">
+            <img class="abs" src="assets/img/pocket-seg-green.svg" alt="" style="left:183px;top:174px;width:114.501px;height:144px">
+            <img class="abs" src="assets/img/pocket-hole.svg" alt="" style="left:56px;top:191px;width:254px;height:254px">
+            <div class="i-pocket-sum"><p>£ 1,204.50</p><span><span>+£ 24.30(1.12)</span><img src="assets/img/icon-info-grey.svg" alt=""></span></div>
+            <div class="i-pocket-edit"><span>Edit your pocket </span></div>
+            <div class="i-pocket-reorder"><img src="assets/img/icon-reorder-lg.svg" alt=""><span>Reorder</span></div>
+            <div class="i-cats" id="investCats">
+              <button class="i-cat i-cat--first" type="button" data-cat="tech" aria-expanded="false"><img class="i-cat-dot" src="assets/img/pocket-dot-blue.svg" alt=""><span class="i-cat-row"><span>Tech</span><span class="i-cat-end"><span>77.3%</span><img src="assets/img/icon-chevron.svg" alt=""></span></span></button>
+              <div class="i-cat-items" id="investTechItems" hidden>
+                <div class="i-hold"><span class="i-hold-left"><span class="i-hold-name"><span class="i-logo i-logo--24" style="background-position:-127.113px -237.334px"></span><span>Emogie</span></span><span class="i-hold-pct">56%</span></span><span class="i-stock-price i-hold-price"><span>£ 302</span><span class="i-up"><img src="assets/img/tri-red.svg" alt=""><span>0.65%</span></span></span></div>
+                <div class="i-hold"><span class="i-hold-left"><span class="i-hold-name"><span class="i-logo i-logo--24" style="background-position:-127px -293px"></span><span>Stepper</span></span><span class="i-hold-pct">56%</span></span><span class="i-stock-price i-hold-price"><span>£ 104</span><span class="i-up"><img src="assets/img/tri-red.svg" alt=""><span>0.65%</span></span></span></div>
+                <div class="i-hold"><span class="i-hold-left"><span class="i-hold-name"><span class="i-logo i-logo--24" style="background-position:-127.113px -237.334px"></span><span>Amazon</span></span><span class="i-hold-pct">56%</span></span><span class="i-stock-price i-hold-price"><span>£ 302</span><span class="i-up"><img src="assets/img/tri-red.svg" alt=""><span>0.65%</span></span></span></div>
+                <div class="i-hold"><span class="i-hold-left"><span class="i-hold-name"><span class="i-logo i-logo--24" style="background-position:-127.113px -237.334px"></span><span>Amazon</span></span><span class="i-hold-pct">56%</span></span><span class="i-stock-price i-hold-price"><span>£ 302</span><span class="i-up"><img src="assets/img/tri-red.svg" alt=""><span>0.65%</span></span></span></div>
+                <div class="i-hold"><span class="i-hold-left"><span class="i-hold-name"><span class="i-logo i-logo--24" style="background-position:-127.113px -237.334px"></span><span>Amazon</span></span><span class="i-hold-pct">56%</span></span><span class="i-stock-price i-hold-price"><span>£ 302</span><span class="i-up"><img src="assets/img/tri-red.svg" alt=""><span>0.65%</span></span></span></div>
+              </div>
+              <div class="i-cat"><img class="i-cat-dot" src="assets/img/pocket-dot-green.svg" alt=""><span class="i-cat-row"><span>Health</span><span class="i-cat-end"><span>22.3%</span><img src="assets/img/icon-chevron.svg" alt=""></span></span></div>
+              <div class="i-cat"><img class="i-cat-dot" src="assets/img/pocket-dot-yellow.svg" alt=""><span class="i-cat-row"><span style="width:83px">Cloud AI</span><span class="i-cat-end"><span>12.3%</span><img src="assets/img/icon-chevron.svg" alt=""></span></span></div>
+              <div class="i-cat i-cat--last"><img class="i-cat-dot" src="assets/img/pocket-dot-lilac.svg" alt=""><span class="i-cat-row"><span style="width:98px">Bio farmacy</span><span class="i-cat-end"><span>2.3%</span><img src="assets/img/icon-chevron.svg" alt=""></span></span></div>
+            </div>
+          </div>
+        </div>
+        <nav class="tabbar tabbar--ink" aria-label="Tabs">
+          <div class="tab-row">
+            <button class="tab" type="button" data-action="tab-budget" style="width:35.727px"><img src="assets/img/tab-budget-ink.svg" alt=""><span>Budget</span></button>
+            <div class="tab is-current" style="width:29.078px"><img src="assets/img/tab-invest-on.svg" alt=""><span style="min-width:0;width:41.703px">Invest</span></div>
+            <button class="tab" type="button" data-action="tab-home" style="width:29.078px"><img src="assets/img/tab-home-off.svg" alt=""><span>Home</span></button>
+            <div class="tab" style="width:38.664px"><img src="assets/img/tab-activity-ink.svg" alt=""><span>Activity</span></div>
+            <div class="tab" style="width:34.273px"><img src="assets/img/tab-setting-ink.svg" alt=""><span>Setting</span></div>
+          </div>
+        </nav>
+      </section>
+
+      <!-- ===================== Spending with guardian — Figma section 30:9824 ===================== -->
+
+      <!-- G0 · With Guardian hub on the Invest tab — Figma 30:11908. Home's "Invest with Gaurdian" card opens it;
+           "Spending with Guardian" starts the flow. -->
+      <section class="screen screen--home" data-screen="guardian" aria-label="With Guardian">
+        <div class="gd-tabs">
+          <span class="gd-tab gd-tab--on" style="width:103.836px">With Guardian</span>
+          <span class="gd-tab" style="width:95.328px">Past Activities</span>
+          <span class="gd-tab" style="width:78.3px">Money Tips</span>
+        </div>
+        <img class="abs" src="assets/img/guardian-tabs-line.svg" alt="" style="left:20px;top:141px;width:335px;height:1px">
+        <i class="gd-tabs-bar"></i>
+        <div class="abs" style="left:363px;top:266px;width:14px;height:1px;background:#d9d9d9"></div><!-- stray 14 x 1 rectangle drawn in 30:11908 -->
+        <p class="gd-lede">Let’s grow  together </p>
+        <div class="gd-cards">
+          <div class="gd-card-wrap">
+            <div class="gd-card">
+              <span class="gd-card-left">
+                <span class="gd-ico-invest" aria-hidden="true">
+                  <i style="left:5.74px;top:1.84px;width:1.231px;height:22.564px"></i>
+                  <i style="left:17.23px;top:0;width:1.231px;height:22.564px"></i>
+                  <i class="is-grey" style="left:0;top:6.36px;width:24px;height:11.282px"></i>
+                  <i style="left:3.28px;top:3.69px;width:6.154px;height:18.872px"></i>
+                  <i style="left:14.77px;top:1.43px;width:6.154px;height:18.872px"></i>
+                  <i class="is-green" style="left:3.28px"></i>
+                  <i class="is-green" style="left:14.77px"></i>
+                </span>
+                <span class="gd-card-text">Invest with Guardian</span>
+              </span>
+              <img class="gd-chev" src="assets/img/icon-chevron.svg" alt="">
+            </div>
+          </div>
+          <div class="gd-card-wrap">
+            <div class="gd-card">
+              <span class="gd-card-left">
+                <span class="gd-ico-box"><img src="assets/img/icon-guardian.svg" alt="" style="width:22px;height:21px"></span>
+                <span class="gd-card-text">Saving with Guardian</span>
+              </span>
+              <img class="gd-chev" src="assets/img/icon-chevron.svg" alt="">
+            </div>
+          </div>
+          <div class="gd-card-wrap">
+            <button class="gd-card" type="button" data-go="guardian-intro">
+              <span class="gd-card-left">
+                <span class="gd-ico-box" style="height:34px"><img src="assets/img/guardian-spending.svg" alt="" style="width:24.665px;height:26px"></span>
+                <span class="gd-card-text">Spending with Guardian</span>
+              </span>
+              <img class="gd-chev" src="assets/img/icon-chevron.svg" alt="">
+            </button>
+          </div>
+        </div>
+        <nav class="tabbar tabbar--ink" aria-label="Tabs">
+          <div class="tab-row">
+            <button class="tab" type="button" data-action="tab-budget" style="width:35.727px"><img src="assets/img/tab-budget-ink.svg" alt=""><span>Budget</span></button>
+            <div class="tab is-current" style="width:29.078px"><img src="assets/img/tab-invest-on.svg" alt=""><span style="min-width:0;width:41.703px">Invest</span></div>
+            <button class="tab" type="button" data-action="tab-home" style="width:29.078px"><img src="assets/img/tab-home-off.svg" alt=""><span>Home</span></button>
+            <div class="tab" style="width:38.664px"><img src="assets/img/tab-activity-ink.svg" alt=""><span>Activity</span></div>
+            <div class="tab" style="width:34.273px"><img src="assets/img/tab-setting-ink.svg" alt=""><span>Setting</span></div>
+          </div>
+        </nav>
+      </section>
+
+      <!-- G1 · Spending with guardians together — Figma 30:11404 -->
+      <section class="screen" data-screen="guardian-intro" aria-label="Spending with guardians together">
+        <div class="hdr" style="top:72.5px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">Spending with guardians together </h1></div>
+          <div class="body-row"><p class="b-m">Share your spending with a parent and level up your money skills</p></div>
+        </div>
+        <img class="abs" src="assets/img/gintro-ellipse-a.svg" alt="" style="left:114.86px;top:393.88px;width:127.355px;height:127.355px">
+        <img class="abs" src="assets/img/gintro-head-left.svg" alt="" style="left:65.2px;top:309.98px;width:68.224px;height:68.224px">
+        <img class="abs" src="assets/img/gintro-head-right.svg" alt="" style="left:222.57px;top:309.98px;width:68.224px;height:68.224px">
+        <img class="abs" src="assets/img/gintro-body-left.svg" alt="" style="left:60.11px;top:384.63px;width:78.401px;height:163.394px">
+        <img class="abs" src="assets/img/gintro-arm-left.svg" alt="" style="left:114.86px;top:409.76px;width:23.661px;height:96.967px">
+        <img class="abs" src="assets/img/gintro-body-right.svg" alt="" style="left:217.49px;top:384.63px;width:78.401px;height:163.394px">
+        <img class="abs" src="assets/img/gintro-arm-right.svg" alt="" style="left:217.49px;top:409.07px;width:24.729px;height:98.339px">
+        <img class="abs" src="assets/img/gintro-ellipse-b.svg" alt="" style="left:138.51px;top:417.55px;width:79.444px;height:79.444px">
+        <img class="abs" src="assets/img/gintro-ellipse-c.svg" alt="" style="left:150.17px;top:429.18px;width:56.163px;height:56.163px">
+        <button class="btn" type="button" data-go="guardian-who" style="left:16.39px;top:709.5px">Next</button>
+      </section>
+
+      <!-- G2 · Who are you teaming up with? — Figma 30:11454 (nobody picked, Confirm off) / 30:11495 (Mom ticked) -->
+      <section class="screen" data-screen="guardian-who" aria-label="Who are you teaming up with?">
+        <div class="hdr" style="top:72.5px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">Who are you teaming up with?</h1></div>
+        </div>
+        <div class="gd-people" id="guardianPeople" role="radiogroup" aria-label="Who are you teaming up with?">
+          <div class="gd-person-wrap"><button class="gd-person" type="button" role="radio" aria-checked="false" data-person="Mom"><img src="assets/img/checkbox-off.svg" alt=""><span>Mom</span></button></div>
+          <div class="gd-person-wrap"><button class="gd-person" type="button" role="radio" aria-checked="false" data-person="Dad"><img src="assets/img/checkbox-off.svg" alt=""><span>Dad</span></button></div>
+          <div class="gd-person-wrap"><button class="gd-person" type="button" role="radio" aria-checked="false" data-person="Amy"><img src="assets/img/checkbox-off.svg" alt=""><span>Amy</span></button></div>
+          <div class="gd-person-wrap"><button class="gd-person" type="button" role="radio" aria-checked="false" data-person="Kyle"><img src="assets/img/checkbox-off.svg" alt=""><span>Kyle</span></button></div>
+        </div>
+        <button class="btn" type="button" id="guardianWhoNext" data-action="guardian-who-next" style="top:710px" disabled>Confirm</button>
+      </section>
+
+      <!-- G3 · Sharing invitation is sent — Figma 30:11439. No button: the answer arrives by itself (→ G4). -->
+      <section class="screen" data-screen="guardian-sent" aria-label="Sharing invitation is sent">
+        <div class="hdr" style="top:72.5px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">Sharing invitation is sent</h1></div>
+          <div class="body-row"><p class="b-m" id="guardianSentBody">Let’s wait if Mom also wants to do spending sharing challenge</p></div>
+        </div>
+        <div class="gd-rot" style="left:158.79px;top:338px;width:192px;height:80px"><img src="assets/img/gsent-plane-a.svg" alt="" style="width:80px;height:192px;transform:rotate(90deg)"></div>
+        <div class="gd-rot" style="left:198.8px;top:417.76px;width:152px;height:39px"><img src="assets/img/gsent-plane-b.svg" alt="" style="width:39px;height:152px;transform:rotate(-90deg) scaleY(-1)"></div>
+        <i class="gd-speed" style="left:25px;top:446px;width:111px;height:11px"></i>
+        <i class="gd-speed" style="left:65px;top:394px;width:71px;height:12px"></i>
+        <i class="gd-speed" style="left:65px;top:344px;width:71px;height:11px"></i>
+      </section>
+
+      <!-- G4 · Mom says YES — Figma 30:11536 -->
+      <section class="screen" data-screen="guardian-yes" aria-label="Your guardian says yes">
+        <div class="hdr" style="top:72.5px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back-black.svg" alt=""></button></div>
+        </div>
+        <span class="gd-photo"><img src="assets/img/gyes-photo.png" alt=""></span>
+        <span class="gd-me"><span>S</span></span>
+        <div class="gd-center" style="top:327px;padding:8px 20px"><h1 class="h-xl" id="guardianYesTitle">Mom says YES</h1></div>
+        <div class="gd-center" style="top:374px;padding:10px 20px"><p class="b-m" id="guardianYesBody">Now it is time to set up how much you wish to share you spending with Mom</p></div>
+        <button class="btn" type="button" data-go="guardian-budgets" style="top:710px">Set up challenge</button>
+      </section>
+
+      <!-- G5 · What budgeting do you want to share? — Figma 30:11556 (none, Confirm off) / 30:11608 (three picked) -->
+      <section class="screen" data-screen="guardian-budgets" aria-label="What budgeting do you want to share?">
+        <div class="hdr" style="top:72.5px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl" id="guardianBudgetsTitle">What budgeting do you want to share with Mom?</h1></div>
+          <div class="body-row"><p class="b-m">You can change this later.</p></div>
+        </div>
+        <div class="gd-picks" id="guardianPicks">
+          <div class="gd-all-row"><button class="gd-chip gd-chip--all" type="button" id="guardianAll" aria-pressed="false"><span class="gd-chip-emoji">✅</span><span>Select all the budgets I have</span></button></div>
+          <div class="gd-chip-rows">
+            <div class="gd-chip-row">
+              <button class="gd-chip" type="button" aria-pressed="false" data-budget="Eat out" style="width:110px"><span class="gd-chip-emoji">🥘</span><span>eat out</span></button>
+              <button class="gd-chip" type="button" aria-pressed="false" data-budget="Hang out" style="width:120px"><span class="gd-chip-emoji">🤼‍♀️</span><span>hang out</span></button>
+            </div>
+            <div class="gd-chip-row">
+              <button class="gd-chip" type="button" aria-pressed="false" data-budget="Grocery" style="width:120px"><span class="gd-chip-emoji">🥕</span><span>grocery</span></button>
+              <button class="gd-chip" type="button" aria-pressed="false" data-budget="Electronics" style="width:120px"><span class="gd-chip-emoji">🎮</span><span>electronics</span></button>
+            </div>
+            <div class="gd-chip-row">
+              <button class="gd-chip" type="button" aria-pressed="false" data-budget="Leisure" style="width:109px"><span class="gd-chip-emoji">🏛️</span><span>leisure</span></button>
+              <button class="gd-chip" type="button" aria-pressed="false" data-budget="Transportation" style="width:161px"><span class="gd-chip-emoji">🚌</span><span>transportation</span></button>
+            </div>
+            <div class="gd-chip-row">
+              <button class="gd-chip" type="button" aria-pressed="false" data-budget="Education" style="width:120px"><span class="gd-chip-emoji">📖</span><span>education</span></button>
+              <button class="gd-chip" type="button" aria-pressed="false" data-budget="Shopping" style="width:121px"><span class="gd-chip-emoji">🛒</span><span>shopping</span></button>
+            </div>
+            <div class="gd-chip-row">
+              <button class="gd-chip" type="button" aria-pressed="false" data-budget="Beauty" style="width:105px"><span class="gd-chip-emoji">💄</span><span>beauty</span></button>
+            </div>
+          </div>
+        </div>
+        <button class="btn" type="button" id="guardianBudgetsNext" data-go="guardian-confirm" style="top:710px" disabled>Confirm</button>
+      </section>
+
+      <!-- G6 · Please confirm your sharing challenge — Figma 30:11659. Both buttons start the challenge (→ G7). -->
+      <section class="screen" data-screen="guardian-confirm" aria-label="Please confirm your sharing challenge">
+        <div class="hdr" style="top:72.5px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl">Please confirm your<br>sharing challenge</h1></div>
+        </div>
+        <div class="gd-sum" style="top:258px">
+          <p class="gd-sum-label">Start on </p>
+          <p class="gd-sum-value">Today</p>
+        </div>
+        <div class="gd-sum" style="top:348px">
+          <p class="gd-sum-label">Sharing budgets</p>
+          <div class="gd-sum-list" id="guardianSumList"></div>
+        </div>
+        <div class="gd-confirm-btns">
+          <button class="btn" type="button" data-go="guardian-boom" id="guardianAsk">Ask if Mom is ok with the plan</button>
+          <button class="btn btn--muted" type="button" data-go="guardian-boom" id="guardianNextTo">She is next to me she is ok</button>
+        </div>
+      </section>
+
+      <!-- G7 · Boom! — Figma 30:11689. Next opens the Insight page (back from there goes to the hub). -->
+      <section class="screen" data-screen="guardian-boom" aria-label="You are sharing spending">
+        <div class="hdr" style="top:72.5px">
+          <div class="back-row"><button class="back-btn" type="button" data-back aria-label="Back"><img src="assets/img/icon-back.svg" alt=""></button></div>
+          <div class="title-row"><h1 class="h-xl" id="guardianBoomTitle">Boom! You are sharing spending with your Mom from now on!</h1></div>
+        </div>
+        <img class="abs" src="assets/img/gboom-ellipse-a.svg" alt="" style="left:59px;top:366px;width:166px;height:166px">
+        <img class="abs" src="assets/img/gboom-ellipse-b.svg" alt="" style="left:149.99px;top:273px;width:166px;height:166px">
+        <img class="abs" src="assets/img/gboom-mask.svg" alt="" style="left:59px;top:365.98px;width:166.076px;height:166.076px">
+        <img class="abs" src="assets/img/gboom-ellipse-c.svg" alt="" style="left:107.01px;top:398px;width:71px;height:71px">
+        <img class="abs" src="assets/img/gboom-ellipse-d.svg" alt="" style="left:212px;top:318.11px;width:42px;height:42px">
+        <img class="abs" src="assets/img/gboom-union-a.svg" alt="" style="left:101.69px;top:475.95px;width:82.513px;height:82.514px">
+        <img class="abs" src="assets/img/gboom-union-b.svg" alt="" style="left:208.92px;top:364.42px;width:48.076px;height:24.037px">
+        <button class="btn" type="button" data-action="guardian-insight-start" style="top:710px">Next</button>
+      </section>
+
+      <!-- G8 · Insight — Figma 30:11713 (1477 px tall, scrolls). "Spending" switches to G9. -->
+      <section class="screen screen--home" data-screen="guardian-insight" aria-label="Insight">
+        <div class="scroll gi-scroll" id="guardianInsightScroll">
+          <div class="gi-page">
+            <button class="gi-back" type="button" data-back aria-label="Back"><img src="assets/img/icon-back-thin-ink.svg" alt=""></button>
+            <p class="gi-tab gi-tab--on" style="left:75.73px;top:98px">Insight</p>
+            <button class="gi-tab" type="button" data-action="guardian-tab-spending" style="left:231.39px;top:95px;width:89.859px">Spending</button>
+            <img class="abs" src="assets/img/tabs-line.svg" alt="" style="left:22.72px;top:141px;width:331px;height:1px">
+            <i class="gi-tab-bar"></i>
+
+            <div class="gi-head" style="top:158.05px">
+              <p class="gi-h" style="color:var(--grey-btn)">Overview</p>
+              <span class="gi-link"><span style="width:52px">Monthly </span><img src="assets/img/gins-monthly-caret.svg" alt=""></span>
+            </div>
+            <div class="abs gi-card-bg"></div>
+            <div class="gi-month">
+              <img src="assets/img/gins-month-prev.svg" alt="" style="margin:-0.505px -0.554px -0.517px -1.026px">
+              <p>January 2026</p>
+              <img src="assets/img/gins-month-prev.svg" alt="" style="margin:-0.517px -1.026px -0.505px -0.554px;transform:rotate(180deg)">
+            </div>
+            <img class="abs" src="assets/img/gins-gauge-track.svg" alt="" style="left:67.78px;top:258.1px;width:236.284px;height:118.4025px">
+            <img class="abs" src="assets/img/gins-gauge-fill.svg" alt="" style="left:67.573px;top:285.879px;width:59.148px;height:90.392px">
+            <img class="abs" src="assets/img/gins-gauge-dash.svg" alt="" style="left:99.626px;top:350.159px;width:20.164px;height:23.526px">
+            <div class="gi-gauge-ends"><p style="width:39.047px">142.00</p><p style="width:42.703px">500.00</p></div>
+            <div class="gi-left">
+              <div class="gi-left-row"><span class="gi-left-cur">£</span><span class="gi-left-num">340</span></div>
+              <p class="gi-left-label">Left this month</p>
+            </div>
+
+            <div class="gi-sec" style="top:438px">
+              <div class="gi-head gi-head--flow">
+                <p class="gi-h">Sharing Budgets</p>
+                <span class="gi-link gi-link--edit"><span>Edit </span><img src="assets/img/icon-edit.svg" alt=""></span>
+              </div>
+              <div class="gi-card-pad">
+                <div class="gi-card gi-rings-card">
+                  <div class="gi-rings">
+                    <div class="gi-ring-col">
+                      <span class="gi-ring"><img src="assets/img/gins-ring-track.svg" alt=""><img src="assets/img/gins-ring-1.svg" alt="" style="left:12.71px;top:0.115px;width:51.29px;height:63.885px"><b>🚌</b></span>
+                      <span class="gi-amt"><span class="gi-amt-row"><span class="gi-cur">£</span><span class="gi-num" style="width:52.328px">40.00</span></span><span class="gi-amt-left">left</span></span>
+                    </div>
+                    <div class="gi-ring-col">
+                      <span class="gi-ring"><img src="assets/img/gins-ring-track.svg" alt=""><img src="assets/img/gins-ring-2.svg" alt="" style="left:32px;top:0.115px;width:32px;height:53.33px"><b>🍔</b></span>
+                      <span class="gi-amt" style="width:51.993px"><span class="gi-amt-row"><span class="gi-cur">£</span><span class="gi-num">91.00</span></span><span class="gi-amt-left">left</span></span>
+                    </div>
+                    <div class="gi-ring-col">
+                      <span class="gi-ring"><img src="assets/img/gins-ring-track.svg" alt=""><img src="assets/img/gins-ring-3.svg" alt="" style="left:0;top:0.115px;width:64px;height:63.885px"><b>🏝️</b></span>
+                      <span class="gi-amt" style="width:51.993px"><span class="gi-amt-row"><span class="gi-cur">£</span><span class="gi-num">11.00</span></span><span class="gi-amt-left">left</span></span>
+                    </div>
+                    <div class="gi-ring-col" style="gap:3px">
+                      <span class="gi-ring"><img src="assets/img/gins-ring-track.svg" alt=""><img src="assets/img/gins-ring-4.svg" alt="" style="left:32px;top:0.115px;width:32px;height:61.747px"><b>🎮</b></span>
+                      <span class="gi-amt" style="width:51.993px;gap:3px"><span class="gi-amt-row"><span class="gi-cur">£</span><span class="gi-num">51.00</span></span><span class="gi-amt-left">left</span></span>
+                    </div>
+                  </div>
+                  <img src="assets/img/gins-pager.svg" alt="" style="width:10.156px;height:3.906px">
+                  <div class="gi-tip">
+                    <img src="assets/img/gins-tip.svg" alt="">
+                    <p style="height:55px">You’re slightly above your suggested weekly pace for hangouts. A cheaper meetup could help balance it out.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="gi-sec" style="top:747px">
+              <div class="gi-head gi-head--flow">
+                <p class="gi-h">My Values in Spending</p>
+                <span class="gi-link gi-link--edit" style="color:var(--grey-unselected)"><span>Edit </span><img src="assets/img/icon-edit-grey.svg" alt=""></span>
+              </div>
+              <div class="gi-card-pad">
+                <div class="gi-card gi-values">
+                  <div class="gi-top">
+                    <span class="gi-top-ico"><b>🚌</b></span>
+                    <span class="gi-top-text"><span class="gi-cap" style="width:121.219px">TOP SPENDING</span><span class="gi-top-name">Transportation</span></span>
+                  </div>
+                  <div class="gi-tip">
+                    <img src="assets/img/gins-tip-2.svg" alt="">
+                    <p>+Walking for 2-3 metro station usually takes 30 minutes which is very healthy to practice as well.</p>
+                  </div>
+                  <div class="gi-bycat">
+                    <p class="gi-cap">BY CATAGORY</p>
+                    <div class="gi-bars">
+                      <div class="gi-bar-labels"><span>Transportation</span><span>Eat out </span><span>Game</span><span>Travel expense</span><span>Study</span></div>
+                      <div class="gi-bar-col">
+                        <i style="width:161.57px"></i><i style="width:109.883px"></i><i style="width:94.453px"></i><i style="width:61.906px"></i><i style="width:61.906px"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="gi-head" style="top:1182px">
+              <p class="gi-h">Income vs Spending</p>
+              <span class="gi-link" style="color:var(--grey-unselected)"><span style="width:76.727px">Filter Period</span><img src="assets/img/gins-filter.svg" alt=""></span>
+            </div>
+            <div class="gi-card gi-income">
+              <div class="gi-sum">
+                <p class="gi-cap">January summary</p>
+                <div class="gi-sum-row"><img src="assets/img/gins-summary-dash.svg" alt=""><span><b>£</b><span>340</span></span></div>
+              </div>
+              <div class="gi-chart">
+                <div class="gi-chart-bars"><i class="is-blue"></i><i class="is-green"></i></div>
+                <img src="assets/img/gins-chart-line.svg" alt="">
+                <div class="gi-chart-labels">
+                  <div><p>Income</p><span class="gi-amt-row"><span class="gi-cur">£</span><span class="gi-num" style="width:52.328px">40.00</span></span></div>
+                  <div><p>Spending</p><span class="gi-amt-row"><span class="gi-cur">£</span><span class="gi-num" style="width:52.328px">120.00</span></span></div>
+                </div>
+              </div>
+            </div>
+            <img class="abs" src="assets/img/gins-chart-arrows.svg" alt="" style="left:18.45px;top:1308.4px;width:334px;height:47px">
+          </div>
+        </div>
+      </section>
+
+      <!-- G9 · Spending — Spending 30:10439 (no transactions) → 30:10046 (transactions) → 30:10239 (Mom's reactions);
+           Category 30:10752 / 30:10534; By dates 30:11336 / 30:10841 / 30:11031 (date picker open). -->
+      <section class="screen screen--home" data-screen="guardian-spending" aria-label="Spending">
+        <div class="scroll gs-scroll" id="guardianSpendScroll">
+          <div class="gs-page" id="guardianSpendPage">
+            <button class="gi-back" type="button" data-back aria-label="Back" style="top:61.7px"><img src="assets/img/icon-back-thin.svg" alt=""></button>
+            <button class="gs-tab" type="button" data-action="guardian-tab-insight" style="left:74.93px;top:88.7px;width:72px">Insight</button>
+            <p class="gs-tab gs-tab--on" style="left:230.59px;width:89.859px">Spending</p>
+            <img class="abs" src="assets/img/tabs-line.svg" alt="" style="left:21.92px;top:135.7px;width:331px;height:1px">
+            <i class="gs-tab-bar"></i>
+            <div class="gs-views" role="tablist" aria-label="Spending views">
+              <button class="gs-view is-on" type="button" role="tab" aria-selected="true" data-view="spending" style="width:106px;gap:4px;border-radius:43px"><img src="assets/img/gsp-chip-spending.svg" alt=""><span>Spending</span></button>
+              <button class="gs-view" type="button" role="tab" aria-selected="false" data-view="category" style="width:107px;border-radius:34px"><img src="assets/img/gsp-chip-category.svg" alt=""><span>Category</span></button>
+              <button class="gs-view" type="button" role="tab" aria-selected="false" data-view="dates" style="width:106px;border-radius:40px"><img src="assets/img/gsp-chip-dates.svg" alt=""><span>By dates</span></button>
+            </div>
+
+            <!-- Spending -->
+            <div class="gs-pane" data-pane="spending">
+              <div class="gi-head" style="top:220px">
+                <p class="gi-h">Budgeting View</p>
+                <span class="gi-link gi-link--edit"><span>Edit </span><img src="assets/img/icon-edit.svg" alt=""></span>
+              </div>
+              <div class="gs-budgets">
+                <div class="gs-budget">
+                  <div class="gs-budget-top">
+                    <span class="gs-budget-ico" style="background:#04d180"><b>🚌</b></span>
+                    <span class="gs-budget-info">
+                      <span class="gs-budget-name">My Transport</span>
+                      <span class="gs-budget-nums">
+                        <span class="gs-budget-spent">£ 20 spent</span>
+                        <span class="gs-budget-lims"><span><span>1.75 / 40 £ </span><span>Monthly</span></span><span class="is-weekly"><span>1.75 / 10 £ </span><span>Weekly Suggestion</span></span></span>
+                      </span>
+                    </span>
+                  </div>
+                  <div class="gs-progress"><i></i></div>
+                </div>
+                <div class="gs-budget">
+                  <div class="gs-budget-top">
+                    <span class="gs-budget-ico" style="background:#ea0101"><b>🚌</b></span>
+                    <span class="gs-budget-info">
+                      <span class="gs-budget-name">My Transport</span>
+                      <span class="gs-budget-nums">
+                        <span class="gs-budget-spent">£ 20 spent</span>
+                        <span class="gs-budget-lims"><span><span>1.75 / 40 £ </span><span>Monthly</span></span><span class="is-weekly"><span>1.75 / 10 £ </span><span>Weekly Suggestion</span></span></span>
+                      </span>
+                    </span>
+                  </div>
+                  <div class="gs-progress gs-progress--red"><i></i></div>
+                </div>
+              </div>
+              <div class="gs-tx-sec" style="top:391px">
+                <div class="gi-head gi-head--flow gs-tx-head">
+                  <p class="gi-h">Transactions</p>
+                  <span class="gi-link gi-link--edit"><span>Edit </span><img src="assets/img/icon-edit.svg" alt=""></span>
+                </div>
+                <div class="gs-list" data-list="spending"></div>
+              </div>
+            </div>
+
+            <!-- Category -->
+            <div class="gs-pane" data-pane="category" hidden>
+              <div class="gi-head" style="top:210px;left:4px">
+                <p class="gi-h">Category</p>
+                <span class="gi-link gi-link--edit"><span>Edit </span><img src="assets/img/icon-edit.svg" alt=""></span>
+              </div>
+              <div class="gs-cats">
+                <div class="gs-cat gs-cat--on"><span class="gs-cat-ico"><b>🚌</b></span><span class="gs-cat-name">Transpor...</span></div>
+                <div class="gs-cat gs-cat--dim" style="width:45px;gap:3px"><span class="gs-cat-circle"><b class="gs-cat-emoji" style="font-size:28.125px">🥤</b></span><span class="gs-cat-name">Food</span></div>
+                <div class="gs-cat gs-cat--dim"><span class="gs-cat-circle"><b class="gs-cat-emoji">🛍️</b></span><span class="gs-cat-name">Shopping</span></div>
+                <div class="gs-cat gs-cat--dim"><span class="gs-cat-circle"><b class="gs-cat-emoji gs-cat-emoji--lg">🧑‍🎓</b></span><span class="gs-cat-name">Education</span></div>
+                <div class="gs-cat gs-cat--dim"><span class="gs-cat-circle"><b class="gs-cat-emoji gs-cat-emoji--lg">🏖</b></span><span class="gs-cat-name">Holiday</span></div>
+                <div class="gs-cat"><span class="gs-cat-circle is-green"><b class="gs-cat-emoji gs-cat-emoji--lg gs-cat-emoji--full">🧑‍🎓</b></span><span class="gs-cat-name">Education</span></div>
+                <div class="gs-cat"><span class="gs-cat-circle is-green"><b class="gs-cat-emoji gs-cat-emoji--lg gs-cat-emoji--full">🧑‍🎓</b></span><span class="gs-cat-name">Education</span></div>
+              </div>
+              <div class="gs-tx-sec" style="top:330px">
+                <div class="gs-list" data-list="category"></div>
+              </div>
+            </div>
+
+            <!-- By dates -->
+            <div class="gs-pane" data-pane="dates" hidden>
+              <button class="gs-date" type="button" id="guardianDateBtn" aria-expanded="false" aria-controls="guardianCal">
+                <span class="gs-date-left"><img src="assets/img/gsp-calendar.svg" alt=""><span id="guardianDateLabel">Today</span></span>
+                <img class="gs-date-caret" src="assets/img/gsp-caret.svg" alt="">
+              </button>
+              <div class="gs-cal" id="guardianCal" hidden>
+                <div class="gs-cal-month">
+                  <button type="button" class="gs-cal-nav" data-cal="-1" aria-label="Previous month"><img src="assets/img/gsp-cal-prev.svg" alt=""></button>
+                  <span class="gs-cal-label"><span id="guardianCalMonth">August 2026</span><img src="assets/img/gsp-cal-caret.svg" alt=""></span>
+                  <button type="button" class="gs-cal-nav" data-cal="1" aria-label="Next month"><img src="assets/img/gsp-cal-next.svg" alt="" style="transform:rotate(180deg)"></button>
+                </div>
+                <div class="gs-cal-grid">
+                  <div class="gs-cal-row"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
+                  <div class="gs-cal-weeks" id="guardianCalWeeks"></div>
+                </div>
+              </div>
+              <div class="gs-tx-sec" id="guardianDateTx" style="top:298px">
+                <div class="gi-head gi-head--flow gs-tx-head">
+                  <p class="gi-h">Transactions</p>
+                  <span class="gi-link gi-link--edit"><span>Edit </span><img src="assets/img/icon-edit.svg" alt=""></span>
+                </div>
+                <div class="gs-list" data-list="dates"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <nav class="tabbar tabbar--auto" aria-label="Tabs">
+          <div class="tab-row">
+            <button class="tab" type="button" data-action="tab-budget" style="width:35.727px"><img src="assets/img/tab-budget.svg" alt=""><span>Budget</span></button>
+            <button class="tab" type="button" data-action="tab-invest" style="width:29.078px"><img src="assets/img/tab-invest.svg" alt=""><span style="min-width:0;width:41.703px">Invest</span></button>
+            <div class="tab is-current" style="width:29.078px"><img src="assets/img/tab-home.svg" alt=""><span>Home</span></div>
+            <div class="tab" style="width:38.664px"><img src="assets/img/tab-activity.svg" alt=""><span>Activity</span></div>
+            <div class="tab" style="width:34.273px"><img src="assets/img/tab-setting.svg" alt=""><span>Setting</span></div>
+          </div>
+        </nav>
+      </section>
+
+      <!-- On-screen iOS keyboards for page fields. They slide up while a field has focus, only when viewed with
+           a mouse (js/keyboard.js); phones show their own keyboard.
+           Letters: the Figma keyboard 9:2888. Numbers: the iOS number pad isn't in the Figma file, so it's drawn
+           to match 9:2888 (background, white 5 px keys with a 0 1px 0 shadow, delete glyph). -->
+      <div class="vkb" id="pageLetters" aria-hidden="true"><img src="assets/img/ios-keyboard.svg" alt=""></div>
+      <div class="vkb numpad" id="pageNumbers" aria-hidden="true">
+        <div class="np-keys">
+          <button type="button" tabindex="-1" data-k="1"><span class="np-d">1</span><span class="np-l"></span></button>
+          <button type="button" tabindex="-1" data-k="2"><span class="np-d">2</span><span class="np-l">ABC</span></button>
+          <button type="button" tabindex="-1" data-k="3"><span class="np-d">3</span><span class="np-l">DEF</span></button>
+          <button type="button" tabindex="-1" data-k="4"><span class="np-d">4</span><span class="np-l">GHI</span></button>
+          <button type="button" tabindex="-1" data-k="5"><span class="np-d">5</span><span class="np-l">JKL</span></button>
+          <button type="button" tabindex="-1" data-k="6"><span class="np-d">6</span><span class="np-l">MNO</span></button>
+          <button type="button" tabindex="-1" data-k="7"><span class="np-d">7</span><span class="np-l">PQRS</span></button>
+          <button type="button" tabindex="-1" data-k="8"><span class="np-d">8</span><span class="np-l">TUV</span></button>
+          <button type="button" tabindex="-1" data-k="9"><span class="np-d">9</span><span class="np-l">WXYZ</span></button>
+          <button type="button" tabindex="-1" class="np-plain np-dot" data-k="." aria-label="Decimal point"><span class="np-d">.</span><span class="np-l"></span></button>
+          <button type="button" tabindex="-1" data-k="0"><span class="np-d">0</span><span class="np-l"></span></button>
+          <button type="button" tabindex="-1" class="np-plain" data-k="del" aria-label="Delete"><img src="assets/img/kb-delete.svg" alt=""></button>
+        </div>
+      </div>
+      <!-- Budgeting amount: the Figma number pad "iPhone keyboard (Numeric)" (24:5340), 291 px tall -->
+      <div class="vkb kbn" id="pagePhonePad" aria-hidden="true">
+        <button type="button" tabindex="-1" data-k="1" style="left:6px;top:6px;height:46px"><span class="kbn-d">1</span></button>
+        <button type="button" tabindex="-1" data-k="2" style="left:129px;top:6px;height:46px"><span class="kbn-d">2</span><span class="kbn-l">ABC</span></button>
+        <button type="button" tabindex="-1" data-k="3" style="left:252px;top:6px;height:46px"><span class="kbn-d">3</span><span class="kbn-l">DEF</span></button>
+        <button type="button" tabindex="-1" data-k="4" style="left:6px;top:59px;height:47px"><span class="kbn-d">4</span><span class="kbn-l">GHI</span></button>
+        <button type="button" tabindex="-1" data-k="5" style="left:129px;top:59px;height:47px"><span class="kbn-d">5</span><span class="kbn-l">JKL</span></button>
+        <button type="button" tabindex="-1" data-k="6" style="left:252px;top:59px;height:47px"><span class="kbn-d">6</span><span class="kbn-l">MNO</span></button>
+        <button type="button" tabindex="-1" data-k="7" style="left:6px;top:113px;height:47px"><span class="kbn-d">7</span><span class="kbn-l">PQRS</span></button>
+        <button type="button" tabindex="-1" data-k="8" style="left:129px;top:113px;height:47px"><span class="kbn-d">8</span><span class="kbn-l">TUV</span></button>
+        <button type="button" tabindex="-1" data-k="9" style="left:252px;top:113px;height:47px"><span class="kbn-d">9</span><span class="kbn-l">WXYZ</span></button>
+        <button type="button" tabindex="-1" class="kbn-zero" data-k="0" style="left:129px;top:167px;height:46px"><span class="kbn-d">0</span></button>
+        <img class="kbn-sym" src="assets/img/kbn-symbols.svg" alt="">
+        <button type="button" tabindex="-1" class="kbn-del" data-k="del" aria-label="Delete"><img src="assets/img/kbn-delete.svg" alt=""></button>
+      </div>
+
+      <!-- iOS chrome shared by every frame -->
+      <div class="status-bar" aria-hidden="true">
+        <div class="sb-left"><div class="sb-time"><span>9:41</span></div></div>
+        <div class="sb-island"><i></i></div>
+        <div class="sb-right"><img src="assets/img/status-signal-wifi-battery.svg" alt="" width="78.401" height="13"></div>
+      </div>
+      <img class="home-ind home-ind--long" src="assets/img/home-indicator.svg" alt="">
+      <img class="home-ind home-ind--short" src="assets/img/home-indicator-short.svg" alt="">
+      <img class="home-ind home-ind--ink" src="assets/img/home-indicator-ink.svg" alt="">
+
+      <!-- Terms sheet over the bank list — Figma 1:679 (overlay) + 1:745 (sheet) -->
+      <div class="sheet-overlay" id="sheetOverlay"></div>
+      <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+        <div class="sheet-title"><p class="b-l-500" id="sheetTitle">To Link this institution, you need to agree to the applicable terms</p></div>
+        <div class="sheet-body">
+          <div class="b-m">
+            <p style="margin:0">By clicking “Agree and continue,” you agree to the <span>Linking Service Terms</span> for this institution.</p>
+            <p style="margin:0">By linking your account, you consent to Wealthfront processing your account data in accordance with our <span>Privacy Policy</span> and the applicable Wealthfront Terms of Use.</p>
+          </div>
+        </div>
+        <button class="btn" type="button" data-go="consent">Agree and Continue</button>
+        <img class="sheet-ind" src="assets/img/home-indicator.svg" alt="">
+      </div>
+
+      <!-- Penny check-in sheet over Home — Figma 9:2836/9:2863 (weekly), 9:2786 (successful),
+           9:2812 → 9:2889 → 9:2921 (missed 2-3 times), 9:2953 (missed many days) -->
+      <div class="sheet-overlay" id="pennyOverlay"></div>
+      <div class="psheet" id="pennySheet" role="dialog" aria-modal="true" aria-labelledby="pennyTitle">
+        <div class="psheet-grab"><i></i></div>
+        <div class="psheet-head">
+          <p id="pennyTitle">Saving for Nintendo</p>
+          <button class="psheet-close" type="button" data-penny="close" aria-label="Close"><img src="assets/img/icon-close.svg" alt=""></button>
+        </div>
+        <div class="psheet-who" id="pennyWho"><img src="assets/img/penny-avatar.svg" alt=""><span>Penny</span></div>
+        <div class="psheet-msg" id="pennyMsgWrap"><p id="pennyMsg"></p></div>
+        <div class="psheet-field" id="pennyField">
+          <input id="pennyInput" type="text" autocomplete="off" spellcheck="false" enterkeyhint="send" placeholder="Tell us your story here">
+        </div>
+        <button class="psheet-opt" id="pennyDouble" type="button" data-penny="double" style="top:324px">Save for double (£18) for tommrow</button>
+        <button class="psheet-opt" id="pennyDelay" type="button" data-penny="delay" style="top:390px">Delay my saving deadline a day</button>
+        <div class="psheet-sparkles" aria-hidden="true">
+          <img src="assets/img/sparkle-lg.svg" alt="" style="left:277.66px;top:252.05px;width:30.074px;height:30.074px">
+          <img src="assets/img/sparkle-md.svg" alt="" style="left:307.73px;top:312.14px;width:17.797px;height:17.797px">
+          <img src="assets/img/sparkle-md.svg" alt="" style="left:331.63px;top:303.1px;width:17.797px;height:17.797px">
+          <img src="assets/img/sparkle-md.svg" alt="" style="left:212.09px;top:365.1px;width:17.797px;height:17.797px">
+          <img src="assets/img/sparkle-md.svg" alt="" style="left:194.29px;top:312px;width:17.797px;height:17.797px">
+          <img src="assets/img/sparkle-sm.svg" alt="" style="left:138.1px;top:288.23px;width:11.68px;height:11.68px">
+          <img src="assets/img/sparkle-sm.svg" alt="" style="left:334.69px;top:390.32px;width:11.68px;height:11.68px">
+          <img src="assets/img/sparkle-sm.svg" alt="" style="left:350.2px;top:371.22px;width:11.68px;height:11.68px">
+        </div>
+        <img class="psheet-check" src="assets/img/penny-check.svg" alt="">
+        <img class="psheet-ind" src="assets/img/home-indicator.svg" alt="">
+        <div class="ios-kb" id="iosKeyboard"><img src="assets/img/ios-keyboard.svg" alt=""></div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="panel" aria-label="Prototype navigation">
+    <div class="panel-head">
+      <button class="panel-restart" type="button" id="restartBtn">Restart</button>
+    </div>
+    <div class="panel-routes" id="panelSteps"></div>
+  </aside>
+</main>
+
+<script src="js/wheel-picker.js"></script>
+<script src="js/app.js?v=2"></script>
+<script src="js/keyboard.js"></script>
+<script src="js/goal.js"></script>
+<script src="js/budget.js"></script>
+<script src="js/invest.js"></script>
+<script src="js/guardian.js"></script>
+</body>
+</html>

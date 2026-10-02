@@ -1,0 +1,506 @@
+/* "Spending with guardian" flow — Figma section 30:9824.
+   Shares tokens and components with css/styles.css, css/goal.css, css/budget.css and css/invest.css. */
+
+/* ---------- Status bar and home indicator per screen ---------- */
+.device[data-screen="guardian"] .status-bar,
+.device[data-screen="guardian-insight"] .status-bar,
+.device[data-screen="guardian-spending"] .status-bar { background: var(--tint-bg); }
+.device[data-screen="guardian-who"] > .status-bar { left: -1px; }          /* 30:11454 / 30:11495 draw it 1 px left */
+.device[data-screen="guardian-spending"] > .status-bar { top: -0.3px; }    /* the Spending frames draw it 0.3 px up */
+.device[data-screen="guardian"] .home-ind--long,
+.device[data-screen="guardian-insight"] .home-ind--long { display: none; }
+.device[data-screen="guardian"] .home-ind--ink,
+.device[data-screen="guardian-insight"] .home-ind--ink { display: block; }
+.device[data-screen="guardian-insight"] .home-ind--ink { left: 121px; }
+.device[data-screen="guardian-spending"] .home-ind--long { left: 120.3px; top: 800px; }
+.device[data-screen="guardian-intro"] .home-ind--long { left: 121.39px; top: 799.5px; }   /* Next sits at 709.5 there */
+.device[data-screen="guardian-sent"] .home-ind { visibility: hidden; }                     /* 30:11439 has none */
+
+/* Home's "Invest with Gaurdian" card opens the hub */
+.home-card[data-go] { cursor: pointer; }
+
+/* ---------- G0 · With Guardian hub (30:11908) ---------- */
+.gd-tabs {
+  position: absolute;
+  left: 20px;
+  top: 107px;
+  width: 335px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.gd-tab {
+  display: block;
+  flex: none;
+  height: 24px;
+  font: 400 16px/1.5 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: var(--black);
+  white-space: nowrap;
+}
+.gd-tab--on { position: relative; top: 1px; font-weight: 500; line-height: 1.6; }   /* Figma draws the Medium label 1 px lower */
+.gd-tabs-bar { position: absolute; left: 20px; top: 140px; width: 106px; height: 3px; background: var(--black); }
+.gd-lede { position: absolute; left: 20px; top: 177px; margin: 0; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; white-space: pre; }
+
+.gd-cards { position: absolute; left: 0; top: 221px; width: 375px; display: flex; flex-direction: column; gap: 12px; }
+.gd-card-wrap { height: 60px; padding: 0 20px; display: flex; flex-direction: column; align-items: flex-start; }
+.gd-card {
+  width: 100%;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: var(--corner);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font: inherit;
+  color: var(--black);
+  text-align: left;
+}
+button.gd-card { cursor: pointer; }
+.gd-card-left { width: 207px; display: flex; gap: 6px; align-items: center; }
+.gd-card-text { flex: none; padding: 10px; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; white-space: nowrap; }
+.gd-chev { flex: none; width: 24px; height: 24px; transform: rotate(180deg); }
+.gd-ico-box {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  padding: 2px 1px 1px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.gd-ico-box img { flex: none; display: block; max-width: none; }
+/* "Invest with Guardian": two candles drawn from rectangles. Figma masks a green band to the candle bodies,
+   which leaves two green rectangles. */
+.gd-ico-invest { position: relative; flex: none; width: 24px; height: 24.404px; }
+.gd-ico-invest i { position: absolute; display: block; background: var(--blue); }
+.gd-ico-invest i.is-grey { background: var(--pictogram-grey); }
+.gd-ico-invest i.is-green { top: 6.36px; width: 6.154px; height: 11.282px; background: var(--green); }
+
+/* ---------- G2 · Who are you teaming up with? (30:11454 / 30:11495) ---------- */
+.gd-people { position: absolute; left: 0.39px; top: 220.5px; width: 375px; display: flex; flex-direction: column; gap: 12px; }
+.gd-person-wrap { height: 60px; padding: 0 20px; display: flex; flex-direction: column; justify-content: center; }
+.gd-person {
+  flex: none;
+  width: 100%;
+  height: 63px;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: var(--corner);
+  background: var(--input-bg);
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  color: var(--black);
+  text-align: left;
+  cursor: pointer;
+}
+.gd-person[aria-checked="true"] { background: var(--selected-bg); }
+.gd-person img { flex: none; width: 19px; height: 19px; }
+.gd-person span { flex: none; width: 263px; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; white-space: nowrap; }
+
+/* ---------- G3 · Invitation sent (30:11439) ---------- */
+.gd-rot { position: absolute; display: flex; align-items: center; justify-content: center; }
+.gd-rot img { flex: none; display: block; max-width: none; }
+.gd-speed { position: absolute; display: block; background: #9c9c9c; }
+
+/* ---------- G4 · Says YES (30:11536) ---------- */
+.gd-photo { position: absolute; left: 143px; top: 267.003px; width: 44.728px; height: 44.728px; border-radius: 50%; overflow: hidden; }
+.gd-photo img { position: absolute; left: -22px; top: -0.003px; width: 95px; height: 69px; max-width: none; object-fit: cover; }
+.gd-me { position: absolute; left: 181.27px; top: 267.14px; width: 44.728px; height: 44.728px; border-radius: 50%; background: #ff6beb; }
+.gd-me span {
+  position: absolute;
+  left: 6.291px;
+  top: 0;
+  width: 25.159px;
+  height: 39.311px;
+  font: 500 30.958px/1.5 var(--font-ibm);
+  letter-spacing: -0.7739px;
+  color: #fff;
+  text-align: right;
+}
+.gd-center { position: absolute; left: 0; width: 375px; display: flex; align-items: center; justify-content: center; text-align: center; }
+.gd-center .h-xl { width: 335px; }
+.gd-center .b-m { flex: 1 0 0; }
+
+/* ---------- G5 · Budgets to share (30:11556 / 30:11608) ---------- */
+.gd-picks { position: absolute; left: 0; top: 258.5px; width: 375px; display: flex; flex-direction: column; gap: 24px; }
+.gd-all-row { padding: 0 10px 0 20px; display: flex; flex-direction: column; align-items: flex-start; }
+.gd-chip-rows { padding: 0 20px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.gd-chip-row { display: flex; gap: 16px; align-items: center; }
+.gd-chip {
+  flex: none;
+  height: 37px;
+  padding: 9px 30px;
+  border: 0;
+  border-radius: 18.5px;
+  background: var(--input-bg);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  font: 400 16px/1.5 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: var(--black);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.gd-chip[aria-pressed="true"] { background: #aec7ff; }
+.gd-chip--all { padding: 9px 16px; }
+/* Figma draws a 14 px emoji 14.5 px wide; the system emoji font draws it about 18 px wide, which would push the
+   label right. The box keeps Figma's advance and the glyph is scaled to Figma's size. */
+.gd-chip-emoji { flex: none; width: 14.5px; display: flex; justify-content: center; font: 400 11.7px/normal var(--font-inter); letter-spacing: 0; color: #000; }
+
+/* ---------- G6 · Confirm (30:11659) ---------- */
+.gd-sum { position: absolute; left: 0; width: 375px; display: flex; flex-direction: column; gap: 8px; }
+.gd-sum p { margin: 0; padding: 0 20px; color: var(--black); }
+.gd-sum-label { font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; }
+.gd-sum-value, .gd-sum-list p { font: 500 24px/1.4 var(--font-ibm); letter-spacing: -0.5px; }
+/* All nine budgets would run into the buttons, so the list scrolls past seven */
+.gd-sum-list { max-height: 236px; overflow-y: auto; scrollbar-width: none; display: flex; flex-direction: column; }
+.gd-sum-list::-webkit-scrollbar { display: none; }
+.gd-confirm-btns { position: absolute; left: 16px; top: 643px; width: 343px; display: flex; flex-direction: column; gap: 12px; }
+.gd-confirm-btns .btn { position: relative; left: 0; flex: none; }
+
+/* ---------- G8 · Insight (30:11713) ---------- */
+.gi-scroll { left: 0; top: 0; bottom: 0; width: 375px; }
+.gi-page { position: relative; width: 375px; height: 1477px; }
+.gi-back { position: absolute; left: 0; top: 62px; width: 44px; height: 36px; padding: 0; border: 0; background: none; cursor: pointer; }
+.gi-back img { position: absolute; left: 17.486px; top: 9.66px; width: 8.054px; height: 15.683px; max-width: none; }
+.gi-tab {
+  position: absolute;
+  top: 97px;
+  width: 72px;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: 400 20px/normal var(--font-ibm);
+  letter-spacing: 0;
+  color: var(--black);
+  text-align: left;
+  white-space: nowrap;
+}
+button.gi-tab { cursor: pointer; }
+.gi-tab--on { font-weight: 500; }
+.gi-tab-bar { position: absolute; left: 20.8px; top: 140px; width: 167.422px; height: 3px; background: var(--black); }
+
+.gi-head { position: absolute; left: 0; width: 375px; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
+.gi-head--flow { position: relative; width: 100%; flex: none; }
+.gi-h { margin: 0; font: 500 18px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--grey-unselected); white-space: nowrap; }
+.gi-link { flex: none; display: flex; align-items: flex-start; font: 500 14px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--grey-btn); }
+.gi-link span { display: block; flex: none; height: 17.625px; white-space: nowrap; }
+.gi-link img { flex: none; width: 20px; height: 20px; }
+.gi-link--edit { width: 52px; align-items: center; }
+.gi-link--edit span { width: 27.383px; }
+
+.gi-card-bg { left: 21.08px; top: 192.52px; width: 333.922px; height: 221.406px; border-radius: var(--corner); background: #fff; }
+.gi-month {
+  position: absolute;
+  left: 21px;
+  top: 192px;
+  width: 334px;
+  padding: 16px;
+  border-radius: 8px 8px 0 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.gi-month img { flex: none; display: block; width: 8.58px; height: 16.024px; max-width: none; }
+.gi-month p { flex: none; width: 126px; margin: 0; font: 500 20px/1.5 var(--font-ibm); letter-spacing: -0.5px; text-align: center; }
+.gi-gauge-ends {
+  position: absolute;
+  left: 59.59px;
+  top: 381.89px;
+  width: 257.234px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font: 700 12px/1.6 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: var(--grey-btn);
+}
+.gi-gauge-ends p { flex: none; height: 13.539px; margin: 0; white-space: nowrap; }
+.gi-left { position: absolute; left: 137.65px; top: 315.4px; width: 96.516px; display: flex; flex-direction: column; align-items: center; letter-spacing: -0.5px; }
+.gi-left-row { display: flex; gap: 2px; align-items: center; font-weight: 500; line-height: 1.4; }
+.gi-left-cur { display: block; flex: none; width: 16.445px; height: 29px; font-size: 24px; color: var(--grey-btn); }
+.gi-left-num { display: block; flex: none; width: 63.461px; height: 42.281px; font-size: 32px; color: var(--black); }
+.gi-left-label { width: 100%; height: 13.539px; margin: 0; font: 700 14px/1.6 var(--font-ibm); color: var(--grey-btn); white-space: nowrap; }
+
+.gi-sec { position: absolute; left: 0; width: 375px; display: flex; flex-direction: column; gap: 8px; }
+.gi-card-pad { padding: 0 20px; display: flex; flex-direction: column; align-items: center; }
+.gi-card { background: #fff; border-radius: 8px; }
+.gi-rings-card { width: 100%; padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.gi-rings { width: 311px; display: flex; gap: 18px; align-items: center; }
+.gi-ring-col { flex: none; width: 64px; display: flex; flex-direction: column; gap: 5px; align-items: center; }
+.gi-ring { position: relative; display: block; flex: none; width: 64px; height: 64px; }
+.gi-ring img { position: absolute; left: 0; top: 0; width: 64px; height: 64px; max-width: none; }
+.gi-ring b { position: absolute; left: 20px; top: 13px; font: 700 24px/1.6 var(--font-ibm); letter-spacing: -0.5px; white-space: nowrap; }
+.gi-amt { flex: none; width: 64px; display: flex; flex-direction: column; gap: 4px; align-items: center; line-height: 1.6; letter-spacing: -0.5px; }
+.gi-amt-row { width: 100%; display: flex; gap: 0.955px; align-items: center; justify-content: center; }
+.gi-cur { display: block; flex: none; width: 7.851px; height: 14.187px; font: 400 10px/1.6 var(--font-ibm); color: var(--grey-btn); }
+.gi-num { display: block; flex: none; width: 43.188px; height: 20.185px; font: 500 16px/1.6 var(--font-ibm); color: var(--black); white-space: nowrap; }
+.gi-amt-left { width: 100%; font: 700 12px/1.6 var(--font-ibm); color: var(--grey-btn); text-align: center; }
+.gi-pager { display: block; }
+.gi-tip { flex: none; padding: 8px 14px 8px 8px; border-radius: 2px; background: #e6edff; display: flex; gap: 9px; align-items: flex-start; }
+.gi-tip img { flex: none; width: 22px; height: 22px; }
+.gi-tip p { flex: none; width: 250px; margin: 0; font: 400 12px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); }
+
+.gi-values { width: 335px; padding: 16px 16px 12px; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+.gi-top { width: 100%; padding: 12px 16px 16px 12px; border-radius: 2px; background: #e6edff; display: flex; gap: 14px; align-items: flex-start; }
+.gi-top-ico { flex: none; height: 33.016px; padding: 7.337px; border-radius: 5.869px; background: var(--green); display: flex; align-items: center; }
+/* Figma advances the emoji by 1 em; the system emoji font is wider, so the box keeps Figma's width */
+.gi-top-ico b { display: flex; justify-content: center; width: 18.6px; font: 700 17.608px/1.6 var(--font-ibm); letter-spacing: -0.3668px; white-space: nowrap; }
+.gi-top-text { flex: none; width: 122px; display: flex; flex-direction: column; align-items: flex-start; }
+.gi-top-name { display: block; flex: none; width: 172.391px; font: 500 18px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); }
+.gi-cap { display: block; margin: 0; font: 700 12px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--grey-unselected); white-space: nowrap; }
+.gi-bycat { flex: none; width: 263.789px; display: flex; flex-direction: column; gap: 10px; }
+.gi-bars { width: 100%; display: flex; gap: 8px; align-items: center; }
+.gi-bar-labels {
+  flex: none;
+  width: 94.219px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+  font: 400 14px/1.6 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: var(--grey-unselected);
+  text-align: right;
+  white-space: pre;
+}
+.gi-bar-col { flex: none; width: 161.57px; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+.gi-bar-col i { display: block; flex: none; height: 16.563px; border-radius: 0 3px 3px 0; background: var(--blue); }
+
+.gi-income { position: absolute; left: 19.95px; top: 1220px; width: 335px; padding: 16px 16px 0; display: flex; flex-direction: column; align-items: flex-start; }
+.gi-sum { width: 95px; display: flex; flex-direction: column; align-items: flex-start; }
+.gi-sum > .gi-cap { width: 100%; text-align: center; }
+.gi-sum-row { width: 75px; display: flex; align-items: center; }
+.gi-sum-row img { flex: 1 0 0; min-width: 1px; height: 19px; }
+.gi-sum-row > span { flex: none; display: flex; gap: 2px; align-items: center; letter-spacing: -0.5px; color: var(--black); }
+.gi-sum-row b { display: block; width: 9px; height: 30.984px; font: 700 14px/1.6 var(--font-ibm); }
+.gi-sum-row b + span { font: 600 24px/1.4 var(--font-ibm); white-space: nowrap; }
+.gi-chart { width: 100%; height: 146px; display: flex; flex-direction: column; align-items: center; }
+.gi-chart-bars { position: relative; flex: none; width: 164.56px; height: 85.805px; }
+.gi-chart-bars i { position: absolute; display: block; width: 70px; border-radius: 8px 8px 0 0; }
+.gi-chart-bars .is-blue { left: 94.56px; top: 0; height: 85.805px; background: var(--blue); }
+.gi-chart-bars .is-green { left: 0; top: 34.33px; height: 51.477px; background: var(--green); }
+.gi-chart > img { display: block; flex: none; width: 100%; height: 0.8px; margin-top: -0.8px; }
+.gi-chart-labels { display: flex; gap: 28px; align-items: center; line-height: 1.6; letter-spacing: -0.5px; }
+.gi-chart-labels > div { flex: none; width: 64px; display: flex; flex-direction: column; align-items: center; }
+.gi-chart-labels p { width: 100%; margin: 0; font: 700 12px/1.6 var(--font-ibm); color: var(--grey-btn); text-align: center; }
+
+/* ---------- G9 · Spending (30:10439 … 30:11031) ---------- */
+.gs-scroll { left: 0; top: 0; width: 375px; height: 729px; }
+.gs-page { position: relative; width: 375px; min-height: 729px; }
+.gs-tab {
+  position: absolute;
+  top: 91.7px;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: 400 20px/1.5 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: var(--black);
+  text-align: left;
+  white-space: nowrap;
+}
+button.gs-tab { cursor: pointer; }
+.gs-tab--on { font-weight: 500; }
+.gs-tab-bar { position: absolute; left: 187px; top: 133.7px; width: 167.422px; height: 3px; background: var(--black); }
+
+.gs-views { position: absolute; left: 20px; top: 149px; display: flex; gap: 8px; align-items: center; }
+.gs-view {
+  flex: none;
+  padding: 8px;
+  border: 0;
+  background: #fff;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  font: 400 14px/1.6 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: #000;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.gs-view.is-on { background: #aec7ff; }
+.gs-view img { flex: none; width: 24px; height: 24px; }
+
+/* Budgeting View: the second card runs off the right edge, as in Figma; the row scrolls sideways */
+.gs-budgets {
+  position: absolute;
+  left: 0;
+  top: 252.7px;
+  width: 375px;
+  height: 113px;
+  padding: 0 20px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+.gs-budgets::-webkit-scrollbar, .gs-cats::-webkit-scrollbar { display: none; }
+/* Swipe right to left for the next card; a swipe stops on a card (the last one ends 20 px from the edge).
+   With a mouse the row is dragged (js/guardian.js); snapping is off while dragging. */
+.gs-budgets { scroll-snap-type: x mandatory; scroll-padding: 0 20px; cursor: grab; }
+.gs-budget { scroll-snap-align: start; }
+.gs-budgets.is-dragging, .gs-cats.is-dragging { scroll-snap-type: none; cursor: grabbing; }
+.gs-budget { flex: none; width: 309px; padding: 16px; border-radius: 8px; background: #fff; display: flex; flex-direction: column; gap: 12px; align-items: flex-end; }
+.gs-budget-top { width: 100%; display: flex; gap: 14px; align-items: flex-start; }
+.gs-budget-ico { flex: none; width: 46px; height: 46px; padding: 10px; border-radius: 60px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.gs-budget-ico b, .gs-tx-ico b { display: block; flex: none; width: 100%; font: 700 20px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: #000; text-align: center; white-space: nowrap; }
+.gs-budget-info { flex: none; width: 217.576px; display: flex; flex-direction: column; gap: 8px; }
+.gs-budget-name { display: block; width: 91.121px; height: 14px; font: 700 14px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: #000; white-space: nowrap; }
+.gs-budget-nums { width: 100%; display: flex; gap: 19px; align-items: flex-start; font: 400 12px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: #000; }
+.gs-budget-spent { display: block; flex: none; width: 68.576px; height: 14px; white-space: nowrap; }
+.gs-budget-lims { flex: none; width: 130px; display: flex; flex-direction: column; align-items: flex-end; text-align: right; white-space: pre; }
+.gs-budget-lims > span { display: flex; gap: 8px; align-items: flex-start; }
+.gs-budget-lims > span.is-weekly { width: 100%; align-items: center; font-size: 10px; color: #bab1b1; }
+.gs-progress { width: 100%; height: 12px; padding-right: 34px; border-radius: 8px; background: #eaeaea; display: flex; flex-direction: column; align-items: flex-start; }
+.gs-progress i { display: block; flex: none; width: 149.391px; height: 12px; border-radius: 8px; background: var(--green); }
+.gs-progress--red, .gs-progress--red i { background: #ea0101; }
+
+.gs-tx-sec { position: absolute; left: 0; width: 375px; display: flex; flex-direction: column; }
+.gs-tx-head { height: 29px; }
+.gs-empty { margin: 0 20px; padding: 12px; border-radius: 8px; background: #fff; }
+.gs-empty p { width: 218px; height: 45.914px; margin: 0; font: 400 14px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); }
+
+.gs-tx-pad { padding: 10px 20px 4px; display: flex; flex-direction: column; }
+.gs-tx-card { width: 100%; padding: 12px 16px 6px; border-radius: 12px; background: #fff; display: flex; gap: 10px; align-items: flex-start; }
+.gs-tx-ico { flex: none; width: 44px; height: 44px; padding: 10px; border-radius: 60px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.gs-tx-ico b.is-big { font-weight: 400; font-size: 25px; }
+.gs-tx-ico .gs-tx-pt { flex: none; width: 100%; padding-top: 7px; display: flex; align-items: center; justify-content: center; }
+.gs-tx-pt b { flex: 1 0 0; height: 21px; display: flex; flex-direction: column; justify-content: center; font: 400 25px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: #000; text-align: center; white-space: nowrap; }
+.gs-tx-body { flex: none; width: 264px; display: flex; flex-direction: column; }
+.gs-tx-row { width: 250px; display: flex; align-items: flex-start; justify-content: space-between; }
+.gs-tx-left { display: flex; flex-direction: column; align-items: flex-start; }
+.gs-tx-name { display: block; min-width: 100%; height: 25px; margin-bottom: -4px; font: 700 14px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+.gs-tx-time, .gs-tx-cat { display: block; flex: none; font: 400 10px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: #b1b1b1; white-space: pre-wrap; }
+.gs-tx-time { margin-bottom: -4px; }
+.gs-tx-cat { width: 79px; }
+.gs-tx-amt { display: block; flex: none; width: 95.833px; font: 400 20px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); text-align: right; }
+
+/* Reactions under a transaction: like / emoji / share. A reaction with a count turns into a pill (30:10239). */
+.gs-react { padding-left: 22px; display: flex; gap: 6px; align-items: center; }
+.gs-r { position: relative; flex: none; width: 24px; height: 24px; padding: 0; border: 0; background: none; display: block; cursor: pointer; }
+.gs-r > img { display: block; width: 24px; height: 24px; }
+.gs-r.is-on { width: 40px; border: 1px solid #f4f5fb; border-radius: 13px; background: #fff; overflow: hidden; }
+.gs-r-in { position: absolute; display: flex; gap: 4px; align-items: center; }
+.gs-r-n { display: block; flex: none; width: 9px; height: 16px; font: 400 10px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); text-align: right; }
+.gs-r--emoji .gs-r-in { left: 4px; top: 3px; width: 30px; height: 16px; }
+.gs-r--emoji .gs-r-in img { flex: none; width: 17px; height: 17px; margin: -0.5px; }
+.gs-r--share .gs-r-in { left: 2.53px; right: 3.71px; top: 50%; transform: translateY(-50%); justify-content: center; }
+.gs-r--share .gs-r-in img { flex: none; width: 15.4px; height: 15.4px; margin: -0.5px; }
+.gs-r--like.is-on { width: auto; padding: 1px 6px 3px; border-radius: 23px; display: flex; align-items: center; }
+.gs-r--like.is-on img { flex: none; width: 15.167px; height: 14.337px; margin: -0.5px; }
+.gs-r--like.is-on .gs-r-n { height: 12px; }
+
+/* Category */
+.gs-cats {
+  position: absolute;
+  left: 0;
+  top: 251px;
+  width: 375px;
+  padding: 0 0 8px 20px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+.gs-cats::after { content: ""; flex: none; width: 1px; height: 1px; }
+.gs-cats { cursor: grab; }
+.gs-cat { position: relative; flex: none; width: 53px; display: flex; flex-direction: column; gap: 2px; align-items: center; }
+.gs-cat--dim { opacity: 0.5; }
+.gs-cat-ico { flex: none; width: 46px; height: 46px; padding: 10px; border-radius: 60px; background: var(--green); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.gs-cat-ico b { display: flex; flex: none; width: 27px; height: 32px; flex-direction: column; justify-content: center; font: 700 20px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: #000; text-align: center; white-space: nowrap; }
+.gs-cat-circle { position: relative; display: block; flex: none; width: 45px; height: 45px; border-radius: 50%; background: #b1b1b1; }
+.gs-cat-circle.is-green { background: #b0ffa1; opacity: 0.5; }
+.gs-cat-name { display: block; flex: none; min-width: 100%; height: 14px; font: 400 12px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--grey-unselected); text-align: center; white-space: nowrap; }
+/* The emoji are centred in their circle. Figma's fixed offsets assume Figma's narrower emoji, so in a browser
+   they drifted right and low. js/guardian.js swaps each one for a canvas cropped to its pixels, so Safari's
+   emoji metrics don't move it either. */
+.gs-cat-emoji {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 400 28px/1 var(--font-inter);
+  letter-spacing: 0;
+  color: #000;
+  white-space: nowrap;
+  opacity: 0.5;
+}
+.gs-cat-emoji--lg { font-size: 30.256px; }
+.gs-cat-emoji--full { opacity: 1; }
+.gs-cat-glyph { display: block; flex: none; }   /* the emoji drawn as pixels (js/guardian.js), centred by the flex box */
+
+/* By dates: the dropdown, and the date picker under it (30:11031). Open: 3 px #dae6ff ring outside the field. */
+.gs-date {
+  position: absolute;
+  left: 19px;
+  top: 210px;
+  width: 334px;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 49px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.gs-date[aria-expanded="true"] { box-shadow: 0 0 0 3px var(--selected-bg); }
+.gs-date[aria-expanded="true"] .gs-date-caret { transform: rotate(180deg); }
+.gs-date-left { display: flex; gap: 8px; align-items: flex-start; }
+.gs-date-left img { flex: none; width: 24px; height: 24px; }
+.gs-date-left span { font: 500 16px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+.gs-date-caret { flex: none; width: 24px; height: 24px; }
+.gs-cal { position: absolute; left: 20px; top: 266.2px; width: 334px; padding: 10.341px; border-radius: 12px; background: #fff; display: flex; flex-direction: column; gap: 26.885px; }
+.gs-cal[hidden] { display: none; }
+.gs-cal-month { width: 100%; display: flex; gap: 80.656px; align-items: center; justify-content: center; }
+.gs-cal-nav { position: relative; flex: none; width: 5.17px; height: 10.341px; padding: 0; border: 0; background: none; cursor: pointer; }
+.gs-cal-nav::after { content: ""; position: absolute; inset: -12px -14px; }
+.gs-cal-nav img { position: absolute; left: -0.731px; top: -0.517px; width: 6.418px; height: 11.375px; max-width: none; }
+.gs-cal-nav[data-cal="1"] img { left: -0.517px; }
+.gs-cal-label { flex: none; width: 111px; display: flex; gap: 4px; align-items: center; }
+.gs-cal-label span { flex: none; width: 96.199px; height: 21.715px; display: flex; align-items: center; font: 400 16.545px/1.5 var(--font-ibm); letter-spacing: -0.517px; color: var(--black); white-space: nowrap; }
+.gs-cal-label img { flex: none; width: 8.789px; height: 4.136px; }
+.gs-cal-grid { width: 100%; height: 258.514px; display: flex; flex-direction: column; gap: 8.272px; align-items: center; }
+.gs-cal-weeks { width: 100%; height: 223.356px; display: flex; flex-direction: column; justify-content: space-between; }
+.gs-cal-row { flex: none; width: 100%; height: 26.885px; display: flex; align-items: center; justify-content: space-between; }
+.gs-cal-row > * {
+  flex: none;
+  width: 26.885px;
+  height: 26.885px;
+  padding: 10.341px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 400 12.409px/1.5 var(--font-inter);
+  letter-spacing: -0.3309px;
+  color: var(--black);
+  white-space: nowrap;
+}
+.gs-cal-row > button { cursor: pointer; }
+.gs-cal-row > .is-today { box-shadow: inset 0 0 0 1.034px var(--blue); }
+.gs-cal-row > .is-picked { background: #aec7ff; box-shadow: none; font-weight: 700; color: #fff; }
+
+/* "Setting" has auto height in this tab bar too (row 67 px), but it is drawn at x 0 in black */
+.tabbar--auto .tab:last-child span { height: auto; }

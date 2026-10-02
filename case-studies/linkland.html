@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LinkLand — Jihae Choe</title>
+  <link rel="stylesheet" href="linkland.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Case-study shell: top nav + "On this page" column, same look as casestudy.css.
+       Kept separate so casestudy.css's resets don't change the LinkLand content. -->
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #F5F5F3; }
+    nav, .sl { font-family: 'DM Sans', sans-serif; line-height: 1.75; color: #111110; }
+    nav *, .sl, .sl * { box-sizing: border-box; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,245,243,0.94); backdrop-filter: blur(12px); border-bottom: 1px solid #E2E2DE; height: 56px; display: flex; align-items: center; }
+    .nav-inner { max-width: 1520px; margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 60px 0 40px; }
+    .nav-back { font-size: 16px; font-weight: 500; color: #888884; text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: #111110; }
+    .nav-logo { font-size: 16px; font-weight: 500; color: #111110; text-decoration: none; }
+    .layout { display: grid; grid-template-columns: 200px 1fr; max-width: 1520px; margin: 0 auto; padding-top: 56px; min-height: 100vh; align-items: start; }
+    .sl { position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; scrollbar-width: none; padding: 48px 24px 48px 40px; border-right: 1px solid #E2E2DE; }
+    .sl::-webkit-scrollbar { display: none; }
+    .toc-label { font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #888884; margin-bottom: 20px; }
+    .toc-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+    .toc-list a { display: block; font-size: 12px; font-weight: 400; color: #888884; text-decoration: none; padding: 5px 0 5px 10px; border-left: 2px solid transparent; transition: color .2s, border-color .2s; line-height: 1.4; }
+    .toc-list a:hover { color: #111110; }
+    .toc-list a.active { color: #111110; font-weight: 500; border-left-color: #111110; }
+    .ll-main { container-type: inline-size; min-width: 0; }
+    .ll-main [id] { scroll-margin-top: 56px; }
+    @media (max-width: 1024px) { .layout { grid-template-columns: 160px 1fr; } }
+    @media (max-width: 768px) {
+      .layout { grid-template-columns: 1fr; }
+      .sl { display: none; }
+      .nav-inner { padding: 0 20px; }
+    }
+  </style>
+    
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+</style>
+    
+  <!-- Splide CSS and JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/css/splide.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/js/splide.min.js"></script>
+
+  <!-- Splide init script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      new Splide('#image-slider', {
+        type: 'loop',
+        perPage: 1,
+        autoplay: false,
+        arrows: false,
+        pagination: true,
+        classes: {
+            arrows: 'splide__arrows hidden', // custom class to suppress arrows entirely
+        }
+      }).mount();
+    });
+  </script>  
+    
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-back"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M12 7H2M6 3L2 7l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Back</a>
+    <a href="../index.html" class="nav-logo">Jihae Choe</a>
+  </div>
+</nav>
+
+<div class="layout">
+<aside class="sl">
+  <div class="toc-label">On this page</div>
+  <ul class="toc-list">
+    <li><a href="#overview" class="active">Project Overview</a></li>
+    <li><a href="#background">Background</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#user-flow">User Flow</a></li>
+    <li><a href="#ideation">Ideation</a></li>
+    <li><a href="#service-concept">Service Concept</a></li>
+    <li><a href="#service-detail">Service Detail</a></li>
+    <li><a href="#design">Design</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</aside>
+
+<main class="ll-main">
+
+<div class="full_width">
+
+  <div class="image-gallery">
+
+<div class="project-explain" id="overview">
+  <div class="half left">
+    <h1 style="margin-top: 0">Linkland</h1>
+    <p class="compact" >Digital Product Design</p>
+    <p class="compact" >3 month</p>
+    <p class="compact" >2025</p>
+      
+
+  </div>
+          
+  <div class="half right">
+  <div class="content-row">
+    <div class="label">Problem</div>
+    <div class="text">There is increasing numbers of study and working abroad experiences, which leads to loneliness from inevitable migration.</div>
+
+  </div>
+
+  <div class="content-row">
+    <div class="label">Goal</div>
+    <div class="text">Allow user to have constant communication with pre-existing relationships but not interfere with their personal schedule.</div>
+  </div>
+  <div class="content-row">
+    <div class="label">Solution</div>
+    <div class="text">Reflecting back what good digital communication is, provide an environment that keeps the balance between work and relationships.</div>
+  </div>
+</div>
+          
+</div>
+
+    <div class="image-wrapper"><img src="../images/LinkLand/linkland01.jpg" alt="Image 1"></div>
+    <div class="image-wrapper"><img src="../images/LinkLand/linkland02.jpg" alt="Image 2"></div>
+    <div class="image-wrapper" id="background"><img src="../images/LinkLand/linkland03.jpg" alt="Image 3" style="padding-top: 10cqw"></div>
+    <div class="image-wrapper"><img src="../images/LinkLand/linkland04.jpg" alt="Image 4"></div>
+    <div class="image-wrapper" id="research"><img src="../images/LinkLand/linkland05.jpg" alt="Image 5"></div>
+    <div class="image-wrapper"><img src="../images/LinkLand/linkland06.jpg" alt="Image 6"></div>
+    <div class="image-wrapper"><img src="../images/LinkLand/linkland07.jpg" alt="Image 7"></div>
+    <div class="image-wrapper"><img src="../images/LinkLand/linkland08.jpg" alt="Image 8"></div>
+    <div class="image-wrapper" id="user-flow"><img src="../images/LinkLand/linkland09.jpg" alt="Image 9"></div>
+    <div class="image-wrapper" id="ideation"><img src="../images/LinkLand/linkland10.jpg" alt="Image 10" style="padding-top: 10cqw"></div>
+    <div class="image-wrapper" id="service-concept"><img src="../images/LinkLand/linkland11.jpg" alt="Image 11" style="padding-top: 10cqw"></div>
+    <div class="image-wrapper" id="service-detail"><img src="../images/LinkLand/linkland12.jpg" alt="Image 12"></div>
+      <div class="image-wrapper">
+  
+          
+<div class="feature-row">
+    
+    <!-- Food GIF Block -->
+  <div class="feature-item">
+    <div class="video-crop-wrapper">
+  <iframe
+    src="https://www.youtube.com/embed/XIR4mHryDEg?autoplay=1&mute=1&controls=0&loop=1&playlist=XIR4mHryDEg&modestbranding=1&rel=0"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen
+  ></iframe>
+</div>
+    <div class="feature-caption">
+      <div class="feature-number">01</div>
+      <div class="feature-text">
+        <div class="title">Share food I had today</div>
+        <div class="description">Random questions to exchange what they have done today</div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Random Question GIF Block -->
+  <div class="feature-item">
+    <div class="video-crop-wrapper">
+  <iframe
+    src="https://www.youtube.com/embed/t4kfR4jHrK8?autoplay=1&mute=1&controls=0&loop=1&playlist=t4kfR4jHrK8&modestbranding=1&rel=0"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen
+  ></iframe>
+</div>
+    <div class="feature-caption">
+      <div class="feature-number">02</div>
+      <div class="feature-text">
+        <div class="title">Random Question</div>
+        <div class="description">Send each other daily good they had to easily initiate the conversation</div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Arrow between -->
+    <div class="arrow-wrapper">
+      <img src="../images/LinkLand/arrow.png" class="arrow-image" alt="Arrow">
+    </div>
+
+    <!-- Growing Island GIF Block -->
+  <div class="feature-item">
+   <div class="video-crop-wrapper">
+  <iframe
+    src="https://www.youtube.com/embed/ESojR4_V-q8?autoplay=1&mute=1&controls=0&loop=1&playlist=ESojR4_V-q8&modestbranding=1&rel=0"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen
+  ></iframe>
+</div>
+    <div class="feature-caption">
+      <div class="feature-number">03</div>
+      <div class="feature-text">
+        <div class="title">Result</div>
+        <div class="description">As the result of daily experience exchange, the island gets bigger and closer</div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+    <div class="image-wrapper"><img src="../images/LinkLand/linkland13.jpg" alt="Image 13" style="padding-top: 10cqw"></div>
+    <div class="image-wrapper"><img src="../images/LinkLand/linkland14.jpg" alt="Image 14" style="padding-top: 10cqw"></div>
+      
+      <div class="image-wrapper">
+      
+          <div class="feature-row">
+  
+  <!-- Asking Schedule GIF -->
+  <div class="feature-item">
+  <div class="video-crop-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/RhN_DFCPedM?autoplay=1&mute=1&controls=0&loop=1&playlist=RhN_DFCPedM&modestbranding=1&rel=0"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    ></iframe>
+  </div>
+  <div class="feature-caption">
+    <div class="feature-number">01</div>
+    <div class="feature-text">
+      <div class="description" style="padding-top: 0">
+        Able to directly talk about the specific schedule that I or opponents have
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Dual Focus Mode GIF -->
+  <div class="feature-item">
+  <div class="video-crop-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/ol4RjcEVqBI?autoplay=1&mute=1&controls=0&loop=1&playlist=ol4RjcEVqBI&modestbranding=1&rel=0"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    ></iframe>
+  </div>
+  <div class="feature-caption">
+    <div class="feature-number">02</div>
+    <div class="feature-text">
+      <div class="description" style="padding-top: 0">
+        Use dual focus mode to keep the balance between work and relationship
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Cheer Up GIF -->
+  <div class="feature-item">
+  <div class="video-crop-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/vY961-x5-iM?autoplay=1&mute=1&controls=0&loop=1&playlist=vY961-x5-iM&modestbranding=1&rel=0"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    ></iframe>
+  </div>
+  <div class="feature-caption">
+    <div class="feature-number">03</div>
+    <div class="feature-text">
+      <div class="description" style="padding-top: 0">
+        Book a cheer up before opponent’s schedule starts so you don’t have to stay up late in the midnight
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+      </div>
+      
+<div style="padding-top: 10cqw"></div>
+
+<div class="image-wrapper">
+        <div id="image-slider" class="splide">
+          <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide">
+                        <img src="../images/LinkLand/linkland15-1.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img src="../images/LinkLand/linkland15-2.jpg">
+                    </li>
+                    <li class="splide__slide">
+                        <img src="../images/LinkLand/linkland15-3.jpg">
+                    </li>
+                </ul>
+          </div>
+        </div>
+</div>
+      
+<div class="image-wrapper"><img src="../images/LinkLand/linkland16.jpg" alt="Image 16"></div>
+      <div class="image-wrapper">
+            <div class="feature-row tight-row">
+
+  <!-- Pug Final GIF -->
+  <div class="feature-item">
+    <div class="video-crop-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/emEhUg4XZMk?autoplay=1&mute=1&controls=0&loop=1&playlist=emEhUg4XZMk&modestbranding=1&rel=0"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    ></iframe>
+  </div>
+  <div class="feature-caption">
+    <div class="feature-number">01</div>
+    <div class="feature-text">
+      <div class="description" style="padding-top: 0">
+        Island gets animals based on the decoration, if you share this unexpected visiting, your partner can fill out the animal dex
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- Decorate Island GIF -->
+  <div class="feature-item">
+     <div class="video-crop-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/4Tl92Rks8Tg?autoplay=1&mute=1&controls=0&loop=1&playlist=4Tl92Rks8Tg&modestbranding=1&rel=0"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    ></iframe>
+  </div>
+  <div class="feature-caption">
+    <div class="feature-number">02</div>
+    <div class="feature-text">
+      <div class="description" style="padding-top: 0">
+        The in-app store can be accessed together,so the user can talk about how they decorate the island together
+      </div>
+    </div>
+  </div>
+      </div>
+
+<div class="image-wrapper" id="design"><img src="../images/LinkLand/linkland17.jpg" alt="Image 17" style="padding-top: 10cqw"></div>
+<div class="image-wrapper"><img src="../images/LinkLand/linkland18.jpg" alt="Image 18"></div>
+<div class="image-wrapper" id="conclusion"><img src="../images/LinkLand/linkland19.jpg" alt="Image 19"></div>
+      
+      
+  </div>    <!-- image gallery ends here -->
+    
+</div> <!-- full-width ends -->
+
+</main>
+</div> <!-- layout ends -->
+    
+    <script>
+  new Splide( '#image-slider' ).mount();
+</script>
+    
+    <script>
+  // "On this page": highlight the last section whose top has passed 30% of the viewport
+  const tocLinks=[...document.querySelectorAll('.toc-list a')].map(a=>({a,el:document.querySelector(a.getAttribute('href'))}));
+  function updateToc(){let cur=tocLinks[0];tocLinks.forEach(t=>{if(t.el.getBoundingClientRect().top<=innerHeight*0.3)cur=t;});tocLinks.forEach(t=>t.a.classList.toggle('active',t===cur));}
+  addEventListener('scroll',updateToc,{passive:true});
+  updateToc();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,690 @@
+/* Earnify onboarding prototype
+   All values come from the Figma file "earnify-paid" (section 1:1968, iPhone 13 mini frames, 375 x 812).
+   Coordinates are in Figma points; the device is scaled as a whole by js/app.js. */
+
+:root {
+  /* Figma variables */
+  --blue: #0350fd;              /* button-base-color */
+  --green: #04d180;             /* green-sub */
+  --black: #191919;             /* default-black */
+  --grey-unselected: #676b77;   /* grey-unselected (placeholders) */
+  --grey-btn: #979ca8;          /* grey-next-button */
+  --grey-btn-text: #c7c2c2;
+  --input-bg: #eef1f8;          /* normal-input */
+  --selected-bg: #dae6ff;       /* illust-button-selected */
+  --pictogram-grey: #d9d9d9;    /* pictogramgrey */
+  --tint-bg: #f6f6f6;           /* tintgrey-background */
+  --tabbar-bg: #f8f8f8;
+  --skip: #808080;
+  --search-bg: #dedede;
+  --overlay: rgba(140, 140, 140, 0.52);
+  --picker-band: rgba(217, 217, 217, 0.54);
+  --corner: 8px;
+
+  --font-ibm: "IBM Plex Sans Devanagari", "IBM Plex Sans", system-ui, sans-serif;
+  --font-poppins: "Poppins", system-ui, sans-serif;
+  --font-sf: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "Helvetica Neue", system-ui, sans-serif;
+
+  /* Figma canvas behind the frames */
+  --canvas: #444444;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  background: var(--canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+button { font: inherit; color: inherit; -webkit-tap-highlight-color: transparent; }
+img { display: block; }
+
+/* ---------- Stage & device ---------- */
+.stage {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+}
+.device-wrap { position: relative; flex: none; }
+.device {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 375px;
+  height: 812px;
+  overflow: hidden;
+  transform-origin: 0 0;
+  background: #fff;
+  font-family: var(--font-ibm);
+  color: var(--black);
+  letter-spacing: -0.5px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.device img { -webkit-user-drag: none; }
+.device input { -webkit-user-select: text; user-select: text; }
+
+/* ---------- Screens ---------- */
+.screen {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+}
+.screen.is-active { visibility: visible; pointer-events: auto; }
+.screen--home { background: var(--tint-bg); }
+.abs { position: absolute; max-width: none; }
+.scroll {
+  position: absolute;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+.scroll::-webkit-scrollbar { display: none; }
+
+/* ---------- Status bar (StatusBar component, 375 x 57) ---------- */
+.status-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 40;
+  width: 375px;
+  height: 57px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: #fff;
+  pointer-events: none;
+}
+.device[data-screen="home"] .status-bar,
+.device[data-screen="home-goal"] .status-bar { background: var(--tint-bg); }
+.sb-left {
+  flex: 1 0 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 3px 10px;
+}
+.sb-time { position: relative; width: 54px; height: 21px; }
+.sb-time span {
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 54px;
+  height: 20px;
+  font: 600 16px/21px var(--font-sf);
+  letter-spacing: -0.32px;
+  text-align: center;
+  color: #000;
+}
+.sb-island {
+  flex: none;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 31px 0 26px;
+}
+.sb-island i { display: block; width: 125px; height: 37px; border-radius: 100px; background: #000; }
+.sb-right {
+  flex: 1 0 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 11px;
+}
+
+/* ---------- Home indicator (Line 5) ---------- */
+.home-ind {
+  position: absolute;
+  z-index: 40;
+  left: 121px;
+  top: 800px;
+  width: 134.391px;
+  height: 5px;
+  pointer-events: none;
+}
+.home-ind--short { left: 122px; width: 112px; display: none; }
+.device[data-screen="banks"] .home-ind--long { display: none; }
+.device[data-screen="banks"] .home-ind--short { display: block; }
+.device[data-screen="home"] .home-ind--long,
+.device[data-screen="home-goal"] .home-ind--long { left: 120.3px; top: 798.67px; }
+
+/* ---------- Typography (Figma text styles) ---------- */
+.h-xl {            /* IBM-HeadingXL200 */
+  margin: 0;
+  font: 400 28px/1.4 var(--font-ibm);
+  letter-spacing: -0.5px;
+}
+.b-m {             /* IBM-BodyM200 */
+  margin: 0;
+  font: 400 16px/1.5 var(--font-ibm);
+  letter-spacing: -0.5px;
+}
+.b-m-500 {         /* IBM-BodyM400 */
+  margin: 0;
+  font: 500 16px/1.6 var(--font-ibm);
+  letter-spacing: -0.5px;
+}
+.b-l-500 {         /* IBM-BodyL400 */
+  margin: 0;
+  font: 500 20px/1.5 var(--font-ibm);
+  letter-spacing: -0.5px;
+}
+.b-s {             /* IBM-BodyS200 */
+  margin: 0;
+  font: 400 14px/1.6 var(--font-ibm);
+  letter-spacing: -0.5px;
+}
+
+/* ---------- Header: back chevron + title (+ body) ---------- */
+.hdr { position: absolute; left: 0; width: 375px; display: flex; flex-direction: column; }
+.back-row { position: relative; height: 24px; }
+.back-btn {
+  position: absolute;
+  left: 0;
+  top: -10px;
+  width: 56px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.back-btn img { position: absolute; left: 19.25px; top: 15.25px; width: 7.5px; height: 13.5px; }
+.title-row { padding: 8px 20px; }
+.title-row .h-xl { width: 335px; }
+.body-row { padding: 10px 20px; }
+
+/* ---------- Progress bar ---------- */
+.progress {
+  position: absolute;
+  left: 20px;
+  top: 75px;
+  width: 335px;
+  height: 9px;
+  display: flex;
+  justify-content: space-between;
+}
+.progress i { display: block; flex: none; height: 9px; background: var(--pictogram-grey); }
+.progress i.on { background: var(--blue); }
+.skip {
+  position: absolute;
+  right: 20px;
+  top: 85px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: 400 16px/1.5 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: var(--skip);
+  cursor: pointer;
+}
+
+/* ---------- Button-Big-unselected ---------- */
+.btn {
+  position: absolute;
+  left: 16px;
+  width: 343px;
+  height: 55px;
+  padding: 16px 151px 15px 144px;
+  border: 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue);
+  color: #fff;
+  font: 500 18px/1.6 var(--font-ibm);
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.btn:disabled { background: var(--grey-btn); color: var(--grey-btn-text); cursor: default; }
+
+/* ---------- Inputs ---------- */
+.form { position: absolute; left: 0; width: 375px; display: flex; flex-direction: column; gap: 10px; }
+.field { display: flex; flex-direction: column; gap: 4px; }
+.field label { padding: 0 20px; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; }
+.field input {
+  margin: 0 0 0 20px;
+  width: 335px;
+  height: 46px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: var(--corner);
+  background: var(--input-bg);
+  font: 400 16px/1.5 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: var(--black);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.field input::placeholder { color: var(--grey-unselected); opacity: 1; }
+
+.lock-note {
+  position: absolute;
+  left: 0;
+  width: 375px;
+  padding: 0 20px;
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+.lock-note img { flex: none; width: 22px; height: 29px; }
+.lock-note p { width: 255px; height: 69px; }
+
+/* ---------- Journey steps ---------- */
+.j-line { position: absolute; height: 4px; transform: rotate(90deg); }
+.j-dot {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  padding: 10px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--selected-bg);
+  color: var(--black);
+  font: 400 16px/1.5 var(--font-ibm);
+  letter-spacing: -0.5px;
+}
+.j-dot.on { background: var(--blue); color: #fff; }
+.j-label { position: absolute; margin: 0; white-space: nowrap; }
+
+/* ---------- Birthday wheel picker ---------- */
+.dob-picker { position: absolute; left: 0; top: 297px; width: 375px; height: 217px; overflow: hidden; }
+.dob-band {
+  position: absolute;
+  left: 20px;
+  top: 87.43px;
+  width: 335.14px;
+  height: 42.5px;
+  border-radius: 6.071px;
+  background: var(--picker-band);
+}
+.wheel-col {
+  position: absolute;
+  top: 0;
+  height: 217px;
+  touch-action: none;
+  cursor: grab;
+  outline: none;
+}
+.wheel-col:active { cursor: grabbing; }
+.wheel-item {
+  position: absolute;
+  top: 0;
+  font: 400 26.92px/normal var(--font-sf);
+  letter-spacing: 0;
+  color: var(--black);
+  white-space: nowrap;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* ---------- Bank list ---------- */
+.search {
+  position: absolute;
+  left: 20px;
+  top: 181px;
+  width: 335px;
+  height: 34px;
+  padding: 8px 10px 8px 12px;
+  border-radius: 8px;
+  background: var(--search-bg);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.search img { flex: none; width: 18px; height: 18px; }
+.search input {
+  width: 150.896px;
+  flex: 1;
+  height: 18px;
+  padding: 0;
+  border: 0;
+  background: none;
+  outline: none;
+  font: 400 14px/normal var(--font-ibm);
+  letter-spacing: 0;
+  color: var(--black);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.search input::placeholder { color: var(--grey-btn); opacity: 1; }
+.search input::-webkit-search-cancel-button { display: none; }
+
+.bank-list {
+  position: absolute;
+  left: 20px;
+  top: 243px;
+  width: 263px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.bank {
+  width: 263px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+button.bank { cursor: pointer; }
+.bank[hidden] { display: none; }
+.bank-logo {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;       /* Figma circle mask (Ellipse 180, 44 x 44) */
+  overflow: hidden;
+  background-repeat: no-repeat;
+}
+.bank-name {
+  display: block;
+  width: 207px;
+  height: 20px;
+  font: 500 16px/1.6 var(--font-ibm);
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
+
+/* ---------- Terms bottom sheet (Frame 1707484657) ---------- */
+.sheet-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 55;
+  background: var(--overlay);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 260ms ease;
+}
+.sheet-overlay.is-open { opacity: 1; pointer-events: auto; }
+.sheet {
+  position: absolute;
+  left: 0;
+  top: 447px;
+  z-index: 60;
+  width: 375px;
+  height: 365px;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+  background: #fff;
+  transform: translateY(100%);
+  visibility: hidden;
+  transition: transform 340ms cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0s linear 340ms;
+}
+.sheet.is-open { transform: none; visibility: visible; transition: transform 340ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+/* Figma centres these fixed-width text boxes inside 335px rows (title lands at x 23, body at x 18.5). */
+.sheet-title,
+.sheet-body {
+  position: absolute;
+  left: 0;
+  width: 375px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sheet-title { top: 14px; }
+.sheet-body { top: 91px; }
+.sheet-title p { flex: none; width: 329px; }
+.sheet-body div { flex: none; width: 338px; }
+.sheet .btn { top: 262px; }
+.sheet .sheet-ind { position: absolute; left: 121px; top: 352px; width: 134.391px; height: 5px; }
+
+/* ---------- Bank consent (image based screen, 375 x 1176) ---------- */
+.consent-scroll { inset: 0; }
+.consent-page { position: relative; width: 375px; height: 1176px; overflow: hidden; }
+.clip { position: absolute; overflow: hidden; }
+.hotspot {
+  position: absolute;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* ---------- Which account ---------- */
+.acct-list { position: absolute; left: 0; top: 261px; width: 375px; display: flex; flex-direction: column; gap: 12px; }
+.acct { height: 60px; padding: 0 20px; display: flex; flex-direction: column; justify-content: center; }
+.acct-box {
+  flex: none;
+  width: 335px;
+  height: 63px;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: var(--corner);
+  background: var(--input-bg);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+  cursor: pointer;
+}
+.acct-box[aria-checked="true"] { background: var(--selected-bg); }
+.acct-box .cb { flex: none; width: 19px; height: 19px; }
+.acct-box .cb-on { display: none; }
+.acct-box[aria-checked="true"] .cb-on { display: block; }
+.acct-box[aria-checked="true"] .cb-off { display: none; }
+.acct-text { width: 263px; display: flex; align-items: center; white-space: nowrap; }
+
+/* ---------- What happens after 90 days ---------- */
+.info-list { position: absolute; left: 0; top: 341px; width: 375px; display: flex; flex-direction: column; gap: 12px; }
+.info { padding: 0 30px; display: flex; gap: 12px; align-items: flex-start; }
+.info img { flex: none; width: 24px; height: 34px; }
+.info-text { width: 258px; padding-top: 4px; display: flex; flex-direction: column; gap: 4px; color: #000; }
+.info-text .b-m-500 { height: 26px; }
+.info-text .b-m { height: 49px; }
+
+/* ---------- Home ---------- */
+.home-scroll { left: 0; top: 0; width: 375px; height: 729px; }
+.home-content { position: relative; width: 375px; height: 920px; }
+.home-sec { position: absolute; width: 375px; display: flex; flex-direction: column; gap: 8px; }
+.home-h { padding: 0 20px; white-space: nowrap; }
+.home-cards { display: flex; flex-direction: column; gap: 16px; }
+.home-card {
+  margin: 0 20px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #000;
+}
+.hc-left { width: 207px; flex: none; display: flex; gap: 6px; align-items: center; }
+.hc-left--plain { gap: 0; }
+.hc-text { padding: 10px; white-space: nowrap; }
+.hc-left--plain .hc-text { padding-left: 0; }
+.hc-ico { flex: none; width: 24px; height: 24px; }
+.hc-box {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  padding: 2px 1px 1px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.hc-box img { width: 22px; height: 21px; }
+.hc-emoji { font-size: 24px; line-height: normal; letter-spacing: 0; white-space: nowrap; }
+.hc-emoji--sparkles { font-weight: 700; line-height: 21px; letter-spacing: -0.32px; }
+.hc-chev { flex: none; width: 24px; height: 24px; transform: rotate(180deg); }
+
+.tabbar {
+  position: absolute;
+  left: 0;
+  top: 729px;
+  width: 375px;
+  height: 83px;
+  background: var(--tabbar-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+}
+.tab-row { width: 375px; padding: 8px 28px 16px; display: flex; gap: 39px; align-items: center; }
+.tab { flex: none; display: flex; flex-direction: column; gap: 4px; align-items: center; }
+.tab img { width: 24px; height: 24px; }
+.tab span {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 100%;
+  height: 13.668px;
+  font: 500 10px/normal var(--font-ibm);
+  letter-spacing: 0;
+  color: #000;
+  text-align: center;
+  white-space: nowrap;
+}
+.tab.is-current span { font-weight: 700; }
+
+.fab {
+  position: absolute;
+  left: 207.2px;
+  top: 669.27px;
+  padding: 13.399px 22px 13.399px 16px;
+  border: 0;
+  border-radius: 6698.837px;
+  background: var(--blue);
+  color: #fff;
+  display: flex;
+  gap: 6.7px;
+  align-items: center;
+  justify-content: center;
+  font: 500 16px/1.6 var(--font-ibm);
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
+.fab img { width: 24px; height: 24px; }
+
+/* Keyboard focus only (no visual change for pointer users) */
+.device button:focus { outline: none; }
+.device button:focus-visible,
+.wheel-col:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+/* ---------- Prototype panel (outside the app, not part of the Figma design) ---------- */
+.panel {
+  flex: none;
+  width: 248px;
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
+  scrollbar-width: none;
+  color: #bdbdbd;
+  font: 400 13px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.panel::-webkit-scrollbar { display: none; }
+.panel-head { display: flex; justify-content: flex-end; }
+.panel-steps { margin: 14px 0 0; padding: 0; list-style: none; counter-reset: step; }
+.panel-steps li { counter-increment: step; }
+.panel-steps button {
+  width: 100%;
+  padding: 4px 8px 4px 30px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: inherit;
+  text-align: left;
+  position: relative;
+  cursor: pointer;
+}
+.panel-steps button::before {
+  content: counter(step);
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  text-align: right;
+  color: #7a7a7a;
+  font-variant-numeric: tabular-nums;
+}
+.panel-steps button:hover { background: rgba(255, 255, 255, 0.06); color: #e6e6e6; }
+.panel-steps button[aria-current="step"] { background: rgba(255, 255, 255, 0.12); color: #fff; }
+.panel-steps .panel-branch { margin-left: 30px; padding: 0 8px 3px; color: #8a8a8a; font-size: 12px; }
+.panel-steps--plain button::before { content: "•"; }
+
+/* Routes: one accordion per flow, at most one open */
+.panel-routes { margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+.route { border-radius: 10px; background: rgba(255, 255, 255, 0.04); }
+.route-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: none;
+  color: #fff;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+.route-head:hover { background: rgba(255, 255, 255, 0.06); }
+.route-head:focus { outline: none; }
+.route-head:focus-visible { outline: 2px solid #8a8a8a; outline-offset: -2px; }
+.route-title { flex: 1; min-width: 0; }
+.route-count { flex: none; color: #8a8a8a; font-size: 12px; font-weight: 400; }
+.route-chev {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  margin: -3px 3px 0 2px;
+  border-right: 1.5px solid #9a9a9a;
+  border-bottom: 1.5px solid #9a9a9a;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+.route:not(.is-open) .route-chev { margin-top: 0; transform: rotate(-45deg); }
+.route-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.25s ease; }
+.route.is-open .route-body { grid-template-rows: 1fr; }
+.route-inner { min-height: 0; overflow: hidden; visibility: hidden; transition: visibility 0s 0.25s; }
+.route.is-open .route-inner { visibility: visible; transition: visibility 0s; }
+.route .panel-steps { margin: 0; padding: 0 4px 8px; }
+.route-sub {
+  margin: 4px 0 4px;
+  padding: 0 12px;
+  color: #8a8a8a;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.panel-restart {
+  flex: none;
+  padding: 6px 12px;
+  border: 1px solid #6a6a6a;
+  border-radius: 6px;
+  background: none;
+  color: #e6e6e6;
+  cursor: pointer;
+}
+.panel-restart:hover { border-color: #9a9a9a; }
+
+@media (max-width: 759px) {
+  .panel { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sheet, .sheet.is-open, .sheet-overlay { transition: none; }
+  .route-body, .route-inner, .route-chev { transition: none; }
+}

@@ -1,0 +1,336 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+
+/* The page sits in the right column of the case-study layout, so sizes that were
+   relative to the viewport (vw, @media) are relative to that column (cqw, @container). */
+
+/* top project explain */
+.project-explain {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  flex-wrap: nowrap; 
+  box-sizing: border-box;  
+  font-family: "Noto Sans", sans-serif;
+}
+
+.half {
+  width: 50%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.left {
+  text-align: left;
+}
+
+.half .left {
+    justify-content: space-between;
+}
+
+.right {
+  text-align: left;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.right em {
+  font-style: italic;
+}
+
+.half.right {
+  font-size: 16px;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.label {
+  width: 80px; /* Increase for breathing room */
+  font-weight: bold;
+  flex-shrink: 0;
+  padding-right: 10px;
+  text-align: left; /* Optional: aligns labels to the end for visual balance */
+}
+
+.project-text {
+  flex: 1;
+  text-indent: 0; /* ensure no extra indent */
+  margin: 0;       /* reset any browser default margin */
+}
+
+
+
+/* splider JS library hiding contents */
+.hidden {
+  display: none !important;
+}
+
+.splide__arrows {
+  display: none !important;
+}
+
+.compact {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #F4F0FF ;            /* purple text */
+  background-color: #7948FF; /* light purple bg */
+  border-radius: 9999px;     /* pill shape */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-right: 5px; 
+}
+
+
+.full_width{
+  width: 100%;
+  display: flex;
+}
+
+.image-gallery{
+  width: 100%;
+  padding: 40px;
+  background-color: white;
+}
+
+
+
+/* Small screens: < 1000px */
+@container (max-width: 999px) {
+  .image-gallery {
+    padding: 0px;
+  }
+}
+
+/* Large screens: ≥ 1400px */
+@container (min-width: 1400px) {
+  .image-gallery {
+    padding: 60px;
+  }
+}
+
+@container (min-width : 1000px){
+ div.half{
+        padding:0;!important;
+    }
+}
+
+@container (max-width: 799px) {
+  .project-explain {
+    flex-direction: column;
+    padding-left: 0;
+    padding-right: 20px;!important;
+  }
+    div.text{
+    padding-right: 20px;
+    }
+  .half {
+    width: 100%;
+    padding-left, padding-right: 90px ; 
+    padding-top: 20px;
+  }
+    div.half .left{
+    padding-left: 0;
+    }
+}
+
+
+.image-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+
+}
+
+.splide__slide img {
+  width: 100%;
+  height: auto;
+}
+
+
+#image-slider .splide__pagination {
+  position: absolute;
+  bottom: 5cqw;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+#image-slider {
+  position: relative;
+}
+
+/* Base style for all pagination dots */
+.splide__pagination__page {
+  width: .7cqw !important;
+  height: .7cqw !important;
+  border-radius: 50% !important;
+  background: gray !important;
+  margin: 0 6px !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  transition: background 0.3s ease;
+  transform: scale(1) !important; /* prevent size jump */
+}
+
+/* Remove browser outline on click/focus */
+.splide__pagination__page:focus,
+.splide__pagination__page:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  transform: scale(1) !important;
+}
+
+/* Hover state – optional */
+.splide__pagination__page:hover {
+  background: #888 !important; /* slightly darker gray */
+  transform: scale(1.05); /* optional visual hint */
+}
+
+/* Active (current) page dot */
+.splide__pagination__page.is-active {
+  background: #7948FF !important;
+  transform: scale(1) !important; /* same size as others */
+  box-shadow: none !important;
+}
+
+
+/* gif control padding */
+.gif-container {
+    padding-left, padding-right: 5cqw;
+}
+
+.feature-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 5cqw 3.5cqw 0;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25cqw;
+  max-width: 300px;
+}
+
+.feature-gif {
+  width: 100%;
+  height: auto;
+}
+
+.feature-caption {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 4cqw;
+  font-family: "Noto Sans", sans-serif;
+}
+
+
+.feature-number {
+  font-weight: bold;
+  color: #8C89A4;
+  margin-right: 0;
+  font-size: 0.86rem;
+  min-width: 2em;
+  text-align: right;
+}
+
+.feature-text .title {
+  font-weight: 400;
+  color: #1A1A1A;
+  font-size: 0.86rem;
+  margin-bottom: 0.3em;
+  padding-left: 1cqw;
+}
+
+.feature-text .description {
+  font-weight: 400;
+  color: #1A1A1A;
+  font-size: 0.86rem;
+  line-height: 1.4;
+  padding-left: 1cqw;
+  padding-top: 1.5cqw;
+}
+
+.arrow-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 6cqw; /* Adjust this to vertically align arrow with gifs */
+}
+
+.arrow-image {
+  width: 2cqw !important;
+  padding-top: 15cqw;
+}
+
+.tight-row {
+  justify-content: center;
+}
+
+.tight-row .feature-item {
+  padding-left: 4cqw !important;
+  padding-right: 4cqw !important;
+}
+
+.video-embed {
+  position: relative;
+  width: 100%;
+  padding-bottom: 177%; /* maintains vertical video aspect for Shorts */
+  height: 0;
+  overflow: hidden;
+  border-radius: 16px; /* optional */
+}
+
+.video-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-crop-wrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 200.72%; /* 839 / 418 * 100% — keeps 418:839 ratio without aspect-ratio */
+  overflow: hidden;
+  background-color: black; /* fallback if iframe fails */
+}
+
+.video-crop-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: white;
+  display: block;
+}

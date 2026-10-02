@@ -1,0 +1,534 @@
+/* "Setting own goal with own time frame" flow — Figma section 9:521.
+   Shares tokens and components with css/styles.css. */
+
+:root {
+  --option-selected: #aec7ff;   /* Button-Option selected */
+  --brand-blue: #260dff;        /* brandblue (calendar "today" ring) */
+  --font-inter: "Inter", system-ui, sans-serif;
+}
+
+.g-black { color: #000; }
+.g-nowrap { white-space: nowrap; }
+.h-l {                          /* IBM-HeadingL200 */
+  margin: 0;
+  font: 400 24px/1.4 var(--font-ibm);
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
+.h-l.g-wrap { width: 335px; white-space: normal; color: var(--black); }
+
+/* ---------- What is your goal about? ---------- */
+.g-cat-list { position: absolute; left: 0; width: 375px; display: flex; flex-direction: column; gap: 8px; }
+.g-cat {
+  margin-left: 20px;
+  width: 335px;
+  height: 70px;
+  padding: 12px 8px 12px 16px;
+  border: 0;
+  border-radius: var(--corner);
+  background: var(--input-bg);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-align: left;
+  cursor: pointer;
+}
+.g-cat.is-selected { background: var(--selected-bg); }
+.g-cat-emoji {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 400 24px/21px var(--font-inter);
+  letter-spacing: -0.32px;
+  color: #000;
+}
+.g-emoji-shadow { text-shadow: 0 4px 4px rgba(0, 0, 0, 0.04); }
+.g-cat-text {
+  padding: 0 10px;
+  font: 400 16px/1.5 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: var(--black);
+  white-space: nowrap;
+}
+
+/* ---------- Form building blocks ---------- */
+.g-form { position: absolute; left: 0; width: 375px; display: flex; flex-direction: column; gap: 28px; }
+.g-group { display: flex; flex-direction: column; gap: 4px; }
+.g-label {
+  margin: 0;
+  padding: 0 20px;
+  font: 400 16px/1.5 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: #000;
+  white-space: nowrap;
+}
+.g-label.g-ink { color: var(--black); }
+.g-input {
+  margin: 0 0 0 20px;
+  width: 335px;
+  height: 44px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: var(--corner);
+  background: var(--input-bg);
+  font: 400 16px/1.5 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: var(--black);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.g-input::placeholder { color: var(--grey-unselected); opacity: 1; }
+
+/* Quick name suggestions */
+.g-chips { padding: 10px 10px 10px 21px; display: flex; flex-direction: column; gap: 12px; }
+.g-chip-row { display: flex; gap: 8px; align-items: center; }
+.g-chip {
+  flex: none;
+  padding: 8px 16px 8px 8px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--input-bg);
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  cursor: pointer;
+}
+.g-chip.is-selected { background: var(--selected-bg); }
+.g-chip-emoji {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 400 14px/normal var(--font-inter);
+  color: #000;
+}
+.g-chip-text { font: 400 14px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: #000; white-space: nowrap; }
+
+/* How do you want to save? */
+.g-methods { position: absolute; left: 0; width: 375px; display: flex; flex-direction: column; gap: 20px; }
+.g-method {
+  margin-left: 19px;
+  width: 336px;
+  padding: 16px;
+  border: 0;
+  border-radius: var(--corner);
+  background: var(--input-bg);
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  text-align: left;
+  cursor: pointer;
+}
+.g-method.is-selected { background: var(--selected-bg); }
+.g-method-emoji {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 400 32px/39px var(--font-inter);
+  letter-spacing: -0.32px;
+  color: #000;
+}
+.g-emoji-drop { filter: drop-shadow(0 4px 2px rgba(0, 0, 0, 0.09)); }
+.g-method-text { width: 252px; display: flex; flex-direction: column; gap: 10px; color: #000; }
+.g-method-title { display: block; height: 22px; font: 400 20px/1.5 var(--font-ibm); letter-spacing: -0.5px; white-space: nowrap; }
+.g-method-desc { display: block; font: 400 14px/1.6 var(--font-ibm); letter-spacing: -0.5px; white-space: nowrap; }
+
+/* ---------- Growing, scrolling form pages ---------- */
+.g-scroll { inset: 0; }
+.g-page { position: relative; min-height: 812px; padding: 73px 0 47px; display: flex; flex-direction: column; }
+.g-hdr { flex: none; }
+.g-spacer { flex: 1 0 28px; }
+.btn.g-cta { position: relative; left: auto; top: auto; flex: none; margin-left: 16px; }
+.btn[hidden] { display: none; }
+
+/* Duration dropdown (open state: 2px blue stroke that does not move the content, as in Figma) */
+.g-dd-box {
+  margin-left: 20px;
+  width: 335px;
+  height: 46px;
+  padding: 10px 12px;
+  border-radius: var(--corner);
+  background: var(--input-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+  outline: none;
+}
+.g-dd.is-open .g-dd-box { box-shadow: inset 0 0 0 2px var(--blue); }
+.g-dd-box:focus-visible { box-shadow: inset 0 0 0 2px var(--blue); }
+.g-dd-text { font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+.g-dd-text.is-placeholder { color: var(--grey-unselected); }
+.g-dd-text[hidden], .g-dd-input[hidden] { display: none; }
+.g-dd-chev { flex: none; width: 24px; height: 24px; }
+.g-dd.is-filled:not(.is-open) .g-dd-chev { display: none; }
+.g-dd-input {
+  flex: 1;
+  min-width: 0;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  outline: none;
+  font: 400 16px/1.5 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: var(--black);
+}
+.g-dd-input::placeholder { color: var(--grey-unselected); opacity: 1; }
+.g-dd-panel {
+  margin: -4px 0 0 20px;
+  width: 335px;
+  border-radius: var(--corner);
+  background: var(--input-bg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.g-dd-panel[hidden] { display: none; }
+.g-dd--regular .g-dd-panel { margin-top: -3px; }
+.g-dd-opt {
+  flex: none;
+  height: 44px;
+  padding: 5px 0 4px 16px;
+  border: 0;
+  background: none;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  font: 400 16px/1.5 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: var(--black);
+  cursor: pointer;
+}
+.g-dd--target .g-dd-opt + .g-dd-opt { margin-top: -1px; }
+.g-dd-opt:hover, .g-dd-opt.is-selected { background: var(--selected-bg); }
+
+/* Saving plan options (Button-Option) */
+.g-plan { margin-top: 30px; display: flex; flex-direction: column; gap: 4px; }
+.g-plan[hidden], .g-start[hidden], .g-summary[hidden], .g-cal[hidden] { display: none; }
+.g-info { margin-left: 20px; width: 335.344px; height: 19px; display: flex; gap: 4px; align-items: center; }
+.g-info img { flex: none; width: 16px; height: 16px; }
+.g-info p { margin: 0; width: 316.57px; font: 400 12px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+.g-opts { display: flex; flex-direction: column; gap: 8px; }
+.g-plan .g-opts { margin-top: 4px; gap: 16px; }   /* complete-state frame 9:2207 */
+.g-opt {
+  margin-left: 20px;
+  width: 335.69px;
+  height: 48px;
+  padding: 12px 0;
+  border: 0;
+  border-radius: 8px;
+  background: var(--selected-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 400 16px/1.5 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: var(--black);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.g-opt.is-selected { background: var(--option-selected); }
+
+/* When should you start the saving? */
+.g-start { margin-top: 60px; display: flex; flex-direction: column; gap: 8px; }
+.g-spacer--target { flex-basis: 27.69px; }
+
+/* Calendar component (385px card with a 40px header; the target-flow frame 9:2207 uses a 34px header) */
+.g-cal {
+  margin-left: 20px;
+  width: 335px;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--input-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: none;
+}
+.g-cal--regular { margin-top: 20.21px; }
+.g-cal-head { margin: 0; height: 40px; font: 400 24px/1.4 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+#targetCal .g-cal-head { height: 34px; }
+/* Regular start screen: Next sits 44px under the calendar (9:2621) and 28px under the summary (9:2656). */
+.g-page--start .g-spacer { flex-basis: 44px; }
+.g-page--start.has-summary .g-spacer { flex-basis: 28px; }
+.g-cal-body { display: flex; flex-direction: column; gap: 26px; }
+.g-cal-month { height: 21px; display: flex; align-items: center; justify-content: space-between; }
+.g-cal-mlabel { width: 218px; display: flex; gap: 8px; align-items: center; }
+.g-cal-mlabel span { min-width: 92px; height: 21px; display: flex; align-items: center; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+.g-cal-caret { position: relative; flex: none; width: 8.5px; height: 4px; }
+.g-cal-caret img { position: absolute; left: 0.651px; top: 0; width: 7.284px; height: 3.85px; }
+.g-cal-nav { position: relative; flex: none; width: 50.5px; height: 10px; }
+.g-cal-nav img { position: absolute; left: -0.707px; top: -0.5px; width: 51.914px; height: 11px; }
+.g-cal-nav button { position: absolute; top: -12px; width: 26px; height: 34px; padding: 0; border: 0; background: none; cursor: pointer; }
+.g-cal-prev { left: -8px; }
+.g-cal-next { right: -8px; }
+.g-cal-grid { height: 250px; display: flex; flex-direction: column; gap: 8px; }
+.g-cal-row { height: 26px; display: flex; align-items: center; justify-content: space-between; }
+.g-cal-weeks { height: 216px; display: flex; flex-direction: column; justify-content: space-between; }
+.g-cal-cell {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 400 12px/1.5 var(--font-inter);
+  letter-spacing: -0.32px;
+  color: #000;
+}
+button.g-cal-cell { cursor: pointer; }
+.g-cal-cell.is-today { box-shadow: inset 0 0 0 1.5px var(--brand-blue); }
+.g-cal-cell.is-selected { background: var(--blue); color: #fff; box-shadow: none; }
+
+/* Black summary card */
+.g-summary {
+  flex: none;
+  margin: 20px 0 0 20px;
+  width: 335px;
+  padding: 18px 16px;
+  border-radius: var(--corner);
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: #fff;
+}
+.g-summary p { margin: 0; letter-spacing: -0.5px; white-space: nowrap; }
+.g-summary p:first-child { font: 400 14px/1.6 var(--font-ibm); }
+.g-summary p:last-child { height: 42px; font: 400 32px/1.4 var(--font-ibm); }
+.g-summary--regular { margin-top: 32px; }
+
+/* When do you want to start saving? (Save regularly) */
+.g-starts { margin: 24.79px 0 0 20px; display: flex; gap: 8px; }
+.g-start-opt {
+  width: 164px;
+  height: 92px;
+  padding: 10px 0;
+  border: 0;
+  border-radius: var(--corner);
+  background: var(--input-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+.g-start-opt--today { padding: 10px; gap: 7px; }
+.g-start-opt.is-selected { background: var(--option-selected); }
+.g-start-main { width: 144px; display: flex; flex-direction: column; align-items: center; }
+.g-start-opt img { width: 24px; height: 24px; }
+.g-start-label { font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+.g-start-note { width: 100%; text-align: center; font: 400 10px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); }
+
+/* ---------- Confirm your saving plan ---------- */
+.g-confirm { position: absolute; left: 0; width: 375px; display: flex; flex-direction: column; gap: 20px; }
+.g-c-group { display: flex; flex-direction: column; gap: 8px; }
+.g-c-group--tight { gap: 0; }
+.g-c-label, .g-c-value { margin: 0; padding: 0 20px; display: flex; align-items: center; letter-spacing: -0.5px; color: #000; white-space: nowrap; }
+.g-c-label { height: 26px; font: 400 16px/1.5 var(--font-ibm); }
+.g-c-value { height: 30px; font: 500 20px/1.5 var(--font-ibm); }
+.g-c-sub { display: flex; flex-direction: column; gap: 8px; }
+.g-c-info { padding: 0 20px; display: flex; gap: 4px; align-items: flex-start; }
+.g-c-info[hidden] { display: none; }
+.g-c-info img { flex: none; width: 16px; height: 16px; }
+.g-c-info p { margin: 0; width: 316px; font: 400 12px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); }
+
+/* Saving plan all set (335px wide button, leading normal, no tracking) */
+.btn.g-btn-335 { width: 335px; font: 500 18px/normal var(--font-ibm); letter-spacing: 0; }
+
+/* ---------- Home with a goal — Figma 9:2373 ---------- */
+button.home-card { width: 335px; border: 0; text-align: left; font: inherit; cursor: pointer; }
+.home-card[hidden] { display: none; }
+.home-goal { flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 12px; padding: 12px; }
+.hg-row { height: 42px; display: flex; align-items: center; justify-content: space-between; }
+.hg-left { min-width: 66.57px; display: flex; flex-direction: column; }
+.hg-name { font: 500 16px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+.hg-sub { font: 400 12px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+.hg-right { width: 70px; display: flex; flex-direction: column; align-items: flex-end; }
+.hg-right img { width: 24px; height: 24px; }
+.hg-amount { height: 16px; display: flex; align-items: center; }
+.hg-bar { display: block; height: 12px; border-radius: 8px; background: #d1d1d1; overflow: hidden; }
+.hg-bar i {
+  display: block;
+  width: 6.938px;
+  height: 12px;
+  border-radius: 8px;
+  background: var(--blue);
+  box-shadow: inset 0 -4px 4px rgba(3, 80, 253, 0.01), inset 0 4px 4px rgba(21, 0, 255, 0.02);
+}
+.screen--home-goal .fab { filter: drop-shadow(0 4px 2px rgba(0, 0, 0, 0.09)); }   /* 9:2373 only */
+
+/* ---------- Penny check-in bottom sheet ---------- */
+.psheet {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 60;
+  width: 375px;
+  height: 523px;
+  overflow: hidden;
+  border-radius: 24px 24px 0 0;
+  background: #fff;
+  transform: translateY(100%);
+  visibility: hidden;
+  transition: transform 340ms cubic-bezier(0.2, 0.8, 0.2, 1), height 260ms ease, visibility 0s linear 340ms;
+}
+.psheet.is-open {
+  transform: none;
+  visibility: visible;
+  transition: transform 340ms cubic-bezier(0.2, 0.8, 0.2, 1), height 260ms ease;
+}
+.psheet > * { position: absolute; }
+.psheet-grab { left: 0; top: 0; width: 375px; height: 24px; padding-top: 12px; display: flex; justify-content: center; }
+.psheet-grab i { display: block; width: 40px; height: 4px; border-radius: 999px; background: #d1d5dc; }
+.psheet-head {
+  left: 0;
+  top: 24px;
+  width: 375px;
+  height: 45px;
+  padding: 0 16px 0.667px;
+  border-bottom: 0.667px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.psheet-head p { margin: 0; height: 28px; padding-top: 0.33px; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: #0a0a0a; white-space: nowrap; }
+.psheet-close { width: 32px; height: 32px; padding: 0; border: 0; border-radius: 999px; background: none; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.psheet-close img { width: 20px; height: 20px; }
+.psheet-who { left: 20px; top: 102px; display: flex; gap: 7px; align-items: center; }
+.psheet-who img { width: 20px; height: 20px; }
+.psheet-who span { font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: #0a0a0a; }
+.psheet-msg { left: 0; top: 136px; width: 375px; padding: 10px 20px; }
+.psheet-msg p { margin: 0; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: #000; white-space: pre-line; }
+.psheet-msg em { font-style: normal; color: var(--blue); }
+.psheet-field { left: 20px; top: 250px; width: 335px; height: 44px; }
+.psheet-field input {
+  width: 335px;
+  height: 44px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: var(--corner);
+  background: var(--input-bg);
+  font: 400 16px/1.5 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: var(--black);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.psheet-field input::placeholder { color: var(--grey-btn); opacity: 1; }
+.psheet-opt {
+  left: 20.35px;
+  width: 335.69px;
+  height: 48px;
+  padding: 12px 0;
+  border: 0;
+  border-radius: 8px;
+  background: var(--selected-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 400 16px/1.5 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: var(--black);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.psheet-opt.is-selected { background: var(--option-selected); }
+.psheet-sparkles { left: 0; top: 0; width: 375px; height: 0; display: none; pointer-events: none; }
+.psheet-sparkles img { position: absolute; }
+.psheet-check { left: 76.86px; top: 266.88px; width: 191px; height: 149px; display: none; }
+.psheet-ind { left: 121px; top: 510.77px; width: 134.391px; height: 5px; }
+.ios-kb { left: 0; width: 375px; height: 293px; display: none; }
+.ios-kb > img { display: block; width: 375px; height: 293px; }
+
+.psheet[data-kind="input"] .psheet-opt { display: none; }
+.psheet[data-kind="options"] .psheet-field { display: none; }
+.psheet.is-celebrating .psheet-sparkles { display: block; }
+.psheet.is-done .psheet-opt,
+.psheet.is-done .psheet-sparkles { display: none; }
+.psheet.is-done .psheet-check { display: block; }
+.psheet.has-kb .ios-kb { display: block; }
+.psheet.has-kb .psheet-ind { display: none; }
+
+/* ---------- On-screen keyboards (js/keyboard.js) ---------- */
+/* Clickable keys over the Figma keyboard image (9:2888) */
+.kb-key { position: absolute; padding: 0; border: 0; border-radius: 5px; background: transparent; cursor: pointer; }
+.kb-key:active { background: rgba(0, 0, 0, 0.12); }
+
+/* Page keyboards slide up from the bottom, over the screens and under the status bar, home indicator and sheets */
+.vkb {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 30;
+  width: 375px;
+  height: 293px;
+  transform: translateY(100%);
+  visibility: hidden;
+  pointer-events: none;   /* a closing keyboard stops taking taps straight away */
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), visibility 0s 0.3s;
+}
+.vkb.is-open { transform: none; visibility: visible; pointer-events: auto; transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+.vkb > img { display: block; width: 375px; height: 293px; }
+
+/* iOS number pad, drawn to match 9:2888: #CED2D9 at 90 % over white, white 5 px keys with a 0 1px 0 shadow,
+   grey #AEB3BE when pressed */
+.numpad { background: #fff; }
+.numpad::before { content: ""; position: absolute; inset: 0; background: rgba(206, 210, 217, 0.9); }
+.np-keys {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  top: 6px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 46px;
+  gap: 7px 6px;
+}
+.np-keys button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+  color: #000;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", system-ui, sans-serif;
+  cursor: pointer;
+}
+.np-keys button:active { background: #aeb3be; }
+.np-d { font-size: 25px; line-height: 28px; font-weight: 400; }
+.np-l { height: 12px; margin-right: -2px; font-size: 10px; line-height: 12px; font-weight: 700; letter-spacing: 2px; }
+.np-keys .np-plain { background: transparent; box-shadow: none; }
+.np-keys .np-plain:active { background: #aeb3be; }
+.np-plain img { width: 23px; height: 17px; }
+.numpad.is-integer .np-dot { visibility: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .psheet, .psheet.is-open { transition: none; }
+  .vkb, .vkb.is-open { transition: none; }
+}
+.g-spacer--regular { flex-basis: 25px; }   /* Next sits under the open duration list in 9:2734 */
+
+/* Variant differences between the two calendar/summary instances in Figma:
+   regular branch (9:2656) top-aligns the month label and stacks the summary lines without a gap. */
+.g-cal--regular .g-cal-mlabel span { align-items: flex-start; }
+.g-summary--regular { gap: 0; }
+.g-summary--regular p:last-child { height: auto; }

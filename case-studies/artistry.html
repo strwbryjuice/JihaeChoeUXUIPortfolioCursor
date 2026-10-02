@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artistry Community — Jihae Choe</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="casestudy.css">
+<link rel="stylesheet" href="casestudy.css?v=3">
 <style>
 /* Stats row */
 .stat-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:20px 0; max-width:900px; }
@@ -620,17 +620,6 @@ function toggleDrop(btn,id){btn.classList.toggle('open');document.getElementById
 const secs=document.querySelectorAll('.section[id]');
 const tocs=document.querySelectorAll('.toc-list a');
 secs.forEach(s=>new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){tocs.forEach(l=>l.classList.remove('active'));const a=document.querySelector(`.toc-list a[href="#${e.target.id}"]`);if(a)a.classList.add('active');}});},{rootMargin:'-20% 0px -60% 0px'}).observe(s));
-(function(){
-  if(!window.matchMedia('(pointer: fine)').matches) return;
-  const cur=document.createElement('div');cur.className='cursor';document.body.appendChild(cur);
-  document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';});
-  document.addEventListener('mouseleave',()=>cur.classList.add('hidden'));
-  document.addEventListener('mouseenter',()=>cur.classList.remove('hidden'));
-  document.querySelectorAll('a,button,[role="button"]').forEach(el=>{
-    el.addEventListener('mouseenter',()=>cur.classList.add('hover'));
-    el.addEventListener('mouseleave',()=>cur.classList.remove('hover'));
-  });
-})();
 </script>
 </body>
 </html>

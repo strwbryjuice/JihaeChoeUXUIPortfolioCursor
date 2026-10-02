@@ -1,0 +1,400 @@
+/* "Budgeting" flow — Figma section 24:4493.
+   Shares tokens and components with css/styles.css and css/goal.css (form fields, chips, calendar grid). */
+
+/* ---------- Budget tab screens (24:5838 no budgeting yet, 24:5902 with budgets) ---------- */
+.device[data-screen="budget"] .status-bar,
+.device[data-screen="budget-list"] .status-bar { background: var(--tint-bg); }
+/* Their home indicator is #191919 and sits 0.5 px right, with the tab bar */
+.home-ind--ink { display: none; left: 120.8px; top: 800px; }
+.device[data-screen="budget"] .home-ind--long,
+.device[data-screen="budget-list"] .home-ind--long { display: none; }
+.device[data-screen="budget"] .home-ind--ink,
+.device[data-screen="budget-list"] .home-ind--ink { display: block; }
+
+/* Tappable tabs (Home's "Budget", the budget screens' "Home") */
+button.tab { padding: 0; border: 0; background: none; cursor: pointer; }
+/* Tab bar drawn in #191919 on the Budget and Invest tabs, 0.5 px right */
+.tabbar--ink { left: 0.5px; }
+.tabbar--ink .tab span { color: var(--black); }
+.tabbar--ink .tab:last-child span { height: auto; }   /* "Setting" has auto height, so the row is 67 px tall */
+
+/* Budgeting | Spending */
+.b-tab {
+  position: absolute;
+  top: 98px;
+  height: 36px;
+  margin: 0;
+  font: 400 20px/normal var(--font-ibm);
+  letter-spacing: 0;
+  color: var(--black);
+  white-space: nowrap;
+}
+.b-tab--on { font-weight: 600; }
+.b-tabs-line { position: absolute; left: 15.08px; top: 140px; width: 332.922px; height: 3px; }
+
+/* Black "Total Budgetings" card */
+.b-total {
+  position: absolute;
+  left: 16px;
+  top: 169px;
+  width: 344px;
+  height: 143px;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.b-total--empty { left: 17px; top: 158px; width: 342px; justify-content: flex-start; gap: 8px; }
+.b-chip {
+  flex: none;
+  height: 22px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 400 12px/1.6 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: #000;
+  white-space: nowrap;
+}
+.b-total-none { margin: 0; height: 21px; font: 500 20px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: #fff; white-space: nowrap; }
+.b-total-top { width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 39px; }
+.b-total-row { width: 100%; display: flex; align-items: center; justify-content: space-between; }
+.b-total-sum { margin: 0; display: flex; align-items: center; gap: 4px; color: #fff; letter-spacing: -0.5px; white-space: nowrap; }
+.b-total-left { font: 500 32px/1.4 var(--font-ibm); }
+.b-total-of { height: 45px; display: flex; align-items: center; font: 400 16px/1.5 var(--font-ibm); }
+.b-total-till { margin: 0; width: 75px; height: 11px; display: flex; align-items: center; font: 400 10px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: #fff; white-space: nowrap; }
+.b-total-bar { position: relative; width: 100%; height: 12px; border-radius: 8px; background: #d1d1d1; }
+.b-total-bar i { position: absolute; left: 0; top: 0; width: 191px; height: 12px; border-radius: 8px 0 0 8px; background: var(--green); }
+.b-total-bar img { position: absolute; left: 184.277px; top: 0; width: 12px; height: 12px; }
+
+/* "Create new budgeting" card (24:5838) */
+.b-create {
+  position: absolute;
+  left: 16px;
+  top: 316px;
+  width: 343px;
+  height: 60px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  cursor: pointer;
+}
+.b-create-left { flex: none; width: 207px; display: flex; gap: 6px; align-items: center; }
+.b-create-left img { flex: none; width: 25.111px; height: 25.111px; }
+.b-create-text { padding: 10px; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+.b-create-chev { flex: none; width: 24px; height: 24px; transform: rotate(180deg); }
+
+/* With budgets (24:5902): the page scrolls above the tab bar once more budgets are added */
+.b-list-page { position: relative; width: 375px; min-height: 729px; padding: 362px 0 4px 16px; }
+.b-actions { position: absolute; left: 16px; top: 328px; width: 344px; display: flex; align-items: center; justify-content: space-between; }
+.b-new { padding: 0; border: 0; background: none; display: flex; align-items: center; cursor: pointer; }
+.b-new img { flex: none; width: 24px; height: 24px; }
+.b-new span {
+  display: block;
+  width: 100px;
+  height: 20px;
+  padding-right: 1.5px;
+  text-align: right;
+  font: 400 12px/20px var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: #000;
+  white-space: nowrap;
+}
+.b-reorder { display: flex; gap: 2px; align-items: flex-end; }
+.b-reorder img { width: 23px; height: 22px; }
+.b-reorder span { width: 45px; height: 20px; display: flex; align-items: center; justify-content: center; font: 400 12px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: #000; white-space: nowrap; }
+
+.b-list { width: 344px; display: flex; flex-direction: column; gap: 12px; }
+.b-card { padding: 16px; border-radius: 8px; background: #fff; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+.b-card-top { width: 100%; display: flex; gap: 14px; align-items: flex-start; }
+.b-card-ico {
+  flex: none;
+  width: 45px;
+  height: 45px;
+  padding: 10px;
+  border-radius: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 20px/1.6 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: #000;
+}
+.b-card-info { flex: none; width: 250px; display: flex; flex-direction: column; gap: 8px; }
+.b-card-name { margin: 0; min-width: 91.121px; height: 14px; font: 700 14px/1.6 var(--font-ibm); letter-spacing: -0.5px; color: #000; white-space: nowrap; }
+.b-card-row { display: flex; align-items: flex-start; justify-content: space-between; font-family: var(--font-ibm); line-height: 1.6; letter-spacing: -0.5px; }
+.b-card-spent { margin: 0; width: 68.576px; height: 14px; font-size: 12px; color: #000; white-space: nowrap; }
+.b-card-limits { flex: none; width: 130px; display: flex; flex-direction: column; align-items: flex-end; white-space: nowrap; }
+.b-card-limits p { margin: 0; display: flex; gap: 8px; }
+.b-card-limits span { white-space: pre; }   /* keeps the trailing space of "1.75 / 40 £ " as drawn */
+.b-card-month { align-items: flex-start; font-size: 12px; color: #000; }
+.b-card-week { width: 100%; align-items: center; font-size: 10px; color: #bab1b1; }
+.b-card-bar { width: 100%; height: 12px; border-radius: 8px; background: #eaeaea; }
+.b-card-bar i { display: block; width: 149.391px; height: 12px; border-radius: 8px; }
+
+/* ---------- What is your budgeting about? (24:5651) — goal-name fields with 10 px between chip rows ---------- */
+.g-chips.b-chips { gap: 10px; }
+
+/* ---------- Budget cycle and monthly limit (24:5262 … 24:5605) ---------- */
+.b-page > :not(.g-spacer) { flex: none; }
+.b-label { margin: 0; padding: 0 20px; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+
+/* Cycle dropdown. Open (list shown, or "Set by date" with its calendar): 2 px blue stroke that does not move the
+   content, label in pure black, as in 24:5471 / 24:5504. */
+.b-cycle { position: relative; margin-top: 35px; display: flex; flex-direction: column; }
+.b-cycle.is-open .b-label { color: #000; }
+.b-dd-box {
+  margin: 4px 0 0 20px;
+  width: 335px;
+  height: 46px;
+  padding: 10px 12px;
+  border-radius: var(--corner);
+  background: var(--input-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+  outline: none;
+}
+.b-cycle.is-open .b-dd-box,
+.b-dd-box:focus-visible { box-shadow: inset 0 0 0 2px var(--blue); }
+/* A chosen value sits centred in a 127 px box, as in 24:5292 (so "1st day of the month" starts at x 26) */
+.b-dd-text { flex: none; width: 208px; display: flex; }
+.b-dd-text > span {
+  flex: none;
+  width: 127px;
+  display: flex;
+  justify-content: center;
+  font: 400 16px/1.5 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: var(--black);
+  white-space: nowrap;
+}
+.b-dd-text.is-placeholder > span { width: auto; justify-content: flex-start; color: var(--grey-unselected); }
+.b-dd-chev { flex: none; width: 24px; height: 24px; }
+.b-dd-panel {
+  position: absolute;
+  left: 20px;
+  top: 75px;
+  z-index: 5;
+  width: 335px;
+  border-radius: var(--corner);
+  background: var(--input-bg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.b-dd-panel[hidden], .b-when[hidden], .b-mp[hidden] { display: none; }
+.b-dd-opt {
+  flex: none;
+  height: 44px;
+  padding: 5px 0 4px 16px;
+  border: 0;
+  background: none;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  font: 400 16px/1.5 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: var(--black);
+  cursor: pointer;
+}
+.b-dd-opt:hover, .b-dd-opt.is-selected { background: var(--selected-bg); }
+
+/* "Set by date": the calendar opens right under the field (24:5504, 329 px; 385 px with the date header, 24:5605) */
+.b-when.is-covered { visibility: hidden; }
+.b-cal .g-cal-mlabel { padding: 0; border: 0; background: none; text-align: left; cursor: pointer; }
+.b-cal .g-cal-mlabel span,
+.b-cal .g-cal-cell { color: var(--black); }
+.b-cal .g-cal-mlabel .g-cal-caret { min-width: 0; width: 8.5px; height: 4px; }   /* centred on the label row (24:5504) */
+.b-cal .g-cal-caret img { left: 0; width: 8.5px; height: 4px; }
+.b-cal .g-cal-cell.is-today { box-shadow: inset 0 0 0 1px var(--blue); }
+.b-cal .g-cal-cell.is-selected { background: var(--option-selected); color: #000; box-shadow: none; }
+.b-cal.has-head .g-cal-mlabel span,
+.b-cal.has-head .g-cal-cell { color: #000; }
+.b-cal .g-cal-head[hidden] { display: none; }
+
+/* Month picker "Date Picker" (24:5530 / 24:5555) */
+.b-mp {
+  margin-left: 20px;
+  width: 335px;
+  height: 331px;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--input-bg);
+  box-shadow: inset 0 0 0 1px #e8e9f1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.b-mp-head { flex: none; width: 283px; display: flex; align-items: flex-start; justify-content: space-between; }
+.b-mp-head button { width: 24px; height: 24px; padding: 0; border: 0; background: none; cursor: pointer; }
+.b-mp-head img { width: 24px; height: 24px; }
+.b-mp-year { margin: 0; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: #0e0e0f; white-space: nowrap; }
+.b-mp-grid { flex: 1 0 0; width: 100%; display: flex; flex-direction: column; }
+.b-mp-row { flex: 1 0 0; display: flex; align-items: center; justify-content: space-between; }
+.b-mp-slot {
+  flex: none;
+  width: 84px;
+  height: 52px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 400 16px/1.5 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: #4a4761;
+  cursor: pointer;
+}
+.b-mp-slot.is-selected { background: var(--option-selected); }
+
+/* "I can only use up to … per month" (24:5383) */
+.b-amount { margin-top: 28px; }
+.b-amount[hidden] { display: none; }
+.b-amt {
+  margin-left: 20px;
+  width: 335px;
+  height: 73px;
+  padding: 8px 19px 8px 20px;   /* the inner row is 296 px wide in Figma */
+  border-radius: var(--corner);
+  background: var(--input-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.b-amt-input,
+.b-box-input {
+  min-width: 0;
+  height: 45px;
+  padding: 0;
+  border: 0;
+  background: none;
+  outline: none;
+  font: 400 32px/1.4 var(--font-ibm);
+  letter-spacing: -0.5px;
+  color: #000;
+  caret-color: var(--blue);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.b-amt-input { width: 210px; }
+.b-amt-input::placeholder { color: #000; opacity: 1; }
+.b-amt-unit { flex: none; width: 70px; height: 24px; display: flex; align-items: center; justify-content: center; }
+.b-amt-unit span { flex: none; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+
+/* 109 px cards: the white "I can use up to" card (24:5605) and the black weekly guide */
+.b-box { margin-left: 20px; width: 335px; padding: 18px 16px; border-radius: 9px; display: flex; flex-direction: column; gap: 4px; }
+.b-box[hidden] { display: none; }
+.b-box--amount { margin-top: 16px; background: #fff; box-shadow: inset 0 0 0 1px #000; color: var(--black); }
+.b-box--guide { margin-top: 28px; background: var(--black); color: #fff; }
+.b-page.is-date .b-box--guide { margin-top: 14px; box-shadow: inset 0 0 0 1px #000; }
+.b-box-label { margin: 0; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; white-space: nowrap; }
+.b-box-row { position: relative; display: flex; align-items: center; }
+.b-box-value { flex: none; margin: 0; min-width: 80px; font: 400 32px/1.4 var(--font-ibm); letter-spacing: -0.5px; white-space: nowrap; }
+.b-box-input { flex: none; width: 80px; color: var(--black); }
+.b-box-input::placeholder { color: var(--black); opacity: 1; }
+.b-box-measure { position: absolute; left: 0; top: 0; visibility: hidden; font: 400 32px/1.4 var(--font-ibm); letter-spacing: -0.5px; white-space: pre; }
+.b-box-unit { flex: none; height: 45px; display: flex; align-items: center; }
+.b-box-unit span { width: 94px; height: 29px; display: flex; flex-direction: column; justify-content: flex-end; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; white-space: nowrap; }
+
+/* Repeated budget? + "3D Switch" (24:5412 off, 24:5456 on) */
+.b-repeat { margin-top: 28px; height: 24px; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
+.b-repeat[hidden] { display: none; }
+.b-page.is-date .b-repeat { margin-top: 23px; }
+.b-repeat p { margin: 0; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); white-space: nowrap; }
+.b-switch {
+  position: relative;
+  flex: none;
+  width: 48.229px;
+  height: 21.703px;
+  padding: 0;
+  border: 0;
+  border-radius: 50px;
+  background: var(--grey-btn);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.b-switch[aria-checked="true"] { background: var(--green); }
+.b-switch img { position: absolute; left: 3.23px; top: 2.41px; width: 16.88px; height: 16.88px; transform: scaleY(-1); transition: left 0.2s ease; }
+.b-switch[aria-checked="true"] img { left: 28.23px; }
+
+/* Next: the disabled frames draw it 343 px wide at x 15.67 (18 px label), the enabled ones 335 px at x 20 (20 px label) */
+.btn.b-next { margin-left: 15.67px; }
+.btn.b-next:not(:disabled) { margin-left: 20px; width: 335px; font: 500 20px/normal var(--font-ibm); letter-spacing: 0; }
+.b-page.is-date.has-date .g-spacer { flex-basis: 62px; }
+
+/* ---------- Please confirm your budgeting (24:6029) ---------- */
+.b-c-hdr { flex: none; min-height: 126px; }
+.b-c-title { width: 335px; white-space: pre-wrap; color: var(--black); }   /* keeps the double space drawn after "your" */
+.b-c-list { flex: none; margin-top: 14px; display: flex; flex-direction: column; gap: 16px; }
+.b-c-group { display: flex; flex-direction: column; gap: 8px; }
+.b-c-label { margin: 0; padding: 0 20px; font: 400 16px/1.5 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); }
+.b-c-value { margin: 0; height: 34px; padding: 0 20px; font: 500 24px/1.4 var(--font-ibm); letter-spacing: -0.5px; color: var(--black); }
+.b-c-btns { flex: none; margin-left: 16px; width: 343px; display: flex; flex-direction: column; gap: 12px; }
+.b-c-btns .btn { position: relative; left: auto; top: auto; }
+.btn--muted { background: var(--grey-btn); color: var(--grey-btn-text); }
+
+/* ---------- Number pad "iPhone keyboard (Numeric)" (24:5340) ---------- */
+.vkb.kbn { height: 291px; background: #fff; }
+.kbn::before { content: ""; position: absolute; inset: 0; background: rgba(206, 210, 217, 0.9); }
+.kbn button {
+  position: absolute;
+  width: 117px;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+  color: #000;
+  font-family: var(--font-sf);
+  cursor: pointer;
+}
+.kbn button:active { background: #aeb3be; }
+.kbn .kbn-zero { box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35); }
+.kbn-d {
+  position: absolute;
+  left: 50%;
+  top: calc(50% - 23px);
+  transform: translateX(-50%);
+  font-size: 25px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
+.kbn-zero .kbn-d { top: calc(50% - 16px); }
+.kbn-l {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 6px);
+  width: 117px;
+  transform: translateX(-50%);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1.7px;
+  text-align: center;
+}
+.vkb.kbn > .kbn-sym { position: absolute; left: 36px; top: 180px; width: 49px; height: 14px; pointer-events: none; }
+.kbn .kbn-del { left: 297px; top: 173px; width: 32px; height: 32px; border-radius: 6px; background: none; box-shadow: none; }
+.kbn-del img { width: 32px; height: 32px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .b-switch, .b-switch img { transition: none; }
+}

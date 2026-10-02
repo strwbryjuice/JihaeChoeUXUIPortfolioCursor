@@ -1,0 +1,35 @@
+<svg width="191" height="149" viewBox="0 0 191 149" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="191" height="149" fill="#484848"/>
+<g id="setting own goal with own time frame">
+<rect width="13460" height="3956" transform="translate(-12261.8 -2425.18)" fill="#444444"/>
+<g id="BottomSheet">
+<g clip-path="url(#clip0_0_1)">
+<path d="M-76.8594 -242.883C-76.8594 -256.138 -66.1142 -266.883 -52.8594 -266.883H274.141C287.395 -266.883 298.141 -256.138 298.141 -242.883V256.117H-76.8594V-242.883Z" fill="white"/>
+<g id="App">
+<g id="Group 1000012834">
+<circle id="Ellipse 3992" cx="102.648" cy="65.0547" r="65.0547" fill="#04D180"/>
+<path id="Vector 27736" d="M68.9297 62.6755L88.4375 91.7068L141.738 38.4062" stroke="black" stroke-width="7"/>
+<circle id="Ellipse 3993" cx="167.707" cy="23.1836" r="23.1836" fill="#0350FD"/>
+<circle id="Ellipse 3994" cx="34.4648" cy="113.973" r="34.4648" fill="#0350FD"/>
+<g id="Mask group">
+<mask id="mask0_0_1" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="37" y="0" width="131" height="131">
+<circle id="Ellipse 3995" cx="102.656" cy="65.0547" r="65.0547" fill="#FFD864"/>
+</mask>
+<g mask="url(#mask0_0_1)">
+<g id="Group 1000012830">
+<circle id="Ellipse 3996" cx="167.715" cy="23.1836" r="23.1836" fill="#D9D9D9"/>
+<circle id="Ellipse 3997" cx="34.4727" cy="113.973" r="34.4648" fill="#D9D9D9"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_1">
+<path d="M-76.8594 -242.883C-76.8594 -256.138 -66.1142 -266.883 -52.8594 -266.883H274.141C287.395 -266.883 298.141 -256.138 298.141 -242.883V256.117H-76.8594V-242.883Z" fill="white"/>
+</clipPath>
+</defs>
+</svg>

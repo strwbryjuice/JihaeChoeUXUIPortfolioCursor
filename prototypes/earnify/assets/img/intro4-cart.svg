@@ -1,0 +1,25 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="210.001" height="202.739" viewBox="0 0 210.001 202.739" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 1000012860">
+<circle id="Ellipse 4136" cx="153.943" cy="53.2548" r="42.9771" fill="#04D180"/>
+<circle id="Ellipse 4137" cx="67.991" cy="180.316" r="22.4228" fill="#0350FD"/>
+<circle id="Ellipse 4138" cx="161.416" cy="180.316" r="22.4228" fill="#0350FD"/>
+<path id="Vector 27763" d="M56.78 123.338C45.5686 123.34 22.2114 121.651 22.2114 144.822C22.2114 167.992 44.6343 169.113 53.0428 169.113H199.726M0 12.1457H36.2257L48.4924 57.9257" stroke="#04D180" stroke-width="24.2914"/>
+<g id="Mask group">
+<mask id="mask0_0_30" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="45" y="157" width="139" height="46">
+<path id="Union" d="M67.9869 157.893C80.3704 157.893 90.4095 167.932 90.4097 180.315C90.4097 192.699 80.3706 202.738 67.9869 202.738C55.6031 202.738 45.564 192.699 45.564 180.315C45.5642 167.932 55.6032 157.893 67.9869 157.893ZM161.412 157.893C173.795 157.893 183.834 167.932 183.835 180.315C183.835 192.699 173.795 202.738 161.412 202.738C149.028 202.738 138.989 192.699 138.989 180.315C138.989 167.932 149.028 157.893 161.412 157.893Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_0_30)">
+<path id="Vector 27764" d="M56.7746 123.341C45.5632 123.343 22.206 121.654 22.206 144.825C22.206 167.995 44.6289 169.116 53.0374 169.116H199.72" stroke="white" stroke-width="24.2914"/>
+</g>
+</g>
+<path id="Rectangle 6669131" d="M28.75 30.8254L210.001 57.9197L195.987 139.202H46.5014L28.75 30.8254Z" fill="#0350FD"/>
+<g id="Mask group_2">
+<mask id="mask1_0_30" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="110" y="10" width="87" height="87">
+<circle id="Ellipse 4139" cx="153.943" cy="53.2548" r="42.9771" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask1_0_30)">
+<path id="Rectangle 6669132" d="M28.7487 30.8285L210 57.9227L195.986 139.206H46.5001L28.7487 30.8285Z" fill="#FBCA3B"/>
+</g>
+</g>
+</g>
+</svg>

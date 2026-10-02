@@ -1,0 +1,9 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 1000012826">
+<ellipse id="Ellipse 3983" cx="6.51351" cy="2.52315" rx="2.59459" ry="2.52315" fill="#0350FD"/>
+<ellipse id="Ellipse 3984" cx="14.6757" cy="2.52315" rx="2.59459" ry="2.52315" fill="#04D180"/>
+<path id="Rectangle 6668903" d="M0 14.4621C0 10.6409 3.09771 7.54318 6.91892 7.54318V7.54318C10.7401 7.54318 13.8378 10.6409 13.8378 14.4621V21H0V14.4621Z" fill="#0350FD"/>
+<path id="Rectangle 6668904" d="M8.16216 14.4621C8.16216 10.6409 11.2599 7.54318 15.0811 7.54318V7.54318C18.9023 7.54318 22 10.6409 22 14.4621V21H8.16216V14.4621Z" fill="#04D180"/>
+<path id="Intersect" d="M11.0001 8.87472C12.7202 10.1334 13.8379 12.1669 13.8379 14.4616V20.9987H8.16216V14.4616C8.16216 12.1669 9.27991 10.1334 11.0001 8.87472Z" fill="#FFD149"/>
+</g>
+</svg>
