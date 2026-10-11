@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>From Hand to Font</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>From Hand to Font</h1>
+    <p class="subtitle">Drop images for letters, symbols &amp; ligatures to create your custom font.</p>
+  </header>
+
+  <main>
+    <!-- Uppercase A-Z -->
+    <section class="glyph-section">
+      <h2 class="section-title">Uppercase <span class="section-count" id="uppercaseCount">0/26</span></h2>
+      <div class="alphabet-grid grid-letters" id="gridUppercase"></div>
+    </section>
+
+    <!-- Lowercase a-z -->
+    <section class="glyph-section">
+      <h2 class="section-title">Lowercase <span class="section-count" id="lowercaseCount">0/26</span></h2>
+      <div class="alphabet-grid grid-letters" id="gridLowercase"></div>
+    </section>
+
+    <!-- Numbers 0-9 -->
+    <section class="glyph-section">
+      <h2 class="section-title">Numbers <span class="section-count" id="numbersCount">0/10</span></h2>
+      <div class="alphabet-grid grid-numbers" id="gridNumbers"></div>
+    </section>
+
+    <!-- Symbols -->
+    <section class="glyph-section">
+      <h2 class="section-title">Symbols <span class="section-count" id="symbolsCount">0/24</span></h2>
+      <div class="alphabet-grid grid-symbols" id="gridSymbols"></div>
+    </section>
+
+    <!-- Ligatures -->
+    <section class="glyph-section">
+      <h2 class="section-title">Ligatures <span class="section-count" id="ligaturesCount">0/3</span></h2>
+      <div class="alphabet-grid grid-ligatures" id="gridLigatures"></div>
+    </section>
+
+    <!-- Status bar -->
+    <div class="status-bar" id="statusBar">
+      <span id="uploadCount">0</span> / <span id="totalGlyphs">89</span> glyphs registered
+      <button id="clearAllBtn" class="btn-clear">Clear All</button>
+      <button id="downloadAllBtn" class="btn-download">&#128230; Download Glyphs (.zip)</button>
+    </div>
+
+    <!-- Large typing area -->
+    <section class="typing-section">
+      <h2>Type with your font</h2>
+      <div class="typing-controls">
+        <div class="kerning-group">
+          Default font size:
+          <span class="size-value" id="fontSizeLabel">60px</span>
+          <button id="fontSizeUpBtn" class="btn-kern" title="Increase the size new glyphs are typed at">&#9650;</button>
+          <button id="fontSizeDownBtn" class="btn-kern" title="Decrease the size new glyphs are typed at">&#9660;</button>
+        </div>
+        <label>Color: <input type="color" id="fontColor" value="#000000"></label>
+        <label class="toggle-label">
+          <input type="checkbox" id="ligatureToggle" checked>
+          Ligatures
+        </label>
+        <div class="kerning-group">
+          Kerning:
+          <button id="typingKernUpBtn" class="btn-kern" title="Increase kerning at caret">&#9650;</button>
+          <button id="typingKernDownBtn" class="btn-kern" title="Decrease kerning at caret">&#9660;</button>
+        </div>
+        <div class="kerning-group">
+          Char size:
+          <button id="typingSizeUpBtn" class="btn-kern" title="Increase size of the selected text (or the glyph at the caret)">&#9650;</button>
+          <button id="typingSizeDownBtn" class="btn-kern" title="Decrease size of the selected text (or the glyph at the caret)">&#9660;</button>
+        </div>
+        <button id="clearCanvasBtn" class="btn-clear">Clear Canvas</button>
+        <button id="saveTypedBtn" class="btn-save">&#128247; Save Typed Image</button>
+      </div>
+      <div class="typing-area" id="typingArea">
+        <canvas id="typingCanvas"></canvas>
+        <div class="typing-placeholder" id="typingPlaceholder">Upload glyph images above, then click here and start typing...</div>
+      </div>
+    </section>
+
+    <!-- A4 Book Cover Print -->
+    <section class="a4-print-section">
+      <h2>A4 Book Cover Print</h2>
+      <div class="a4-text-editor">
+        <label for="a4TextInput">Cover text (one line per row):</label>
+        <textarea id="a4TextInput" rows="4" spellcheck="false">Rhizomatic!
+Font!!!</textarea>
+      </div>
+      <div class="a4-controls">
+        <span class="a4-status" id="a4Status">0 / 20 required glyphs</span>
+        <div class="kerning-group">
+          Kerning:
+          <button id="a4KernUpBtn" class="btn-kern" title="Increase kerning at caret">&#9650;</button>
+          <button id="a4KernDownBtn" class="btn-kern" title="Decrease kerning at caret">&#9660;</button>
+        </div>
+        <div class="kerning-group">
+          Size:
+          <button id="a4SizeUpBtn" class="btn-kern" title="Increase font size of caret line">&#9650;</button>
+          <button id="a4SizeDownBtn" class="btn-kern" title="Decrease font size of caret line">&#9660;</button>
+        </div>
+        <label class="line-height-control">
+          Line height:
+          <input type="range" id="a4LineHeightSlider" min="0.9" max="2" step="0.05" value="1.15">
+          <span id="a4LineHeightLabel">1.15</span>
+        </label>
+        <button id="exportA4Btn" class="btn-save">&#128196; Export Book Cover (.jpg)</button>
+      </div>
+      <div class="a4-container">
+        <canvas id="a4Canvas"></canvas>
+      </div>
+    </section>
+
+    <!-- 2 A5 Posters on A4 -->
+    <section class="poster-section">
+      <h2>2 A5 posters on A4</h2>
+      <div class="poster-text-editors">
+        <div class="poster-text-editor">
+          <label for="posterLeftInput">Left poster:</label>
+          <textarea id="posterLeftInput" rows="5" spellcheck="false">Poster
+One</textarea>
+        </div>
+        <div class="poster-text-editor">
+          <label for="posterRightInput">Right poster:</label>
+          <textarea id="posterRightInput" rows="5" spellcheck="false">Poster
+Two</textarea>
+        </div>
+      </div>
+      <div class="poster-controls">
+        <div class="kerning-group">
+          Kerning:
+          <button id="posterKernUpBtn" class="btn-kern" title="Increase kerning at caret">&#9650;</button>
+          <button id="posterKernDownBtn" class="btn-kern" title="Decrease kerning at caret">&#9660;</button>
+        </div>
+        <button id="exportPosterBtn" class="btn-save">&#128196; Export A5 Posters (.jpg)</button>
+      </div>
+      <div class="poster-container">
+        <canvas id="posterCanvas"></canvas>
+      </div>
+    </section>
+
+    <!-- Round Table Writing -->
+    <section class="round-table-section">
+      <h2>Round Table Writing</h2>
+      <p class="round-table-intro">
+        Pass the keyboard around. Each person composes a short piece on an A5 page using your custom font,
+        adjusting kerning, individual glyph sizes, and vertical offsets. After your turn, only the next person
+        will see what you wrote &mdash; everything stays sealed until the round table ends.
+      </p>
+
+      <!-- Setup view -->
+      <div class="rt-view rt-setup-view" id="rtSetupView">
+        <label class="rt-setup-row">
+          Number of participants:
+          <!-- Only 4n-2 counts are offered: each A4 sheet folds into four
+               A5 booklet pages, and the first and last pages are taken by
+               the prompts page and the thank-you page. -->
+          <select id="rtParticipantCount" aria-label="Number of participants">
+            <option value="6" selected>6</option>
+            <option value="10">10</option>
+            <option value="14">14</option>
+          </select>
+        </label>
+
+        <div class="rt-setup-row rt-setup-when">
+          Date:
+          <input type="number" id="rtDay" min="1" max="31" placeholder="DD" aria-label="Day">
+          <select id="rtMonth" aria-label="Month">
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+          </select>
+          <input type="number" id="rtYear" min="2000" max="2100" placeholder="YYYY" aria-label="Year">
+        </div>
+
+        <div class="rt-setup-row rt-setup-when">
+          Time:
+          <input type="number" id="rtHour" min="1" max="12" placeholder="HH" aria-label="Hour">
+          <span class="rt-time-colon">:</span>
+          <input type="number" id="rtMinute" min="0" max="59" placeholder="MM" aria-label="Minute">
+          <select id="rtMeridiem" aria-label="AM or PM">
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+          </select>
+        </div>
+
+        <p class="rt-setup-hint">
+          Participant counts step by four (6, 10, 14) because every printed A4 sheet
+          folds into four A5 pages, and the first and last pages hold the writing prompts
+          and the thank-you page. The date and time appear on that closing page, so
+          participants can see when the round table took place.
+        </p>
+
+        <button id="rtStartBtn" class="btn-save">Start Round Table</button>
+      </div>
+
+      <!-- Writing view -->
+      <div class="rt-view rt-writing-view hidden" id="rtWritingView">
+        <div class="rt-status-bar">
+          <span class="rt-turn-label" id="rtTurnLabel">Turn 1 of 6</span>
+          <button id="rtEndNowBtn" class="btn-clear">End round table now</button>
+        </div>
+
+        <div class="rt-writing-layout">
+        <div class="rt-previous-block">
+          <div class="rt-block-label">Previous entry (read silently, do not show anyone else):</div>
+          <div class="rt-canvas-frame rt-a5-frame rt-previous-frame">
+            <canvas id="rtPreviousCanvas"></canvas>
+            <div class="rt-previous-placeholder" id="rtPreviousPlaceholder">
+              You are first &mdash; nothing to read. Start writing below.
+            </div>
+          </div>
+        </div>
+
+        <div class="rt-current-block">
+          <div class="rt-block-label">Your turn &mdash; compose on the A5 page:</div>
+          <div class="rt-canvas-frame rt-a5-frame rt-current-frame" id="rtCurrentFrame" tabindex="0">
+            <canvas id="rtCurrentCanvas"></canvas>
+            <div class="rt-current-placeholder" id="rtCurrentPlaceholder">
+              Click here and start typing&hellip;
+            </div>
+          </div>
+        </div>
+
+        <div class="rt-credit-block">
+          <div class="rt-block-label">Credit (optional):</div>
+          <div class="rt-credit-card">
+            <p class="rt-credit-question">
+              Would you like to credit yourself on this page?
+            </p>
+            <label class="rt-credit-field">
+              Your name
+              <input type="text" id="rtCreditInput" maxlength="40" autocomplete="off"
+                     spellcheck="false" placeholder="e.g. Jihae">
+            </label>
+            <p class="rt-credit-hint">
+              Leave blank to stay anonymous. Your name appears in 20&thinsp;pt
+              type at the bottom-right of your page.
+            </p>
+          </div>
+
+          <div class="rt-block-label rt-tools-label">Tools:</div>
+          <div class="rt-controls">
+            <div class="rt-control-row">
+              <span class="rt-control-name">Default font size</span>
+              <span class="rt-control-value" id="rtFontSizeLabel">120px</span>
+              <span class="kerning-group">
+                <button id="rtFontSizeUpBtn" class="btn-kern" title="Increase the size new glyphs are typed at">&#9650;</button>
+                <button id="rtFontSizeDownBtn" class="btn-kern" title="Decrease the size new glyphs are typed at">&#9660;</button>
+              </span>
+            </div>
+            <div class="rt-control-row">
+              <span class="rt-control-name">Kern</span>
+              <span class="kerning-group">
+                <button id="rtKernUpBtn" class="btn-kern" title="Increase kerning at caret">&#9650;</button>
+                <button id="rtKernDownBtn" class="btn-kern" title="Decrease kerning at caret">&#9660;</button>
+              </span>
+            </div>
+            <div class="rt-control-row">
+              <span class="rt-control-name">Char size</span>
+              <span class="kerning-group">
+                <button id="rtSizeUpBtn" class="btn-kern" title="Increase size of the selected text (or the glyph at the caret)">&#9650;</button>
+                <button id="rtSizeDownBtn" class="btn-kern" title="Decrease size of the selected text (or the glyph at the caret)">&#9660;</button>
+              </span>
+            </div>
+            <div class="rt-control-row">
+              <span class="rt-control-name">Y move</span>
+              <span class="kerning-group">
+                <button id="rtYUpBtn" class="btn-kern" title="Move the selected text (or the glyph at the caret) up">&#9650;</button>
+                <button id="rtYDownBtn" class="btn-kern" title="Move the selected text (or the glyph at the caret) down">&#9660;</button>
+              </span>
+            </div>
+            <div class="rt-control-actions">
+              <button id="rtClearBtn" class="btn-clear">Clear</button>
+              <button id="rtSubmitBtn" class="btn-save">Submit &amp; pass &rarr;</button>
+            </div>
+          </div>
+        </div>
+        </div><!-- /.rt-writing-layout -->
+      </div>
+
+      <!-- Complete view -->
+      <div class="rt-view rt-complete-view hidden" id="rtCompleteView">
+        <div class="rt-complete-header">
+          <h3 id="rtCompleteTitle">Round table complete &mdash; reading view</h3>
+          <div class="rt-complete-actions">
+            <button id="rtExportPdfBtn" class="btn-save">&#128196; Export Booklet (.pdf)</button>
+            <button id="rtNewRoundBtn" class="btn-clear">Start new round table</button>
+          </div>
+        </div>
+        <div class="rt-reading-nav">
+          <button id="rtPrevSpreadBtn" class="btn-kern">&larr; Previous</button>
+          <span id="rtSpreadIndicator">Spread 1 / 1</span>
+          <button id="rtNextSpreadBtn" class="btn-kern">Next &rarr;</button>
+        </div>
+        <div class="rt-reading-container">
+          <canvas id="rtReadingCanvas"></canvas>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

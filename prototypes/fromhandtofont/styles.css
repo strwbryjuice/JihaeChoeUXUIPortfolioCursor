@@ -1,0 +1,991 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: #888;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+/* ── Glyph Sections ── */
+.glyph-section {
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #667eea;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-count {
+  font-size: 11px;
+  font-weight: 400;
+  color: #555;
+  background: #1a1a24;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* ── Alphabet Grid ── */
+.alphabet-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.grid-letters,
+.grid-numbers {
+  grid-template-columns: repeat(13, 1fr);
+}
+
+.grid-symbols {
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.grid-ligatures {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 300px;
+}
+
+.drop-zone {
+  aspect-ratio: 1;
+  border: 2px dashed #333;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  background: #111118;
+  min-height: 60px;
+}
+
+.grid-ligatures .drop-zone {
+  aspect-ratio: 1.6 / 1;
+}
+
+.drop-zone:hover {
+  border-color: #667eea;
+  background: #15151f;
+}
+
+.drop-zone.drag-over {
+  border-color: #764ba2;
+  background: #1a1a2e;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(118, 75, 162, 0.3);
+}
+
+.drop-zone.has-image {
+  border-color: #4caf50;
+  border-style: solid;
+}
+
+.drop-zone .letter-label {
+  font-size: 18px;
+  font-weight: 700;
+  color: #444;
+  pointer-events: none;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.drop-zone.has-image .letter-label {
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  font-size: 10px;
+  color: #4caf50;
+  z-index: 2;
+}
+
+.drop-zone .drop-hint {
+  font-size: 9px;
+  color: #555;
+  margin-top: 2px;
+  pointer-events: none;
+}
+
+.drop-zone.has-image .drop-hint {
+  display: none;
+}
+
+.drop-zone .preview-img {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 4px;
+}
+
+.drop-zone.has-image .preview-img {
+  display: block;
+}
+
+.drop-zone .remove-btn {
+  display: none;
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  background: rgba(244, 67, 54, 0.8);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.drop-zone.has-image:hover .remove-btn {
+  display: block;
+}
+
+.drop-zone .vector-indicator {
+  display: none;
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  font-size: 10px;
+  color: #667eea;
+}
+
+.drop-zone.has-vector .vector-indicator {
+  display: block;
+}
+
+/* Hidden file input */
+.drop-zone input[type="file"] {
+  display: none;
+}
+
+/* ── Status Bar ── */
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 10px;
+  background: #111118;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  color: #888;
+}
+
+.btn-clear {
+  padding: 4px 12px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background: transparent;
+  color: #888;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.btn-clear:hover {
+  border-color: #f44336;
+  color: #f44336;
+}
+
+.btn-download {
+  padding: 4px 12px;
+  border: 1px solid #4caf50;
+  border-radius: 6px;
+  background: transparent;
+  color: #4caf50;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.btn-download:hover {
+  background: #4caf50;
+  color: #fff;
+}
+
+.btn-download:disabled {
+  border-color: #333;
+  color: #555;
+  cursor: not-allowed;
+  background: transparent;
+}
+
+.btn-save {
+  padding: 4px 12px;
+  border: 1px solid #667eea;
+  border-radius: 6px;
+  background: transparent;
+  color: #667eea;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.btn-save:hover {
+  background: #667eea;
+  color: #fff;
+}
+
+/* ── Typing Section ── */
+.typing-section {
+  margin-top: 8px;
+}
+
+.typing-section h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #aaa;
+}
+
+.typing-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: #888;
+  flex-wrap: wrap;
+}
+
+.typing-controls label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.toggle-label {
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-label input[type="checkbox"] {
+  accent-color: #667eea;
+}
+
+.typing-controls input[type="color"] {
+  width: 30px;
+  height: 24px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* ── Kerning controls ── */
+.kerning-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: #888;
+}
+
+.btn-kern {
+  padding: 3px 10px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background: transparent;
+  color: #888;
+  cursor: pointer;
+  font-size: 10px;
+  line-height: 1;
+  transition: all 0.15s;
+  user-select: none;
+}
+
+.btn-kern:hover {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.btn-kern:active {
+  background: #1a1a2e;
+}
+
+.line-height-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #888;
+}
+
+.line-height-control input[type="range"] {
+  width: 110px;
+  cursor: pointer;
+}
+
+.line-height-control span {
+  min-width: 32px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: #aaa;
+}
+
+.typing-area {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: text;
+}
+
+.typing-area canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.typing-placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #bbb;
+  font-size: 16px;
+  pointer-events: none;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.typing-placeholder.hidden {
+  display: none;
+}
+
+/* ── Processing overlay ── */
+.drop-zone .processing {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  color: #667eea;
+  font-size: 10px;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.drop-zone.is-processing .processing {
+  display: flex;
+}
+
+/* ── A4 Book Cover Print ── */
+.a4-print-section {
+  margin-top: 32px;
+}
+
+.a4-print-section h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #aaa;
+}
+
+.a4-text-editor {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.a4-text-editor label {
+  font-size: 12px;
+  color: #888;
+}
+
+.a4-text-editor textarea {
+  width: 100%;
+  max-width: 440px;
+  padding: 8px 10px;
+  background: #1a1a24;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #e0e0e0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.a4-text-editor textarea:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.a4-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: #888;
+  flex-wrap: wrap;
+}
+
+.a4-status {
+  color: #888;
+  font-size: 13px;
+}
+
+.a4-status.ready {
+  color: #4caf50;
+  font-weight: 600;
+}
+
+.a4-container {
+  width: 100%;
+  background: #1a1a24;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.a4-container canvas {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 297 / 210;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  display: block;
+  border-radius: 2px;
+}
+
+/* ── 2 A5 Posters on A4 ── */
+.poster-section {
+  margin-top: 32px;
+}
+
+.poster-section h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #aaa;
+}
+
+.poster-text-editors {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.poster-text-editor {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.poster-text-editor label {
+  font-size: 12px;
+  color: #888;
+}
+
+.poster-text-editor textarea {
+  width: 100%;
+  padding: 8px 10px;
+  background: #1a1a24;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #e0e0e0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.poster-text-editor textarea:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.poster-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: #888;
+  flex-wrap: wrap;
+}
+
+.poster-container {
+  width: 100%;
+  background: #1a1a24;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.poster-container canvas {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 297 / 210;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  display: block;
+  border-radius: 2px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .grid-letters,
+  .grid-numbers {
+    grid-template-columns: repeat(7, 1fr);
+  }
+  .grid-symbols {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .grid-letters,
+  .grid-numbers,
+  .grid-symbols {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .grid-ligatures {
+    max-width: 100%;
+  }
+}
+
+/* ─── Round Table Writing ───────────────────────────────── */
+.round-table-section {
+  margin-top: 40px;
+}
+
+.round-table-section h2 {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 0 6px;
+  color: #fff;
+}
+
+.round-table-intro {
+  font-size: 13px;
+  color: #888;
+  margin: 0 0 18px;
+  line-height: 1.5;
+  max-width: 720px;
+}
+
+.rt-view {
+  background: #131326;
+  border: 1px solid #2a2a3e;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.rt-view.hidden {
+  display: none;
+}
+
+/* Setup view */
+.rt-setup-view {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.rt-setup-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.rt-setup-row input[type="number"] {
+  width: 70px;
+  background: #0f0f1f;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: #fff;
+  padding: 6px 8px;
+  font-size: 14px;
+}
+
+/* Date / time groups sit inline with the participant count. */
+.rt-setup-when {
+  flex-wrap: wrap;
+}
+
+.rt-setup-when input[type="number"] {
+  width: 64px;
+}
+
+.rt-setup-when #rtYear {
+  width: 80px;
+}
+
+.rt-setup-row select {
+  background: #0f0f1f;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: #fff;
+  padding: 6px 8px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.rt-setup-row select:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.rt-time-colon {
+  margin: 0 -4px;
+  color: #666;
+}
+
+.rt-setup-hint {
+  flex-basis: 100%;
+  margin: 2px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #777;
+}
+
+.rt-setup-row input[type="number"]:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+/* Writing view */
+.rt-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #2a2a3e;
+}
+
+.rt-turn-label {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.rt-previous-block,
+.rt-current-block {
+  margin-top: 14px;
+}
+
+.rt-block-label {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 6px;
+}
+
+.rt-canvas-frame {
+  position: relative;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #2a2a3e;
+  overflow: hidden;
+}
+
+/* Side-by-side: previous-entry preview on the left, current composition
+   surface on the right. Wraps to stacked layout when the screen is too
+   narrow for both A5 frames to sit next to each other comfortably. */
+.rt-writing-layout {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.rt-writing-layout .rt-previous-block,
+.rt-writing-layout .rt-current-block,
+.rt-writing-layout .rt-credit-block {
+  flex: 0 0 auto;
+  margin-top: 14px;
+}
+
+/* Third column: optional self-credit for the page being composed, plus
+   the composition tools. Wide enough for "Default font size" on one line. */
+.rt-credit-block {
+  width: 290px;
+}
+
+.rt-credit-card {
+  background: #1a1a2e;
+  border: 1px solid #2a2a3e;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.rt-credit-question {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #ccc;
+}
+
+.rt-credit-field {
+  display: block;
+  font-size: 12px;
+  color: #888;
+}
+
+.rt-credit-field input {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px 10px;
+  background: #0f0f1a;
+  border: 1px solid #2a2a3e;
+  border-radius: 6px;
+  color: #eee;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.rt-credit-field input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.rt-credit-hint {
+  margin: 12px 0 0;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #777;
+}
+
+/* A5 portrait = half of A4 landscape. */
+.rt-a5-frame {
+  aspect-ratio: 1485 / 2100;
+  margin: 0;   /* the flex parent handles spacing */
+}
+
+.rt-previous-frame {
+  max-width: 260px;   /* compact preview of the previous person's page */
+}
+
+.rt-current-block {
+  width: 480px;
+}
+
+.rt-current-frame {
+  max-width: 480px;   /* main composition surface */
+}
+
+.rt-canvas-frame canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.rt-current-frame {
+  cursor: text;
+  border-color: #3a3a55;
+}
+
+.rt-current-frame:focus,
+.rt-current-frame:focus-within {
+  outline: none;
+  border-color: #667eea;
+}
+
+.rt-previous-placeholder,
+.rt-current-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 13px;
+  pointer-events: none;
+  font-style: italic;
+}
+
+.rt-previous-placeholder.hidden,
+.rt-current-placeholder.hidden {
+  display: none;
+}
+
+/* Composition tools, stacked under the credit card so each one stays
+   readable in the narrow third column instead of wrapping into a row. */
+.rt-tools-label {
+  margin-top: 16px;
+}
+
+.rt-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px;
+  background: #1a1a2e;
+  border: 1px solid #2a2a3e;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #888;
+}
+
+.rt-control-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rt-control-name {
+  flex: 1 1 auto;
+  color: #ccc;
+}
+
+.rt-control-value {
+  flex: 0 0 auto;
+  min-width: 44px;
+  text-align: right;
+  color: #ccc;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Numeric readout between the typing canvas's Default font size arrows. */
+.size-value {
+  min-width: 42px;
+  text-align: right;
+  color: #ccc;
+  font-variant-numeric: tabular-nums;
+}
+
+/* "Default font size" is the longest label here; let it wrap rather than
+   squeeze the readout and arrows. */
+.rt-controls .rt-control-row:first-child .rt-control-name {
+  line-height: 1.3;
+}
+
+.rt-control-row .kerning-group {
+  flex: 0 0 auto;
+  gap: 6px;
+}
+
+.rt-control-row .btn-kern {
+  padding: 5px 14px;
+  font-size: 11px;
+}
+
+.rt-control-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+  padding-top: 12px;
+  border-top: 1px solid #2a2a3e;
+}
+
+.rt-control-actions button {
+  width: 100%;
+  padding: 9px 12px;
+  font-size: 13px;
+}
+
+.rt-control-actions .btn-save {
+  font-weight: 500;
+}
+
+/* Complete view */
+.rt-complete-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.rt-complete-header h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.rt-complete-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.rt-reading-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.rt-reading-nav button {
+  padding: 6px 14px;
+  font-size: 13px;
+}
+
+.rt-reading-nav button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.rt-reading-nav span {
+  font-size: 13px;
+  color: #aaa;
+  min-width: 110px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.rt-reading-container {
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.rt-reading-container canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+}
