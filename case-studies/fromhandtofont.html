@@ -83,6 +83,9 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M2 7h10M8 3l4 4-4 4' fill='none' stroke='%23888884' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center; }
 .seq-steps li.is-highlight { background:var(--ink); border-color:var(--ink); color:#FFFFFF; }
 .seq-steps li.is-highlight::after { color:rgba(255,255,255,0.55); }
+/* Finding 02: the Before / After rows sit between the card rows, lined up with the row text */
+.seq-in-card { margin:4px 0 8px 132px; }
+#user-testing .ut-card + .ut-illust { margin-top:16px; }
 
 /* PRODUCT LINK */
 .link-card { display:flex; align-items:center; justify-content:space-between; gap:16px; background:var(--ink); border:1px solid var(--ink); border-radius:10px; padding:20px 24px; font-size:var(--body); text-decoration:none; color:#FFFFFF; margin:16px 0 20px; transition:background .2s; }
@@ -101,6 +104,7 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
   .seq { padding:18px; }
   .seq-steps { grid-template-columns:1fr; gap:22px; }
   .seq-steps li + li::before { left:50%; top:-18px; transform:translateX(-50%) rotate(90deg); }
+  .seq-in-card { margin-left:0; }
   .photo-arrow { width:34px; height:34px; }
 }
 </style>
@@ -214,25 +218,27 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
       <div class="ut-fnum">Finding 02</div>
       <div class="ut-rows">
         <div class="ut-row"><span class="ut-rl">Finding</span><span class="ut-rb">An average of 12 minutes of downtime occurred during printing.</span></div>
+        <div class="seq-in-card">
+          <div class="seq-label">Before</div>
+          <ol class="seq-steps">
+            <li>Introduce myself</li>
+            <li><span>Participant draw Alphabet</span><span>I upload it on laptop</span></li>
+            <li>Print</li>
+            <li>Bookbinding</li>
+          </ol>
+        </div>
         <div class="ut-row ut-change"><span class="ut-rl">Change</span><span class="ut-rb">Added a typography activity to fill the printing downtime.</span></div>
+        <div class="seq-in-card">
+          <div class="seq-label">After</div>
+          <ol class="seq-steps">
+            <li>Introduce myself</li>
+            <li><span>Participant draw Alphabet</span><span>I upload it on laptop</span></li>
+            <li class="is-highlight">Print <span class="sub">(prepared activity)</span></li>
+            <li>Bookbinding</li>
+          </ol>
+        </div>
         <div class="ut-row"><span class="ut-rl">Outcome</span><span class="ut-rb">4/6 participants had no downtime; 2/6 waited only 3–4 minutes.</span></div>
       </div>
-    </div>
-    <div class="seq">
-      <div class="seq-label">Before</div>
-      <ol class="seq-steps">
-        <li>Introduce myself</li>
-        <li><span>Participant draw Alphabet</span><span>I upload it on laptop</span></li>
-        <li>Print</li>
-        <li>Bookbinding</li>
-      </ol>
-      <div class="seq-label">After</div>
-      <ol class="seq-steps">
-        <li>Introduce myself</li>
-        <li><span>Participant draw Alphabet</span><span>I upload it on laptop</span></li>
-        <li class="is-highlight">Print <span class="sub">(prepared activity)</span></li>
-        <li>Bookbinding</li>
-      </ol>
     </div>
     <div class="ut-illust">
       <img src="../images/FromHandToFont/fhtf-ut2-waitingtime.webp" alt="Illustration. Before: participants sit idle at the table while the facilitator prints. After: participants work on a typography activity while the printing continues." loading="lazy">
