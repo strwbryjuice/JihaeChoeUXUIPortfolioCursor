@@ -45,28 +45,37 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
   .proto-embed { max-width:375px; height:auto; aspect-ratio:375/812; }
 }
 /* INTERVIEW SCORING TABLE — rebuilt from the field-research sheet; names anonymised */
-.iv-wrap { max-width:900px; background:var(--white); border:1px solid var(--border); border-radius:10px; padding:16px 16px 6px; margin:20px 0; }
-.iv-bar { display:flex; align-items:center; justify-content:flex-end; gap:8px; margin-bottom:12px; }
-.iv-bar-label { font-size:var(--cat); font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin-right:4px; }
+.iv-wrap { max-width:900px; margin:20px 0; }
+.iv-bar { display:flex; align-items:center; justify-content:flex-end; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
+/* summary by default: rows marked iv-extra only show in the full table */
+.iv-table tr.iv-extra { display:none; }
+.iv-wrap.show-full .iv-table tr.iv-extra { display:table-row; }
+.iv-full { margin-right:auto; padding:6px 12px; border:1px solid var(--ink); border-radius:100px; background:var(--ink); font:500 12px/1 'DM Sans',sans-serif; color:#FFFFFF; cursor:pointer; transition:background .2s, border-color .2s, color .2s; }
+.iv-full:hover { background:#0350FD; border-color:#0350FD; color:#FFFFFF; }
 .iv-toggle { display:inline-flex; align-items:center; gap:7px; padding:6px 12px 6px 8px; border:1px solid var(--border); border-radius:100px; background:var(--white); font:500 12px/1 'DM Sans',sans-serif; color:var(--ink); cursor:pointer; transition:color .2s, border-color .2s; }
 .iv-toggle:hover { border-color:var(--ink); }
 .iv-toggle .sw { width:14px; height:14px; border-radius:50%; transition:background-color .2s, box-shadow .2s; }
-.iv-toggle[data-color="y"] .sw { background:#FFEF5C; }
-.iv-toggle[data-color="p"] .sw { background:#F8B4F1; }
+.iv-toggle[data-color="g"] .sw { background:#04D180; }
+.iv-toggle[data-color="b"] .sw { background:#0350FD; }
 .iv-toggle[aria-pressed="false"] { color:var(--muted); }
 .iv-toggle[aria-pressed="false"] .sw { background:transparent; box-shadow:inset 0 0 0 1.5px #C4C4C0; }
 /* width:0 + min-width:100% keeps the wide table from stretching the page; it scrolls inside instead */
-.iv-scroll { overflow-x:auto; width:0; min-width:100%; }
-.iv-table { width:100%; min-width:820px; border-collapse:collapse; font-size:12px; line-height:1.45; color:var(--ink); }
-.iv-table th, .iv-table td { text-align:left; vertical-align:top; padding:10px 8px; border-bottom:1px solid var(--border); font-weight:400; }
-.iv-table thead th { background:#F4F4F2; font-weight:600; }
-.iv-table thead th span { display:block; font-weight:400; color:var(--muted); }
-.iv-table tbody th { width:112px; font-weight:500; }
+.iv-scroll { overflow-x:auto; width:0; min-width:100%; border-radius:8px; box-shadow:0 0 0 1px var(--border); }
+/* Table look after codepen.io/nathancockerill/pen/OQyXWb: black header bar, zebra rows, no rules */
+.iv-table { width:100%; min-width:820px; border-collapse:collapse; background:var(--white); font-size:12px; line-height:1.45; color:var(--ink); }
+.iv-table th, .iv-table td { text-align:left; vertical-align:top; padding:14px 12px; font-weight:400; }
+.iv-table thead th { background:#111110; color:#FFFFFF; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; text-align:center; vertical-align:top; padding:18px 12px; white-space:nowrap; }
+.iv-table thead th span { display:block; margin-top:2px; font-weight:400; letter-spacing:0.04em; color:rgba(255,255,255,0.6); }
+.iv-table tbody tr { border-bottom:1px solid var(--border); }
+.iv-table tbody tr.iv-total { border-bottom:none; background:#EFEFED; }
+.iv-table tbody th { width:112px; font-weight:600; }
 .iv-table td b { font-weight:600; }
-.iv-total th, .iv-total td { border-bottom:none; font-size:14px; font-weight:600; padding-top:14px; padding-bottom:14px; }
-.hl { border-radius:6px; padding:1px 3px; -webkit-box-decoration-break:clone; box-decoration-break:clone; transition:background-color .2s; }
-.iv-wrap.show-y .hl-y { background:#FFEF5C; }
-.iv-wrap.show-p .hl-p { background:#F8B4F1; }
+.iv-total td { font-size:14px; font-weight:600; text-align:center; vertical-align:middle; }
+.iv-total th { vertical-align:middle; }
+/* highlighted cells are filled with the colour; each button switches its colour on or off */
+.iv-table td.hl { transition:background-color .2s, color .2s; }
+.iv-wrap.show-g td.hl-g { background:#04D180; }
+.iv-wrap.show-b td.hl-b { background:#0350FD; color:#FFFFFF; }
 </style>
 </head>
 <body>
@@ -169,29 +178,29 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
       </div>
     </div>
     <!-- Interview scoring sheet: yellow / pink highlights can be switched on and off -->
-    <div class="iv-wrap show-y show-p">
+    <div class="iv-wrap show-g show-b">
       <div class="iv-bar">
-        <span class="iv-bar-label">Highlights</span>
-        <button class="iv-toggle" type="button" data-color="y" aria-pressed="true"><span class="sw"></span>Yellow</button>
-        <button class="iv-toggle" type="button" data-color="p" aria-pressed="true"><span class="sw"></span>Pink</button>
+        <button class="iv-full" type="button" aria-pressed="false">View full table</button>
+        <button class="iv-toggle" type="button" data-color="g" aria-pressed="true"><span class="sw"></span>Like to write budget</button>
+        <button class="iv-toggle" type="button" data-color="b" aria-pressed="true"><span class="sw"></span>No habit to write budget</button>
       </div>
       <div class="iv-scroll">
         <table class="iv-table">
           <thead><tr><th scope="col">Criterion</th><th scope="col">Participant A<span>(M, 16)</span></th><th scope="col">Participant B<span>(M, 16)</span></th><th scope="col">Participant C<span>(M, 15)</span></th><th scope="col">Participant D<span>(M, 16)</span></th><th scope="col">Participant E<span>(M, 15)</span></th><th scope="col">Participant F<span>(M, 15)</span></th></tr></thead>
           <tbody>
-          <tr><th scope="row">1. Budget proactively</th><td><b>0.5</b> – Writes yearly budget, checks monthly balance, but not deeply</td><td><b>0</b> – No written budget, general 'spend wisely' advice</td><td><span class="hl hl-y"><b>1</b> – Writes budget on paper monthly, uses 50/30/20 rule</span></td><td><b>0</b> – No budget, tracks mentally</td><td><span class="hl hl-y"><b>1</b> – Writes budget on excel</span></td><td><b>0</b> – No budget, tracks mentally</td></tr>
-          <tr><th scope="row">2. Adapt to irregular income</th><td><b>1</b> – Saves from irregular allowances, manages fragmental income</td><td><b>1</b> – Adjusts spending/saving with irregular cash from dad</td><td><b>0</b> – Regular allowance, N/A</td><td><b>0</b> – Regular allowance, N/A</td><td><b>1</b> – Saves from irregular allowances, manages fragmental income</td><td><b>0</b> – Regular allowance, N/A</td></tr>
-          <tr><th scope="row">3. Willing to discuss saving with parents</th><td><b>1</b> – Talks to mom, close relationship, investment plans shared</td><td><span class="hl hl-p"><b>0</b> – The conversation with dad is shallow</span></td><td><b>1</b> – Talks to mom about budgeting advice</td><td><span class="hl hl-p"><b>0.5</b> – Mother talks about spending priorities, but not deep savings</span></td><td><b>1</b> – Likes to brag how much he saved, talks with dad how he will use his money later</td><td><span class="hl hl-p"><b>0</b> – The conversation with mom is shallow (asking money for getting games)</span></td></tr>
-          <tr><th scope="row">4. Know bank account type</th><td><b>0.5</b> – Has joint account with mom, some awareness</td><td><b>0</b> – Aware of joint family account setup, but gets cash from dad mostly</td><td><b>1</b> – Knows debit card setup with dad monitoring</td><td><b>0.5</b> – Has teen debit card, unsure difference from normal</td><td><b>1</b> – Knows debit card setup, separate the saving pots into 3 sectors to track incomes</td><td><b>1</b> – Aware of student account</td></tr>
-          <tr><th scope="row">5a. Saving habit</th><td><b>2</b> – Saves monthly £100 into investment fund</td><td><b>1</b> – Saves sometimes into investment, inconsistent habit</td><td><span class="hl hl-y"><b>2</b> – Saves monthly for 5 months consistently</span></td><td><b>0</b> – No regular saving habit</td><td><span class="hl hl-y"><b>2</b> – Saves 20-30 percent whenever there is income</span></td><td><b>0</b> – No regular saving habit</td></tr>
-          <tr><th scope="row">5b. Saving rate</th><td><b>2</b> – ≥20% of irregular income saved</td><td><b>1</b> – 5–19% of irregular income saved</td><td><b>2</b> – 20% of allowance saved</td><td><b>0</b> – No consistent saving, 0% rate</td><td><b>2</b> – ≥20% of irregular income saved</td><td><b>0</b> – No regular saving habit</td></tr>
-          <tr><th scope="row">5c. Flexible cash</th><td><span class="hl hl-y"><b>0</b> – All money locked in investment, no flexible</span></td><td><b>0</b> – All savings in investment, no flexible cash</td><td><span class="hl hl-y"><b>2</b> – Cash savings accessible</span></td><td><b>0</b> – No cash saved</td><td><span class="hl hl-y"><b>2</b> – Cash savings accessible</span></td><td><b>0</b> – 1500 pounds for 2 year is not much</td></tr>
-          <tr><th scope="row">5d. Goal–vehicle match</th><td><b>1</b> – Investment matches long-term study abroad goal</td><td><b>0.5</b> – Investment fund but vague plan for future company</td><td><b>0.5</b> – Cash savings appropriate for short term but no long-term plan</td><td><b>0</b> – No saving system at all</td><td><b>1</b> – Saving tracking by separating different spaces based on source</td><td><b>0</b> – No saving system at all</td></tr>
-          <tr><th scope="row">6. Effective spending</th><td><b>1</b> – Buys within budget, invests instead of splurging</td><td><b>1</b> – Chooses cheaper but equal-spec electronics, avoids brand premium</td><td><b>1</b> – Prioritises needs, avoids unnecessary purchases</td><td><b>0.5</b> – Some price-conscious choices, avoids premium but no consistent system</td><td><b>1</b> – Buys within budget, buy something that is worth to use for long term</td><td><b>0.5</b> – Buys within budget</td></tr>
-          <tr><th scope="row">7. Made short goal</th><td><b>1</b> – Bought second-hand iPhone 13 within budget</td><td><b>1</b> – Saved for iPad, resold computers for profit</td><td><b>1</b> – Saved for second-hand laptop</td><td><b>0</b> – No specific short goal achieved</td><td><b>0</b> – No specific long-term goal</td><td><b>0</b> – No specific long-term goal</td></tr>
-          <tr><th scope="row">8. Have long goal</th><td><span class="hl hl-y"><b>1</b> – Saving from puppy business for master's in USA/Canada (specific long-term plan)</span></td><td><b>0</b> – Wants to start own company but no specific plan, unrealistic</td><td><span class="hl hl-y"><b>0</b> – No long-term goal mentioned</span></td><td><b>0</b> – No specific long-term goal</td><td><span class="hl hl-y"><b>0</b> – No specific long-term goal</span></td><td><b>0</b> – No specific long-term goal</td></tr>
-          <tr><th scope="row">9. Saving ratio</th><td>600 (for investment) / irregular income</td><td>300 (for investment) / irregular income</td><td>1500 / 500 per month (3–4 month duration)</td><td>0</td><td>more than 2000 / irregular income</td><td>more than 1200 / regular income of 700 per month for 2 years</td></tr>
-          <tr class="iv-total"><th scope="row">Total</th><td><span class="hl hl-y">11</span></td><td><span class="hl hl-p">5.5</span></td><td><span class="hl hl-y">11.5</span></td><td><span class="hl hl-p">1.5</span></td><td></td><td></td></tr>
+          <tr><th scope="row">1. Budget proactively</th><td><b>0.5</b> – Writes yearly budget, checks monthly balance, but not deeply</td><td><b>0</b> – No written budget, general 'spend wisely' advice</td><td class="hl hl-g"><b>1</b> – Writes budget on paper monthly, uses 50/30/20 rule</td><td><b>0</b> – No budget, tracks mentally</td><td class="hl hl-g"><b>1</b> – Writes budget on excel</td><td><b>0</b> – No budget, tracks mentally</td></tr>
+          <tr class="iv-extra"><th scope="row">2. Adapt to irregular income</th><td><b>1</b> – Saves from irregular allowances, manages fragmental income</td><td><b>1</b> – Adjusts spending/saving with irregular cash from dad</td><td><b>0</b> – Regular allowance, N/A</td><td><b>0</b> – Regular allowance, N/A</td><td><b>1</b> – Saves from irregular allowances, manages fragmental income</td><td><b>0</b> – Regular allowance, N/A</td></tr>
+          <tr><th scope="row">3. Willing to discuss saving with parents</th><td><b>1</b> – Talks to mom, close relationship, investment plans shared</td><td class="hl hl-b"><b>0</b> – The conversation with dad is shallow</td><td><b>1</b> – Talks to mom about budgeting advice</td><td class="hl hl-b"><b>0.5</b> – Mother talks about spending priorities, but not deep savings</td><td><b>1</b> – Likes to brag how much he saved, talks with dad how he will use his money later</td><td class="hl hl-b"><b>0</b> – The conversation with mom is shallow (asking money for getting games)</td></tr>
+          <tr class="iv-extra"><th scope="row">4. Know bank account type</th><td><b>0.5</b> – Has joint account with mom, some awareness</td><td><b>0</b> – Aware of joint family account setup, but gets cash from dad mostly</td><td><b>1</b> – Knows debit card setup with dad monitoring</td><td><b>0.5</b> – Has teen debit card, unsure difference from normal</td><td><b>1</b> – Knows debit card setup, separate the saving pots into 3 sectors to track incomes</td><td><b>1</b> – Aware of student account</td></tr>
+          <tr><th scope="row">5a. Saving habit</th><td><b>2</b> – Saves monthly £100 into investment fund</td><td><b>1</b> – Saves sometimes into investment, inconsistent habit</td><td class="hl hl-g"><b>2</b> – Saves monthly for 5 months consistently</td><td><b>0</b> – No regular saving habit</td><td class="hl hl-g"><b>2</b> – Saves 20-30 percent whenever there is income</td><td><b>0</b> – No regular saving habit</td></tr>
+          <tr class="iv-extra"><th scope="row">5b. Saving rate</th><td><b>2</b> – ≥20% of irregular income saved</td><td><b>1</b> – 5–19% of irregular income saved</td><td><b>2</b> – 20% of allowance saved</td><td><b>0</b> – No consistent saving, 0% rate</td><td><b>2</b> – ≥20% of irregular income saved</td><td><b>0</b> – No regular saving habit</td></tr>
+          <tr><th scope="row">5c. Flexible cash</th><td class="hl hl-g"><b>0</b> – All money locked in investment, no flexible</td><td class="hl hl-b"><b>0</b> – All savings in investment, no flexible cash</td><td class="hl hl-g"><b>2</b> – Cash savings accessible</td><td class="hl hl-b"><b>0</b> – No cash saved</td><td class="hl hl-g"><b>2</b> – Cash savings accessible</td><td class="hl hl-b"><b>0</b> – 1500 pounds for 2 year is not much</td></tr>
+          <tr class="iv-extra"><th scope="row">5d. Goal–vehicle match</th><td><b>1</b> – Investment matches long-term study abroad goal</td><td><b>0.5</b> – Investment fund but vague plan for future company</td><td><b>0.5</b> – Cash savings appropriate for short term but no long-term plan</td><td><b>0</b> – No saving system at all</td><td><b>1</b> – Saving tracking by separating different spaces based on source</td><td><b>0</b> – No saving system at all</td></tr>
+          <tr class="iv-extra"><th scope="row">6. Effective spending</th><td><b>1</b> – Buys within budget, invests instead of splurging</td><td><b>1</b> – Chooses cheaper but equal-spec electronics, avoids brand premium</td><td><b>1</b> – Prioritises needs, avoids unnecessary purchases</td><td><b>0.5</b> – Some price-conscious choices, avoids premium but no consistent system</td><td><b>1</b> – Buys within budget, buy something that is worth to use for long term</td><td><b>0.5</b> – Buys within budget</td></tr>
+          <tr class="iv-extra"><th scope="row">7. Made short goal</th><td><b>1</b> – Bought second-hand iPhone 13 within budget</td><td><b>1</b> – Saved for iPad, resold computers for profit</td><td><b>1</b> – Saved for second-hand laptop</td><td><b>0</b> – No specific short goal achieved</td><td><b>0</b> – No specific long-term goal</td><td><b>0</b> – No specific long-term goal</td></tr>
+          <tr><th scope="row">8. Have long goal</th><td class="hl hl-g"><b>1</b> – Saving from puppy business for master's in USA/Canada (specific long-term plan)</td><td class="hl hl-b"><b>0</b> – Wants to start own company but no specific plan, unrealistic</td><td class="hl hl-g"><b>0</b> – No long-term goal mentioned</td><td class="hl hl-b"><b>0</b> – No specific long-term goal</td><td class="hl hl-g"><b>0</b> – No specific long-term goal</td><td class="hl hl-b"><b>0</b> – No specific long-term goal</td></tr>
+          <tr class="iv-extra"><th scope="row">9. Saving ratio</th><td>600 (for investment) / irregular income</td><td>300 (for investment) / irregular income</td><td>1500 / 500 per month (3–4 month duration)</td><td>0</td><td>more than 2000 / irregular income</td><td>more than 1200 / regular income of 700 per month for 2 years</td></tr>
+          <tr class="iv-total"><th scope="row">Total</th><td class="hl hl-g">11</td><td class="hl hl-b">5.5</td><td class="hl hl-g">11.5</td><td class="hl hl-b">1.5</td><td class="hl hl-g">12</td><td class="hl hl-b">1.5</td></tr>
           </tbody>
         </table>
       </div>
@@ -738,6 +747,8 @@ function initMagnifier(imgId, lensId, zoom) {
 }
 initMagnifier('ut1-card1-img', 'ut1-card1-lens', 3);
 // Interview table: each button switches its highlight colour on or off
+// Interview table: the full-table button shows the criteria hidden in the summary
+document.querySelectorAll('.iv-full').forEach(btn=>btn.addEventListener('click',()=>{const on=btn.getAttribute('aria-pressed')!=='true';btn.setAttribute('aria-pressed',String(on));btn.textContent=on?'View summary':'View full table';btn.closest('.iv-wrap').classList.toggle('show-full',on);}));
 document.querySelectorAll('.iv-toggle').forEach(btn=>btn.addEventListener('click',()=>{const on=btn.getAttribute('aria-pressed')!=='true';btn.setAttribute('aria-pressed',String(on));btn.closest('.iv-wrap').classList.toggle('show-'+btn.dataset.color,on);}));
 function toggleUTFindings(gridId,btnId){const grid=document.getElementById(gridId);const btn=document.getElementById(btnId);const isOpen=grid.classList.toggle('expanded');btn.classList.toggle('open',isOpen);btn.querySelector('span').textContent=isOpen?'Show less':'See 4 more findings';}
 </script>

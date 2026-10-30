@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clear Check App — Jihae Choe</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="casestudy.css?v=3">
+<style>
+/* The presentation slides share a dark background, so they stack edge to edge into one long board */
+/* fill the whole right column: no side padding around the slides */
+.content { padding:0; }
+.cc-board { background:#1C1F27; }
+.cc-board .section { max-width:none; margin:0; scroll-margin-top:56px; }
+.cc-board img { display:block; width:100%; height:auto; }
+.visually-hidden { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-back"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M12 7H2M6 3L2 7l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Back</a>
+    <a href="../index.html" class="nav-logo">Jihae Choe</a>
+  </div>
+</nav>
+
+<div class="layout">
+<aside class="sl">
+  <div class="toc-label">On this page</div>
+  <ul class="toc-list">
+    <li><a href="#overview" class="active">Overview</a></li>
+    <li><a href="#background">Background</a></li>
+    <li><a href="#competitive-analysis">Competitive Analysis</a></li>
+    <li><a href="#field-research">Field Research</a></li>
+    <li><a href="#persona">Persona</a></li>
+    <li><a href="#journey-map">User Journey Map</a></li>
+    <li><a href="#brand-identity">Brand Identity</a></li>
+    <li><a href="#key-features">Key Features</a></li>
+    <li><a href="#user-test">User Test</a></li>
+  </ul>
+</aside>
+
+<main class="content">
+  <h1 class="visually-hidden">Clear Check App</h1>
+  <div class="cc-board">
+    <section class="section" id="overview">
+      <img src="../images/ClearCheck/cc-01-cover.jpg" width="1925" height="1338" alt="Clear Check cover: a high-value second-hand trading service that uses an automated trade guide and an autonomous vehicle to reduce quality disputes between traders. Team project, May to July 2024, PBV and mobile app service design.">
+      <img src="../images/ClearCheck/cc-02-overview.jpg" width="1925" height="913" alt="Overview: Clear Check is a high-value second-hand trading platform where an intermediary PBV verifies items and delivers them safely, using item-specific checklists to reduce information gaps." loading="lazy">
+    </section>
+    <section class="section" id="background">
+      <img src="../images/ClearCheck/cc-03-background.jpg" width="1925" height="1463" alt="Background: growing quality disputes in second-hand trading. Buyers' top inconvenience is checking item quality (47%), and quality is the top consumer complaint type (30.2%)." loading="lazy">
+    </section>
+    <section class="section" id="competitive-analysis">
+      <img src="../images/ClearCheck/cc-04-competitive-analysis.jpg" width="1925" height="2882" alt="Competitive analysis: second-hand platforms compared by safe payment, intermediary management and communication, with three selected competitors and their strengths and weaknesses." loading="lazy">
+    </section>
+    <section class="section" id="field-research">
+      <img src="../images/ClearCheck/cc-05-field-research.jpg" width="1925" height="2867" alt="Field research: a survey of 50 second-hand trading users and interviews with 6 users, showing they want verified quality and a safe trade for high-value items." loading="lazy">
+      <img src="../images/ClearCheck/cc-06-affinity-diagram.jpg" width="1925" height="2514" alt="Affinity diagram: three key points from the research, leading to the question of how to trade verified high-value items quickly and safely at a low trading cost." loading="lazy">
+    </section>
+    <section class="section" id="persona">
+      <img src="../images/ClearCheck/cc-07-persona.jpg" width="1925" height="1473" alt="Service personas: a seller who struggles to describe products, and a buyer who prefers direct trades for safety, each with motivation, pain points and needs." loading="lazy">
+    </section>
+    <section class="section" id="journey-map">
+      <img src="../images/ClearCheck/cc-08-journey-map.jpg" width="1925" height="1871" alt="User journey map of a high-value second-hand trade from both the buyer's and the seller's side, with feelings, pain points, needs and solutions at each stage." loading="lazy">
+    </section>
+    <section class="section" id="brand-identity">
+      <img src="../images/ClearCheck/cc-09-brand-identity.jpg" width="1925" height="3229" alt="Brand identity: the Clear Check logo concept, logo type, colour palette, typography, icon concept and logo variations." loading="lazy">
+    </section>
+    <section class="section" id="key-features">
+      <img src="../images/ClearCheck/cc-10-key-features.jpg" width="1925" height="13030" alt="Key features: mobile app screens for product registration with a trade checklist, PBV booking and pickup, and the PBV inspection report." loading="lazy">
+    </section>
+    <section class="section" id="user-test">
+      <img src="../images/ClearCheck/cc-11-user-test.jpg" width="1925" height="1670" alt="User test: seller and buyer tasks with real users, their good points, bad points, improvements and conclusions." loading="lazy">
+      <img src="../images/ClearCheck/cc-12-thank-you.jpg" width="1925" height="2584" alt="Thank you for watching, Team Clear Check." loading="lazy">
+    </section>
+  </div>
+</main>
+
+</div>
+
+<script>
+// "On this page": highlight the last section whose top has passed 30% of the viewport
+const tocLinks=[...document.querySelectorAll('.toc-list a')].map(a=>({a,el:document.querySelector(a.getAttribute('href'))}));
+function updateToc(){let cur=tocLinks[0];tocLinks.forEach(t=>{if(t.el.getBoundingClientRect().top<=innerHeight*0.3)cur=t;});tocLinks.forEach(t=>t.a.classList.toggle('active',t===cur));}
+addEventListener('scroll',updateToc,{passive:true});
+addEventListener('load',updateToc);
+updateToc();
+</script>
+</body>
+</html>
