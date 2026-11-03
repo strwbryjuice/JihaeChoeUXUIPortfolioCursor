@@ -21,7 +21,26 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
 #testing > *, #define > * { width:100%; }
 
 /* PROBLEM STATEMENT */
-.ps-wrap { margin:0; }
+/* PERSONA — photo fills its cell; quote under the details; bio with the key lines marked like the supporting articles */
+.persona-photo.has-img { position:relative; padding:0; }
+.persona-photo.has-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 25%; }
+/* details as a two-column table so every value starts on the same line */
+.persona-dl { display:grid; grid-template-columns:112px minmax(0,1fr); margin:0; }
+.persona-dl dt, .persona-dl dd { margin:0; padding:7px 0; border-bottom:1px solid var(--border); font-size:var(--body); line-height:1.5; }
+.persona-dl dt { font-weight:500; color:var(--ink); }
+.persona-dl dd { font-weight:300; }
+.persona-dl dt:first-of-type, .persona-dl dd:first-of-type { padding-top:0; }
+.persona-dl dt:last-of-type, .persona-dl dd:last-of-type { border-bottom:none; }
+.persona-quote { margin:8px 0 0; padding-top:16px; border-top:1px solid var(--border); font-size:18px; font-weight:500; line-height:1.45; color:var(--ink); }
+.persona-bio { padding:20px 24px 4px; border-bottom:1px solid var(--border); }
+.persona-bio .bl { margin:10px 0 16px; gap:4px; }
+.persona-bio mark { background:#CCDBFF; color:inherit; padding:0 3px; border-radius:2px; -webkit-box-decoration-break:clone; box-decoration-break:clone; }
+@media (max-width:768px) {
+  .persona-photo.has-img { min-height:0; aspect-ratio:1; max-width:200px; width:100%; margin:20px 0 0 28px; border:none; border-radius:8px; overflow:hidden; }
+}
+.ps-wrap { margin:32px 0 0; }
+/* DELIVER — design boards shown whole at content width */
+.deliver-img { display:block; width:100%; height:auto; margin:20px 0; border-radius:6px; }
 .ps-block { background:var(--ink); padding:48px; border-radius:12px; max-width:900px; width:100%; text-align:center; margin:0 auto; }
 .ps-block .ps-lbl { font-size:var(--cat); font-weight:500; letter-spacing:0.12em; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-bottom:28px; }
 .ps-block .ps-q { font-size:clamp(20px,2.2vw,32px); font-weight:400; line-height:1.5; color:#FFFFFF; margin:0; text-align:center; max-width:none !important; }
@@ -89,7 +108,7 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
 .bar-plot { display:flex; align-items:flex-end; height:150px; border-bottom:1px solid #C4C4C0; }
 .bar-col { position:relative; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; outline:none; }
 .bar-val { font-size:12px; font-weight:600; line-height:1; color:var(--ink); margin-bottom:6px; }
-.bar { width:24px; height:calc(var(--v) * 2%); background:#CFCFCA; border-radius:4px 4px 0 0; transition:opacity .15s; }
+.bar { width:24px; height:calc(var(--v) * 2%); background:#CCDBFF; border-radius:4px 4px 0 0; transition:opacity .15s; }
 .bar-col.is-key .bar { background:#0350FD; }
 .bar-col:hover .bar, .bar-col:focus-visible .bar { opacity:.75; }
 .bar-col::after { content:attr(data-tip); position:absolute; bottom:calc(var(--v) * 2% + 26px); left:50%; transform:translateX(-50%); width:max-content; max-width:140px; padding:6px 8px; border-radius:6px; background:var(--ink); color:#FFFFFF; font-size:11px; line-height:1.35; text-align:center; opacity:0; pointer-events:none; transition:opacity .15s; z-index:2; }
@@ -108,6 +127,19 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
 .donut-legend li b { margin-left:auto; font-weight:600; color:var(--ink); }
 .donut-legend .sw { flex:none; width:10px; height:10px; border-radius:2px; }
 .bg-news { display:block; width:100%; max-width:360px; height:auto; margin:0 auto; }
+/* OVERVIEW DOT CHARTS — one dot per teen: filled = yes, light = no; the "always set money aside" row is the gap, so its dots are inked */
+.dot-head { text-align:center; }
+.dot-head b { display:block; font-size:28px; font-weight:600; line-height:1; color:var(--ink); }
+.dot-head span { display:block; margin-top:6px; font-size:12px; color:var(--muted); }
+.dot-grid { display:grid; grid-template-columns:repeat(3, 26px); gap:12px; justify-content:center; margin-top:18px; }
+.dot-grid i, .dot-line i { display:block; aspect-ratio:1; border-radius:50%; background:#CCDBFF; }
+.dot-grid i.on, .dot-line i.on { background:#0350FD; }
+.dot-rows { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:18px; }
+.dot-row-head { display:flex; align-items:baseline; justify-content:space-between; gap:12px; font-size:12px; line-height:1.4; color:var(--ink); }
+.dot-row-head b { flex:none; font-size:15px; font-weight:600; }
+.dot-line { display:grid; grid-template-columns:repeat(7, 18px); gap:8px; margin-top:8px; }
+.dot-rows li.is-key .dot-line i.on { background:var(--ink); }
+.ov-shot { display:block; width:100%; height:auto; border:1px solid var(--border); border-radius:6px; }
 
 /* User story board: colour-coded epics with sticky notes, pin colour = who the story is for */
 .us-board-wrap { container-type:inline-size; }
@@ -118,11 +150,16 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
 .us-grid { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:32px 12px; align-items:start; }
 .us-group { grid-column:span var(--n); }
 .us-head { padding:9px 12px; border-radius:4px; font-size:12px; font-weight:500; line-height:1.3; text-align:center; color:var(--ink); }
+/* group head: the pillar it became, then the original user story group */
+.us-head b { display:block; font-weight:600; }
+.us-head span { display:block; margin-top:2px; font-size:11px; font-weight:400; color:rgba(17,17,16,0.68); }
+.us-note { margin:0 0 12px; font-size:13px; line-height:1.5; color:var(--muted); }
+.us-note b { font-weight:500; color:var(--ink); }
 .us-cards { list-style:none; margin:22px 0 0; padding:0; display:grid; grid-template-columns:repeat(var(--n), minmax(0,1fr)); gap:26px 12px; }
 .us-card { position:relative; padding:22px 14px 16px; background:#DCDCDA; border-radius:2px; font-size:12px; line-height:1.5; color:var(--ink); }
 .us-card::before { content:''; position:absolute; top:0; left:50%; width:22px; height:22px; border-radius:50%; transform:translate(-50%,-50%); box-shadow:0 1px 2px rgba(0,0,0,0.18); }
-.us-card.teen::before, .us-legend .teen { background:#E8392F; }
-.us-card.parent::before, .us-legend .parent { background:#9A7B7B; }
+.us-card.teen::before, .us-legend .teen { background:#04D180; }
+.us-card.parent::before, .us-legend .parent { background:#0350FD; }
 .us-card b { display:block; margin-bottom:4px; font-weight:600; }
 .us-card span { display:block; margin-top:4px; }
 @container (max-width:640px) {
@@ -134,11 +171,17 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
 @container (max-width:380px) { .us-cards { grid-template-columns:minmax(0,1fr); } }
 
 /* Supporting articles: screenshots with the key lines marked like a highlighter pen */
-.article-imgs { align-items:start; }
+/* one row: each column is sized by its screenshot's width ÷ height (585×412, 655×322, 319×294), so all three show at the same height */
+.article-imgs { grid-template-columns:minmax(0,1.42fr) minmax(0,2.034fr) minmax(0,1.085fr); align-items:start; margin:20px 0; }
 .article-card { margin:0; }
+/* a small phone screenshot with large type: once the cards stack, keep it at its own 319px width rather than stretching it */
+.article-card.is-narrow { max-width:319px; }
+@media (max-width:768px) {
+  .article-imgs { grid-template-columns:minmax(0,1fr); }
+}
 .article-shot { position:relative; isolation:isolate; }
 .article-shot img { display:block; width:100%; height:auto; }
-.article-shot .hl { position:absolute; background:#A7EFD3; border-radius:2px; mix-blend-mode:multiply; pointer-events:none; }
+.article-shot .hl { position:absolute; background:#CCDBFF; border-radius:2px; mix-blend-mode:multiply; pointer-events:none; }
 .article-card figcaption { margin-top:10px; font-size:13px; line-height:1.5; color:var(--muted); }
 .article-card figcaption b { font-weight:500; color:var(--ink); }
 .article-card figcaption a { color:var(--ink); text-decoration:underline; text-underline-offset:3px; }
@@ -261,7 +304,7 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
   <section class="section" id="discover">
     <div class="mid-title">Discover</div>
     <div class="cat">Background</div>
-    <div class="catchy">Building financial habits before becoming an adult.</div>
+    <div class="catchy">Low Savings Leave Young Adults Vulnerable to Unexpected Costs</div>
     <p>In the UK, many young adults have low savings buffers, making small unexpected bills a serious problem. A Building Societies Association (BSA) report found that <strong>36% of under-24s could not cover an unexpected £300 expense</strong>, and that 27% of UK adults have less than £1,000 in savings. UK media also reports that over 11 million Britons hold under £1,000 saved. These figures suggest that financial resilience depends not only on knowledge, but on habits—saving regularly, budgeting, and reflecting on spending—built early and reinforced over time.</p>
     <div class="bg-stats-wrap">
       <div class="bg-stats">
@@ -282,14 +325,14 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
           <div class="bg-card-body">
             <div class="donut">
               <svg viewBox="0 0 160 160" role="img" aria-label="27% of UK adults have less than £1,000 in savings; 73% have £1,000 or more">
-                <circle cx="80" cy="80" r="66" pathLength="100" stroke="#CFCFCA" stroke-dasharray="72.5 27.5" stroke-dashoffset="-27.25"><title>£1,000 or more: 73%</title></circle>
+                <circle cx="80" cy="80" r="66" pathLength="100" stroke="#CCDBFF" stroke-dasharray="72.5 27.5" stroke-dashoffset="-27.25"><title>£1,000 or more: 73%</title></circle>
                 <circle cx="80" cy="80" r="66" pathLength="100" stroke="#0350FD" stroke-dasharray="26.5 73.5" stroke-dashoffset="-0.25"><title>Less than £1,000: 27%</title></circle>
               </svg>
               <div class="donut-center" aria-hidden="true"><b>27%</b><span>UK adults</span></div>
             </div>
             <ul class="donut-legend">
               <li><span class="sw" style="background:#0350FD"></span>Less than £1,000<b>27%</b></li>
-              <li><span class="sw" style="background:#CFCFCA"></span>£1,000 or more<b>73%</b></li>
+              <li><span class="sw" style="background:#CCDBFF"></span>£1,000 or more<b>73%</b></li>
             </ul>
           </div>
           <p class="bg-card-src">Source: Building Societies Association (BSA)</p>
@@ -303,122 +346,38 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
         </figure>
       </div>
     </div>
-    <div class="cat">Primary Research · Survey</div>
-    <div class="catchy">Desire to save and invest present, but no roadmap to do so.</div>
-    <ul class="bl">
-      <li><strong>How:</strong> Conducted via Google Forms with 35 participants (26 parents, 9 teens) for 1 week.</li>
-      <li><strong>Objective:</strong> To understand teens’ financial goals, everyday money habits, and barriers to managing money confidently, alongside parents’ perspectives on the support they need.</li>
-      <li><strong>Insight:</strong> Current school education focuses on dictionaries more than practice. 3 out of 3 teens indicated being anxious or unconfident about their real-life money management despite all having financial courses from school.</li>
-    </ul>
-    <div class="svy-wrap">
-      <div class="svy">
-        <figure class="svy-col">
-          <figcaption class="svy-title">Saving or investing goals</figcaption>
-          <svg class="svy-pie" viewBox="0 0 200 200" role="img" aria-label="8 of 9 teens (89%) had saving or investing goals; 1 (11%) reported no such goals">
-            <path d="M100 100L100.00 4.00A96 96 0 1 1 38.29 26.46Z" fill="#0350FD"><title>Had saving or investing goals (8)</title></path>
-            <path d="M100 100L38.29 26.46A96 96 0 0 1 100.00 4.00Z" fill="#CCDBFF"><title>No such goals reported (1)</title></path>
-            <text class="on-dark" x="119.8" y="154.5">89%</text>
-            <text x="76.7" y="36.1">11%</text>
-          </svg>
-          <div class="svy-count">8 of 9 teens</div>
-          <ul class="svy-legend">
-            <li><i style="background:#0350FD"></i>Had saving or investing goals (8)</li>
-            <li><i style="background:#CCDBFF"></i>No such goals reported (1)</li>
-          </ul>
-        </figure>
-        <figure class="svy-col">
-          <figcaption class="svy-title">Consistent goal-based saving</figcaption>
-          <svg class="svy-pie" viewBox="0 0 200 200" role="img" aria-label="3 of 9 teens (33%) always set money aside; 6 (67%) sometimes or rarely do">
-            <path d="M100 100L100.00 4.00A96 96 0 0 1 183.14 148.00Z" fill="#0350FD"><title>Always set money aside (3)</title></path>
-            <path d="M100 100L183.14 148.00A96 96 0 1 1 100.00 4.00Z" fill="#CCDBFF"><title>Sometimes or rarely set money aside (6)</title></path>
-            <text class="on-dark" x="150.2" y="71.0">33%</text>
-            <text x="48.0" y="130.0">67%</text>
-          </svg>
-          <div class="svy-count">3 of 9 teens</div>
-          <ul class="svy-legend">
-            <li><i style="background:#0350FD"></i>Always set money aside (3)</li>
-            <li><i style="background:#CCDBFF"></i>Sometimes or rarely set money aside (6)</li>
-          </ul>
-        </figure>
-        <figure class="svy-col">
-          <figcaption class="svy-title">Parents’ view of financial anxiety</figcaption>
-          <svg class="svy-pie" viewBox="0 0 200 200" role="img" aria-label="17 of 26 parents (65%) named a lack of money management knowledge; 9 (35%) named other potential causes">
-            <path d="M100 100L100.00 4.00A96 96 0 1 1 20.99 154.53Z" fill="#0350FD"><title>Lack of money management knowledge (17)</title></path>
-            <path d="M100 100L20.99 154.53A96 96 0 0 1 100.00 4.00Z" fill="#CCDBFF"><title>Other potential causes (9)</title></path>
-            <text class="on-dark" x="151.4" y="127.0">65%</text>
-            <text x="46.9" y="72.1">35%</text>
-          </svg>
-          <div class="svy-count">17 of 26 parents</div>
-          <ul class="svy-legend">
-            <li><i style="background:#0350FD"></i>Lack of money management knowledge (17)</li>
-            <li><i style="background:#CCDBFF"></i>Other potential causes (9)</li>
-          </ul>
-        </figure>
-      </div>
-    </div>
-    <div class="cat">Primary Research · Interview</div>
-    <div class="catchy">Teens who had engaging conversations with their parents are more likely to write budgets.</div>
-    <p>Parents fear that teaching money may underestimate teens' financial potential. Teens who experienced open financial discussion at home showed significantly higher budgeting behaviour.</p>
-    <div class="adrop">
-      <button class="adrop-btn" onclick="toggleDrop(this,'adb')">
-        <div class="adrop-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="#888884" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        Also 2 articles that align with this interview insight were found as additional support
-      </button>
-      <div class="adrop-body" id="adb">
-        <div class="article-imgs">
-          <figure class="article-card">
-            <div class="article-shot">
-              <img src="../images/Habitta/article-financial-socialization.png" width="585" height="412" alt="Excerpt from the paper's Financial Socialization section, with Kim and Chatterjee's (2013) finding highlighted: children whose bank accounts and spending habits were monitored by their parents were more likely to own financial assets as young adults" loading="lazy">
-              <!-- highlighter marks over the Kim and Chatterjee finding (positions measured on the 585 × 412 screenshot) -->
-              <span class="hl" style="left:41.2%;top:43.45%;width:54.87%;height:5.83%"></span>
-              <span class="hl" style="left:5.98%;top:50%;width:89.91%;height:5.83%"></span>
-              <span class="hl" style="left:5.98%;top:56.55%;width:85.47%;height:5.83%"></span>
-            </div>
-            <figcaption><b>“The Role of Parental Education in Financial Socialization of Children”</b> by Nadzeya Kardash</figcaption>
-          </figure>
-          <figure class="article-card">
-            <div class="article-shot">
-              <img src="../images/Habitta/article-teen-financial-advice.png" width="655" height="322" alt="Seeking Financial Advice: a bar chart of who teens typically consult for financial advice, with the top bar highlighted: 72% my parents or guardian" loading="lazy">
-              <!-- highlighter mark over the 72% row (measured on the 655 × 322 screenshot) -->
-              <span class="hl" style="left:53.59%;top:26.71%;width:34.66%;height:6.83%"></span>
-            </div>
-            <figcaption><a href="https://bold.org/blog/financial-education-for-teens/#introduction-to-saving-and-investing-for-teens" target="_blank" rel="noopener noreferrer">Financial education for teens</a> · Bold.org</figcaption>
-          </figure>
+    <div class="cat">Desk Research</div>
+    <div class="catchy">Building Financial Habits Before Adulthood</div>
+    <p>Financial habits begin developing before adulthood and continue to evolve throughout adolescence. This creates an opportunity to help teens practise saving, budgeting, and making everyday spending decisions before taking on greater financial responsibilities. This project explores how an app could support that practice and help teens build consistent money habits over time.</p>
+    <div class="article-imgs">
+      <figure class="article-card">
+        <div class="article-shot">
+          <img src="../images/Habitta/article-financial-socialization.png" width="585" height="412" alt="Excerpt from the paper's Financial Socialization section, with Kim and Chatterjee's (2013) finding highlighted: children whose bank accounts and spending habits were monitored by their parents were more likely to own financial assets as young adults" loading="lazy">
+          <!-- highlighter marks over the Kim and Chatterjee finding (positions measured on the 585 × 412 screenshot) -->
+          <span class="hl" style="left:41.2%;top:43.45%;width:54.87%;height:5.83%"></span>
+          <span class="hl" style="left:5.98%;top:50%;width:89.91%;height:5.83%"></span>
+          <span class="hl" style="left:5.98%;top:56.55%;width:85.47%;height:5.83%"></span>
         </div>
-      </div>
+        <figcaption><b>“The Role of Parental Education in Financial Socialization of Children”</b> by Nadzeya Kardash</figcaption>
+      </figure>
+      <figure class="article-card">
+        <div class="article-shot">
+          <img src="../images/Habitta/article-teen-financial-advice.png" width="655" height="322" alt="Seeking Financial Advice: a bar chart of who teens typically consult for financial advice, with the top bar highlighted: 72% my parents or guardian" loading="lazy">
+          <!-- highlighter mark over the 72% row (measured on the 655 × 322 screenshot) -->
+          <span class="hl" style="left:53.59%;top:26.71%;width:34.66%;height:6.83%"></span>
+        </div>
+        <figcaption><a href="https://bold.org/blog/financial-education-for-teens/#introduction-to-saving-and-investing-for-teens" target="_blank" rel="noopener noreferrer">Financial education for teens</a> · Bold.org</figcaption>
+      </figure>
+      <figure class="article-card is-narrow">
+        <div class="article-shot">
+          <img src="../images/Habitta/article-cfpb-financial-capability.jpg" width="319" height="294" alt="Adolescence and young adulthood (13–21): executive function continues to mature; habits and norms about money continue to develop (highlighted); youth solidify financial knowledge and decision-making skills, which become more relevant in their everyday lives" loading="lazy">
+          <!-- highlighter marks over the money habits bullet (measured on the 319 × 294 screenshot) -->
+          <span class="hl" style="left:10.03%;top:43.2%;width:70.85%;height:6.46%"></span>
+          <span class="hl" style="left:10.03%;top:50.68%;width:46.08%;height:6.46%"></span>
+        </div>
+        <figcaption><a href="https://www.consumerfinance.gov/consumer-tools/educator-tool/youth-financial-education/learn/" target="_blank" rel="noopener noreferrer">Learn about the building blocks of financial capability</a> · Consumer Financial Protection Bureau</figcaption>
+      </figure>
     </div>
-    <!-- Interview scoring sheet: yellow / pink highlights can be switched on and off -->
-    <div class="iv-wrap show-g show-b">
-      <div class="iv-bar">
-        <button class="iv-full" type="button" aria-pressed="false">View full table</button>
-        <button class="iv-toggle" type="button" data-color="g" aria-pressed="true"><span class="sw"></span>Like to write budget</button>
-        <button class="iv-toggle" type="button" data-color="b" aria-pressed="true"><span class="sw"></span>No habit to write budget</button>
-      </div>
-      <div class="iv-scroll">
-        <table class="iv-table">
-          <thead><tr><th scope="col">Criterion</th><th scope="col">Participant A<span>(M, 16)</span></th><th scope="col">Participant B<span>(M, 16)</span></th><th scope="col">Participant C<span>(M, 15)</span></th><th scope="col">Participant D<span>(M, 16)</span></th><th scope="col">Participant E<span>(M, 15)</span></th><th scope="col">Participant F<span>(M, 15)</span></th></tr></thead>
-          <tbody>
-          <tr><th scope="row">1. Budget proactively</th><td><b>0.5</b> – Writes yearly budget, checks monthly balance, but not deeply</td><td><b>0</b> – No written budget, general 'spend wisely' advice</td><td class="hl hl-g"><b>1</b> – Writes budget on paper monthly, uses 50/30/20 rule</td><td><b>0</b> – No budget, tracks mentally</td><td class="hl hl-g"><b>1</b> – Writes budget on excel</td><td><b>0</b> – No budget, tracks mentally</td></tr>
-          <tr class="iv-extra"><th scope="row">2. Adapt to irregular income</th><td><b>1</b> – Saves from irregular allowances, manages fragmental income</td><td><b>1</b> – Adjusts spending/saving with irregular cash from dad</td><td><b>0</b> – Regular allowance, N/A</td><td><b>0</b> – Regular allowance, N/A</td><td><b>1</b> – Saves from irregular allowances, manages fragmental income</td><td><b>0</b> – Regular allowance, N/A</td></tr>
-          <tr><th scope="row">3. Willing to discuss saving with parents</th><td><b>1</b> – Talks to mom, close relationship, investment plans shared</td><td class="hl hl-b"><b>0</b> – The conversation with dad is shallow</td><td><b>1</b> – Talks to mom about budgeting advice</td><td class="hl hl-b"><b>0.5</b> – Mother talks about spending priorities, but not deep savings</td><td><b>1</b> – Likes to brag how much he saved, talks with dad how he will use his money later</td><td class="hl hl-b"><b>0</b> – The conversation with mom is shallow (asking money for getting games)</td></tr>
-          <tr class="iv-extra"><th scope="row">4. Know bank account type</th><td><b>0.5</b> – Has joint account with mom, some awareness</td><td><b>0</b> – Aware of joint family account setup, but gets cash from dad mostly</td><td><b>1</b> – Knows debit card setup with dad monitoring</td><td><b>0.5</b> – Has teen debit card, unsure difference from normal</td><td><b>1</b> – Knows debit card setup, separate the saving pots into 3 sectors to track incomes</td><td><b>1</b> – Aware of student account</td></tr>
-          <tr><th scope="row">5a. Saving habit</th><td><b>2</b> – Saves monthly £100 into investment fund</td><td><b>1</b> – Saves sometimes into investment, inconsistent habit</td><td class="hl hl-g"><b>2</b> – Saves monthly for 5 months consistently</td><td><b>0</b> – No regular saving habit</td><td class="hl hl-g"><b>2</b> – Saves 20-30 percent whenever there is income</td><td><b>0</b> – No regular saving habit</td></tr>
-          <tr class="iv-extra"><th scope="row">5b. Saving rate</th><td><b>2</b> – ≥20% of irregular income saved</td><td><b>1</b> – 5–19% of irregular income saved</td><td><b>2</b> – 20% of allowance saved</td><td><b>0</b> – No consistent saving, 0% rate</td><td><b>2</b> – ≥20% of irregular income saved</td><td><b>0</b> – No regular saving habit</td></tr>
-          <tr><th scope="row">5c. Flexible cash</th><td class="hl hl-g"><b>0</b> – All money locked in investment, no flexible</td><td class="hl hl-b"><b>0</b> – All savings in investment, no flexible cash</td><td class="hl hl-g"><b>2</b> – Cash savings accessible</td><td class="hl hl-b"><b>0</b> – No cash saved</td><td class="hl hl-g"><b>2</b> – Cash savings accessible</td><td class="hl hl-b"><b>0</b> – 1500 pounds for 2 year is not much</td></tr>
-          <tr class="iv-extra"><th scope="row">5d. Goal–vehicle match</th><td><b>1</b> – Investment matches long-term study abroad goal</td><td><b>0.5</b> – Investment fund but vague plan for future company</td><td><b>0.5</b> – Cash savings appropriate for short term but no long-term plan</td><td><b>0</b> – No saving system at all</td><td><b>1</b> – Saving tracking by separating different spaces based on source</td><td><b>0</b> – No saving system at all</td></tr>
-          <tr class="iv-extra"><th scope="row">6. Effective spending</th><td><b>1</b> – Buys within budget, invests instead of splurging</td><td><b>1</b> – Chooses cheaper but equal-spec electronics, avoids brand premium</td><td><b>1</b> – Prioritises needs, avoids unnecessary purchases</td><td><b>0.5</b> – Some price-conscious choices, avoids premium but no consistent system</td><td><b>1</b> – Buys within budget, buy something that is worth to use for long term</td><td><b>0.5</b> – Buys within budget</td></tr>
-          <tr class="iv-extra"><th scope="row">7. Made short goal</th><td><b>1</b> – Bought second-hand iPhone 13 within budget</td><td><b>1</b> – Saved for iPad, resold computers for profit</td><td><b>1</b> – Saved for second-hand laptop</td><td><b>0</b> – No specific short goal achieved</td><td><b>0</b> – No specific long-term goal</td><td><b>0</b> – No specific long-term goal</td></tr>
-          <tr><th scope="row">8. Have long goal</th><td class="hl hl-g"><b>1</b> – Saving from puppy business for master's in USA/Canada (specific long-term plan)</td><td class="hl hl-b"><b>0</b> – Wants to start own company but no specific plan, unrealistic</td><td class="hl hl-g"><b>0</b> – No long-term goal mentioned</td><td class="hl hl-b"><b>0</b> – No specific long-term goal</td><td class="hl hl-g"><b>0</b> – No specific long-term goal</td><td class="hl hl-b"><b>0</b> – No specific long-term goal</td></tr>
-          <tr class="iv-extra"><th scope="row">9. Saving ratio</th><td>600 (for investment) / irregular income</td><td>300 (for investment) / irregular income</td><td>1500 / 500 per month (3–4 month duration)</td><td>0</td><td>more than 2000 / irregular income</td><td>more than 1200 / regular income of 700 per month for 2 years</td></tr>
-          <tr class="iv-total"><th scope="row">Total</th><td class="hl hl-g">11</td><td class="hl hl-b">5.5</td><td class="hl hl-g">11.5</td><td class="hl hl-b">1.5</td><td class="hl hl-g">12</td><td class="hl hl-b">1.5</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="cat">Overview of Survey and Interview</div>
-    <div class="catchy">Targeting the ages from 14 to 16.</div>
-    <p>While older students are more "serious," primary data showed that ages 14–16 are at the most critical "Golden Window" — seeking autonomy but still highly influenced by parental guidance.</p>
-    <div class="img-ph" style="aspect-ratio:16/9;background:#D6D2CC;"><div class="ph-box"></div><span class="ph-label">Overview Image</span></div>
     <div class="cat">Competitor Analysis</div>
     <div class="catchy">There are many services to track spending and manage money, but they still lack in habit-building and financial guidance for teens.</div>
     <div class="ca-wrap">
@@ -504,6 +463,141 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
         <p>Teens fall in the gap</p>
       </div>
     </div>
+    <div class="cat">Overview of Survey and Interview</div>
+    <div class="catchy">Targeting the ages from 14 to 16.</div>
+    <p>Seven of the nine teens surveyed were aged 14–16, giving us more insight into this group than other ages. Within this group, all had saving or investing goals, but only three always set money aside for them. Five also received parental money guidance at least weekly. Combined with desk research on developing financial independence during adolescence, these findings informed our choice of ages 14–16 as the initial design focus.</p>
+    <div class="bg-stats-wrap">
+      <div class="bg-stats">
+        <figure class="bg-card">
+          <figcaption class="bg-card-title">Teens surveyed by age</figcaption>
+          <div class="bg-card-body">
+            <div class="dot-head"><b>7 of 9 teens</b><span>were aged 14–16</span></div>
+            <div class="dot-grid" role="img" aria-label="7 of 9 teens surveyed were aged 14–16; 2 were aged 11 and 13" title="7 aged 14–16 · 2 aged 11 and 13"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+            <ul class="donut-legend">
+              <li><span class="sw" style="background:#0350FD"></span>Ages 14–16<b>7</b></li>
+              <li><span class="sw" style="background:#CCDBFF"></span>Ages 11 and 13<b>2</b></li>
+            </ul>
+          </div>
+          <p class="bg-card-src">Source: Teen survey (Google Forms, 9 teens)</p>
+        </figure>
+        <figure class="bg-card">
+          <figcaption class="bg-card-title">Among the 7 teens aged 14–16</figcaption>
+          <div class="bg-card-body">
+            <ul class="dot-rows">
+              <li>
+                <div class="dot-row-head"><span>Had saving or investing goals</span><b>7 of 7</b></div>
+                <div class="dot-line" role="img" aria-label="Had saving or investing goals: 7 of 7" title="7 of 7"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+              </li>
+              <li class="is-key">
+                <div class="dot-row-head"><span>Always set money aside for specific goals</span><b>3 of 7</b></div>
+                <div class="dot-line" role="img" aria-label="Always set money aside for specific goals: 3 of 7" title="3 of 7"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
+              </li>
+              <li>
+                <div class="dot-row-head"><span>Received parental money guidance at least weekly</span><b>5 of 7</b></div>
+                <div class="dot-line" role="img" aria-label="Received parental money guidance at least weekly: 5 of 7" title="5 of 7"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+              </li>
+            </ul>
+          </div>
+          <p class="bg-card-src">Source: Teen survey (Google Forms, 9 teens)</p>
+        </figure>
+        <figure class="bg-card">
+          <figcaption class="bg-card-title">Desk research</figcaption>
+          <div class="bg-card-body">
+            <img class="ov-shot" src="../images/Habitta/desk-cfpb-teens-young-adults.jpg" width="700" height="406" alt="CFPB page 'Teenagers and young adults': teens start to earn money and make decisions on their own, and adult supervision, guidance and feedback can help them navigate successfully" loading="lazy">
+          </div>
+          <p class="bg-card-src">Source: Consumer Financial Protection Bureau (CFPB), Money as You Grow</p>
+        </figure>
+      </div>
+    </div>
+    <div class="cat">Primary Research · Survey</div>
+    <div class="catchy">Desire to save and invest present, but no roadmap to do so.</div>
+    <ul class="bl">
+      <li><strong>How:</strong> Conducted via Google Forms with 35 participants (26 parents, 9 teens) for 1 week.</li>
+      <li><strong>Objective:</strong> To understand teens’ financial goals, everyday money habits, and barriers to managing money confidently, alongside parents’ perspectives on the support they need.</li>
+      <li><strong>Insight:</strong> Current school education focuses on dictionaries more than practice. 3 out of 3 teens indicated being anxious or unconfident about their real-life money management despite all having financial courses from school.</li>
+    </ul>
+    <div class="svy-wrap">
+      <div class="svy">
+        <figure class="svy-col">
+          <figcaption class="svy-title">Saving or investing goals</figcaption>
+          <svg class="svy-pie" viewBox="0 0 200 200" role="img" aria-label="8 of 9 teens (89%) had saving or investing goals; 1 (11%) reported no such goals">
+            <path d="M100 100L100.00 4.00A96 96 0 1 1 38.29 26.46Z" fill="#0350FD"><title>Had saving or investing goals (8)</title></path>
+            <path d="M100 100L38.29 26.46A96 96 0 0 1 100.00 4.00Z" fill="#CCDBFF"><title>No such goals reported (1)</title></path>
+            <text class="on-dark" x="119.8" y="154.5">89%</text>
+            <text x="76.7" y="36.1">11%</text>
+          </svg>
+          <div class="svy-count">8 of 9 teens</div>
+          <ul class="svy-legend">
+            <li><i style="background:#0350FD"></i>Had saving or investing goals (8)</li>
+            <li><i style="background:#CCDBFF"></i>No such goals reported (1)</li>
+          </ul>
+        </figure>
+        <figure class="svy-col">
+          <figcaption class="svy-title">Consistent goal-based saving</figcaption>
+          <svg class="svy-pie" viewBox="0 0 200 200" role="img" aria-label="3 of 9 teens (33%) always set money aside; 6 (67%) sometimes or rarely do">
+            <path d="M100 100L100.00 4.00A96 96 0 0 1 183.14 148.00Z" fill="#0350FD"><title>Always set money aside (3)</title></path>
+            <path d="M100 100L183.14 148.00A96 96 0 1 1 100.00 4.00Z" fill="#CCDBFF"><title>Sometimes or rarely set money aside (6)</title></path>
+            <text class="on-dark" x="150.2" y="71.0">33%</text>
+            <text x="48.0" y="130.0">67%</text>
+          </svg>
+          <div class="svy-count">3 of 9 teens</div>
+          <ul class="svy-legend">
+            <li><i style="background:#0350FD"></i>Always set money aside (3)</li>
+            <li><i style="background:#CCDBFF"></i>Sometimes or rarely set money aside (6)</li>
+          </ul>
+        </figure>
+        <figure class="svy-col">
+          <figcaption class="svy-title">Parents’ view of financial anxiety</figcaption>
+          <svg class="svy-pie" viewBox="0 0 200 200" role="img" aria-label="17 of 26 parents (65%) named a lack of money management knowledge; 9 (35%) named other potential causes">
+            <path d="M100 100L100.00 4.00A96 96 0 1 1 20.99 154.53Z" fill="#0350FD"><title>Lack of money management knowledge (17)</title></path>
+            <path d="M100 100L20.99 154.53A96 96 0 0 1 100.00 4.00Z" fill="#CCDBFF"><title>Other potential causes (9)</title></path>
+            <text class="on-dark" x="151.4" y="127.0">65%</text>
+            <text x="46.9" y="72.1">35%</text>
+          </svg>
+          <div class="svy-count">17 of 26 parents</div>
+          <ul class="svy-legend">
+            <li><i style="background:#0350FD"></i>Lack of money management knowledge (17)</li>
+            <li><i style="background:#CCDBFF"></i>Other potential causes (9)</li>
+          </ul>
+        </figure>
+      </div>
+    </div>
+    <div class="cat">Primary Research · Interview</div>
+    <div class="catchy">Teens who had engaging conversations with their parents are more likely to write budgets.</div>
+    <ul class="bl">
+      <li><strong>Aim:</strong> To understand how teens budget, save and plan for their goals day to day, and how conversations about money at home shape those habits.</li>
+      <li><strong>Method:</strong> 1:1 Zoom calls.</li>
+      <li><strong>Who:</strong> One teen from the survey and five of their friends (6 teens aged 15–16).</li>
+      <li><strong>Duration:</strong> 60 minutes per teen or guardian.</li>
+    </ul>
+    <!-- Interview scoring sheet: yellow / pink highlights can be switched on and off -->
+    <div class="iv-wrap show-g show-b">
+      <div class="iv-bar">
+        <button class="iv-full" type="button" aria-pressed="false">View full table</button>
+        <button class="iv-toggle" type="button" data-color="g" aria-pressed="true"><span class="sw"></span>Like to write budget</button>
+        <button class="iv-toggle" type="button" data-color="b" aria-pressed="true"><span class="sw"></span>No habit to write budget</button>
+      </div>
+      <div class="iv-scroll">
+        <table class="iv-table">
+          <thead><tr><th scope="col">Criterion</th><th scope="col">Participant A<span>(M, 16)</span></th><th scope="col">Participant B<span>(M, 16)</span></th><th scope="col">Participant C<span>(M, 15)</span></th><th scope="col">Participant D<span>(M, 16)</span></th><th scope="col">Participant E<span>(M, 15)</span></th><th scope="col">Participant F<span>(M, 15)</span></th></tr></thead>
+          <tbody>
+          <tr><th scope="row">1. Budget proactively</th><td><b>0.5</b> – Writes yearly budget, checks monthly balance, but not deeply</td><td><b>0</b> – No written budget, general 'spend wisely' advice</td><td class="hl hl-g"><b>1</b> – Writes budget on paper monthly, uses 50/30/20 rule</td><td><b>0</b> – No budget, tracks mentally</td><td class="hl hl-g"><b>1</b> – Writes budget on excel</td><td><b>0</b> – No budget, tracks mentally</td></tr>
+          <tr class="iv-extra"><th scope="row">2. Adapt to irregular income</th><td><b>1</b> – Saves from irregular allowances, manages fragmental income</td><td><b>1</b> – Adjusts spending/saving with irregular cash from dad</td><td><b>0</b> – Regular allowance, N/A</td><td><b>0</b> – Regular allowance, N/A</td><td><b>1</b> – Saves from irregular allowances, manages fragmental income</td><td><b>0</b> – Regular allowance, N/A</td></tr>
+          <tr><th scope="row">3. Willing to discuss saving with parents</th><td><b>1</b> – Talks to mom, close relationship, investment plans shared</td><td class="hl hl-b"><b>0</b> – The conversation with dad is shallow</td><td><b>1</b> – Talks to mom about budgeting advice</td><td class="hl hl-b"><b>0.5</b> – Mother talks about spending priorities, but not deep savings</td><td><b>1</b> – Likes to brag how much he saved, talks with dad how he will use his money later</td><td class="hl hl-b"><b>0</b> – The conversation with mom is shallow (asking money for getting games)</td></tr>
+          <tr class="iv-extra"><th scope="row">4. Know bank account type</th><td><b>0.5</b> – Has joint account with mom, some awareness</td><td><b>0</b> – Aware of joint family account setup, but gets cash from dad mostly</td><td><b>1</b> – Knows debit card setup with dad monitoring</td><td><b>0.5</b> – Has teen debit card, unsure difference from normal</td><td><b>1</b> – Knows debit card setup, separate the saving pots into 3 sectors to track incomes</td><td><b>1</b> – Aware of student account</td></tr>
+          <tr><th scope="row">5a. Saving habit</th><td><b>2</b> – Saves monthly £100 into investment fund</td><td><b>1</b> – Saves sometimes into investment, inconsistent habit</td><td class="hl hl-g"><b>2</b> – Saves monthly for 5 months consistently</td><td><b>0</b> – No regular saving habit</td><td class="hl hl-g"><b>2</b> – Saves 20-30 percent whenever there is income</td><td><b>0</b> – No regular saving habit</td></tr>
+          <tr class="iv-extra"><th scope="row">5b. Saving rate</th><td><b>2</b> – ≥20% of irregular income saved</td><td><b>1</b> – 5–19% of irregular income saved</td><td><b>2</b> – 20% of allowance saved</td><td><b>0</b> – No consistent saving, 0% rate</td><td><b>2</b> – ≥20% of irregular income saved</td><td><b>0</b> – No regular saving habit</td></tr>
+          <tr><th scope="row">5c. Flexible cash</th><td class="hl hl-g"><b>0</b> – All money locked in investment, no flexible</td><td class="hl hl-b"><b>0</b> – All savings in investment, no flexible cash</td><td class="hl hl-g"><b>2</b> – Cash savings accessible</td><td class="hl hl-b"><b>0</b> – No cash saved</td><td class="hl hl-g"><b>2</b> – Cash savings accessible</td><td class="hl hl-b"><b>0</b> – 1500 pounds for 2 year is not much</td></tr>
+          <tr class="iv-extra"><th scope="row">5d. Goal–vehicle match</th><td><b>1</b> – Investment matches long-term study abroad goal</td><td><b>0.5</b> – Investment fund but vague plan for future company</td><td><b>0.5</b> – Cash savings appropriate for short term but no long-term plan</td><td><b>0</b> – No saving system at all</td><td><b>1</b> – Saving tracking by separating different spaces based on source</td><td><b>0</b> – No saving system at all</td></tr>
+          <tr class="iv-extra"><th scope="row">6. Effective spending</th><td><b>1</b> – Buys within budget, invests instead of splurging</td><td><b>1</b> – Chooses cheaper but equal-spec electronics, avoids brand premium</td><td><b>1</b> – Prioritises needs, avoids unnecessary purchases</td><td><b>0.5</b> – Some price-conscious choices, avoids premium but no consistent system</td><td><b>1</b> – Buys within budget, buy something that is worth to use for long term</td><td><b>0.5</b> – Buys within budget</td></tr>
+          <tr class="iv-extra"><th scope="row">7. Made short goal</th><td><b>1</b> – Bought second-hand iPhone 13 within budget</td><td><b>1</b> – Saved for iPad, resold computers for profit</td><td><b>1</b> – Saved for second-hand laptop</td><td><b>0</b> – No specific short goal achieved</td><td><b>0</b> – No specific long-term goal</td><td><b>0</b> – No specific long-term goal</td></tr>
+          <tr><th scope="row">8. Have long goal</th><td class="hl hl-g"><b>1</b> – Saving from puppy business for master's in USA/Canada (specific long-term plan)</td><td class="hl hl-b"><b>0</b> – Wants to start own company but no specific plan, unrealistic</td><td class="hl hl-g"><b>0</b> – No long-term goal mentioned</td><td class="hl hl-b"><b>0</b> – No specific long-term goal</td><td class="hl hl-g"><b>0</b> – No specific long-term goal</td><td class="hl hl-b"><b>0</b> – No specific long-term goal</td></tr>
+          <tr class="iv-extra"><th scope="row">9. Saving ratio</th><td>600 (for investment) / irregular income</td><td>300 (for investment) / irregular income</td><td>1500 / 500 per month (3–4 month duration)</td><td>0</td><td>more than 2000 / irregular income</td><td>more than 1200 / regular income of 700 per month for 2 years</td></tr>
+          <tr class="iv-total"><th scope="row">Total</th><td class="hl hl-g">11</td><td class="hl hl-b">5.5</td><td class="hl hl-g">11.5</td><td class="hl hl-b">1.5</td><td class="hl hl-g">12</td><td class="hl hl-b">1.5</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </section>
 
   <!-- DEFINE -->
@@ -517,16 +611,28 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
     <div class="cat">Persona</div>
     <div class="persona" style="max-width:900px;">
       <div class="persona-top">
-        <div class="persona-photo">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#C4C4C0" stroke-width="1.4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#C4C4C0" stroke-width="1.4" stroke-linecap="round"/></svg>
-          <span class="persona-photo-lbl">Ethan's Photo</span>
-        </div>
+        <div class="persona-photo has-img"><img src="../images/Habitta/persona-ethan.jpg" width="254" height="289" alt="Persona photo of Ethan, a teenage boy in a grey hoodie" loading="lazy"></div>
         <div class="persona-info">
-          <div class="persona-info-row"><strong>Name</strong> — Ethan</div>
-          <div class="persona-info-row"><strong>Age</strong> — 15 years old</div>
-          <div class="persona-info-row"><strong>Location</strong> — Norwich, London</div>
-          <div class="persona-info-row"><strong>Education</strong> — Recent high school graduate, attending local city college</div>
+          <dl class="persona-dl">
+            <dt>Name</dt><dd>Ethan</dd>
+            <dt>Age</dt><dd>15 years old</dd>
+            <dt>Gender</dt><dd>Male</dd>
+            <dt>Location</dt><dd>Renting a flat in London</dd>
+            <dt>Education</dt><dd>Year 11 student at a local secondary school, preparing for his GCSEs</dd>
+          </dl>
+          <p class="persona-quote">“I know saving and budgeting are important, but they’re hard to put into practice.”</p>
         </div>
+      </div>
+      <div class="persona-bio">
+        <div class="p-header">Bio</div>
+        <ul class="bl">
+          <li>Wants to save money, but <mark>his irregular allowance makes it harder to save</mark>.</li>
+          <li>Eager to make money.</li>
+          <li>Has a decent relationship with his parents, but not close enough for long conversations about money.</li>
+          <li><mark>Has no long-term goal</mark> for his savings.</li>
+          <li>Previously saved around £500 to buy his laptop, but has struggled to save since.</li>
+          <li><mark>Does not write his own budget.</mark></li>
+        </ul>
       </div>
       <div class="persona-bottom">
         <div class="p-col">
@@ -552,26 +658,36 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
       </div>
     </div>
 
-    <!-- PARENT PERSONA placeholder -->
+    <!-- PARENT PERSONA -->
     <div class="persona" style="max-width:900px;">
       <div class="persona-top">
-        <div class="persona-photo">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#C4C4C0" stroke-width="1.4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#C4C4C0" stroke-width="1.4" stroke-linecap="round"/></svg>
-          <span class="persona-photo-lbl">Parent's Photo</span>
-        </div>
+        <div class="persona-photo has-img"><img src="../images/Habitta/persona-tracey.jpg" width="241" height="255" alt="Persona photo of Tracey, a smiling woman in her 50s at a desk" loading="lazy"></div>
         <div class="persona-info">
-          <div class="persona-info-row ph" style="color:#C4C4C0;"><strong>Name</strong> — TBC</div>
-          <div class="persona-info-row ph" style="color:#C4C4C0;"><strong>Age</strong> — TBC</div>
-          <div class="persona-info-row ph" style="color:#C4C4C0;"><strong>Location</strong> — TBC</div>
-          <div class="persona-info-row ph" style="color:#C4C4C0;"><strong>Occupation</strong> — TBC</div>
+          <dl class="persona-dl">
+            <dt>Name</dt><dd>Tracey</dd>
+            <dt>Age</dt><dd>In her 50s</dd>
+            <dt>Gender</dt><dd>Female</dd>
+            <dt>Family</dt><dd>Mother of two boys, including Ethan</dd>
+            <dt>Occupation</dt><dd>Working</dd>
+          </dl>
+          <p class="persona-quote">“I don’t want to nag my kids about money, but I know financial education is important.”</p>
         </div>
+      </div>
+      <div class="persona-bio">
+        <div class="p-header">Bio</div>
+        <ul class="bl">
+          <li>Did not receive proper financial education from her own parents when she was young.</li>
+          <li>Tries her best to model healthy money habits for Ethan, comparing prices while grocery shopping and asking how much he has saved so far.</li>
+          <li><mark>Does not use a budgeting app or write her own budget</mark>, as she believes she knows her money flow without one.</li>
+          <li>Pays Ethan’s monthly rent with her husband’s money.</li>
+        </ul>
       </div>
       <div class="persona-bottom">
         <div class="p-col">
           <div class="p-header">Pain points</div>
-          <div class="p-item dim" style="color:#C4C4C0;">TBC</div>
-          <div class="p-item dim" style="color:#C4C4C0;">TBC</div>
-          <div class="p-item dim" style="color:#C4C4C0;">TBC</div>
+          <div class="p-item">No financial education of her own to draw on</div>
+          <div class="p-item">Avoids nagging, so money talks stay light</div>
+          <div class="p-item">Doesn’t budget herself, so can’t model it</div>
         </div>
         <div class="p-arrow-col">
           <div class="p-arrow">›</div>
@@ -580,9 +696,9 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
         </div>
         <div class="p-col">
           <div class="p-header">Needs</div>
-          <div class="p-item dim" style="color:#C4C4C0;">TBC</div>
-          <div class="p-item dim" style="color:#C4C4C0;">TBC</div>
-          <div class="p-item dim" style="color:#C4C4C0;">TBC</div>
+          <div class="p-item">Guide without being a money expert</div>
+          <div class="p-item">Easy prompts to start money conversations</div>
+          <div class="p-item">Ethan’s saving progress at a glance</div>
         </div>
       </div>
     </div>
@@ -620,27 +736,17 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
       <div class="adrop-body" id="userstory-drop">
         <div class="us-board-wrap">
           <div class="us-board">
-            <div class="us-legend"><span><i class="teen"></i>Teen</span><span><i class="parent"></i>Parent / carer</span></div>
+            <p class="us-note">Each group is labelled with the pillar it became. <b>Pillar 01 · Proactive Budgeting</b> brings together two groups: budget habit, and spending tracking with real tips.</p>
+            <div class="us-legend"><span><i class="teen"></i>Teen</span><span><i class="parent"></i>Guardian</span></div>
             <div class="us-grid">
-              <div class="us-group" style="--n:4">
-                <div class="us-head" style="background:#A0F8A6">Saving with goal</div>
-                <ul class="us-cards">
-                  <li class="us-card parent"><b>As a parent,</b>I want some finance experts for my teens <span>so that my teens to save money wisely.</span></li>
-                  <li class="us-card parent"><b>As a parent,</b>I want some finance experts for my teens <span>so that I do not have to nag them to save.</span></li>
-                  <li class="us-card parent"><b>As a parent,</b>I want my teen to apply a template like “50/30/20” <span>so that teens can follow clear structure and guidance that I may be hard to always ask them to do so.</span></li>
-                  <li class="us-card parent"><b>As a parent,</b>I want teen’s “saving plan” for a big purchase (e.g., laptop) <span>so that I can save consistently and not struggle after buying it.</span></li>
-                  <li class="us-card parent"><b>As a parent,</b>I want to see whether my teen has a long-term goal set <span>so that I can help them plan beyond immediate spending.</span></li>
-                  <li class="us-card teen"><b>As a teen,</b>I want to categorize spending as “need / want / goal” <span>so that I can reflect on saving habits.</span></li>
-                </ul>
-              </div>
               <div class="us-group" style="--n:1">
-                <div class="us-head" style="background:#F6C988">Onboarding</div>
+                <div class="us-head" style="background:#F6C988"><b>Onboarding</b><span>Before the pillars</span></div>
                 <ul class="us-cards">
                   <li class="us-card teen"><b>As a teen,</b>I want to choose whether to connect a parent/carer now or later <span>so that I can start privately and add support.</span></li>
                 </ul>
               </div>
               <div class="us-group" style="--n:3">
-                <div class="us-head" style="background:#A0F9DA">Budget habit</div>
+                <div class="us-head" style="background:#FFFF88"><b>Pillar 01 · Proactive Budgeting</b><span>Budget habit</span></div>
                 <ul class="us-cards">
                   <li class="us-card teen"><b>As a teen,</b>I want a system that is easier than excel to do the budgeting, <span>so that I can start budgeting without feeling overwhelmed.</span></li>
                   <li class="us-card teen"><b>As a teen,</b>I want a finance system that is relatable <span>so that I don’t stop using the system in the middle.</span></li>
@@ -648,29 +754,40 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
                 </ul>
               </div>
               <div class="us-group" style="--n:4">
-                <div class="us-head" style="background:#FFFF88">Spending tracking with real tips</div>
+                <div class="us-head" style="background:#FFFF88"><b>Pillar 01 · Proactive Budgeting</b><span>Spending tracking with real tips</span></div>
                 <ul class="us-cards">
                   <li class="us-card teen"><b>As a teen,</b>I want short practical tips based on my spending patterns <span>so that I learn by doing instead of hard vocabulary definitions.</span></li>
                   <li class="us-card teen"><b>As a teen,</b>I want to separate “flexible cash” from “locked savings for goals” <span>so that I don’t feel stuck with no usable money.</span></li>
-                  <li class="us-card parent"><b>As a parent,</b>I want to show my teens how to really compare prices in daily life <span>so that I am not repeating nagging.</span></li>
+                  <li class="us-card parent"><b>As a guardian,</b>I want to show my teens how to really compare prices in daily life <span>so that I am not repeating nagging.</span></li>
                   <li class="us-card teen"><b>As a teen,</b>I want to use money in the most effective way <span>so that later I will have enough saving for other goals.</span></li>
                 </ul>
               </div>
               <div class="us-group" style="--n:4">
-                <div class="us-head" style="background:#8A9CF6">Investment direction</div>
+                <div class="us-head" style="background:#A0F8A6"><b>Pillar 02 · Tangible Goal Setting</b><span>Saving with goal</span></div>
+                <ul class="us-cards">
+                  <li class="us-card parent"><b>As a guardian,</b>I want some finance experts for my teens <span>so that my teens to save money wisely.</span></li>
+                  <li class="us-card parent"><b>As a guardian,</b>I want some finance experts for my teens <span>so that I do not have to nag them to save.</span></li>
+                  <li class="us-card parent"><b>As a guardian,</b>I want my teen to apply a template like “50/30/20” <span>so that teens can follow clear structure and guidance that I may be hard to always ask them to do so.</span></li>
+                  <li class="us-card parent"><b>As a guardian,</b>I want teen’s “saving plan” for a big purchase (e.g., laptop) <span>so that I can save consistently and not struggle after buying it.</span></li>
+                  <li class="us-card parent"><b>As a guardian,</b>I want to see whether my teen has a long-term goal set <span>so that I can help them plan beyond immediate spending.</span></li>
+                  <li class="us-card teen"><b>As a teen,</b>I want to categorize spending as “need / want / goal” <span>so that I can reflect on saving habits.</span></li>
+                </ul>
+              </div>
+              <div class="us-group" style="--n:3">
+                <div class="us-head" style="background:#F1A09E"><b>Pillar 03 · Collaborative Transparency</b><span>Connect and share</span></div>
+                <ul class="us-cards">
+                  <li class="us-card parent"><b>As a guardian,</b>I want to view teens spending summaries and leave positive feedback <span>so that I can know if the teen is using money wisely.</span></li>
+                  <li class="us-card parent"><b>As a guardian,</b>I want a situation that is not awkward to ask how much saving has been done <span>so that I can guide them even if I’m not confident in finance.</span></li>
+                  <li class="us-card parent"><b>As a guardian,</b>I want to see teen’s saving without asking them directly <span>so that I do not pressure the teens but care their finance situation.</span></li>
+                </ul>
+              </div>
+              <div class="us-group" style="--n:4">
+                <div class="us-head" style="background:#8A9CF6"><b>Pillar 04 · Dialogue before Purchase</b><span>Investment direction</span></div>
                 <ul class="us-cards">
                   <li class="us-card teen"><b>As a teen,</b>I want to explore investing with simple explanations <span>so that I know the direction to start invest.</span></li>
                   <li class="us-card teen"><b>As a teen,</b>I want to explore investing with simple explanations and risk reminders <span>so that I can learn safely without overconfidence.</span></li>
                   <li class="us-card teen"><b>As a teen,</b>I want to know many other investment options <span>so that I can a starting points to study investment.</span></li>
-                  <li class="us-card parent"><b>As a parent,</b>I want a finance system that is relatable for teens to learn and save, <span>so that I don’t need financial knowledge to begin.</span></li>
-                </ul>
-              </div>
-              <div class="us-group" style="--n:3">
-                <div class="us-head" style="background:#F1A09E">Connect and share</div>
-                <ul class="us-cards">
-                  <li class="us-card parent"><b>As a parent / carer,</b>I want to view teens spending summaries and leave positive feedback <span>so that I can know if the teen is using money wisely.</span></li>
-                  <li class="us-card parent"><b>As a parent / carer,</b>I want a situation that is not awkward to ask how much saving has been done <span>so that I can guide them even if I’m not confident in finance.</span></li>
-                  <li class="us-card parent"><b>As a parent / carer,</b>I want to see teen’s saving without asking them directly <span>so that I do not pressure the teens but care their finance situation.</span></li>
+                  <li class="us-card parent"><b>As a guardian,</b>I want a finance system that is relatable for teens to learn and save, <span>so that I don’t need financial knowledge to begin.</span></li>
                 </ul>
               </div>
             </div>
@@ -687,9 +804,10 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
   <!-- DELIVER -->
   <section class="section" id="deliver">
     <div class="mid-title">Deliver</div>
-    <div class="img-ph" style="aspect-ratio:16/9;background:#CECCC8;"><div class="ph-box"></div><span class="ph-label">High-Fidelity Screens</span></div>
-    <div class="cat">Final Prototype</div>
-    <div class="img-ph" style="aspect-ratio:16/9;background:#D2D0CB;"><div class="ph-box"></div><span class="ph-label">Prototype Video / Embed</span></div>
+    <div class="cat">Overview of Mid Fidelity</div>
+    <img class="deliver-img" src="../images/Habitta/mid-fidelity-overview.png" width="1694" height="742" alt="Overview of the mid-fidelity Figma board: rows of phone wireframes grouped into flows, with sticky notes and red frames marking screens to revisit" loading="lazy">
+    <div class="cat">Components</div>
+    <img class="deliver-img" src="../images/Habitta/components.png" width="1342" height="964" alt="Earnify component sheet: calendar, labelled inputs, navigation bar states, buttons, progress bars, transaction and goal cards, the green #04D180 and blue #0350FD colour scales, and the typography scale" loading="lazy">
   </section>
 
   <!-- USABILITY TESTING -->

@@ -98,8 +98,10 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
 #reflection a:hover { color:var(--muted); }
 /* the diagram needs the card's full width */
 .ut-drop-body.is-wide { margin-left:-132px; }
-.ut-ba-ph { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px; margin:16px 0 20px; }
-.ut-ba-ph .img-ph { margin:0; }
+/* FINDING 03 — before (photos dragged in on the laptop) beside after (sent from the phone) */
+.ut-ba { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:24px 16px; align-items:start; margin:20px 0; }
+.ut-ba figure { margin:0; }
+.ut-ba img, .ut-ba video { display:block; width:100%; height:auto; border-radius:10px; background:#0A0A0F; }
 
 /* LOCAL SERVER DIAGRAM — the participant's phone flow runs down the middle into the server;
    the laptop box holds the server with the room folder and the facilitator's browser either side;
@@ -169,7 +171,7 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
   .seq-steps li + li::before { left:50%; top:-18px; transform:translateX(-50%) rotate(90deg); }
   .seq-in-card { margin-left:0; }
   .ut-drop, .ut-drop-body.is-wide { margin-left:0; }
-  .ut-ba-ph { grid-template-columns:minmax(0,1fr); }
+  .ut-ba { grid-template-columns:minmax(0,1fr); }
   .photo-arrow { width:34px; height:34px; }
 }
 </style>
@@ -355,9 +357,16 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
         <div class="ut-row"><span class="ut-rl">Outcome</span><span class="ut-rb">A single 30-second demonstration replaced around 20 minutes of manual uploading per workshop, giving me more time to observe participants’ reactions and support their experience.</span></div>
       </div>
     </div>
-    <div class="ut-ba-ph">
-      <div class="img-ph" style="aspect-ratio:4/3;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">Before Image</span></div>
-      <div class="img-ph" style="aspect-ratio:4/3;background:#D4D2CE;"><div class="ph-box"></div><span class="ph-label">After Image</span></div>
+    <!-- Finding 03: dragging photos in on the laptop, then sending from the phone -->
+    <div class="ut-ba">
+      <figure>
+        <figcaption class="seq-label">Before</figcaption>
+        <img src="../images/FromHandToFont/fhtf-ut3-before.webp" width="2000" height="1156" alt="Photos of participants’ letters sit in a laptop folder and are dragged one by one onto the letter slots in the web app" loading="lazy">
+      </figure>
+      <figure>
+        <figcaption class="seq-label">After</figcaption>
+        <video src="../images/FromHandToFont/fhtf-ut3-after.mp4" width="1280" height="720" autoplay muted loop playsinline preload="metadata" aria-label="A participant photographs a hand-drawn letter A on their phone, checks the cleaned-up result and sends it"></video>
+      </figure>
     </div>
   </section>
 
