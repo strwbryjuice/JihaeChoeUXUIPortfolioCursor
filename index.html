@@ -86,8 +86,12 @@
   .project-card:nth-child(5) .project-image { background: #D4D2CE; }
   .project-card:nth-child(6) .project-image { background: #DCDAD5; }
   .project-card:nth-child(7) .project-image { background: #D9D6D0; }
+  .project-card:nth-child(8) .project-image { background: #D2D0CB; }
   /* a photo fills the frame without changing its size */
   .project-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  /* PD Ladies: the banner's line of text spans its full width, so show it whole on its own green */
+  .project-card .project-image.on-green { background: #193925; }
+  .project-image img.fit-whole { object-fit: contain; }
   /* Earnify: zoom in on the teen and phone (anchored at the bottom so his head stays in frame) */
   .project-image img.zoom-subject { transform: scale(1.22); transform-origin: 44% 100%; }
   /* LinkLand: the phones sit on the right of the photo, so crop from the right and zoom a little to bring them to the middle */
@@ -212,7 +216,27 @@
     </a>
   </div>
 
-  <!-- 2. From Hand to Font -->
+  <!-- 2. PD Ladies Design Talk Series -->
+  <div class="project-card">
+    <a class="project-link" href="./case-studies/pdladies.html" aria-label="Open PD Ladies Design Talk Series case study">
+      <div class="project-image on-green"><img class="fit-whole" src="./images/PDLadies/hero.png" alt="" loading="lazy"></div>
+      <div class="project-meta">
+        <div class="project-year">2026</div>
+        <div class="project-title">PD Ladies Design Talk Series</div>
+        <div class="project-tags">
+          <span class="tag">Design Talk Series</span><span class="tag">Leadership</span><span class="tag">Communication</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-row"><div class="info-label">Project Type</div><div class="info-value">Volunteer</div></div>
+          <div class="info-row"><div class="info-label">Role</div><div class="info-value">Design Event Planner</div></div>
+          <div class="info-row"><div class="info-label">Timeline</div><div class="info-value">Jun 2026 – Present</div></div>
+          <div class="info-row"><div class="info-label">Contributions</div><div class="info-value">Theme development, Speaker outreach, Pitch deck design, Event planning &amp; delivery</div></div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- 3. From Hand to Font -->
   <div class="project-card">
     <a class="project-link" href="./case-studies/fromhandtofont.html" aria-label="Open From Hand to Font case study">
       <div class="project-image"><img src="./images/FromHandToFont/hero.jpg" alt="" loading="lazy"></div>
@@ -232,7 +256,7 @@
     </a>
   </div>
 
-  <!-- 3. HSBC -->
+  <!-- 4. HSBC -->
   <div class="project-card">
     <a class="project-link" href="./case-studies/hsbc.html" aria-label="Open HSBC case study">
       <div class="project-image"><div class="img-placeholder"><div class="img-placeholder-box"></div><span>Project Image</span></div></div>
@@ -252,7 +276,7 @@
     </a>
   </div>
 
-  <!-- 4. Artistry -->
+  <!-- 5. Artistry -->
   <div class="project-card">
     <a class="project-link" href="./case-studies/artistry.html" aria-label="Open Artistry Community case study">
       <div class="project-image"><div class="img-placeholder"><div class="img-placeholder-box"></div><span>Project Image</span></div></div>
@@ -272,7 +296,7 @@
     </a>
   </div>
 
-  <!-- 5. LinkLand -->
+  <!-- 6. LinkLand -->
   <div class="project-card">
     <a class="project-link" href="./case-studies/linkland.html" aria-label="Open LinkLand case study">
       <div class="project-image"><img class="shift-subject" src="./images/LinkLand/linkland-card.jpg" alt="" loading="lazy"></div>
@@ -292,7 +316,7 @@
     </a>
   </div>
 
-  <!-- 6. Clear Check -->
+  <!-- 7. Clear Check -->
   <div class="project-card">
     <a class="project-link" href="./case-studies/clearcheck.html" aria-label="Open Clear Check App case study">
       <div class="project-image"><div class="img-placeholder"><div class="img-placeholder-box"></div><span>Project Image</span></div></div>

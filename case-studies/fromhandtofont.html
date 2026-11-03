@@ -30,6 +30,12 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
 /* Kindred's file has empty space under the lettering, so it sits high; Bremen's has padding, so it reads small */
 .logo-slot img.logo-kindred { transform:translateY(5px); }
 .logo-slot img.logo-bremen { max-height:46px; }
+/* Set91 and Glasgow Zine Library come on a white background: multiply drops the white into the page colour */
+.logo-slot img.on-white { mix-blend-mode:multiply; }
+/* Glasgow's mark is an illustration with lettering round it, so it needs more height to read */
+.logo-slot img.logo-glasgow { max-height:52px; }
+/* Set91 is solid heavy lettering edge to edge, so at full width it outweighs the other marks */
+.logo-slot img.logo-set91 { max-height:24px; }
 
 /* ONSITE PHOTOS */
 /* One row: the landscape photo takes --wide of the row; the portraits get the width
@@ -56,23 +62,12 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
    The divider in the drawing sits at 885px of 1774px. */
 .ut-illust-before { position:absolute; top:0; bottom:0; left:0; width:calc(100% * 885 / 1774); background:#ECECE9; mix-blend-mode:multiply; pointer-events:none; }
 
-/* BEFORE / AFTER SLIDER — both screenshots share the panel's top-left corner;
-   the edited one is shorter, so the frame's dark background fills below it */
-.ba { position:relative; overflow:hidden; aspect-ratio:2456/1773; background:#0A0A0F; border-radius:10px; margin:20px 0 8px; cursor:ew-resize; touch-action:pan-y; user-select:none; -webkit-user-select:none; }
-.ba img { display:block; width:100%; pointer-events:none; }
-.ba-after { position:absolute; inset:0; background:#0A0A0F; clip-path:inset(0 0 0 var(--pos)); }
-.ba-handle { position:absolute; top:0; bottom:0; left:var(--pos); width:2px; margin-left:-1px; background:#FFFFFF; pointer-events:none; }
-.ba-handle::after { content:''; position:absolute; top:50%; left:50%; width:40px; height:40px; transform:translate(-50%,-50%); border-radius:50%; background:#FFFFFF; box-shadow:0 2px 10px rgba(0,0,0,0.35);
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='12' viewBox='0 0 22 12'%3E%3Cpath d='M6 1L1 6l5 5M16 1l5 5-5 5' fill='none' stroke='%23111110' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:center; }
-.ba:focus-within .ba-handle::after { outline:2px solid #4C6FFF; outline-offset:2px; }
-.ba-label { position:absolute; bottom:14px; padding:4px 10px; border-radius:100px; background:rgba(255,255,255,0.92); color:var(--ink); font-size:12px; font-weight:500; letter-spacing:0.04em; pointer-events:none; }
-.ba-label-l { left:14px; }
-.ba-label-r { right:14px; }
-.ba-range { position:absolute; width:1px; height:1px; opacity:0; pointer-events:none; }
-.ba-hint { font-size:13px; color:var(--muted); margin-bottom:16px; }
+/* FINDING 01 SCREENS — the edited screen, then the original, both full width */
+.ut-shot { margin:20px 0 0; }
+.ut-shot + .ut-shot { margin-top:24px; }
+.ut-shot img { display:block; width:100%; height:auto; border-radius:10px; background:#0A0A0F; }
 
 /* WORKSHOP SEQUENCE — four steps in a row with arrows; highlighted steps are filled in ink */
-.seq { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:24px; margin:16px 0 20px; }
 .seq-label { font-size:var(--cat); font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
 .seq-steps + .seq-label { margin-top:24px; }
 .seq-steps { list-style:none; counter-reset:step; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:28px; }
@@ -86,6 +81,75 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
 /* Finding 02: the Before / After rows sit between the card rows, lined up with the row text */
 .seq-in-card { margin:4px 0 8px 132px; }
 #user-testing .ut-card + .ut-illust { margin-top:16px; }
+
+/* Finding 03 */
+.ut-ftitle { font-size:20px; font-weight:600; letter-spacing:-0.01em; line-height:1.35; margin:-6px 0 20px; }
+/* Dropdowns line up with the row text (120px label + 12px gap), like the Before / After rows in Finding 02 */
+.ut-drop { margin-left:132px; }
+.ut-drop summary { display:flex; align-items:center; gap:10px; width:max-content; list-style:none; cursor:pointer; font-size:var(--body); font-weight:400; color:var(--ink); }
+.ut-drop summary::-webkit-details-marker { display:none; }
+.ut-drop summary:hover { color:var(--muted); }
+.ut-drop[open] .adrop-icon { transform:rotate(180deg); }
+.ut-drop-body { margin-top:14px; }
+.ut-drop-body p { margin:0; }
+.ut-drop-body a { color:var(--ink); font-weight:400; text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px; }
+.ut-drop-body a:hover { color:var(--muted); }
+#reflection a { color:var(--ink); font-weight:400; text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px; }
+#reflection a:hover { color:var(--muted); }
+/* the diagram needs the card's full width */
+.ut-drop-body.is-wide { margin-left:-132px; }
+.ut-ba-ph { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px; margin:16px 0 20px; }
+.ut-ba-ph .img-ph { margin:0; }
+
+/* LOCAL SERVER DIAGRAM — the participant's phone flow runs down the middle into the server;
+   the laptop box holds the server with the room folder and the facilitator's browser either side;
+   other phones poll the server from below. Lines and arrowheads are CSS. */
+.flow-scroll { overflow-x:auto; }
+.flow { --fl-line:#8C8C88; --fl-bg:#E8F1FC; --fl-bd:#C9DCF3; --fl-ink:#1E4A8A; display:grid; grid-template-columns:minmax(0,1fr) 136px minmax(0,1.1fr) 136px minmax(0,1fr); min-width:640px; padding:4px 0; }
+.flow > * { grid-column:3; }
+.flow > .fg, .flow > .fv2 { grid-column:1 / -1; }
+.fn { position:relative; padding:14px 14px; background:var(--fl-bg); border:1px solid var(--fl-bd); border-radius:12px; text-align:center; font-size:13px; font-weight:600; line-height:1.4; color:var(--fl-ink); }
+.fn span { display:block; font-weight:400; }
+.fp { position:absolute; z-index:1; width:max-content; max-width:128px; padding:3px 10px; background:#F5F9FE; border:1px solid var(--fl-bd); border-radius:100px; font-size:11px; font-weight:500; line-height:1.35; text-align:center; color:var(--fl-ink); }
+/* vertical link */
+.fv { position:relative; height:36px; }
+.fv.tall { height:84px; }
+.fv::before, .fv2 i::before, .fh::before, .fh2 i::before { content:''; position:absolute; background:var(--fl-line); }
+.fv::before, .fv2 i::before { top:0; bottom:0; left:calc(50% - 0.5px); width:1px; }
+.fv .fp { left:50%; top:22px; transform:translateX(-50%); max-width:none; }
+/* arrowheads: a rotated square showing two borders */
+.fv::after, .fv2 i::after, .fh::after, .fh2 i::after { content:''; position:absolute; width:8px; height:8px; box-sizing:border-box; border:0 solid var(--fl-line); }
+.fv::after, .fv2 i.down::after { left:50%; bottom:0; border-right-width:1px; border-bottom-width:1px; transform:translate(-50%,-1px) rotate(45deg); }
+.fv2 i.up::after { left:50%; top:0; border-left-width:1px; border-top-width:1px; transform:translate(-50%,1px) rotate(45deg); }
+/* laptop box: shares the outer columns so the server sits under the phone flow */
+.fg { display:grid; grid-template-columns:subgrid; align-items:center; position:relative; margin:-22px 0; padding:22px 16px; border:1px solid #DADAD6; border-radius:12px; }
+.fg-label { position:absolute; top:0; left:16px; transform:translateY(-50%); padding:0 8px; background:var(--white); font-size:12px; color:var(--ink); }
+.fg .fn-server { align-self:stretch; display:flex; flex-direction:column; justify-content:center; }
+/* horizontal links */
+.fh, .fh2 { position:relative; align-self:stretch; }
+.fh2 { min-height:150px; }
+.fh::before, .fh2 i::before { left:0; right:0; height:1px; }
+.fh::before { top:calc(50% - 0.5px); }
+.fh.left::after, .fh2 i.left::after { left:0; border-left-width:1px; border-bottom-width:1px; transform:translate(1px,-50%) rotate(45deg); }
+.fh.left::after { top:50%; }
+.fh2 i { position:absolute; left:0; right:0; height:1px; }
+.fh2 i.right { top:calc(50% - 10px); }
+.fh2 i.left { top:calc(50% + 10px); }
+.fh2 i::before { top:0; }
+.fh2 i::after { top:0.5px; }
+.fh2 i.right::after { right:0; border-right-width:1px; border-top-width:1px; transform:translate(-1px,-50%) rotate(45deg); }
+.fh2 .fp { left:50%; transform:translateX(-50%); }
+.fh2 .fp.top { bottom:calc(50% + 18px); }
+.fh2 .fp.bottom { top:calc(50% + 18px); }
+/* two-way link under the laptop box */
+.fv2 { position:relative; height:84px; }
+.fv2 i { position:absolute; top:0; bottom:0; width:1px; }
+.fv2 i.up { left:calc(50% - 22px); }
+.fv2 i.down { left:calc(50% + 22px); }
+.fv2 i::before { left:0; }
+.fv2 .fp { top:38px; max-width:none; }
+.fv2 .fp.l { right:calc(50% + 32px); }
+.fv2 .fp.r { left:calc(50% + 32px); }
 
 /* PRODUCT LINK */
 .link-card { display:flex; align-items:center; justify-content:space-between; gap:16px; background:var(--ink); border:1px solid var(--ink); border-radius:10px; padding:20px 24px; font-size:var(--body); text-decoration:none; color:#FFFFFF; margin:16px 0 20px; transition:background .2s; }
@@ -101,10 +165,11 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
   .overview-narrow { max-width:none; }
   .overview-video { max-width:320px; justify-self:center; }
   .photo-row { --wide:85%; }
-  .seq { padding:18px; }
   .seq-steps { grid-template-columns:1fr; gap:22px; }
   .seq-steps li + li::before { left:50%; top:-18px; transform:translateX(-50%) rotate(90deg); }
   .seq-in-card { margin-left:0; }
+  .ut-drop, .ut-drop-body.is-wide { margin-left:0; }
+  .ut-ba-ph { grid-template-columns:minmax(0,1fr); }
   .photo-arrow { width:34px; height:34px; }
 }
 </style>
@@ -152,13 +217,16 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
     </div>
 
     <div class="cat">Venue Partners</div>
-    <p class="overview-narrow">Thank you to Market Root in Canada Water, Rhizomatic in Hackney Wick, Create Space London in Kensington, Kindred Studio in Ladbroke Grove, and the Bremen Zine Festival in Germany for accepting my proposal and providing venues and relevant materials.</p>
+    <p class="overview-narrow">Thank you to Market Root, Rhizomatic, Create Space London, Kindred Studio, Bremen Zine Festival, Tagore’s Salon (+ Set91), and Glasgow Zine Library for accepting my proposal and providing venues and relevant materials.</p>
     <div class="logo-row">
       <div class="logo-slot"><img class="is-rounded" src="../images/FromHandToFont/logos/logo-market-root.jpg" alt="Market Root"></div>
       <div class="logo-slot"><img src="../images/FromHandToFont/logos/logo-rhizomatic.png" alt="Rhizomatic"></div>
       <div class="logo-slot"><img src="../images/FromHandToFont/logos/logo-create-space-london.png" alt="Create Space London"></div>
       <div class="logo-slot"><img class="logo-kindred" src="../images/FromHandToFont/logos/logo-kindred-studios.webp" alt="Kindred Studios"></div>
       <div class="logo-slot"><img class="logo-bremen" src="../images/FromHandToFont/logos/logo-bremen-zine-festival.png" alt="Bremen Zine Festival"></div>
+      <div class="logo-slot"><img class="is-rounded" src="../images/FromHandToFont/logos/logo-tagores-salon.png" alt="Tagore’s Salon"></div>
+      <div class="logo-slot"><img class="on-white logo-set91" src="../images/FromHandToFont/logos/logo-set91.png" alt="Set91"></div>
+      <div class="logo-slot"><img class="on-white logo-glasgow" src="../images/FromHandToFont/logos/logo-glasgow-zine-library.png" alt="Glasgow Zine Library"></div>
     </div>
   </section>
 
@@ -196,26 +264,27 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
     </div>
     <div class="ut-finding-block ut-card">
       <div class="ut-fnum">Finding 01</div>
+      <div class="ut-ftitle">Making the next step easier to find</div>
       <div class="ut-rows">
         <div class="ut-row"><span class="ut-rl">Finding</span><span class="ut-rb">Participants repeatedly needed guidance to locate “Submit &amp; pass.”</span></div>
         <div class="ut-row ut-change"><span class="ut-rl">Change</span><span class="ut-rb">Repositioned the primary action beside the canvas.</span></div>
         <div class="ut-row"><span class="ut-rl">Outcome</span><span class="ut-rb">1/6 participants identified the submit action independently after the redesign.</span></div>
       </div>
     </div>
-    <!-- Before / after: drag the bar to reveal the edited screen -->
-    <div class="ba" style="--pos:50%">
-      <img class="ba-before" src="../images/FromHandToFont/fhtf-ut1-before.png" alt="Original round-table screen: a size slider and kerning, character size and Y-move buttons sit under the A5 page" draggable="false">
-      <div class="ba-after"><img src="../images/FromHandToFont/fhtf-ut1-after.png" alt="Edited round-table screen: the tools move into a panel beside the A5 page, and the credited name appears on the page" draggable="false"></div>
-      <div class="ba-handle" aria-hidden="true"></div>
-      <span class="ba-label ba-label-l" aria-hidden="true">Original</span>
-      <span class="ba-label ba-label-r" aria-hidden="true">Edited</span>
-      <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Compare original and edited screens">
-    </div>
-    <p class="ba-hint">Drag the bar to compare the original and edited screens.</p>
+    <!-- Finding 01 screens: edited first, then the original -->
+    <figure class="ut-shot">
+      <figcaption class="seq-label">After</figcaption>
+      <img src="../images/FromHandToFont/fhtf-ut1-after.png" width="2456" height="1639" alt="Edited round-table screen: the tools move into a panel beside the A5 page, and the credited name appears on the page" loading="lazy">
+    </figure>
+    <figure class="ut-shot">
+      <figcaption class="seq-label">Before</figcaption>
+      <img src="../images/FromHandToFont/fhtf-ut1-before.png" width="2456" height="1773" alt="Original round-table screen: a size slider and kerning, character size and Y-move buttons sit under the A5 page" loading="lazy">
+    </figure>
 
     <!-- Second test: workshop sequence, before vs after -->
     <div class="ut-finding-block ut-card ut-next">
       <div class="ut-fnum">Finding 02</div>
+      <div class="ut-ftitle">Turning waiting time into creative time</div>
       <div class="ut-rows">
         <div class="ut-row"><span class="ut-rl">Finding</span><span class="ut-rb">An average of 12 minutes of downtime occurred during printing.</span></div>
         <div class="seq-in-card">
@@ -244,6 +313,52 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
       <img src="../images/FromHandToFont/fhtf-ut2-waitingtime.webp" alt="Illustration. Before: participants sit idle at the table while the facilitator prints. After: participants work on a typography activity while the printing continues." loading="lazy">
       <span class="ut-illust-before" aria-hidden="true"></span>
     </div>
+
+    <!-- Third test: participants submit their own drawings from their phones -->
+    <div class="ut-finding-block ut-card ut-next">
+      <div class="ut-fnum">Finding 03</div>
+      <div class="ut-ftitle">Giving participants control over submissions</div>
+      <div class="ut-rows">
+        <div class="ut-row"><span class="ut-rl">Finding</span><span class="ut-rb">It was sometimes unclear which letter a drawing represented—for example, an uppercase “M” or a lowercase “m.” Manually uploading each participant’s drawing also pulled my attention away from facilitating the workshop and observing their reactions.</span></div>
+        <div class="ut-row ut-change"><span class="ut-rl">Change</span><span class="ut-rb">I built a local Python server and a mobile upload flow so participants could submit their drawings directly from their phones and preview the processed images.</span></div>
+        <details class="ut-drop">
+          <summary><span class="adrop-icon"><svg viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="#888884" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>How I used AI</summary>
+          <div class="ut-drop-body">
+            <p>I connected <a href="https://github.com/morluto/rea" target="_blank" rel="noopener noreferrer">REA</a> to Codex and used it to adapt image-processing techniques from the free features of a <a href="https://play.google.com/store/apps/details?id=com.voyagerx.scanner&amp;hl=en_GB&amp;pli=1" target="_blank" rel="noopener noreferrer">scanning app</a>, integrating them into my existing front end. With no prior backend experience, I also worked with Claude through an iterative conversation to build a local Python server that supported mobile submissions during workshops.</p>
+          </div>
+        </details>
+        <details class="ut-drop">
+          <summary><span class="adrop-icon"><svg viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="#888884" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>How the local server works</summary>
+          <div class="ut-drop-body is-wide">
+            <div class="flow-scroll">
+              <div class="flow" role="img" aria-label="Diagram: a participant scans the QR code, chooses a letter and takes a photo on their phone, then taps Send to upload the image, letter ID, name and room code over the same Wi-Fi to a Python server on the facilitator's laptop. The server checks the room code, saves the files to a room folder, and returns the list and images to the facilitator's browser every 2 seconds and the list and thumbnails to other participants' phones every 2.5 seconds.">
+                <div class="fn">Participant scans the QR code<span>Opens the mobile page for this room</span></div>
+                <div class="fv"></div>
+                <div class="fn">On the phone<span>Choose a letter → Take a photo</span><span>Clean up the image → Preview</span></div>
+                <div class="fv"></div>
+                <div class="fn">Tap Send<span>Upload image + letter ID + participant name + room code</span></div>
+                <div class="fv tall"><span class="fp">Over the same Wi-Fi</span></div>
+                <div class="fg">
+                  <span class="fg-label">Facilitator’s Laptop</span>
+                  <div class="fn" style="grid-column:1">Room Folder<span>Saves image files</span><span>Records names and upload times</span></div>
+                  <div class="fh left" style="grid-column:2"></div>
+                  <div class="fn fn-server" style="grid-column:3">Python Server · server.py<span>Checks the room code</span><span>Receives the upload</span></div>
+                  <div class="fh2" style="grid-column:4"><span class="fp top">Returns the list and images</span><i class="right"></i><i class="left"></i><span class="fp bottom">Checks for updates every 2 seconds</span></div>
+                  <div class="fn" style="grid-column:5">Facilitator’s Browser<span>Displays collected letters</span><span>Converts images into font outlines</span></div>
+                </div>
+                <div class="fv2"><span class="fp l">Check for updates every 2.5 seconds</span><i class="up"></i><i class="down"></i><span class="fp r">Returns the list and thumbnails</span></div>
+                <div class="fn">Other Participants’ Phones<span>Display thumbnails and names</span></div>
+              </div>
+            </div>
+          </div>
+        </details>
+        <div class="ut-row"><span class="ut-rl">Outcome</span><span class="ut-rb">A single 30-second demonstration replaced around 20 minutes of manual uploading per workshop, giving me more time to observe participants’ reactions and support their experience.</span></div>
+      </div>
+    </div>
+    <div class="ut-ba-ph">
+      <div class="img-ph" style="aspect-ratio:4/3;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">Before Image</span></div>
+      <div class="img-ph" style="aspect-ratio:4/3;background:#D4D2CE;"><div class="ph-box"></div><span class="ph-label">After Image</span></div>
+    </div>
   </section>
 
   <!-- PRODUCT LINK -->
@@ -259,16 +374,8 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
   <!-- REFLECTION -->
   <section class="section" id="reflection">
     <div class="mid-title">Reflection</div>
-    <p>Without a backend, uploaded drawings disappear on refresh, and manually uploading each participant’s work disrupted the workshop flow.</p>
-    <div class="seq">
-      <ol class="seq-steps">
-        <li>Introduce myself</li>
-        <li class="is-highlight"><span>Participant draw Alphabet</span><span>I upload it on laptop</span></li>
-        <li>Print <span class="sub">(prepared activity)</span></li>
-        <li>Bookbinding</li>
-      </ol>
-    </div>
-    <p>Next, I’d explore a backend solution that lets participants upload drawings directly from their phones, stores submissions, and supports remote workshops.</p>
+    <p>However, the setup still requires everyone to be on the same Wi-Fi. When a venue does not provide Wi-Fi, I use my mobile hotspot, which currently supports only my laptop and three participants’ phones at a time. My next step is to adapt the code and move to an online server so participants can join using their own mobile data, without needing to be on the same Wi-Fi.</p>
+    <p>Get in touch at <a href="mailto:studiokiiowork@gmail.com">studiokiiowork@gmail.com</a> to arrange a workshop for your team.</p>
   </section>
 
 </main>
@@ -294,17 +401,6 @@ document.querySelectorAll('.photo-row').forEach(row=>{
   update();
 });
 
-// Before / after slider: drag (mouse or touch) or use the arrow keys on the hidden range input
-document.querySelectorAll('.ba').forEach(ba=>{
-  const range=ba.querySelector('.ba-range');
-  const set=v=>{v=Math.max(0,Math.min(100,v));ba.style.setProperty('--pos',v+'%');range.value=v;};
-  const fromX=x=>{const r=ba.getBoundingClientRect();set((x-r.left)/r.width*100);};
-  let dragging=false;
-  ba.addEventListener('pointerdown',e=>{dragging=true;ba.setPointerCapture(e.pointerId);if(e.pointerType==='mouse')fromX(e.clientX);range.focus({preventScroll:true});});
-  ba.addEventListener('pointermove',e=>{if(dragging)fromX(e.clientX);});
-  ['pointerup','pointercancel'].forEach(t=>ba.addEventListener(t,()=>{dragging=false;}));
-  range.addEventListener('input',()=>set(+range.value));
-});
 </script>
 </body>
 </html>

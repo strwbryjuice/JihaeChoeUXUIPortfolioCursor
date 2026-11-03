@@ -76,6 +76,121 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
 .iv-table td.hl { transition:background-color .2s, color .2s; }
 .iv-wrap.show-g td.hl-g { background:#04D180; }
 .iv-wrap.show-b td.hl-b { background:#0350FD; color:#FFFFFF; }
+
+/* Background: two HTML charts + one news clipping in a row */
+.bg-stats-wrap { container-type:inline-size; margin:20px 0; }
+.bg-stats { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px; }
+@container (max-width:640px) { .bg-stats { grid-template-columns:minmax(0,1fr); } }
+.bg-card { display:flex; flex-direction:column; margin:0; padding:20px; background:var(--white); border:1px solid var(--border); border-radius:12px; }
+.bg-card-title { font-size:13px; font-weight:500; line-height:1.4; color:var(--ink); }
+.bg-card-src { margin:16px 0 0; padding-top:12px; border-top:1px solid var(--border); font-size:11px; font-weight:400; line-height:1.45; color:var(--muted); }
+.bg-card-body { flex:1; display:flex; flex-direction:column; justify-content:center; margin-top:20px; }
+/* bar chart: one series, the under-24s bar is the point so it alone wears the accent */
+.bar-plot { display:flex; align-items:flex-end; height:150px; border-bottom:1px solid #C4C4C0; }
+.bar-col { position:relative; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; outline:none; }
+.bar-val { font-size:12px; font-weight:600; line-height:1; color:var(--ink); margin-bottom:6px; }
+.bar { width:24px; height:calc(var(--v) * 2%); background:#CFCFCA; border-radius:4px 4px 0 0; transition:opacity .15s; }
+.bar-col.is-key .bar { background:#0350FD; }
+.bar-col:hover .bar, .bar-col:focus-visible .bar { opacity:.75; }
+.bar-col::after { content:attr(data-tip); position:absolute; bottom:calc(var(--v) * 2% + 26px); left:50%; transform:translateX(-50%); width:max-content; max-width:140px; padding:6px 8px; border-radius:6px; background:var(--ink); color:#FFFFFF; font-size:11px; line-height:1.35; text-align:center; opacity:0; pointer-events:none; transition:opacity .15s; z-index:2; }
+.bar-col:hover::after, .bar-col:focus-visible::after { opacity:1; }
+.bar-labels { display:flex; margin-top:8px; }
+.bar-labels span { flex:1; padding:0 2px; text-align:center; font-size:11px; line-height:1.35; color:var(--muted); }
+/* donut: 27% vs the rest, 2px surface gap between the two arcs */
+.donut { position:relative; width:150px; margin:0 auto; }
+.donut svg { display:block; width:100%; height:auto; transform:rotate(-90deg); }
+.donut circle { fill:none; stroke-width:14; }
+.donut-center { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.donut-center b { font-size:28px; font-weight:600; line-height:1; color:var(--ink); }
+.donut-center span { margin-top:4px; font-size:11px; color:var(--muted); }
+.donut-legend { list-style:none; margin:16px 0 0; padding:0; display:flex; flex-direction:column; gap:4px; }
+.donut-legend li { display:flex; align-items:center; gap:8px; font-size:11px; line-height:1.4; color:var(--muted); }
+.donut-legend li b { margin-left:auto; font-weight:600; color:var(--ink); }
+.donut-legend .sw { flex:none; width:10px; height:10px; border-radius:2px; }
+.bg-news { display:block; width:100%; max-width:360px; height:auto; margin:0 auto; }
+
+/* User story board: colour-coded epics with sticky notes, pin colour = who the story is for */
+.us-board-wrap { container-type:inline-size; }
+.us-board { padding:24px; background:var(--white); border:1px solid var(--border); border-radius:12px; }
+.us-legend { display:flex; justify-content:flex-end; gap:16px; margin-bottom:16px; font-size:11px; color:var(--muted); }
+.us-legend span { display:inline-flex; align-items:center; gap:6px; }
+.us-legend i { width:10px; height:10px; border-radius:50%; }
+.us-grid { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:32px 12px; align-items:start; }
+.us-group { grid-column:span var(--n); }
+.us-head { padding:9px 12px; border-radius:4px; font-size:12px; font-weight:500; line-height:1.3; text-align:center; color:var(--ink); }
+.us-cards { list-style:none; margin:22px 0 0; padding:0; display:grid; grid-template-columns:repeat(var(--n), minmax(0,1fr)); gap:26px 12px; }
+.us-card { position:relative; padding:22px 14px 16px; background:#DCDCDA; border-radius:2px; font-size:12px; line-height:1.5; color:var(--ink); }
+.us-card::before { content:''; position:absolute; top:0; left:50%; width:22px; height:22px; border-radius:50%; transform:translate(-50%,-50%); box-shadow:0 1px 2px rgba(0,0,0,0.18); }
+.us-card.teen::before, .us-legend .teen { background:#E8392F; }
+.us-card.parent::before, .us-legend .parent { background:#9A7B7B; }
+.us-card b { display:block; margin-bottom:4px; font-weight:600; }
+.us-card span { display:block; margin-top:4px; }
+@container (max-width:640px) {
+  .us-board { padding:20px 16px; }
+  .us-grid { grid-template-columns:minmax(0,1fr); }
+  .us-group { grid-column:auto; }
+  .us-cards { grid-template-columns:repeat(2, minmax(0,1fr)); }
+}
+@container (max-width:380px) { .us-cards { grid-template-columns:minmax(0,1fr); } }
+
+/* Supporting articles: screenshots with the key lines marked like a highlighter pen */
+.article-imgs { align-items:start; }
+.article-card { margin:0; }
+.article-shot { position:relative; isolation:isolate; }
+.article-shot img { display:block; width:100%; height:auto; }
+.article-shot .hl { position:absolute; background:#A7EFD3; border-radius:2px; mix-blend-mode:multiply; pointer-events:none; }
+.article-card figcaption { margin-top:10px; font-size:13px; line-height:1.5; color:var(--muted); }
+.article-card figcaption b { font-weight:500; color:var(--ink); }
+.article-card figcaption a { color:var(--ink); text-decoration:underline; text-underline-offset:3px; }
+
+/* Survey results: three pies, the answer each one is about in the app blue, the rest in light blue */
+.svy-wrap { container-type:inline-size; margin:20px 0; }
+.svy { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:32px 24px; padding:28px 24px; background:var(--white); border:1px solid var(--border); border-radius:12px; }
+@container (max-width:640px) { .svy { grid-template-columns:minmax(0,1fr); } }
+.svy-col { margin:0; display:flex; flex-direction:column; align-items:center; text-align:center; }
+.svy-title { font-size:15px; font-weight:600; line-height:1.35; color:var(--ink); }
+.svy-pie { display:block; width:100%; max-width:170px; height:auto; margin:18px 0 14px; }
+.svy-pie path { stroke:#FFFFFF; stroke-width:2; stroke-linejoin:round; transition:opacity .15s; }
+.svy-pie path:hover { opacity:.85; }
+.svy-pie text { font:600 17px 'DM Sans',sans-serif; text-anchor:middle; dominant-baseline:central; fill:var(--ink); pointer-events:none; }
+.svy-pie text.on-dark { fill:#FFFFFF; }
+.svy-count { font-size:22px; font-weight:600; letter-spacing:-0.01em; line-height:1.2; color:var(--ink); }
+.svy-legend { list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:8px; align-self:stretch; text-align:left; }
+.svy-legend li { display:flex; align-items:flex-start; gap:8px; font-size:12px; line-height:1.45; color:var(--muted); }
+.svy-legend i { flex:none; width:10px; height:10px; margin-top:3px; border-radius:2px; }
+
+/* Competitor table: what each budgeting app puts on its home screen and whether it teaches finance.
+   Marks in the app blue are the ones that split the market into kids' apps vs adult tools. */
+.ca-wrap { max-width:900px; margin:20px 0; }
+.ca-scroll { overflow-x:auto; width:0; min-width:100%; border-radius:8px; box-shadow:0 0 0 1px var(--border); }
+.ca-table { width:100%; min-width:760px; border-collapse:collapse; background:var(--white); font-size:12px; line-height:1.35; color:var(--ink); }
+.ca-table caption { padding:14px 16px; background:#EFEFED; font-size:14px; font-weight:600; text-align:center; }
+.ca-table thead th { background:#111110; color:#FFFFFF; font-weight:600; text-align:center; vertical-align:middle; padding:12px 6px; }
+.ca-table .ca-group th { font-size:12px; letter-spacing:0.02em; padding-top:16px; }
+.ca-table .ca-cols th { font-size:11px; font-weight:500; color:rgba(255,255,255,0.72); padding:4px 6px 16px; }
+.ca-table thead .ca-split { border-left:1px solid rgba(255,255,255,0.28); }
+.ca-table tbody tr { border-top:1px solid var(--border); }
+.ca-table tbody th { width:132px; padding:12px 14px; text-align:left; font-weight:600; }
+.ca-table tbody td { padding:12px 6px; text-align:center; vertical-align:middle; }
+.ca-table tbody .ca-split { border-left:1px solid #C4C4C0; }
+.ca-app { display:flex; align-items:center; gap:10px; }
+.ca-app img { flex:none; width:34px; height:34px; border-radius:8px; object-fit:cover; }
+.ca-vh { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+/* circle = has it, cross = does not */
+.ca-y, .ca-n { position:relative; display:inline-block; width:20px; height:20px; vertical-align:middle; color:var(--ink); }
+.ca-y { box-sizing:border-box; border:1.5px solid currentColor; border-radius:50%; }
+.ca-n::before, .ca-n::after { content:''; position:absolute; left:50%; top:50%; width:24px; height:1.5px; background:currentColor; transform:translate(-50%,-50%) rotate(45deg); }
+.ca-n::after { transform:translate(-50%,-50%) rotate(-45deg); }
+.ca-y.is-key, .ca-n.is-key { color:#0350FD; }
+.ca-y.is-key { border-width:2px; }
+.ca-n.is-key::before, .ca-n.is-key::after { height:2px; }
+.ca-note { margin:8px 0 0; font-size:12px; font-weight:400; line-height:1.5; color:var(--muted); }
+/* conclusion: the polarized market (black) points down to the gap teens fall into (blue) */
+.ca-callout { margin-top:16px; padding:28px 24px; background:var(--ink); border-radius:8px; text-align:center; }
+.ca-callout p { margin:0; font-size:17px; font-weight:600; line-height:1.5; color:#FFFFFF; }
+.ca-arrow { width:0; height:0; margin:12px auto; border-left:14px solid transparent; border-right:14px solid transparent; border-top:14px solid var(--ink); }
+.ca-callout.is-gap { margin-top:0; padding:22px 24px; background:#0350FD; }
+.ca-callout.is-gap p { font-size:20px; }
 </style>
 </head>
 <body>
@@ -122,7 +237,6 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
       <div class="sum-k">Goal</div><div class="sum-v">To close this gap by transforming passive financial knowledge into proactive, daily routines during the critical 14–16 young age.</div>
       <div class="sum-k">Solution</div><div class="sum-v">A Financial Navigator that systemizes autonomy through flexible budgeting and frictionless guardian involvement, secured by a human-in-the-loop AI mentorship model.</div>
     </div>
-    <div class="img-ph" style="aspect-ratio:16/9;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">Overview Image</span></div>
   </section>
 
   <!-- KEYWORDS -->
@@ -147,21 +261,101 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
   <section class="section" id="discover">
     <div class="mid-title">Discover</div>
     <div class="cat">Background</div>
-    <div class="catchy ph">Background Title</div>
-    <p class="ph">Background explanation — add content here.</p>
-    <div class="img-ph" style="aspect-ratio:16/9;background:#E0DDD8;"><div class="ph-box"></div><span class="ph-label">Background Image</span></div>
-    <div class="cat">Desk Research</div>
     <div class="catchy">Building financial habits before becoming an adult.</div>
-    <p>Many young adults in the UK are financially fragile — 36% of under-24s cannot cover an unexpected £300 expense.</p>
-    <div class="img-ph" style="aspect-ratio:16/9;background:#DEDAD4;"><div class="ph-box"></div><span class="ph-label">Desk Research Image</span></div>
+    <p>In the UK, many young adults have low savings buffers, making small unexpected bills a serious problem. A Building Societies Association (BSA) report found that <strong>36% of under-24s could not cover an unexpected £300 expense</strong>, and that 27% of UK adults have less than £1,000 in savings. UK media also reports that over 11 million Britons hold under £1,000 saved. These figures suggest that financial resilience depends not only on knowledge, but on habits—saving regularly, budgeting, and reflecting on spending—built early and reinforced over time.</p>
+    <div class="bg-stats-wrap">
+      <div class="bg-stats">
+        <figure class="bg-card">
+          <figcaption class="bg-card-title">Unable to cover a £300 unexpected expense</figcaption>
+          <div class="bg-card-body">
+            <div class="bar-plot">
+              <div class="bar-col" style="--v:21" tabindex="0" aria-label="All adults: 21%" data-tip="21% of all adults"><span class="bar-val">21%</span><span class="bar"></span></div>
+              <div class="bar-col is-key" style="--v:36" tabindex="0" aria-label="Under 24s: 36%" data-tip="36% of under-24s"><span class="bar-val">36%</span><span class="bar"></span></div>
+              <div class="bar-col" style="--v:44" tabindex="0" aria-label="Savings under £1,000: 44%" data-tip="44% of people with savings under £1,000"><span class="bar-val">44%</span><span class="bar"></span></div>
+            </div>
+            <div class="bar-labels" aria-hidden="true"><span>All adults</span><span>Under 24s</span><span>Savings &lt; £1,000</span></div>
+          </div>
+          <p class="bg-card-src">Source: Building Societies Association (BSA)</p>
+        </figure>
+        <figure class="bg-card">
+          <figcaption class="bg-card-title">UK adults with less than £1,000 in savings</figcaption>
+          <div class="bg-card-body">
+            <div class="donut">
+              <svg viewBox="0 0 160 160" role="img" aria-label="27% of UK adults have less than £1,000 in savings; 73% have £1,000 or more">
+                <circle cx="80" cy="80" r="66" pathLength="100" stroke="#CFCFCA" stroke-dasharray="72.5 27.5" stroke-dashoffset="-27.25"><title>£1,000 or more: 73%</title></circle>
+                <circle cx="80" cy="80" r="66" pathLength="100" stroke="#0350FD" stroke-dasharray="26.5 73.5" stroke-dashoffset="-0.25"><title>Less than £1,000: 27%</title></circle>
+              </svg>
+              <div class="donut-center" aria-hidden="true"><b>27%</b><span>UK adults</span></div>
+            </div>
+            <ul class="donut-legend">
+              <li><span class="sw" style="background:#0350FD"></span>Less than £1,000<b>27%</b></li>
+              <li><span class="sw" style="background:#CFCFCA"></span>£1,000 or more<b>73%</b></li>
+            </ul>
+          </div>
+          <p class="bg-card-src">Source: Building Societies Association (BSA)</p>
+        </figure>
+        <figure class="bg-card">
+          <figcaption class="bg-card-title">In the UK press</figcaption>
+          <div class="bg-card-body">
+            <img class="bg-news" src="../images/Habitta/background-uk-savings-news.jpg" width="414" height="448" alt="News article headlined 'More than 11 million Britons have less than £1,000 in savings', reporting the Resolution Foundation's call for auto-enrolment into saving schemes, with a photo of a pink piggy bank" loading="lazy">
+          </div>
+          <p class="bg-card-src">UK media coverage of a Resolution Foundation report</p>
+        </figure>
+      </div>
+    </div>
     <div class="cat">Primary Research · Survey</div>
     <div class="catchy">Desire to save and invest present, but no roadmap to do so.</div>
     <ul class="bl">
       <li><strong>How:</strong> Conducted via Google Forms with 35 participants (26 parents, 9 teens) for 1 week.</li>
-      <li><strong>Objective:</strong> <span class="tbc">TBC</span></li>
+      <li><strong>Objective:</strong> To understand teens’ financial goals, everyday money habits, and barriers to managing money confidently, alongside parents’ perspectives on the support they need.</li>
       <li><strong>Insight:</strong> Current school education focuses on dictionaries more than practice. 3 out of 3 teens indicated being anxious or unconfident about their real-life money management despite all having financial courses from school.</li>
     </ul>
-    <div class="img-ph" style="aspect-ratio:16/9;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">Survey Results</span></div>
+    <div class="svy-wrap">
+      <div class="svy">
+        <figure class="svy-col">
+          <figcaption class="svy-title">Saving or investing goals</figcaption>
+          <svg class="svy-pie" viewBox="0 0 200 200" role="img" aria-label="8 of 9 teens (89%) had saving or investing goals; 1 (11%) reported no such goals">
+            <path d="M100 100L100.00 4.00A96 96 0 1 1 38.29 26.46Z" fill="#0350FD"><title>Had saving or investing goals (8)</title></path>
+            <path d="M100 100L38.29 26.46A96 96 0 0 1 100.00 4.00Z" fill="#CCDBFF"><title>No such goals reported (1)</title></path>
+            <text class="on-dark" x="119.8" y="154.5">89%</text>
+            <text x="76.7" y="36.1">11%</text>
+          </svg>
+          <div class="svy-count">8 of 9 teens</div>
+          <ul class="svy-legend">
+            <li><i style="background:#0350FD"></i>Had saving or investing goals (8)</li>
+            <li><i style="background:#CCDBFF"></i>No such goals reported (1)</li>
+          </ul>
+        </figure>
+        <figure class="svy-col">
+          <figcaption class="svy-title">Consistent goal-based saving</figcaption>
+          <svg class="svy-pie" viewBox="0 0 200 200" role="img" aria-label="3 of 9 teens (33%) always set money aside; 6 (67%) sometimes or rarely do">
+            <path d="M100 100L100.00 4.00A96 96 0 0 1 183.14 148.00Z" fill="#0350FD"><title>Always set money aside (3)</title></path>
+            <path d="M100 100L183.14 148.00A96 96 0 1 1 100.00 4.00Z" fill="#CCDBFF"><title>Sometimes or rarely set money aside (6)</title></path>
+            <text class="on-dark" x="150.2" y="71.0">33%</text>
+            <text x="48.0" y="130.0">67%</text>
+          </svg>
+          <div class="svy-count">3 of 9 teens</div>
+          <ul class="svy-legend">
+            <li><i style="background:#0350FD"></i>Always set money aside (3)</li>
+            <li><i style="background:#CCDBFF"></i>Sometimes or rarely set money aside (6)</li>
+          </ul>
+        </figure>
+        <figure class="svy-col">
+          <figcaption class="svy-title">Parents’ view of financial anxiety</figcaption>
+          <svg class="svy-pie" viewBox="0 0 200 200" role="img" aria-label="17 of 26 parents (65%) named a lack of money management knowledge; 9 (35%) named other potential causes">
+            <path d="M100 100L100.00 4.00A96 96 0 1 1 20.99 154.53Z" fill="#0350FD"><title>Lack of money management knowledge (17)</title></path>
+            <path d="M100 100L20.99 154.53A96 96 0 0 1 100.00 4.00Z" fill="#CCDBFF"><title>Other potential causes (9)</title></path>
+            <text class="on-dark" x="151.4" y="127.0">65%</text>
+            <text x="46.9" y="72.1">35%</text>
+          </svg>
+          <div class="svy-count">17 of 26 parents</div>
+          <ul class="svy-legend">
+            <li><i style="background:#0350FD"></i>Lack of money management knowledge (17)</li>
+            <li><i style="background:#CCDBFF"></i>Other potential causes (9)</li>
+          </ul>
+        </figure>
+      </div>
+    </div>
     <div class="cat">Primary Research · Interview</div>
     <div class="catchy">Teens who had engaging conversations with their parents are more likely to write budgets.</div>
     <p>Parents fear that teaching money may underestimate teens' financial potential. Teens who experienced open financial discussion at home showed significantly higher budgeting behaviour.</p>
@@ -172,8 +366,24 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
       </button>
       <div class="adrop-body" id="adb">
         <div class="article-imgs">
-          <div class="article-img"><div class="img-ph" style="aspect-ratio:4/3;background:#DEDAD4;margin:0;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.12);"></div><span class="ph-label">Article 1</span></div></div>
-          <div class="article-img"><div class="img-ph" style="aspect-ratio:4/3;background:#DEDAD4;margin:0;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.12);"></div><span class="ph-label">Article 2</span></div></div>
+          <figure class="article-card">
+            <div class="article-shot">
+              <img src="../images/Habitta/article-financial-socialization.png" width="585" height="412" alt="Excerpt from the paper's Financial Socialization section, with Kim and Chatterjee's (2013) finding highlighted: children whose bank accounts and spending habits were monitored by their parents were more likely to own financial assets as young adults" loading="lazy">
+              <!-- highlighter marks over the Kim and Chatterjee finding (positions measured on the 585 × 412 screenshot) -->
+              <span class="hl" style="left:41.2%;top:43.45%;width:54.87%;height:5.83%"></span>
+              <span class="hl" style="left:5.98%;top:50%;width:89.91%;height:5.83%"></span>
+              <span class="hl" style="left:5.98%;top:56.55%;width:85.47%;height:5.83%"></span>
+            </div>
+            <figcaption><b>“The Role of Parental Education in Financial Socialization of Children”</b> by Nadzeya Kardash</figcaption>
+          </figure>
+          <figure class="article-card">
+            <div class="article-shot">
+              <img src="../images/Habitta/article-teen-financial-advice.png" width="655" height="322" alt="Seeking Financial Advice: a bar chart of who teens typically consult for financial advice, with the top bar highlighted: 72% my parents or guardian" loading="lazy">
+              <!-- highlighter mark over the 72% row (measured on the 655 × 322 screenshot) -->
+              <span class="hl" style="left:53.59%;top:26.71%;width:34.66%;height:6.83%"></span>
+            </div>
+            <figcaption><a href="https://bold.org/blog/financial-education-for-teens/#introduction-to-saving-and-investing-for-teens" target="_blank" rel="noopener noreferrer">Financial education for teens</a> · Bold.org</figcaption>
+          </figure>
         </div>
       </div>
     </div>
@@ -210,9 +420,90 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
     <p>While older students are more "serious," primary data showed that ages 14–16 are at the most critical "Golden Window" — seeking autonomy but still highly influenced by parental guidance.</p>
     <div class="img-ph" style="aspect-ratio:16/9;background:#D6D2CC;"><div class="ph-box"></div><span class="ph-label">Overview Image</span></div>
     <div class="cat">Competitor Analysis</div>
-    <div class="catchy ph">Competitor Analysis Title</div>
-    <p class="ph">Competitor analysis content — add findings here.</p>
-    <div class="img-ph" style="aspect-ratio:16/9;background:#D4D2CE;"><div class="ph-box"></div><span class="ph-label">Competitor Analysis</span></div>
+    <div class="catchy">There are many services to track spending and manage money, but they still lack in habit-building and financial guidance for teens.</div>
+    <div class="ca-wrap">
+      <div class="ca-scroll">
+        <table class="ca-table">
+          <caption>Current budgeting apps</caption>
+          <thead>
+            <tr class="ca-group">
+              <th scope="col" rowspan="2"><span class="ca-vh">App</span></th>
+              <th scope="colgroup" colspan="6">Contents in the main dashboard / home</th>
+              <th scope="colgroup" colspan="3" class="ca-split">Finance education functions</th>
+            </tr>
+            <tr class="ca-cols">
+              <th scope="col">Balance</th>
+              <th scope="col">Budget categories</th>
+              <th scope="col">Chore completion</th>
+              <th scope="col">Pension analysis</th>
+              <th scope="col">Credit analysis</th>
+              <th scope="col">Mortgage tracking</th>
+              <th scope="col" class="ca-split">Lessons</th>
+              <th scope="col">Badge on learning</th>
+              <th scope="col">Finance readings</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row"><span class="ca-app"><img src="../images/Habitta/competitors/gohenry.png" alt="" loading="lazy">Gohenry</span></th>
+              <td><span class="ca-y" role="img" aria-label="Yes"></span></td>
+              <td><span class="ca-y" role="img" aria-label="Yes"></span></td>
+              <td><span class="ca-y is-key" role="img" aria-label="Yes"></span></td>
+              <td><span class="ca-n is-key" role="img" aria-label="No"></span></td>
+              <td><span class="ca-n is-key" role="img" aria-label="No"></span></td>
+              <td><span class="ca-n is-key" role="img" aria-label="No"></span></td>
+              <td class="ca-split"><span class="ca-y is-key" role="img" aria-label="Yes"></span></td>
+              <td><span class="ca-y" role="img" aria-label="Yes"></span></td>
+              <td><span class="ca-y is-key" role="img" aria-label="Yes"></span></td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="ca-app"><img src="../images/Habitta/competitors/emma.png" alt="" loading="lazy">Emma</span></th>
+              <td><span class="ca-y" role="img" aria-label="Yes"></span></td>
+              <td><span class="ca-y" role="img" aria-label="Yes"></span></td>
+              <td><span class="ca-n is-key" role="img" aria-label="No"></span></td>
+              <td><span class="ca-y is-key" role="img" aria-label="Yes"></span></td>
+              <td><span class="ca-y is-key" role="img" aria-label="Yes"></span></td>
+              <td><span class="ca-y is-key" role="img" aria-label="Yes"></span></td>
+              <td class="ca-split"><span class="ca-n" role="img" aria-label="No"></span></td>
+              <td><span class="ca-n" role="img" aria-label="No"></span></td>
+              <td><span class="ca-n" role="img" aria-label="No"></span></td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="ca-app"><img src="../images/Habitta/competitors/wallet.png" alt="" loading="lazy">Wallet</span></th>
+              <td><span class="ca-y" role="img" aria-label="Yes"></span></td>
+              <td><span class="ca-y" role="img" aria-label="Yes"></span></td>
+              <td><span class="ca-n is-key" role="img" aria-label="No"></span></td>
+              <td><span class="ca-y is-key" role="img" aria-label="Yes"></span></td>
+              <td><span class="ca-y is-key" role="img" aria-label="Yes"></span></td>
+              <td><span class="ca-y is-key" role="img" aria-label="Yes"></span></td>
+              <td class="ca-split"><span class="ca-n" role="img" aria-label="No"></span></td>
+              <td><span class="ca-n" role="img" aria-label="No"></span></td>
+              <td><span class="ca-n" role="img" aria-label="No"></span></td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="ca-app"><img src="../images/Habitta/competitors/goodbudget.png" alt="" loading="lazy">Good Budget</span></th>
+              <td><span class="ca-y" role="img" aria-label="Yes"></span></td>
+              <td><span class="ca-y" role="img" aria-label="Yes"></span></td>
+              <td><span class="ca-n" role="img" aria-label="No"></span></td>
+              <td><span class="ca-n" role="img" aria-label="No"></span></td>
+              <td><span class="ca-n" role="img" aria-label="No"></span></td>
+              <td><span class="ca-n" role="img" aria-label="No"></span></td>
+              <td class="ca-split"><span class="ca-n" role="img" aria-label="No"></span></td>
+              <td><span class="ca-n" role="img" aria-label="No"></span></td>
+              <td><span class="ca-n" role="img" aria-label="No"></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="ca-note">Note: Because I’m not a teenager, I wasn’t able to download teen apps offered by other banks, so they aren’t included in this comparison.</p>
+      <div class="ca-callout">
+        <p>The market is polarized:<br>kid-focused ‘allowance + chores’ apps<br>vs.<br>adult-grade finance tools</p>
+      </div>
+      <div class="ca-arrow" aria-hidden="true"></div>
+      <div class="ca-callout is-gap">
+        <p>Teens fall in the gap</p>
+      </div>
+    </div>
   </section>
 
   <!-- DEFINE -->
@@ -327,7 +618,64 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
         See user story process
       </button>
       <div class="adrop-body" id="userstory-drop">
-        <div class="img-ph" style="aspect-ratio:16/9;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">User Story Process Image</span></div>
+        <div class="us-board-wrap">
+          <div class="us-board">
+            <div class="us-legend"><span><i class="teen"></i>Teen</span><span><i class="parent"></i>Parent / carer</span></div>
+            <div class="us-grid">
+              <div class="us-group" style="--n:4">
+                <div class="us-head" style="background:#A0F8A6">Saving with goal</div>
+                <ul class="us-cards">
+                  <li class="us-card parent"><b>As a parent,</b>I want some finance experts for my teens <span>so that my teens to save money wisely.</span></li>
+                  <li class="us-card parent"><b>As a parent,</b>I want some finance experts for my teens <span>so that I do not have to nag them to save.</span></li>
+                  <li class="us-card parent"><b>As a parent,</b>I want my teen to apply a template like “50/30/20” <span>so that teens can follow clear structure and guidance that I may be hard to always ask them to do so.</span></li>
+                  <li class="us-card parent"><b>As a parent,</b>I want teen’s “saving plan” for a big purchase (e.g., laptop) <span>so that I can save consistently and not struggle after buying it.</span></li>
+                  <li class="us-card parent"><b>As a parent,</b>I want to see whether my teen has a long-term goal set <span>so that I can help them plan beyond immediate spending.</span></li>
+                  <li class="us-card teen"><b>As a teen,</b>I want to categorize spending as “need / want / goal” <span>so that I can reflect on saving habits.</span></li>
+                </ul>
+              </div>
+              <div class="us-group" style="--n:1">
+                <div class="us-head" style="background:#F6C988">Onboarding</div>
+                <ul class="us-cards">
+                  <li class="us-card teen"><b>As a teen,</b>I want to choose whether to connect a parent/carer now or later <span>so that I can start privately and add support.</span></li>
+                </ul>
+              </div>
+              <div class="us-group" style="--n:3">
+                <div class="us-head" style="background:#A0F9DA">Budget habit</div>
+                <ul class="us-cards">
+                  <li class="us-card teen"><b>As a teen,</b>I want a system that is easier than excel to do the budgeting, <span>so that I can start budgeting without feeling overwhelmed.</span></li>
+                  <li class="us-card teen"><b>As a teen,</b>I want a finance system that is relatable <span>so that I don’t stop using the system in the middle.</span></li>
+                  <li class="us-card teen"><b>As a teen,</b>I want a finance system that is relatable <span>so that I don’t stop using the system in the middle.</span></li>
+                </ul>
+              </div>
+              <div class="us-group" style="--n:4">
+                <div class="us-head" style="background:#FFFF88">Spending tracking with real tips</div>
+                <ul class="us-cards">
+                  <li class="us-card teen"><b>As a teen,</b>I want short practical tips based on my spending patterns <span>so that I learn by doing instead of hard vocabulary definitions.</span></li>
+                  <li class="us-card teen"><b>As a teen,</b>I want to separate “flexible cash” from “locked savings for goals” <span>so that I don’t feel stuck with no usable money.</span></li>
+                  <li class="us-card parent"><b>As a parent,</b>I want to show my teens how to really compare prices in daily life <span>so that I am not repeating nagging.</span></li>
+                  <li class="us-card teen"><b>As a teen,</b>I want to use money in the most effective way <span>so that later I will have enough saving for other goals.</span></li>
+                </ul>
+              </div>
+              <div class="us-group" style="--n:4">
+                <div class="us-head" style="background:#8A9CF6">Investment direction</div>
+                <ul class="us-cards">
+                  <li class="us-card teen"><b>As a teen,</b>I want to explore investing with simple explanations <span>so that I know the direction to start invest.</span></li>
+                  <li class="us-card teen"><b>As a teen,</b>I want to explore investing with simple explanations and risk reminders <span>so that I can learn safely without overconfidence.</span></li>
+                  <li class="us-card teen"><b>As a teen,</b>I want to know many other investment options <span>so that I can a starting points to study investment.</span></li>
+                  <li class="us-card parent"><b>As a parent,</b>I want a finance system that is relatable for teens to learn and save, <span>so that I don’t need financial knowledge to begin.</span></li>
+                </ul>
+              </div>
+              <div class="us-group" style="--n:3">
+                <div class="us-head" style="background:#F1A09E">Connect and share</div>
+                <ul class="us-cards">
+                  <li class="us-card parent"><b>As a parent / carer,</b>I want to view teens spending summaries and leave positive feedback <span>so that I can know if the teen is using money wisely.</span></li>
+                  <li class="us-card parent"><b>As a parent / carer,</b>I want a situation that is not awkward to ask how much saving has been done <span>so that I can guide them even if I’m not confident in finance.</span></li>
+                  <li class="us-card parent"><b>As a parent / carer,</b>I want to see teen’s saving without asking them directly <span>so that I do not pressure the teens but care their finance situation.</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
