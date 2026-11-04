@@ -39,6 +39,13 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
   .persona-photo.has-img { min-height:0; aspect-ratio:1; max-width:200px; width:100%; margin:20px 0 0 28px; border:none; border-radius:8px; overflow:hidden; }
 }
 .ps-wrap { margin:32px 0 0; }
+/* method tables: the label column fits "Objective", so every value starts on the same line */
+.ut-mk { min-width:88px; }
+/* IDEATION — the benchmark for meaningful financial education (1/3) beside the feature scoring sheet (2/3) */
+.idea-row { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,2fr); gap:16px; align-items:start; margin:20px 0; }
+@media (max-width:768px) {
+  .idea-row { grid-template-columns:minmax(0,1fr); }
+}
 /* DELIVER — design boards shown whole at content width */
 .deliver-img { display:block; width:100%; height:auto; margin:20px 0; border-radius:6px; }
 .ps-block { background:var(--ink); padding:48px; border-radius:12px; max-width:900px; width:100%; text-align:center; margin:0 auto; }
@@ -176,6 +183,11 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
 .article-card { margin:0; }
 /* a small phone screenshot with large type: once the cards stack, keep it at its own 319px width rather than stretching it */
 .article-card.is-narrow { max-width:319px; }
+/* interview research dropdown: two evidence cards in one row; both screenshots are about 2:1, so they show at the same height */
+.research-list { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px; align-items:start; }
+@media (max-width:768px) {
+  .research-list { grid-template-columns:minmax(0,1fr); gap:28px; }
+}
 @media (max-width:768px) {
   .article-imgs { grid-template-columns:minmax(0,1fr); }
 }
@@ -511,11 +523,11 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
     </div>
     <div class="cat">Primary Research · Survey</div>
     <div class="catchy">Desire to save and invest present, but no roadmap to do so.</div>
-    <ul class="bl">
-      <li><strong>How:</strong> Conducted via Google Forms with 35 participants (26 parents, 9 teens) for 1 week.</li>
-      <li><strong>Objective:</strong> To understand teens’ financial goals, everyday money habits, and barriers to managing money confidently, alongside parents’ perspectives on the support they need.</li>
-      <li><strong>Insight:</strong> Current school education focuses on dictionaries more than practice. 3 out of 3 teens indicated being anxious or unconfident about their real-life money management despite all having financial courses from school.</li>
-    </ul>
+    <div class="ut-method">
+      <div class="ut-method-row"><span class="ut-mk">How</span><span class="ut-mv">Conducted via Google Forms with 35 participants (26 parents, 9 teens) for 1 week.</span></div>
+      <div class="ut-method-row"><span class="ut-mk">Objective</span><span class="ut-mv">To understand teens’ financial goals, everyday money habits, and barriers to managing money confidently, alongside parents’ perspectives on the support they need.</span></div>
+      <div class="ut-method-row"><span class="ut-mk">Insight</span><span class="ut-mv">Current school education focuses on dictionaries more than practice. Teens felt anxious or unconfident about managing money in real life, even after taking financial courses at school.</span></div>
+    </div>
     <div class="svy-wrap">
       <div class="svy">
         <figure class="svy-col">
@@ -564,12 +576,35 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
     </div>
     <div class="cat">Primary Research · Interview</div>
     <div class="catchy">Teens who had engaging conversations with their parents are more likely to write budgets.</div>
-    <ul class="bl">
-      <li><strong>Aim:</strong> To understand how teens budget, save and plan for their goals day to day, and how conversations about money at home shape those habits.</li>
-      <li><strong>Method:</strong> 1:1 Zoom calls.</li>
-      <li><strong>Who:</strong> One teen from the survey and five of their friends (6 teens aged 15–16).</li>
-      <li><strong>Duration:</strong> 60 minutes per teen or guardian.</li>
-    </ul>
+    <div class="ut-method">
+      <div class="ut-method-row"><span class="ut-mk">Aim</span><span class="ut-mv">To understand how teens budget, save and plan for their goals day to day, and how conversations about money at home shape those habits.</span></div>
+      <div class="ut-method-row"><span class="ut-mk">Method</span><span class="ut-mv">1:1 Zoom calls.</span></div>
+      <div class="ut-method-row"><span class="ut-mk">Who</span><span class="ut-mv">One teen from the survey and five of their friends.</span></div>
+      <div class="ut-method-row"><span class="ut-mk">Number</span><span class="ut-mv">6 teenagers from the target age range (aged 15–16).</span></div>
+      <div class="ut-method-row"><span class="ut-mk">Duration</span><span class="ut-mv">60 minutes per teen or guardian.</span></div>
+    </div>
+    <div class="adrop">
+      <button class="adrop-btn" onclick="toggleDrop(this,'research-drop')">
+        <div class="adrop-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="#888884" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        Also found research that aligns with this pattern
+      </button>
+      <div class="adrop-body" id="research-drop">
+        <div class="research-list">
+          <figure class="article-card">
+            <div class="article-shot">
+              <img src="../images/Habitta/research-agnew-sotardi-table2.png" width="1285" height="650" alt="Table 2 from Agnew and Sotardi: bivariate correlations among 5,370 New Zealand adolescents, with the correlation of .149 between family financial openness and behaviours in budgeting highlighted" loading="lazy">
+            </div>
+            <figcaption><b>(Agnew &amp; Sotardi, 2025, p. 252)</b><br>Agnew, S., &amp; Sotardi, V. A. (2025). Family financial socialisation and its impact on financial confidence, intentions, and behaviours among New Zealand adolescents. <i>Journal of Family and Economic Issues, 46</i>(1), 246–258. <a href="https://doi.org/10.1007/s10834-024-09990-8" target="_blank" rel="noopener noreferrer">https://doi.org/10.1007/s10834-024-09990-8</a><br>Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>. Highlighting added.</figcaption>
+          </figure>
+          <figure class="article-card">
+            <div class="article-shot">
+              <img src="../images/Habitta/research-deenanath-p91.png" width="590" height="300" alt="Excerpt from the Financial Behavior section of Deenanath et al., highlighted: holding other variables constant, students who communicated with their parents about money tended to display a greater number of healthy financial behaviors" loading="lazy">
+            </div>
+            <figcaption><b>(Deenanath et al., 2019, p. 91)</b><br>Deenanath, V., Danes, S. M., &amp; Jang, J. (2019). Purposive and unintentional family financial socialization, subjective financial knowledge, and financial behavior of high school students. <i>Journal of Financial Counseling and Planning, 30</i>(1), 83–96. <a href="https://doi.org/10.1891/1052-3073.30.1.83" target="_blank" rel="noopener noreferrer">https://doi.org/10.1891/1052-3073.30.1.83</a><br><a href="https://files.eric.ed.gov/fulltext/EJ1241099.pdf" target="_blank" rel="noopener noreferrer">Full text on ERIC</a>. Highlighting added.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
     <!-- Interview scoring sheet: yellow / pink highlights can be switched on and off -->
     <div class="iv-wrap show-g show-b">
       <div class="iv-bar">
@@ -603,11 +638,6 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
   <!-- DEFINE -->
   <section class="section" id="define">
     <div class="mid-title">Define</div>
-    <div class="cat">Desk Research and Interview</div>
-    <div class="catchy">The New Standard for Teen Financial Literacy (14–16)</div>
-    <p>While older students are more "serious," primary data showed that ages 14–16 are at the most critical "Golden Window" — seeking autonomy but still highly influenced by parental guidance.</p>
-    <div class="img-ph" style="aspect-ratio:16/9;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">Define Image</span></div>
-
     <div class="cat">Persona</div>
     <div class="persona" style="max-width:900px;">
       <div class="persona-top">
@@ -798,7 +828,21 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
 
     <div class="cat">Ideation</div>
     <div class="catchy">4 MVPs for Financial Confidence Building</div>
-    <div class="img-ph" style="aspect-ratio:16/9;background:#D4D2CE;"><div class="ph-box"></div><span class="ph-label">Ideation / Sketches</span></div>
+    <p>Used the UK Financial Foundations survey’s picture of a meaningful financial education as the benchmark: children who receive one feel more confident, save more regularly and talk about money. Feature ideas were then scored out of 100 on habits, confidence, goal motivation, dialogue, autonomy and safety, and ease of delivery, and the top-ranked ideas shaped the four MVPs.</p>
+    <div class="idea-row">
+      <figure class="article-card">
+        <div class="article-shot">
+          <img src="../images/Habitta/financial-foundations-criteria.png" width="331" height="394" alt="Report excerpt: a meaningful financial education is positively related to good financial attitudes and behaviours. Children who received one are more likely to feel confident managing money, disagree that they feel anxious about money, save regularly, have a bank account they use, hold positive attitudes towards money, talk about money, and show positive day-to-day money management skills" loading="lazy">
+        </div>
+        <figcaption>Source: UK Children and Young People’s Financial Wellbeing Survey: Financial Foundations, June 2023</figcaption>
+      </figure>
+      <figure class="article-card">
+        <div class="article-shot">
+          <img src="../images/Habitta/ideation-feature-scoring.webp" width="2000" height="1071" alt="Spreadsheet ranking feature candidates by total score out of 100 across habits, confidence, goal motivation, dialogue, autonomy and safety, and ease of delivery; pre-purchase questions on value, lifespan and purpose rank first with 86" loading="lazy">
+        </div>
+        <figcaption>Feature candidates ranked by total score out of 100.</figcaption>
+      </figure>
+    </div>
   </section>
 
   <!-- DELIVER -->
@@ -868,7 +912,7 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
         </div>
       </div>
     </div>
-    <div class="img-ph" style="aspect-ratio:16/9;background:#D4D2CE;border-radius:0 0 10px 10px;border:1px solid var(--border);border-top:none;margin-bottom:16px;max-width:900px;"><div class="ph-box"></div><span class="ph-label">Finding 02 Image</span></div>
+    <img src="../images/Habitta/Habitta-UT1-card2.png" width="1580" height="1112" alt="Before and after of the investment flow: before, My Cart led straight to the Decision Hall; after, a new screen between them says the teen is ready for a money talk and that Penny will guide them with thought-provoking questions" style="width:100%;height:auto;max-width:900px;display:block;border-radius:0 0 10px 10px;border:1px solid var(--border);border-top:none;margin-bottom:16px;" loading="lazy">
 
     <!-- SECOND ROUND -->
     <div class="cat">Second Round · Wireframe Stage</div>
@@ -902,19 +946,8 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
     <img src="../images/Habitta/Habitta-UT2- card1.jpg" alt="Finding 01 Image" style="width:100%;max-width:900px;display:block;border-radius:0 0 10px 10px;border:1px solid var(--border);border-top:none;margin-bottom:16px;">
 
     <!-- Finding 02 -->
-    <div class="ut-finding-block" style="border-radius:10px;border-right:none;margin-bottom:16px;max-width:900px;">
-      <div class="ut-fnum">Finding 02</div>
-      <p style="font-size:var(--catchy);font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:16px;">Parents feel encouragement should be more promoted instead of discouragement</p>
-      <div class="ut-rows">
-        <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb">2/3 questioned the "sad" icon for child's transaction history.</span></div>
-        <div class="ut-row"><span class="ut-rl">Insight</span><span class="ut-rb">For teens aged 14–16, the experience should support confidence and gradual habit formation, not guilt around everyday spending.</span></div>
-        <div class="ut-row ut-change"><span class="ut-rl">Design response</span><span class="ut-rb">Shifted the tone of the transaction history from discouraging overspending to reinforcing small positive money habits.</span></div>
-      </div>
-    </div>
-
-    <!-- Finding 03 -->
     <div class="ut-finding-block" style="border-radius:10px;border-right:none;max-width:900px;">
-      <div class="ut-fnum">Finding 03</div>
+      <div class="ut-fnum">Finding 02</div>
       <p style="font-size:var(--catchy);font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:16px;">Parents felt that direct spending comparison was not a meaningful way to support teens</p>
       <div class="ut-rows">
         <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb">2/3 parents felt uncomfortable sharing their spending because the scale and context are very different from teens.</span></div>
