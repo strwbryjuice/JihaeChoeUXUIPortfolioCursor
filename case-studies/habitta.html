@@ -48,6 +48,9 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
 }
 /* DELIVER — design boards shown whole at content width */
 .deliver-img { display:block; width:100%; height:auto; margin:20px 0; border-radius:6px; }
+/* two boards with no gap: each column is sized by its image's width ÷ height (1549×787, 981×2000), so both show at the same height */
+.brand-row { display:grid; grid-template-columns:minmax(0,1.968fr) minmax(0,0.4905fr); margin:20px 0; border-radius:6px; overflow:hidden; }
+.brand-row img { display:block; width:100%; height:auto; }
 .ps-block { background:var(--ink); padding:48px; border-radius:12px; max-width:900px; width:100%; text-align:center; margin:0 auto; }
 .ps-block .ps-lbl { font-size:var(--cat); font-weight:500; letter-spacing:0.12em; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-bottom:28px; }
 .ps-block .ps-q { font-size:clamp(20px,2.2vw,32px); font-weight:400; line-height:1.5; color:#FFFFFF; margin:0; text-align:center; max-width:none !important; }
@@ -61,6 +64,11 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
   box-shadow:0 4px 20px rgba(0,0,0,0.35); pointer-events:none;
   background-repeat:no-repeat; z-index:10; overflow:hidden;
 }
+/* UT spreadsheet inside a finding's dropdown — hover zooms to the sheet's native size */
+.ut-data { display:block; max-width:none; border:1px solid var(--border); border-radius:6px; overflow:hidden; }
+.ut-data img { height:auto; }
+.ut-zoom-hint { position:absolute; right:10px; bottom:10px; padding:4px 8px; border-radius:4px; background:rgba(0,0,0,0.65); color:#fff; font-size:12px; font-weight:400; letter-spacing:0.04em; pointer-events:none; }
+@media (hover:none) { .ut-zoom-hint { display:none; } }
 
 /* PROTOTYPE EMBED */
 .proto-block { display:flex; flex-direction:column; align-items:center; margin-top:32px; scroll-margin-top:80px; }
@@ -184,7 +192,8 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
 /* a small phone screenshot with large type: once the cards stack, keep it at its own 319px width rather than stretching it */
 .article-card.is-narrow { max-width:319px; }
 /* interview research dropdown: two evidence cards in one row; both screenshots are about 2:1, so they show at the same height */
-.research-list { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px; align-items:start; }
+.research-list { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px; align-items:start; margin:20px 0; }
+#research-drop .research-list { margin:0; }
 @media (max-width:768px) {
   .research-list { grid-template-columns:minmax(0,1fr); gap:28px; }
 }
@@ -357,6 +366,31 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
           <p class="bg-card-src">UK media coverage of a Resolution Foundation report</p>
         </figure>
       </div>
+    </div>
+    <div class="cat">Desk Research</div>
+    <div class="catchy">Low Savings Aren’t Just a Money Problem. They Can Also Signal Gaps in Financial Habits and Guidance</div>
+    <p>Having too little money left after essentials is the main barrier to saving, so habits alone cannot explain low savings. However, low savings can also be a visible sign of a broader gap in the regular saving habits and guidance young people build while growing up. In the UK, only 47% of 7–17-year-olds have received a meaningful financial education, and just 10% have received it at both home and school. For some young people, peer pressure and social media make saving harder still. These early differences can last: British panel data shows that children who saved at 11–15 were more likely to save as adults. An app cannot solve low income, but it may help teens practise the money habits within their control.</p>
+    <div class="research-list">
+      <figure class="article-card">
+        <div class="article-shot">
+          <img src="../images/Habitta/research-maps-2023-education-gap.png" width="1320" height="696" alt="Report excerpt with two passages highlighted: children and young people who received a meaningful financial education as defined by the goal, 47% in 2022; and only 10% report having both school and home financial education" loading="lazy">
+          <!-- highlighter marks over the 47% and 10% findings (positions measured on the 1320 × 696 screenshot) -->
+          <span class="hl" style="left:19.24%;top:17.24%;width:72.50%;height:5.89%"></span>
+          <span class="hl" style="left:3.71%;top:25.00%;width:21.89%;height:6.18%"></span>
+          <span class="hl" style="left:78.41%;top:62.07%;width:11.14%;height:5.89%"></span>
+          <span class="hl" style="left:3.79%;top:70.11%;width:23.41%;height:5.89%"></span>
+        </div>
+        <figcaption>Source: Money and Pensions Service, <a href="https://maps.org.uk/en/publications/research/2023/uk-children-and-young-peoples-financial-wellbeing-survey-financial-foundations" target="_blank" rel="noopener noreferrer">UK Children and Young People’s Financial Wellbeing Survey: Financial Foundations</a>, June 2023</figcaption>
+      </figure>
+      <figure class="article-card">
+        <div class="article-shot">
+          <img src="../images/Habitta/research-maps-2023-childhood.png" width="1320" height="272" alt="Report excerpt: financial wellbeing, by the time of reaching financial independence, is in large part a consequence of what is seen, learned, and experienced during childhood and adolescence (highlighted)" loading="lazy">
+          <!-- highlighter marks over the childhood finding (positions measured on the 1320 × 272 screenshot) -->
+          <span class="hl" style="left:44.77%;top:44.12%;width:48.79%;height:15.07%"></span>
+          <span class="hl" style="left:3.71%;top:64.71%;width:81.82%;height:15.07%"></span>
+        </div>
+        <figcaption>Source: Money and Pensions Service, <a href="https://maps.org.uk/en/publications/research/2023/uk-children-and-young-peoples-financial-wellbeing-survey-financial-foundations" target="_blank" rel="noopener noreferrer">UK Children and Young People’s Financial Wellbeing Survey: Financial Foundations</a>, June 2023</figcaption>
+      </figure>
     </div>
     <div class="cat">Desk Research</div>
     <div class="catchy">Building Financial Habits Before Adulthood</div>
@@ -647,7 +681,7 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
             <dt>Name</dt><dd>Ethan</dd>
             <dt>Age</dt><dd>15 years old</dd>
             <dt>Gender</dt><dd>Male</dd>
-            <dt>Location</dt><dd>Renting a flat in London</dd>
+            <dt>Location</dt><dd>Living with his parents in Chiswick, London</dd>
             <dt>Education</dt><dd>Year 11 student at a local secondary school, preparing for his GCSEs</dd>
           </dl>
           <p class="persona-quote">“I know saving and budgeting are important, but they’re hard to put into practice.”</p>
@@ -852,6 +886,11 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
     <img class="deliver-img" src="../images/Habitta/mid-fidelity-overview.png" width="1694" height="742" alt="Overview of the mid-fidelity Figma board: rows of phone wireframes grouped into flows, with sticky notes and red frames marking screens to revisit" loading="lazy">
     <div class="cat">Components</div>
     <img class="deliver-img" src="../images/Habitta/components.png" width="1342" height="964" alt="Earnify component sheet: calendar, labelled inputs, navigation bar states, buttons, progress bars, transaction and goal cards, the green #04D180 and blue #0350FD colour scales, and the typography scale" loading="lazy">
+    <div class="cat">Brand Illustration · Reference and Process</div>
+    <div class="brand-row">
+      <img src="../images/Habitta/brand-illustration.png?v=2" width="1549" height="787" alt="Brand illustration board: paper plane, coin, mountain and piggy bank explorations in Earnify's blue, green and yellow, reference images of people connecting, and test versions of the speech bubble and profile icons" loading="lazy">
+      <img src="../images/Habitta/brand-illustration-popper.webp" width="981" height="2000" alt="Party popper explorations in Earnify's blue, green and yellow, with reference icons along the top" loading="lazy">
+    </div>
   </section>
 
   <!-- USABILITY TESTING -->
@@ -864,8 +903,8 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
     <div class="ut-method">
       <div class="ut-method-row"><span class="ut-mk">Aim</span><span class="ut-mv">To explore ideas for additional features and test whether the current functions were understandable and usable for teens.</span></div>
       <div class="ut-method-row"><span class="ut-mk">Method</span><span class="ut-mv">Think aloud method via live zoom call.</span></div>
-      <div class="ut-method-row"><span class="ut-mk">Duration</span><span class="ut-mv">Each session lasted around 30–45 minutes.</span></div>
-      <div class="ut-method-row"><span class="ut-mk">Who</span><span class="ut-mv">3 teenagers from the interview pool.</span></div>
+      <div class="ut-method-row"><span class="ut-mk">Duration</span><span class="ut-mv">Each flow lasted around 30–45 minutes, with a total of 5 flows.</span></div>
+      <div class="ut-method-row"><span class="ut-mk">Who</span><span class="ut-mv">4 teenagers from the interview pool.</span></div>
     </div>
 
     <!-- Finding 01 — stacked layout -->
@@ -873,7 +912,7 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
       <div class="ut-fnum">Finding 01</div>
       <p style="font-size:var(--catchy);font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:16px;">Early tasks needed to feel more relevant for teens</p>
       <div class="ut-rows">
-        <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb">1/3 participants questioned why they needed to set a goal, and 3/3 were confused by the "study habit" option during the goal-setting flow.</span></div>
+        <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb">1/4 participants questioned why they needed to set a goal, and 4/4 were confused by the "study habit" option during the goal-setting flow.</span></div>
         <div class="ut-row"><span class="ut-rl">Insight</span><span class="ut-rb">Some tasks in the early experience did not feel immediately meaningful to teens. These findings suggested that early tasks should feel clearly tied to teens' real financial journey, rather than appearing as extra steps or unrelated options.</span></div>
         <div class="ut-row ut-change"><span class="ut-rl">Design response</span><span class="ut-rb">Reframed goal-setting to connect it more clearly to everyday teen spending and saving habits, and removed the "study habit" option from the goal-setting flow.</span></div>
       </div>
@@ -883,7 +922,11 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
           See UT participant data
         </button>
         <div class="adrop-body" id="ut1-who-drop">
-          <div class="img-ph" style="aspect-ratio:16/9;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">UT Excel / Participant Data</span></div>
+          <div class="magnifier-wrap ut-data">
+            <img id="ut1-data1-img" src="../images/Habitta/Habitta-UT1-data1.webp" width="2000" height="1059" alt="Usability test spreadsheet for the goal flow: all four testers were marked Not pass on Create your goal, where they questioned what “study habit” means, and Iffy on Let’s set your first goal" loading="lazy">
+            <div class="magnifier-lens" id="ut1-data1-lens"></div>
+            <div class="ut-zoom-hint">Hover to zoom in</div>
+          </div>
         </div>
       </div>
     </div>
@@ -898,7 +941,7 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
       <div class="ut-fnum">Finding 02</div>
       <p style="font-size:var(--catchy);font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:16px;">The investment flow did not make its learning-first intention clear before action</p>
       <div class="ut-rows">
-        <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb">3/3 participants tried to purchase stocks directly without going through the intended discussion flow with their parents.</span></div>
+        <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb">4/4 participants tried to purchase stocks directly without going through the intended discussion flow with their parents.</span></div>
         <div class="ut-row"><span class="ut-rl">Insight</span><span class="ut-rb">The stock feature was designed to help teens build a habit of thinking and talking through what to buy before taking action. However, that intention was not clear enough in the flow, so participants moved straight toward purchase instead of recognizing discussion as a core part of the experience. This suggested that investment features should communicate reflection, learning, and support more explicitly before any action.</span></div>
         <div class="ut-row ut-change"><span class="ut-rl">Design response</span><span class="ut-rb">Redesigned the stock journey to make its learning-first structure more visible, with discussion, reflection, and guided next steps clearly introduced before any investment-related action.</span></div>
       </div>
@@ -908,7 +951,11 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
           See UT participant data
         </button>
         <div class="adrop-body" id="ut1-card2-drop">
-          <div class="img-ph" style="aspect-ratio:16/9;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">UT Excel / Participant Data</span></div>
+          <div class="magnifier-wrap ut-data">
+            <img id="ut1-data2-img" src="../images/Habitta/Habitta-UT1-data2.webp" width="2000" height="1088" alt="Usability test spreadsheet for the investment flow: all four testers were marked Not pass on Decision Hall (Start discussion), where they tried to buy the stock directly without discussing with their parents" loading="lazy">
+            <div class="magnifier-lens" id="ut1-data2-lens"></div>
+            <div class="ut-zoom-hint">Hover to zoom in</div>
+          </div>
         </div>
       </div>
     </div>
@@ -921,7 +968,7 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
       <div class="ut-method-row"><span class="ut-mk">Aim</span><span class="ut-mv">To explore ideas for additional features and test whether the current functions were understandable and usable for parents with 14–16 year old children.</span></div>
       <div class="ut-method-row"><span class="ut-mk">Method</span><span class="ut-mv">Think out loud via zoom call.</span></div>
       <div class="ut-method-row"><span class="ut-mk">Duration</span><span class="ut-mv">Each session lasted around 15–20 minutes.</span></div>
-      <div class="ut-method-row"><span class="ut-mk">Who</span><span class="ut-mv">Parents from first UT.</span></div>
+      <div class="ut-method-row"><span class="ut-mk">Number</span><span class="ut-mv">1</span></div>
     </div>
 
     <!-- Finding 01 -->
@@ -929,32 +976,24 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
       <div class="ut-fnum">Finding 01</div>
       <p style="font-size:var(--catchy);font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:16px;">Parents may not be ready for having instructional responsibility in investment-related moments.</p>
       <div class="ut-rows">
-        <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb">1/3 parents explicitly expressed concern about the chat system before confirming an investment, while the others mainly described talking to their children about basic topics like saving rather than investment decisions.</span></div>
+        <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb">She explicitly expressed concern about the chat system before confirming an investment, while the others mainly described talking to their children about basic topics like saving rather than investment decisions.</span></div>
         <div class="ut-row"><span class="ut-rl">Insight</span><span class="ut-rb">Parents seemed more comfortable supporting everyday money habits than leading in-depth conversations about investing. This suggested that the product should not rely on parents as the primary source of stock-related guidance, especially when accuracy and age-appropriateness felt uncertain.</span></div>
         <div class="ut-row ut-change"><span class="ut-rl">Design response</span><span class="ut-rb">Instead of relying on parents to lead stock-related conversations, I introduced AI as a first-line guide that provides accessible, age-appropriate explanations before parent involvement.</span></div>
-      </div>
-      <div class="adrop" style="margin:16px 0 0;">
-        <button class="adrop-btn" onclick="toggleDrop(this,'ut2-who-drop')">
-          <div class="adrop-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="#888884" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          See UT participant data
-        </button>
-        <div class="adrop-body" id="ut2-who-drop">
-          <div class="img-ph" style="aspect-ratio:16/9;background:#D9D6D0;"><div class="ph-box"></div><span class="ph-label">UT Excel / Participant Data</span></div>
-        </div>
       </div>
     </div>
     <img src="../images/Habitta/Habitta-UT2- card1.jpg" alt="Finding 01 Image" style="width:100%;max-width:900px;display:block;border-radius:0 0 10px 10px;border:1px solid var(--border);border-top:none;margin-bottom:16px;">
 
     <!-- Finding 02 -->
-    <div class="ut-finding-block" style="border-radius:10px;border-right:none;max-width:900px;">
+    <div class="ut-finding-block" style="border-radius:10px 10px 0 0;border-right:none;border-bottom:none;margin-bottom:0;max-width:900px;">
       <div class="ut-fnum">Finding 02</div>
       <p style="font-size:var(--catchy);font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:16px;">Parents felt that direct spending comparison was not a meaningful way to support teens</p>
       <div class="ut-rows">
-        <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb">2/3 parents felt uncomfortable sharing their spending because the scale and context are very different from teens.</span></div>
+        <div class="ut-row"><span class="ut-rl">Result</span><span class="ut-rb">She felt uncomfortable sharing her spending because the scale and context are very different from teens.</span></div>
         <div class="ut-row"><span class="ut-rl">Insight</span><span class="ut-rb">This suggests that users need contextual guidance, not raw comparison.</span></div>
         <div class="ut-row ut-change"><span class="ut-rl">Design response</span><span class="ut-rb">Only teens are sharing selected budgeting to parents or guardians.</span></div>
       </div>
     </div>
+    <img src="../images/Habitta/Habitta-UT2-card2.webp" width="2000" height="927" alt="Before and after: before, a shared Aliex and Sera spending screen with name labels on each transaction; after, a Spending and Insight screen made for one person's use, with budgeting view and transactions" style="width:100%;height:auto;max-width:900px;display:block;border-radius:0 0 10px 10px;border:1px solid var(--border);border-top:none;margin-bottom:16px;" loading="lazy">
 
     <!-- PROTOTYPE -->
     <div class="proto-block" id="prototype">
@@ -1245,6 +1284,8 @@ function initMagnifier(imgId, lensId, zoom) {
   img.addEventListener('mouseleave', function() { lens.style.display = 'none'; });
 }
 initMagnifier('ut1-card1-img', 'ut1-card1-lens', 3);
+initMagnifier('ut1-data1-img', 'ut1-data1-lens', 2.4);
+initMagnifier('ut1-data2-img', 'ut1-data2-lens', 2.4);
 // Interview table: each button switches its highlight colour on or off
 // Interview table: the full-table button shows the criteria hidden in the summary
 document.querySelectorAll('.iv-full').forEach(btn=>btn.addEventListener('click',()=>{const on=btn.getAttribute('aria-pressed')!=='true';btn.setAttribute('aria-pressed',String(on));btn.textContent=on?'View summary':'View full table';btn.closest('.iv-wrap').classList.toggle('show-full',on);}));
