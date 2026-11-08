@@ -64,7 +64,7 @@
       'background-position:-' + (it.x * k).toFixed(3) + 'px -' + (it.y * k).toFixed(3) + 'px"></span>';
   }
 
-  /* ---------- Tabs: Invest tab, Pocekt | Buy ---------- */
+  /* ---------- Tabs: Invest tab, Pocket | Buy ---------- */
   function pocketScreen() { return inv().invested ? 'invest-pocket' : 'invest'; }
   P.action('tab-invest', function () { if (!P.isBusy()) P.jump(pocketScreen()); });
   P.action('invest-pocket', function () {

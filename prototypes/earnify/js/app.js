@@ -71,7 +71,7 @@
     { id: 'invest-amount', label: 'How much to invest', action: 'invest-amount-demo' },
     { id: 'invest-pocket', label: 'Pocket after investing', action: 'invest-pocket-demo' }
   ];
-  // Figma section 30:9824. Home's "Invest with Gaurdian" card opens the hub; it ends on the shared Insight / Spending.
+  // Figma section 30:9824. Home's "Invest with Guardian" card opens the hub; it ends on the shared Insight / Spending.
   var GUARDIAN = [
     { id: 'guardian', label: 'With Guardian (Invest tab)' },
     { id: 'guardian-intro', label: 'Spending with guardians together' },

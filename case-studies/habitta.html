@@ -70,6 +70,21 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
 .ut-zoom-hint { position:absolute; right:10px; bottom:10px; padding:4px 8px; border-radius:4px; background:rgba(0,0,0,0.65); color:#fff; font-size:12px; font-weight:400; letter-spacing:0.04em; pointer-events:none; }
 @media (hover:none) { .ut-zoom-hint { display:none; } }
 
+/* FEATURE VIDEO IN AN iPHONE 13 mini MOCKUP
+   Body 64.2 x 131.5 mm with a 3.4 mm black border; screen 375 x 812 pt with 44 pt corners.
+   Every size is in cqw (1% of the phone width), so the frame keeps its proportions at any width.
+   No notch is drawn: the recording already shows the prototype's own camera pill at the top. */
+.phone-mock { width:87.5%; margin:0 auto; container-type:inline-size; }
+.iphone-13mini { position:relative; padding:5.25cqw; background:#0B0B0C; border-radius:15.75cqw;
+  box-shadow:inset 0 0 0 0.8cqw #2E2E30, 0 3cqw 8cqw rgba(17,17,16,0.18); }
+.iphone-13mini video { display:block; width:100%; height:auto; border-radius:10.5cqw; background:#F4F4F4; }
+/* side buttons: mute switch and two volume buttons on the left, power on the right */
+.iphone-13mini::before, .iphone-13mini::after { content:''; position:absolute; width:1cqw; }
+.iphone-13mini::before { left:-1cqw; top:32.7cqw; height:61.3cqw; border-radius:0.6cqw 0 0 0.6cqw;
+  background:linear-gradient(to bottom, #2A2A2C 0 9.2cqw, transparent 9.2cqw 20.4cqw, #2A2A2C 20.4cqw 37.8cqw, transparent 37.8cqw 43.9cqw, #2A2A2C 43.9cqw 61.3cqw); }
+.iphone-13mini::after { right:-1cqw; top:59.2cqw; height:26.6cqw; border-radius:0 0.6cqw 0.6cqw 0; background:#2A2A2C; }
+@media (max-width:768px) { .phone-mock { width:200px; } }
+
 /* PROTOTYPE EMBED */
 .proto-block { display:flex; flex-direction:column; align-items:center; margin-top:32px; scroll-margin-top:80px; }
 .proto-block > * { width:100%; }
@@ -161,20 +176,22 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
 .us-board { padding:24px; background:var(--white); border:1px solid var(--border); border-radius:12px; }
 .us-legend { display:flex; justify-content:flex-end; gap:16px; margin-bottom:16px; font-size:11px; color:var(--muted); }
 .us-legend span { display:inline-flex; align-items:center; gap:6px; }
-.us-legend i { width:10px; height:10px; border-radius:50%; }
+.us-legend i { font-style:normal; font-size:14px; line-height:1; }
 .us-grid { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:32px 12px; align-items:start; }
 .us-group { grid-column:span var(--n); }
-.us-head { padding:9px 12px; border-radius:4px; font-size:12px; font-weight:500; line-height:1.3; text-align:center; color:var(--ink); }
+.us-head { background:var(--c); padding:9px 12px; border-radius:4px; font-size:12px; font-weight:500; line-height:1.3; text-align:center; color:var(--ink); }
 /* group head: the pillar it became, then the original user story group */
 .us-head b { display:block; font-weight:600; }
 .us-head span { display:block; margin-top:2px; font-size:11px; font-weight:400; color:rgba(17,17,16,0.68); }
 .us-note { margin:0 0 12px; font-size:13px; line-height:1.5; color:var(--muted); }
 .us-note b { font-weight:500; color:var(--ink); }
 .us-cards { list-style:none; margin:22px 0 0; padding:0; display:grid; grid-template-columns:repeat(var(--n), minmax(0,1fr)); gap:26px 12px; }
-.us-card { position:relative; padding:22px 14px 16px; background:#DCDCDA; border-radius:2px; font-size:12px; line-height:1.5; color:var(--ink); }
-.us-card::before { content:''; position:absolute; top:0; left:50%; width:22px; height:22px; border-radius:50%; transform:translate(-50%,-50%); box-shadow:0 1px 2px rgba(0,0,0,0.18); }
-.us-card.teen::before, .us-legend .teen { background:#04D180; }
-.us-card.parent::before, .us-legend .parent { background:#0350FD; }
+/* each sticky note is a lighter tint of its pillar colour (--c on the group) */
+.us-card { position:relative; padding:22px 14px 16px; background:#DCDCDA; background:color-mix(in srgb, var(--c) 50%, #fff); border-radius:2px; font-size:12px; line-height:1.5; color:var(--ink); }
+/* who the story belongs to: an emoji pinned to the top of each note, and the same emoji in the legend */
+.us-card::before { position:absolute; top:0; left:50%; transform:translate(-50%,-50%); font-size:20px; line-height:1; }
+.us-card.teen::before, .us-legend .teen::before { content:'👧'; }
+.us-card.parent::before, .us-legend .parent::before { content:'👱'; }
 .us-card b { display:block; margin-bottom:4px; font-weight:600; }
 .us-card span { display:block; margin-top:4px; }
 @container (max-width:640px) {
@@ -315,10 +332,10 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
   <!-- FEATURES -->
   <section class="section" id="features">
     <div class="mid-title">Main Features</div>
-    <div class="fr"><div class="ft"><div class="ft-num">Feature 01</div><div class="ft-title">Adaptive Budgeting for Irregular Income</div><div class="ft-desc">A system that allows teens to manage fragmental income or irregular allowances without overspending, including "save-before-spend" mechanisms.</div></div><div class="gif-ph" style="background:#D9D6D0;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.15);"></div><span class="ph-label">GIF</span></div></div>
-    <div class="fr"><div class="ft"><div class="ft-num">Feature 02</div><div class="ft-title">Guidance-Teen Financial Dashboard</div><div class="ft-desc">A space for voluntary discussion and transparency where parents can view saving progress and provide positive feedback without "nagging" or causing stress.</div></div><div class="gif-ph" style="background:#D4D2CE;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.15);"></div><span class="ph-label">GIF</span></div></div>
-    <div class="fr"><div class="ft"><div class="ft-num">Feature 03</div><div class="ft-title">Goal with Occasional Encouragement</div><div class="ft-desc">For specific short-term (e.g., a laptop) and long-term goals to provide a sense of achievement.</div></div><div class="gif-ph" style="background:#CECCC8;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.15);"></div><span class="ph-label">GIF</span></div></div>
-    <div class="fr"><div class="ft"><div class="ft-num">Feature 04</div><div class="ft-title">Dialogue Before Invest</div><div class="ft-desc">Instead of just buying a commodity, teens must talk with AI and explain why they decided to invest — a human-in-the-loop safety guardrail.</div></div><div class="gif-ph" style="background:#D6D4CF;"><div class="ph-box" style="width:26px;height:26px;border-color:rgba(17,17,16,0.15);"></div><span class="ph-label">GIF</span></div></div>
+    <div class="fr"><div class="ft"><div class="ft-num">Feature 01</div><div class="ft-title">Adaptive Budgeting for Irregular Income</div><div class="ft-desc">A system that allows teens to manage fragmental income or irregular allowances without overspending, including "save-before-spend" mechanisms.</div></div><div class="phone-mock"><div class="iphone-13mini"><video src="../images/Habitta/earnify-adaptive-budgeting.mp4" width="700" height="1514" autoplay muted loop playsinline preload="auto" aria-label="Screen recording: after a missed saving day for the Nintendo goal, Penny reassures the teen and offers two options, saving double tomorrow or delaying the deadline by a day, and the teen chooses to save double"></video></div></div></div>
+    <div class="fr"><div class="ft"><div class="ft-num">Feature 02</div><div class="ft-title">Guidance-Teen Financial Dashboard</div><div class="ft-desc">A space for voluntary discussion and transparency where parents can view saving progress and provide positive feedback without "nagging" or causing stress.</div></div><div class="phone-mock"><div class="iphone-13mini"><video src="../images/Habitta/earnify-dashboard.mp4" width="700" height="1514" autoplay muted loop playsinline preload="auto" aria-label="Screen recording of the Earnify teen dashboard: the Insight tab with money left this month and shared budgets, then the Spending tab with recent transactions"></video></div></div></div>
+    <div class="fr"><div class="ft"><div class="ft-num">Feature 03</div><div class="ft-title">Goal with Occasional Encouragement</div><div class="ft-desc">For specific short-term (e.g., a laptop) and long-term goals to provide a sense of achievement.</div></div><div class="phone-mock"><div class="iphone-13mini"><video src="../images/Habitta/earnify-occasional-encouragement.mp4" width="700" height="1514" autoplay muted loop playsinline preload="auto" aria-label="Screen recording: Penny checks in on the Nintendo goal, asking what was hardest to save for this week, and later celebrates 15 days of saving in a row and asks for the teen’s tips"></video></div></div></div>
+    <div class="fr"><div class="ft"><div class="ft-num">Feature 04</div><div class="ft-title">Dialogue Before Invest</div><div class="ft-desc">Instead of just buying a commodity, teens must talk with AI and explain why they decided to invest — a human-in-the-loop safety guardrail.</div></div><div class="phone-mock"><div class="iphone-13mini"><video src="../images/Habitta/earnify-dialogue-before-invest.mp4" width="700" height="1514" autoplay muted loop playsinline preload="auto" aria-label="Screen recording: before buying, the teen starts a money talk with Penny, answers five questions about a company, then chooses what to buy and sees the updated pocket"></video></div></div></div>
   </section>
 
   <!-- DISCOVER -->
@@ -803,22 +820,22 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
             <p class="us-note">Each group is labelled with the pillar it became. <b>Pillar 01 · Proactive Budgeting</b> brings together two groups: budget habit, and spending tracking with real tips.</p>
             <div class="us-legend"><span><i class="teen"></i>Teen</span><span><i class="parent"></i>Guardian</span></div>
             <div class="us-grid">
-              <div class="us-group" style="--n:1">
-                <div class="us-head" style="background:#F6C988"><b>Onboarding</b><span>Before the pillars</span></div>
+              <div class="us-group" style="--n:1;--c:#F6C988">
+                <div class="us-head"><b>Onboarding</b><span>Before the pillars</span></div>
                 <ul class="us-cards">
                   <li class="us-card teen"><b>As a teen,</b>I want to choose whether to connect a parent/carer now or later <span>so that I can start privately and add support.</span></li>
                 </ul>
               </div>
-              <div class="us-group" style="--n:3">
-                <div class="us-head" style="background:#FFFF88"><b>Pillar 01 · Proactive Budgeting</b><span>Budget habit</span></div>
+              <div class="us-group" style="--n:3;--c:#FFFF88">
+                <div class="us-head"><b>Pillar 01 · Proactive Budgeting</b><span>Budget habit</span></div>
                 <ul class="us-cards">
                   <li class="us-card teen"><b>As a teen,</b>I want a system that is easier than excel to do the budgeting, <span>so that I can start budgeting without feeling overwhelmed.</span></li>
                   <li class="us-card teen"><b>As a teen,</b>I want a finance system that is relatable <span>so that I don’t stop using the system in the middle.</span></li>
                   <li class="us-card teen"><b>As a teen,</b>I want a finance system that is relatable <span>so that I don’t stop using the system in the middle.</span></li>
                 </ul>
               </div>
-              <div class="us-group" style="--n:4">
-                <div class="us-head" style="background:#FFFF88"><b>Pillar 01 · Proactive Budgeting</b><span>Spending tracking with real tips</span></div>
+              <div class="us-group" style="--n:4;--c:#FFFF88">
+                <div class="us-head"><b>Pillar 01 · Proactive Budgeting</b><span>Spending tracking with real tips</span></div>
                 <ul class="us-cards">
                   <li class="us-card teen"><b>As a teen,</b>I want short practical tips based on my spending patterns <span>so that I learn by doing instead of hard vocabulary definitions.</span></li>
                   <li class="us-card teen"><b>As a teen,</b>I want to separate “flexible cash” from “locked savings for goals” <span>so that I don’t feel stuck with no usable money.</span></li>
@@ -826,8 +843,8 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
                   <li class="us-card teen"><b>As a teen,</b>I want to use money in the most effective way <span>so that later I will have enough saving for other goals.</span></li>
                 </ul>
               </div>
-              <div class="us-group" style="--n:4">
-                <div class="us-head" style="background:#A0F8A6"><b>Pillar 02 · Tangible Goal Setting</b><span>Saving with goal</span></div>
+              <div class="us-group" style="--n:4;--c:#A0F8A6">
+                <div class="us-head"><b>Pillar 02 · Tangible Goal Setting</b><span>Saving with goal</span></div>
                 <ul class="us-cards">
                   <li class="us-card parent"><b>As a guardian,</b>I want some finance experts for my teens <span>so that my teens to save money wisely.</span></li>
                   <li class="us-card parent"><b>As a guardian,</b>I want some finance experts for my teens <span>so that I do not have to nag them to save.</span></li>
@@ -837,16 +854,16 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
                   <li class="us-card teen"><b>As a teen,</b>I want to categorize spending as “need / want / goal” <span>so that I can reflect on saving habits.</span></li>
                 </ul>
               </div>
-              <div class="us-group" style="--n:3">
-                <div class="us-head" style="background:#F1A09E"><b>Pillar 03 · Collaborative Transparency</b><span>Connect and share</span></div>
+              <div class="us-group" style="--n:3;--c:#F1A09E">
+                <div class="us-head"><b>Pillar 03 · Collaborative Transparency</b><span>Connect and share</span></div>
                 <ul class="us-cards">
                   <li class="us-card parent"><b>As a guardian,</b>I want to view teens spending summaries and leave positive feedback <span>so that I can know if the teen is using money wisely.</span></li>
                   <li class="us-card parent"><b>As a guardian,</b>I want a situation that is not awkward to ask how much saving has been done <span>so that I can guide them even if I’m not confident in finance.</span></li>
                   <li class="us-card parent"><b>As a guardian,</b>I want to see teen’s saving without asking them directly <span>so that I do not pressure the teens but care their finance situation.</span></li>
                 </ul>
               </div>
-              <div class="us-group" style="--n:4">
-                <div class="us-head" style="background:#8A9CF6"><b>Pillar 04 · Dialogue before Purchase</b><span>Investment direction</span></div>
+              <div class="us-group" style="--n:4;--c:#8A9CF6">
+                <div class="us-head"><b>Pillar 04 · Dialogue before Purchase</b><span>Investment direction</span></div>
                 <ul class="us-cards">
                   <li class="us-card teen"><b>As a teen,</b>I want to explore investing with simple explanations <span>so that I know the direction to start invest.</span></li>
                   <li class="us-card teen"><b>As a teen,</b>I want to explore investing with simple explanations and risk reminders <span>so that I can learn safely without overconfidence.</span></li>
@@ -885,7 +902,7 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
     <div class="cat">Overview of Mid Fidelity</div>
     <img class="deliver-img" src="../images/Habitta/mid-fidelity-overview.png" width="1694" height="742" alt="Overview of the mid-fidelity Figma board: rows of phone wireframes grouped into flows, with sticky notes and red frames marking screens to revisit" loading="lazy">
     <div class="cat">Components</div>
-    <img class="deliver-img" src="../images/Habitta/components.png" width="1342" height="964" alt="Earnify component sheet: calendar, labelled inputs, navigation bar states, buttons, progress bars, transaction and goal cards, the green #04D180 and blue #0350FD colour scales, and the typography scale" loading="lazy">
+    <img class="deliver-img" src="../images/Habitta/components-sheet.png" width="2400" height="4150" alt="Earnify foundations and components: blue and green 15-step colour ramps with supporting tints, the IBM Plex Sans Devanagari type scale, navigation bar states, buttons and chips, inputs, a date picker, progress bars and selection controls, and cards and list rows with their selected states" loading="lazy">
     <div class="cat">Brand Illustration · Reference and Process</div>
     <div class="brand-row">
       <img src="../images/Habitta/brand-illustration.png?v=2" width="1549" height="787" alt="Brand illustration board: paper plane, coin, mountain and piggy bank explorations in Earnify's blue, green and yellow, reference images of people connecting, and test versions of the speech bubble and profile icons" loading="lazy">
@@ -1001,7 +1018,7 @@ img.hero-img { display:block; height:auto; object-fit:cover; }
       <div class="catchy">Try the five core flows yourself</div>
       <p>Click through it as you would on a phone. On desktop, the panel beside the phone jumps between Onboarding, Goal setting, Budgeting, Invest after conversation and Spending with guardian.</p>
       <div class="proto-embed">
-        <iframe src="../prototypes/earnify/index.html?v=3" title="Earnify interactive prototype" loading="lazy"></iframe>
+        <iframe src="../prototypes/earnify/index.html?v=5" title="Earnify interactive prototype" loading="lazy"></iframe>
       </div>
     </div>
 

@@ -16,7 +16,7 @@
 .device[data-screen="guardian-intro"] .home-ind--long { left: 121.39px; top: 799.5px; }   /* Next sits at 709.5 there */
 .device[data-screen="guardian-sent"] .home-ind { visibility: hidden; }                     /* 30:11439 has none */
 
-/* Home's "Invest with Gaurdian" card opens the hub */
+/* Home's "Invest with Guardian" card opens the hub */
 .home-card[data-go] { cursor: pointer; }
 
 /* ---------- G0 · With Guardian hub (30:11908) ---------- */

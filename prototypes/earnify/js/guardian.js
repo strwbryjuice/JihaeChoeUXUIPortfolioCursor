@@ -1,5 +1,5 @@
 /* "Spending with guardian" flow — Figma section 30:9824.
-   Uses the shared API in js/app.js (window.proto). Home's "Invest with Gaurdian" card opens the hub (30:11908). */
+   Uses the shared API in js/app.js (window.proto). Home's "Invest with Guardian" card opens the hub (30:11908). */
 (function () {
   'use strict';
 

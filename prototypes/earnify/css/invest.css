@@ -18,7 +18,7 @@
 .device[data-screen="invest-choose"] > .status-bar,
 .device[data-screen="invest-amount"] > .status-bar { left: -1px; }
 
-/* Pocekt | Buy */
+/* Pocket | Buy */
 .i-seg {
   position: absolute;
   height: 36px;

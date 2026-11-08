@@ -559,7 +559,7 @@
     success: { kind: 'input', placeholder: 'Tell us your tip here! Or even brag here!', field: 315, keyboard: 388, who: 104, msg: 138,
       html: function (g) { return 'WOWWWWWW!!!\nYou have been saving for ' + esc(g.name) + ' for 15 consecutive days! <em>I’m so proud of you!</em>\n\nCould you give me tips how to save well like you? '; } },
     missed: { kind: 'options', who: 102, msg: 136,
-      text: function (g) { return 'Oh its ok for missing saving occasionally!\nWe can save double for tomorrow or delay our ' + g.name + ' saving plan for a day! '; } },
+      text: function (g) { return 'Oh it’s ok for missing saving occasionally!\nWe can save double for tomorrow or delay our ' + g.name + ' saving plan for a day! '; } },
     many: { kind: 'input', placeholder: 'Tell us your story here', field: 312, keyboard: 377, who: 102, msg: 136,
       text: function () { return 'You are not alone, 80% of the teens in the UK answered that they are having hard time to save. \n\nCan I ask what tempted you or hindered you from saving?'; } }
   };
@@ -592,7 +592,7 @@
       pInput.placeholder = s.placeholder;
       pInput.value = '';
     } else {
-      pDouble.textContent = 'Save for double (£' + perLabel((g.per || 9) * 2) + ') for tommrow';
+      pDouble.textContent = 'Save for double (£' + perLabel((g.per || 9) * 2) + ') for tomorrow';
       selectOnly([pDouble, pDelay], null);
     }
     sheet.style.height = '523px';
@@ -620,7 +620,7 @@
       pennyTimer = setTimeout(function () {
         sheet.classList.remove('is-celebrating');
         sheet.classList.add('is-done');
-        pMsg.textContent = 'Yessssss, lets save for double tommrow! \nThe important thing is to not give up saving!';
+        pMsg.textContent = 'Yessssss, let’s save for double tomorrow! \nThe important thing is to not give up saving!';
       }, 1100);
     }
     if (act === 'delay' && !sheet.classList.contains('is-done')) {
